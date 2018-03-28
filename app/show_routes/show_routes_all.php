@@ -60,7 +60,10 @@ echo "<form action=\"show_routes_all.php\" method=\"POST\">";
 echo "</form>";
 
 echo "<br>";
-echo "<p><a href=\"javascript:window.open('route_add.php','Add New Rote','width=650,height=450')\">Add a New Route</a></p><br>";
+echo "<p><a href=\"javascript:window.open('route_add.php','Add New Rote','width=650,height=450')\">Add a New Route</a></p>";
+/*echo " - "; 
+echo "<a href=\"javascript:window.open('upload_route.php','Upload  Route','width=650,height=450')\">Upload a New Route</a></p>";*/
+echo "<br>";
 
 if (isset($_POST['show']))
 {
@@ -71,7 +74,7 @@ if (isset($_POST['show']))
 				ro.TRUCKS as numberoftrucks, 
 				ro.DATE_OF_ROUTE as dateroute, 
 				ro.WEEKLY_NUT as routenut, 
-				SUM(rod.TEAM_DRIVE_COST) as team_drive_cost 
+				SUM(ro.TRUCKS * rod.MILEAGE * 1) as team_drive_cost 
 		FROM routes ro, shows sw, routes_det rod 
 		WHERE ro.SHOWID = $selectedid 
 		AND ro.SHOWID = sw.ShowID 

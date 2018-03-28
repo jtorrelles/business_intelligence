@@ -63,6 +63,14 @@ try {
 		$data = $loc->getDataOfRoute($routeId);
 	} 	
 
+	if($type=='getDetailData') {
+		if(!isset($_GET['routeDetailId']) || empty($_GET['routeDetailId'])) {
+			throw new exception("Route Detail Id is not set.");
+		}
+		$routeDeatilId = $_GET['routeDetailId'];
+		$data = $loc->getDataOfDetailRoute($routeDeatilId);
+	} 	
+
 } catch (Exception $e) {
    $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
 } finally {

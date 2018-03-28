@@ -44,22 +44,23 @@ echo "<script> getShows(); </script>";
 
 echo "<h1>Details Routes Administration:</h1>";
 
-echo "<p><a href=show_routes_all.php> Back to Routes </a></p><br>";
+echo "<p><a href=show_routes_all.php> Back to Routes Administration</a></p><br>";
 
 if (isset($_GET['selectedid']))
 {
 	$routeid = $_GET['selectedid'];
 
-	$sql = "SELECT ROUTES_DETID, 
-					PRESENTATION_DATE, 
-					IFNULL(HOLIDAY, '') as HOLIDAY, 
-					MILEAGE, 
-					IFNULL(BOOK_NOTES,'') as BOOK_NOTES, 
-					IFNULL(PROD_NOTES,'') as PROD_NOTES, 
-					TEAM_DRIVE_COST 
-			FROM routes_det 
-			WHERE ROUTESID = $routeid 
-			ORDER BY PRESENTATION_DATE DESC";
+	$sql = "SELECT det.ROUTES_DETID, 
+					det.PRESENTATION_DATE, 
+					IFNULL(det.HOLIDAY, '') as HOLIDAY, 
+					det.MILEAGE, 
+					IFNULL(det.BOOK_NOTES,'') as BOOK_NOTES, 
+					IFNULL(det.PROD_NOTES,'') as PROD_NOTES, 
+					(ro.TRUCKS * det.MILEAGE * 1) as TEAM_DRIVE_COST 
+			FROM routes_det det, routes ro 
+			WHERE det.ROUTESID = $routeid 
+			AND det.ROUTESID = ro.ROUTESID 
+			ORDER BY det.PRESENTATION_DATE ASC";
 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
@@ -85,14 +86,21 @@ if (isset($_GET['selectedid']))
 			$total_records = $total_records + 1;
 			echo 
 			"<tr>
-				<td>". $row["PRESENTATION_DATE"]. "</td>
-				<td>". $row["HOLIDAY"]."</td>
-				<td>". $row["MILEAGE"]. "</td>
+				<td>". $row["PRESENTATION_DATE"]. "</td>";
+			if($row["HOLIDAY"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}
+			echo 	
+				"<td>". $row["MILEAGE"]. "</td>
 				<td>". $row["BOOK_NOTES"]. "</td>
 				<td>". $row["PROD_NOTES"]."</td>
 				<td>". $row["TEAM_DRIVE_COST"]."</td>
 				<td align=center> 
-				<a href=\"javascript:window.open('route_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a> 
+				<a href=\"javascript:window.open('route_detail_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a> 
 			</td>
 			</tr>";
 	    }

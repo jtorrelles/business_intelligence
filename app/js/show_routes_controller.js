@@ -189,6 +189,82 @@ function findData(id){
 
 }
 
+function findDetailData(id){
+
+    var call = new ajaxCall();
+    var url = '../routes/show_routes_route.php?type=getDetailData&routeDetailId=' + id;
+    var method = "GET";
+    var data = {};
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+
+            $('.id').val(data['result'].routeid);
+            $('.detid').val(data['result'].routedetid);
+            $('.presentation_date').val(data['result'].presentation_date);
+            $('.cityid').val(data['result'].cityid);
+            $('.mileage').val(data['result'].mileage);
+            $('.book_notes').val(data['result'].book_notes);
+            $('.prod_notes').val(data['result'].prod_notes);
+            $('.time_zone').val(data['result'].time_zone);
+            $('.show_times').val(data['result'].show_times);
+            $('.perf').val(data['result'].perf);
+            $('.venueid').val(data['result'].venueid);
+            $('.presenterid').val(data['result'].presenterid);
+            $('.capacity').val(data['result'].capacity);
+            $('.fixed_gntee').val(data['result'].fixed_gntee);
+            $('.royalty').val(data['result'].royalty);
+            $('.backend').val(data['result'].backend);
+            $('.breakeven').val(data['result'].breakeven);
+            $('.deal_notes').val(data['result'].deal_notes);
+            $('.est_royalty').val(data['result'].est_royalty);
+            $('.on_sub').val(data['result'].on_sub);
+            $('.date_conf').val(data['result'].date_conf);
+
+            if(data['result'].holiday == 1){
+                $('.holiday').prop('checked', true);
+            };
+
+            if(data['result'].repeat == 1){
+                $('.repeat').prop('checked', true);
+            };
+
+            if(data['result'].on_sub == 1){
+                $('.on_sub').prop('checked', true);
+            };
+
+            if(data['result'].date_conf == 1){
+                $('.date_conf').prop('checked', true);
+            };
+
+            if(data['result'].offer == 1){
+                $('.offer').prop('checked', true);
+            };
+
+            if(data['result'].price_scales == 1){
+                $('.price_scales').prop('checked', true);
+            };
+
+            if(data['result'].expenses == 1){
+                $('.expenses').prop('checked', true);
+            };
+
+            if(data['result'].deal_nemo == 1){
+                $('.deal_nemo').prop('checked', true);
+            };
+
+            if(data['result'].contract == 1){
+                $('.contract').prop('checked', true);
+            };         
+
+            $("#datadetailroute").show();
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+
+}
+
 
 function getUploadFile(){
 

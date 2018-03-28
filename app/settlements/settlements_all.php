@@ -60,7 +60,10 @@ echo "<form action=\"settlements_all.php\" method=\"POST\">";
 echo "</form>";
 
 echo "<br>";
-echo "<p><a href=\"javascript:window.open('settlement_add.php','Add New Settlement','width=650,height=450')\">Add a New Settlement</a> - <a href=\"javascript:window.open('upload_settlement.php','Upload  Settlement','width=650,height=450')\">Upload a New Settlement</a></p><br>";
+echo "<p><a href=\"javascript:window.open('settlement_add.php','Add New Settlement','width=650,height=450')\">Add a New Settlement</a></p>";
+/*echo " - "; 
+echo "<a href=\"javascript:window.open('upload_settlement.php','Upload  Settlement','width=650,height=450')\">Upload a New Settlement</a></p>";*/
+echo "<br>";
 
 if (isset($_POST['show']))
 {
