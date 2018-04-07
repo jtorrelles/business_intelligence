@@ -53,11 +53,23 @@ if (isset($_GET['selectedid']))
 	$sql = "SELECT det.ROUTES_DETID, 
 					det.PRESENTATION_DATE, 
 					IFNULL(det.HOLIDAY, '') as HOLIDAY, 
-					det.MILEAGE, 
-					IFNULL(det.BOOK_NOTES,'') as BOOK_NOTES, 
-					IFNULL(det.PROD_NOTES,'') as PROD_NOTES, 
-					(ro.TRUCKS * det.MILEAGE * 1) as TEAM_DRIVE_COST 
-			FROM routes_det det, routes ro 
+					(SELECT IFNULL(ci.NAME, '') 
+					 FROM cities ci 
+					 WHERE det.CITYID = ci.ID) as CITY,
+					(SELECT IFNULL(sta.NAME, '') 
+					 FROM cities ci, states sta 
+					 WHERE det.CITYID = ci.ID
+					 AND ci.STATE_ID = sta.ID) as STATE,
+					IFNULL(det.REPEAT, '') as REPEAT1,
+					IFNULL(det.PERF, 0) as PERF,
+					IFNULL(det.ON_SUB, '') as ON_SUB,
+					IFNULL(det.DATE_CONF, '') as DATE_CONF,
+					IFNULL(det.OFFER, '') as OFFER,
+					IFNULL(det.PRICE_SCALES, '') as PRICE_SCALES,
+					IFNULL(det.EXPENSES, '') as EXPENSES,
+					IFNULL(det.DEAL_MEMO, '') as DEAL_MEMO,
+					IFNULL(det.CONTRACT, '') as CONTRACT
+			FROM routes_det det, routes ro
 			WHERE det.ROUTESID = $routeid 
 			AND det.ROUTESID = ro.ROUTESID 
 			ORDER BY det.PRESENTATION_DATE ASC";
@@ -65,19 +77,33 @@ if (isset($_GET['selectedid']))
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		echo "<table id=\"routesoffshows\">
-		<col width=14.28%>
-		<col width=14.28%>
-		<col width=14.28%>
-		<col width=14.28%>
-		<col width=14.28%>
-		<col width=14.28%>
+		<col width=11.50%>
+		<col width=6.00%>
+		<col width=11.50%>
+		<col width=11.50%>
+		<col width=6.00%>
+		<col width=11.50%>
+		<col width=6.00%>
+		<col width=6.00%>
+		<col width=6.00%>
+		<col width=6.00%>
+		<col width=6.00%>
+		<col width=6.00%>
+		<col width=6.00%>
 	    <tr>
 		<th>Presentation Date</th>
 		<th>Holiday</th>
-		<th>Mileage</th>
-		<th>Book Notes</th>
-		<th>Production Notes</th>
-		<th>Team Drive Cost Estimate</th>
+		<th>City</th>
+		<th>State</th>
+		<th>Repeat</th>
+		<th>Number Of Performances</th>
+		<th>On Sub</th>
+		<th>Date Conf</th>
+		<th>Offer</th>
+		<th>Price Scales</th>
+		<th>Expenses</th>
+		<th>Deal Memo</th>
+		<th>Contract</th>
 		<th>Options</th>
 		</tr>";
 	    // output data of each row
@@ -94,12 +120,69 @@ if (isset($_GET['selectedid']))
 				echo 
 				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}
-			echo 	
-				"<td>". $row["MILEAGE"]. "</td>
-				<td>". $row["BOOK_NOTES"]. "</td>
-				<td>". $row["PROD_NOTES"]."</td>
-				<td>". $row["TEAM_DRIVE_COST"]."</td>
-				<td align=center> 
+			echo
+				"<td>". $row["CITY"]. "</td>
+				<td>". $row["STATE"]. "</td>";
+			if($row["REPEAT1"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}	
+			echo
+				"<td>". $row["PERF"]. "</td>";
+			if($row["ON_SUB"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"on_sub\" name='on_sub' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}	
+			if($row["DATE_CONF"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}	
+			if($row["OFFER"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}
+			if($row["PRICE_SCALES"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}
+			if($row["EXPENSES"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}
+			if($row["DEAL_MEMO"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}
+			if($row["CONTRACT"] == 1){
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+			}else{
+				echo 
+				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+			}
+			echo
+				"<td align=center> 
 				<a href=\"javascript:window.open('route_detail_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a> 
 			</td>
 			</tr>";
