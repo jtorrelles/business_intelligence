@@ -274,6 +274,23 @@ class showRoutesServices extends dbconfig {
                     $Prod_notes[$i] = $objPHPExcel->getSheet(1)->getCell("L".$id)->getValue();
                     $Time_zone[$i] = $objPHPExcel->getSheet(1)->getCell("N".$id)->getValue();
                     $Show_times[$i] = $objPHPExcel->getSheet(1)->getCell("O".$id)->getValue();
+                    $Perf[$i] = $objPHPExcel->getSheet(1)->getCell("P".$id)->getValue();
+                    $Venue[$i] = $objPHPExcel->getSheet(1)->getCell("Q".$id)->getValue();
+                    $Presenter[$i] = $objPHPExcel->getSheet(1)->getCell("R".$id)->getValue();
+                    $Capacity[$i] = $objPHPExcel->getSheet(1)->getCell("S".$id)->getValue();
+                    $Fixed_gntee[$i] = $objPHPExcel->getSheet(1)->getCell("T".$id)->getValue();
+                    $Royalty[$i] = $objPHPExcel->getSheet(1)->getCell("U".$id)->getValue();
+                    $Backend[$i] = $objPHPExcel->getSheet(1)->getCell("V".$id)->getValue();
+                    $Breakeven[$i] = $objPHPExcel->getSheet(1)->getCell("W".$id)->getValue();
+                    $Deal_notes[$i] = $objPHPExcel->getSheet(1)->getCell("X".$id)->getValue();
+                    $Est_royalty[$i] = $objPHPExcel->getSheet(1)->getCell("Y".$id)->getValue();
+                    $On_sub[$i] = $objPHPExcel->getSheet(1)->getCell("Z".$id)->getValue();
+                    $Date_conf[$i] = $objPHPExcel->getSheet(1)->getCell("AA".$id)->getValue();
+                    $Offer[$i] = $objPHPExcel->getSheet(1)->getCell("AB".$id)->getValue();
+                    $Price_scales[$i] = $objPHPExcel->getSheet(1)->getCell("AC".$id)->getValue();
+                    $Expenses[$i] = $objPHPExcel->getSheet(1)->getCell("AD".$id)->getValue();
+                    $Deal_memo[$i] = $objPHPExcel->getSheet(1)->getCell("AE".$id)->getValue();
+                    $Contract[$i] = $objPHPExcel->getSheet(1)->getCell("AF".$id)->getValue();
                   }   
 
                   //Free Memory
@@ -308,6 +325,23 @@ class showRoutesServices extends dbconfig {
                     $res["prod_notes" . $i] = $Prod_notes[$i];
                     $res["time_zone" . $i] = $Time_zone[$i];
                     $res["show_times" . $i] = $Show_times[$i];
+                    $res["perf" . $i] = $Perf[$i];
+                    $res["venue" . $i] = $Venue[$i];
+                    $res["presenter" . $i] = $Presenter[$i];
+                    $res["capacity" . $i] = $Capacity[$i];
+                    $res["fixed_gntee" . $i] = $Fixed_gntee[$i];
+                    $res["royalty" . $i] = $Royalty[$i];
+                    $res["backend" . $i] = $Backend[$i];
+                    $res["breakeven" . $i] = $Breakeven[$i];
+                    $res["deal_notes" . $i] = $Deal_notes[$i];
+                    $res["est_royalty" . $i] = $Est_royalty[$i];
+                    $res["on_sub" . $i] = $On_sub[$i];
+                    $res["date_conf" . $i] = $Date_conf[$i];
+                    $res["offer" . $i] = $Offer[$i];
+                    $res["price_scales" . $i] = $Price_scales[$i];
+                    $res["expenses" . $i] = $Expenses[$i];
+                    $res["deal_memo" . $i] = $Deal_memo[$i];
+                    $res["contract" . $i] = $Contract[$i];
                   }
                   
 

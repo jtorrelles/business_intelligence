@@ -294,6 +294,23 @@ function getUploadFile(){
               $('.prod_notes' + i).val(eval("data_response['result'].prod_notes" + i));
               $('.time_zone' + i).val(eval("data_response['result'].time_zone" + i));
               $('.show_times' + i).val(eval("data_response['result'].show_times" + i));
+              $('.perf' + i).val(eval("data_response['result'].perf" + i));
+              $('.venue' + i).val(eval("data_response['result'].venue" + i));
+              $('.presenter' + i).val(eval("data_response['result'].presenter" + i));
+              $('.capacity' + i).val(eval("data_response['result'].capacity" + i));
+              $('.fixed_gntee' + i).val(eval("data_response['result'].fixed_gntee" + i));
+              $('.royalty' + i).val(eval("data_response['result'].royalty" + i));
+              $('.backend' + i).val(eval("data_response['result'].backend" + i));
+              $('.breakeven' + i).val(eval("data_response['result'].breakeven" + i));
+              $('.deal_notes' + i).val(eval("data_response['result'].deal_notes" + i));
+              $('.est_royalty' + i).val(eval("data_response['result'].est_royalty" + i));
+              $('.on_sub' + i).val(eval("data_response['result'].on_sub" + i));
+              $('.date_conf' + i).val(eval("data_response['result'].date_conf" + i));
+              $('.offer' + i).val(eval("data_response['result'].offer" + i));
+              $('.price_scales' + i).val(eval("data_response['result'].price_scales" + i));
+              $('.expenses' + i).val(eval("data_response['result'].expenses" + i));
+              $('.deal_memo' + i).val(eval("data_response['result'].deal_memo" + i));
+              $('.contract' + i).val(eval("data_response['result'].contract" + i));
             } 
 
             $("#route_data").show();
