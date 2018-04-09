@@ -122,7 +122,7 @@ if ($result->num_rows > 0) {
 		<td>".$row["presenteractive"]."</td>
 		<td align=center>
 		<a href=\"javascript:window.open('presenter_modify_selected.php?selectedid=".$row['presenterid']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a>   
-		<a href=\"javascript:window.open('presenter_delete_selected.php?selectedid=".$row['presenterid']."','Delete Selected','width=480,height=530')\"><img src='../images/delete.png' width=20></a>
+		<a href=\"javascript:window.open('presenter_delete_selected.php?selectedid=".$row['presenterid']."','Delete Selected','width=480,height=530')\" hidden ><img src='../images/delete.png' width=20></a>
 		</td>
 		</tr>";
     }

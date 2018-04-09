@@ -18,6 +18,8 @@ $notes_presenter = $_POST['notes'];
 $contact_presenter = $_POST['contact'];
 $pace_presenter = $_POST['pace'];
 
+$cityid = $_POST['city_presenter_det'];
+
 $sql = "UPDATE presenters SET 
 		presentername = '$name_presenter',
 		presenteractive = '$active_presenter',
@@ -30,7 +32,8 @@ $sql = "UPDATE presenters SET
 		presenteremail = '$email_presenter',
 		presenternotes = '$notes_presenter', 
 		presentercontact_name = '$contact_presenter', 
-		presenterpace = '$pace_presenter'
+		presenterpace = '$pace_presenter', 
+		PresenterCITYID = $cityid
 		WHERE presenterid = $id";
 
 if ($conn->query($sql) === TRUE) {

@@ -7,7 +7,9 @@ include '../header.html';
 	}
 
 	$settlementid = $_POST['id'];
-	//$showid = $_POST['showid'];
+	$showid = $_POST['show_name'];
+	$venueid = $_POST['venue_name'];
+	$cityid = $_POST['city'];
 	$openingdate = $_POST['opening_date'];
 	$closingdate = $_POST['closing_date'];
 	$numberperformances = $_POST['number_performances'];
@@ -92,7 +94,28 @@ $sql = "UPDATE settlements_details SET
 	   	WHERE SettlementID = $settlementid";
 
 	if ($conn->query($sql) === TRUE) {
-	    echo "<p>Settlement Modified Successfully!</p>";
+
+		$sql2 = "UPDATE settlements SET 
+					SettlementCITYID = $cityid, 
+					SettlementShowID = $showid, 
+					SettlementVENUEID = $venueid, 
+					SettlementOPENING_DATE = '$openingdate',
+  					SettlementCLOSING_DATE = '$closingdate',
+  					SettlementNUMBER_OF_PERFORMANCES = '$numberperformances',
+  					SettlementGROSS_POTENTIAL = $grosspotential,
+  					SettlementACTUAL_GROSS = $actualgross,
+  					SettlementGROUP_SALES = $groupsales,
+  					SettlementTOTAL_FIXED_EXPENSE = $totalfixedexpenses,
+  					SettlementTOTAL_DOCUMENTED_EXPENSE = $totaldocumentedexpense,
+  					SettlementTOTAL_PRESENTER_EXPENSE = $totalpresenterexpense 
+				WHERE SettlementID = $settlementid";
+
+		if($conn->query($sql2) === TRUE){
+			echo "<p>Settlement Modified Successfully!</p>";
+		}else{
+			echo "Error modifying record: " . $conn->error;
+		}
+	    
 	} else {
 	    echo "Error modifying record: " . $conn->error;
 	}

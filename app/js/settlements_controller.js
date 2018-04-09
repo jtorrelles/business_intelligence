@@ -1,4 +1,10 @@
 
+var setCityId = 0; 
+var setStateId = 0;
+var setCountryId = 0;
+var setShowID = 0;
+var setVenueID = 0;
+
 function ajaxCall() {
     this.send = function(data, url, method, success, type) {
         type = type||'json';
@@ -53,6 +59,125 @@ function ajaxCallUpload() {
     }
 };
 
+function getCountries() {
+    var call = new ajaxCall();
+    var url = '../routes/settlements_route.php?type=getCountries';
+    var method = "GET";
+    var data = {};
+    $('.countries').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.countries').find("option:eq(0)").html("Select Country");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.countries').append(option);
+            });
+            $(".countries").prop("disabled",false);
+
+            //set country value
+            if(setCountryId != 0){
+                $(".countries").val(setCountryId);
+            }else{
+                //Sel United States
+                $(".countries").val("231");
+                getStates(231);
+            }
+
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
+function getStates(id) {
+    var call = new ajaxCall();
+    $(".states option:gt(0)").remove(); 
+    $(".cities option:gt(0)").remove();
+    var url = '../routes/settlements_route.php?type=getStates&countryId=' + id;
+    var method = "GET";
+    var data = {};
+    $('.states').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.states').find("option:eq(0)").html("Select State");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.states').append(option);
+            });
+            $(".states").prop("disabled",false);
+
+            //set states value
+            if(setStateId != 0){ 
+                $(".states").val(setStateId);
+            }
+            
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
+function getCities(id) {
+    var call = new ajaxCall();
+    $(".cities option:gt(0)").remove();
+    var url = '../routes/settlements_route.php?type=getCities&stateId=' + id;
+    var method = "GET";
+    var data = {};
+    $('.cities').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.cities').find("option:eq(0)").html("Select City");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.cities').append(option);
+            });
+            $(".cities").prop("disabled",false);
+
+            //set city value
+            if(setCityId != 0){
+                $(".cities").val(setCityId);
+            }
+        }
+        else{
+             alert(data.msg);
+        }
+    });
+};
+
+function getGlobalLocation(cityID) {
+    if(cityID != 0){
+        var call = new ajaxCall();
+        var url = '../routes/settlements_route.php?type=getGlobalLocation&cityId=' + cityID;
+        var method = "GET";
+        var data = {};
+        call.send(data, url, method, function(data) {
+            if(data.tp == 1){
+
+                console.log(data);
+
+                setCityId = data["result"].cityid;
+                setStateId = data["result"].stateid;
+                setCountryId = data["result"].countryid;
+
+                getCities(data["result"].stateid);
+                getStates(data["result"].countryid);
+                getCountries();
+            }
+            else{
+                 alert(data.msg);
+            }
+        });
+    }else{
+        getCountries();
+    }
+
+};
+
 function getShows() {
     var call = new ajaxCall();
     var url = '../routes/settlements_route.php?type=getShows';
@@ -68,6 +193,11 @@ function getShows() {
                 $('.shows').append(option);
             });
             $(".shows").prop("disabled",false);
+
+            //set venue value
+            if(setShowID != 0){ 
+                $(".shows").val(setShowID);
+            }
         }
         else{
             alert(data.msg);
@@ -90,6 +220,11 @@ function getVenues() {
                 $('.venues').append(option);
             });
             $(".venues").prop("disabled",false);
+
+            //set venue value
+            if(setVenueID != 0){ 
+                $(".venues").val(setVenueID);
+            }
         }
         else{
             alert(data.msg);
@@ -131,7 +266,6 @@ function findData(id){
         if(data.tp == 1){
 
             $('.id').val(data['result'].settlementid);
-            //$('.name').val(data['result'].showid);
             $('.show_name').val(data['result'].show_name);
             $('.venue_name').val(data['result'].venue_name);
             $('.opening_date').val(data['result'].opening_date);
@@ -188,9 +322,13 @@ function findData(id){
             $('.presenter_expenses').val(data['result'].total_presenter);
             $('.restoration_charge').val(data['result'].total_restoration);
             $('.breakeven').val(data['result'].breakeven);
-            //$('.fax').val(data['result'].cityname);
-            //$('.email').val(data['result'].statename);
-            //$('.notes').val(data['result'].countryname);
+
+            setShowID = data['result'].showid;
+            setVenueID = data['result'].venueid;
+
+            getGlobalLocation(data['result'].cityid);
+            getVenues(); 
+            getShows();
 
             $("#datasettlements").show();
         }
@@ -268,6 +406,26 @@ function onloadManagement(){
 }
 
 $(function() {
+
+    $(".countries").on("change", function(ev) {
+        var countryId = $(this).val();
+        if(countryId != ''){
+            setCityId = 0;
+            setStateId = 0;
+            getStates(countryId);
+        }else{
+            $(".states option:gt(0)").remove();
+        }
+    });
+
+    $(".states").on("change", function(ev) {
+        var stateId = $(this).val();
+        if(stateId != ''){
+            getCities(stateId);
+        }else{
+            $(".cities option:gt(0)").remove();
+        }
+    });
 
     $(".venues").on("change", function(ev) {
         var venueId = $(this).val();

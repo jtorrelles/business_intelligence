@@ -4,7 +4,7 @@ include '../header.html';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$id = $_POST['id_contract'];
+$id = $_POST['id'];
 $opening = $_POST['opening_date'];
 $closing = $_POST['closing_date'];
 $performances = $_POST['number_of_performances'];
@@ -20,8 +20,16 @@ $rem_com = $_POST['remotes_commission'];
 $fx_com = $_POST['fixed_expense'];
 $doc_com = $_POST['documented_expense'];
 $pre_com = $_POST['total_presenter_expense'];
+$showid = $_POST['show_name'];
+$venueid = $_POST['venue_name'];
+$presenterid = $_POST['presenter_name'];
+$cityid = $_POST['cityid'];
 
 $sql = "UPDATE contracts SET 
+		ShowID = $showid, 
+		ContractPRESENTERID = $presenterid, 
+		ContractVENUEID = $venueid, 
+		ContractCITYID = $cityid, 
 		ContractOPENING_DATE = '$opening',
 		ContractCLOSING_DATE = '$closing',
 		ContractNUMBER_OF_PERFORMANCES = '$performances',

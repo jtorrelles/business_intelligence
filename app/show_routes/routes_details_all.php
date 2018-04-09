@@ -51,7 +51,7 @@ if (isset($_GET['selectedid']))
 	$routeid = $_GET['selectedid'];
 
 	$sql = "SELECT det.ROUTES_DETID, 
-					det.PRESENTATION_DATE, 
+					DATE_FORMAT(det.PRESENTATION_DATE,'%m/%d/%Y') as PRESENTATION_DATE, 
 					IFNULL(det.HOLIDAY, '') as HOLIDAY, 
 					(SELECT IFNULL(ci.NAME, '') 
 					 FROM cities ci 
@@ -134,56 +134,56 @@ if (isset($_GET['selectedid']))
 				"<td>". $row["PERF"]. "</td>";
 			if($row["ON_SUB"] == 1){
 				echo 
-				"<td><input type='checkbox' class=\"on_sub\" name='on_sub' checked disabled></td>";
+				"<td bgcolor=green><input type='checkbox' class=\"on_sub\" name='on_sub' checked disabled></td>";
 			}else{
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+				"<td bgcolor=red><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}	
 			if($row["DATE_CONF"] == 1){
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+				"<td bgcolor=green><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
 			}else{
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+				"<td bgcolor=red><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}	
 			if($row["OFFER"] == 1){
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+				"<td bgcolor=green><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
 			}else{
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+				"<td bgcolor=red><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}
 			if($row["PRICE_SCALES"] == 1){
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+				"<td bgcolor=green><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
 			}else{
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+				"<td bgcolor=red><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}
 			if($row["EXPENSES"] == 1){
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+				"<td bgcolor=green><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
 			}else{
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+				"<td bgcolor=red><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}
 			if($row["DEAL_MEMO"] == 1){
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+				"<td bgcolor=green><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
 			}else{
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+				"<td bgcolor=red><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}
 			if($row["CONTRACT"] == 1){
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
+				"<td bgcolor=green><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
 			}else{
 				echo 
-				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
+				"<td bgcolor=red><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}
 			echo
 				"<td align=center> 
-				<a href=\"javascript:window.open('route_detail_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a> 
+				<a href=\"javascript:window.open('route_detail_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=550,height=530')\"><img src='../images/modify.png' width=20></a> 
 			</td>
 			</tr>";
 	    }

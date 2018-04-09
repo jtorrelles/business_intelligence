@@ -72,8 +72,8 @@ $sql = "SELECT 	co.ContractID as contractID,
 				ve.VenueNAME as contractVENUE_NAME,
 				ci.`name` as contractCITY, 
 				st.`name` as contractSTATE, 
-				contractOPENING_DATE,
-				contractCLOSING_DATE,
+				DATE_FORMAT(contractOPENING_DATE,'%m/%d/%Y') as contractOPENING_DATE,
+				DATE_FORMAT(contractCLOSING_DATE,'%m/%d/%Y') as contractCLOSING_DATE,
 				contractGROSS_POTENTIAL,
 				contractGUARANTEE,
 				contractTOTAL_PRESENTER_EXPENSES 
@@ -128,8 +128,8 @@ if ($result->num_rows > 0) {
 		<td align=right>".number_format($row["contractGUARANTEE"],2)."</td>
 		<td align=right>".number_format($row["contractTOTAL_PRESENTER_EXPENSES"],2)."</td>
 		<td align=center>
-		<a href=\"javascript:window.open('contract_modify_selected.php?selectedid=".$row['contractID']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a>   
-		<a href=\"javascript:window.open('contract_delete_selected.php?selectedid=".$row['contractID']."','Delete Selected','width=480,height=530')\"><img src='../images/delete.png' width=20></a>
+		<a href=\"javascript:window.open('contract_modify_selected.php?selectedid=".$row['contractID']."','Modify Selected','width=650,height=530')\"><img src='../images/modify.png' width=20></a>   
+		<a href=\"javascript:window.open('contract_delete_selected.php?selectedid=".$row['contractID']."','Delete Selected','width=480,height=530')\" hidden ><img src='../images/delete.png' width=20></a>
 		</td>
 		</tr>";
     }

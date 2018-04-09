@@ -5,15 +5,16 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 $id = $_POST['id_venue'];
-$name_venue = $_POST['name_venue'];
+$name_venue = $_POST['name'];
 $active_venue = $_POST['active_venue'];
-$address1_venue = $_POST['address1_venue'];
-$address2_venue = $_POST['address2_venue'];
-$zip_venue = $_POST['zip_venue'];
-$phone_venue = $_POST['phone_venue'];
-$fax_venue = $_POST['fax_venue'];
-$email_venue = $_POST['email_venue'];
-$notes_venue = $_POST['notes_venue'];
+$address1_venue = $_POST['address1'];
+$address2_venue = $_POST['address2'];
+$zip_venue = $_POST['zip'];
+$phone_venue = $_POST['phone'];
+$fax_venue = $_POST['fax'];
+$email_venue = $_POST['email'];
+$notes_venue = $_POST['notes'];
+$cityid = $_POST['city_venue_det'];
 
 $sql = "UPDATE venues SET 
 		venuename = '$name_venue',
@@ -24,7 +25,8 @@ $sql = "UPDATE venues SET
 		venuephone = '$phone_venue',
 		venuefax = '$fax_venue',
 		venueemail = '$email_venue',
-		venuenotes = '$notes_venue' 
+		venuenotes = '$notes_venue', 
+		VenueCITYID =  $cityid
 		WHERE venueid = $id";
 
 if ($conn->query($sql) === TRUE) {

@@ -26,7 +26,7 @@ echo "<tr><td>Presenter:</td>";
 echo "<td><select name=\"presenter\" class=\"presenter\" id=\"presenterMngId\">";
 echo "<option value=\"\">Select Presenter</option>
 	 </select>";
-echo "<input type=\"button\" name=\"search\" value=\"Find\" onclick=\"findData()\">";
+echo "<input type=\"button\" name=\"search\" value=\"Find\" onclick=\"findData(0)\">";
 echo "</tr>";
 
 echo "</table>";
@@ -52,6 +52,24 @@ echo "<tr>
 		<td><b>Address 2:</b></td>
 		<td><input type='text' name='address2' class=\"address2\"></td>
 	</tr>";
+echo "<tr>
+		<td>Country:</td>
+    	<td><select name=\"country_presenter_det\" class=\"countries_det\" id=\"countryId_det\">
+    		<option value=\"\">Select Country</option>
+        	</select></td>
+    </tr>";
+echo "<tr>
+		<td>State:</td>
+    	<td><select name=\"state_presenter_det\" class=\"states_det\" id=\"stateId_det\">
+    		<option value=\"\">Select State</option>
+       		</select></td>
+    </tr>";
+echo "<tr>
+		<td>City:</td>
+    	<td><select name=\"city_presenter_det\" class=\"cities_det\" id=\"cityId_det\">
+    		<option value=\"\">Select City</option>
+        	</select></td>
+    </tr>";	
 echo "<tr>
 		<td><b>ZIP Code:</b></td>
 		<td><input type='text' name='zip' class=\"zip\"></td>

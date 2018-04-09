@@ -148,8 +148,8 @@ if ($result->num_rows > 0) {
 			<td>". $row["settlementmoney_remaining"]."</td>
 			<td align=center>
 			<a href=\"javascript:window.open('settlement_preview_selected.php?selectedid=".$row['settlementid']."','Preview Selected','width=480,height=530')\"><img src='../images/view.png' width=20></a>   
-			<a href=\"javascript:window.open('settlement_modify_selected.php?selectedid=".$row['settlementid']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a> 
-			<a href=\"javascript:window.open('settlement_delete_selected.php?selectedid=".$row['settlementid']."','Delete Selected','width=480,height=530')\"><img src='../images/delete.png' width=20></a> 
+			<a href=\"javascript:window.open('settlement_modify_selected.php?selectedid=".$row['settlementid']."','Modify Selected','width=650,height=580')\"><img src='../images/modify.png' width=20></a> 
+			<a href=\"javascript:window.open('settlement_delete_selected.php?selectedid=".$row['settlementid']."','Delete Selected','width=480,height=530')\" hidden ><img src='../images/delete.png' width=20></a> 
 		</td>
 		</tr>";
     }

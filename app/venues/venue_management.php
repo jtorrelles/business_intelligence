@@ -28,7 +28,7 @@ echo "<tr><td>Venues:</td>";
 echo "<td><select name=\"venue\" class=\"venues\" id=\"venueId\">";
 echo "<option value=\"\">Select Venues</option>
 	  </select>";
-echo "<input type=\"button\" name=\"search\" value=\"Find\" onclick=\"findData()\">";
+echo "<input type=\"button\" name=\"search\" value=\"Find\" onclick=\"findData(0)\">";
 echo "</tr>";
 
 echo "</table>";
@@ -45,35 +45,50 @@ echo "<tr>
 	</tr>";	
 echo "<tr>
 		<td><b>Venue Name:</b></td>
-		<td><input autofocus='autofocus' type='text' class=\"name\" name='name_venue'></td>
+		<td><input autofocus='autofocus' type='text' class=\"name\" name='name'></td>
 	</tr>";
 echo "<tr>
 		<td><b>Address 1:</b></td>
-		<td><input type='text' name='address1_venue' class=\"address1\"></td>
+		<td><input type='text' name='address1' class=\"address1\"></td>
 	</tr>";
 echo "<tr>
 		<td><b>Address 2:</b></td>
-		<td><input type='text' name='address2_venue' class=\"address2\"></td>
+		<td><input type='text' name='address2' class=\"address2\"></td>
 	</tr>";
+echo "<tr><td>Country:</td>";
+echo "<td><select name=\"country_venue_det\" class=\"countries_det\" id=\"countryId_det\">";
+echo "<option value=\"\">Select Country</option>
+    </select></td>";
+echo "</tr>";
+echo "<tr><td>State:</td>";
+echo "<td><select name=\"state_venue_det\" class=\"states_det\" id=\"stateId_det\">";
+echo "<option value=\"\">Select State</option>
+   </select></td>";
+echo "</tr>";
+echo "<tr><td>City:</td>";
+echo "<td><select name=\"city_venue_det\" class=\"cities_det\" id=\"cityId_det\">";
+echo "<option value=\"\">Select City</option>
+    </select></td>";
+echo "</tr>";	
 echo "<tr>
 		<td><b>ZIP Code:</b></td>
-		<td><input type='text' name='zip_venue' class=\"zip\"></td>
+		<td><input type='text' name='zip' class=\"zip\"></td>
 	</tr>";
 echo "<tr>
 		<td><b>Phone:</b></td>
-		<td><input type='text' name='phone_venue' class=\"phone\"></td>
+		<td><input type='text' name='phone' class=\"phone\"></td>
 	</tr>";
 echo "<tr>
 		<td><b>Fax:</b></td>
-		<td><input type='text' name='fax_venue' class=\"fax\"></td>
+		<td><input type='text' name='fax' class=\"fax\"></td>
 	</tr>";
 echo "<tr>
 		<td><b>Email:</b></td>
-		<td><input type='text' name='email_venue' class=\"email\"></td>
+		<td><input type='text' name='email' class=\"email\"></td>
 	</tr>";
 echo "<tr>
 		<td><b>Notes:</b></td>
-		<td><textarea name='notes_venue' rows=4 cols=40 class=\"notes\"></textarea></td>
+		<td><textarea name='notes' rows=4 cols=40 class=\"notes\"></textarea></td>
 	</tr>";
 echo "<tr>
 		<td><b>Is the Venue Active?:</b></td>

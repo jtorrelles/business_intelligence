@@ -39,6 +39,34 @@ try {
     $data = $loc->getVenues();
   } 
 
+  if($type=='getCountries') {
+    $data = $loc->getCountries();
+  } 
+
+  if($type=='getStates') {
+    if(!isset($_GET['countryId']) || empty($_GET['countryId'])) {
+      throw new exception("Country Id is not set.");
+    }
+    $countryId = $_GET['countryId'];
+    $data = $loc->getStates($countryId);
+  }
+
+  if($type=='getCities') {
+    if(!isset($_GET['stateId']) || empty($_GET['stateId'])) {
+      throw new exception("State Id is not set.");
+    }
+    $stateId = $_GET['stateId'];
+    $data = $loc->getCities($stateId);
+  }
+
+  if($type=='getGlobalLocation') {
+    if(!isset($_GET['cityId']) || empty($_GET['cityId'])) {
+      throw new exception("City Id is not set.");
+    }
+    $cityId = $_GET['cityId'];
+    $data = $loc->getGlobalLocation($cityId);
+  }
+
   if($type=='getData') {
     if(!isset($_GET['settlementId']) || empty($_GET['settlementId'])) {
       throw new exception("Settelment Id is not set.");

@@ -55,8 +55,98 @@ class settlementsServices extends dbconfig {
      }
    }
 
-     // Fetch all countries list
-    public static function getCityOfVenues($venueID) {
+    // Fetch all countries list
+   public static function getCountries() {
+     try {
+       $query = "SELECT id, name FROM countries";
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("Country not found.");
+       }
+       $res = array();
+       while($resultSet = mysqli_fetch_assoc($result)) {
+        $res[$resultSet['id']] = $resultSet['name'];
+       }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Countries fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }
+
+   // Fetch all states list by country id
+  public static function getStates($countryId) {
+     try {
+       $query = "SELECT id, name FROM states WHERE country_id=".$countryId;
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("State not found.");
+       }
+       $res = array();
+       while($resultSet = mysqli_fetch_assoc($result)) {
+        $res[$resultSet['id']] = $resultSet['name'];
+       }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"States fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }
+
+    // Fetch all cities list by state id
+  public static function getCities($stateId) {
+     try {
+       $query = "SELECT id, name FROM cities WHERE state_id=".$stateId;
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("City not found.");
+       }
+       $res = array();
+       while($resultSet = mysqli_fetch_assoc($result)) {
+        $res[$resultSet['id']] = $resultSet['name'];
+       }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Cities fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }
+
+  public static function getGlobalLocation($cityId){
+    try {
+
+      $query = "SELECT ci.`id` as city, st.`id` as state, co.`id` as country 
+              FROM cities ci, states st, countries co 
+              WHERE ci.`id` = $cityId 
+              AND ci.state_id = st.`id` 
+              AND st.country_id = co.`id`";
+      $result = dbconfig::run($query);
+
+      if(!$result) {
+        throw new exception("Data not found.");
+      }
+
+      $res = array();
+      $resultSet = mysqli_fetch_assoc($result);
+
+      $res["cityid"] = $resultSet['city'];
+      $res["stateid"] = $resultSet['state'];
+      $res["countryid"] = $resultSet['country'];
+
+      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Data fetched successfully.", 'result'=>$res);
+
+    } catch (Exception $e) {
+      $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+    } finally {
+      return $data;
+    }
+  }
+
+  // Fetch all countries list
+  public static function getCityOfVenues($venueID) {
       try {
 
         $query = "SELECT s.`name` as statename, c.`name` as cityname, c.id as cityid 
@@ -90,7 +180,8 @@ class settlementsServices extends dbconfig {
    public static function getDataOfSettlements($settlementID) {
      try {
        $query = "SELECT se.SettlementID, 
-                        sd.SettlementDETAIL_ID, sd.ShowID, sw.ShowNAME, ve.VenueNAME, se.SettlementOPENING_DATE,
+                        sd.SettlementDETAIL_ID, sd.ShowID, sw.ShowNAME, ve.VenueID, ve.VenueNAME, 
+                        se.SettlementCITYID as CityID, se.SettlementOPENING_DATE,
                         se.SettlementCLOSING_DATE, sd.NumberPerformances, 
                         sd.GrossPotential as GrossPotential,
                         sd.ActualGross as ActualGross, sd.TicketsSold as TicketsSold,
@@ -146,6 +237,7 @@ class settlementsServices extends dbconfig {
        $res["settlement_detailid"] = $resultSet['SettlementDETAIL_ID'];
        $res["showid"] = $resultSet['ShowID'];
        $res["show_name"] = $resultSet['ShowNAME'];
+       $res["venueid"] = $resultSet['VenueID'];
        $res["venue_name"] = $resultSet['VenueNAME'];
        $res["opening_date"] = $resultSet['SettlementOPENING_DATE'];
        $res["closing_date"] = $resultSet['SettlementCLOSING_DATE'];
@@ -201,6 +293,7 @@ class settlementsServices extends dbconfig {
        $res["total_presenter"] = $resultSet['TotalPresenterExpense'];
        $res["total_restoration"] = $resultSet['TotalRestorationCharge'];
        $res["breakeven"] = $resultSet['Breakeven'];
+       $res["cityid"] = $resultSet['CityID'];
        $res["cityname"] = $resultSet['city'];
        $res["statename"] = $resultSet['state'];
        $res["countryname"] = $resultSet['country'];

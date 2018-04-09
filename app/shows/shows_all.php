@@ -145,7 +145,7 @@ if ($result->num_rows > 0) {
 		<td align=center>".$row["shownumber_of_trucks"]."</td>
 		<td align=center>
 		<a href=\"javascript:window.open('shows_modify_selected.php?selectedid=".$row['showid']."','Modify Selected','width=480,height=650')\"><img src='../images/modify.png' width=20></a>   
-		<a href=\"javascript:window.open('shows_delete_selected.php?selectedid=".$row['showid']."','Delete Selected','width=480,height=650')\"><img src='../images/delete.png' width=20></a></td>
+		<a href=\"javascript:window.open('shows_delete_selected.php?selectedid=".$row['showid']."','Delete Selected','width=480,height=650')\" hidden ><img src='../images/delete.png' width=20></a></td>
 		</tr>";
     }
 	echo "</table>";

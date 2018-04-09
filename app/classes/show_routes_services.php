@@ -74,6 +74,36 @@ class showRoutesServices extends dbconfig {
         return $data;
      }
    }
+
+   public static function getGlobalLocation($cityId){
+    try {
+
+    $query = "SELECT ci.`id` as city, st.`id` as state, co.`id` as country 
+            FROM cities ci, states st, countries co 
+            WHERE ci.`id` = $cityId 
+            AND ci.state_id = st.`id` 
+            AND st.country_id = co.`id`";
+    $result = dbconfig::run($query);
+
+    if(!$result) {
+      throw new exception("Data not found.");
+    }
+
+    $res = array();
+    $resultSet = mysqli_fetch_assoc($result);
+
+    $res["cityid"] = $resultSet['city'];
+    $res["stateid"] = $resultSet['state'];
+    $res["countryid"] = $resultSet['country'];
+
+     $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Data fetched successfully.", 'result'=>$res);
+
+    } catch (Exception $e) {
+     $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+    } finally {
+      return $data;
+    }
+   }
  
  // Fetch all countries list
    public static function getShows() {
@@ -95,10 +125,52 @@ class showRoutesServices extends dbconfig {
      }
    }
 
+ // Fetch all countries list
+   public static function getVenues() {
+     try {
+       $query = "SELECT venueid, venuename FROM venues WHERE venueactive = 'Y'";
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("Venue not found.");
+       }
+       $res = array();
+       while($resultSet = mysqli_fetch_assoc($result)) {
+        $res[$resultSet['venueid']] = $resultSet['venuename'];
+       }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Venues fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }
+
+    // Fetch all countries list
+   public static function getPresenters() {
+     try {
+       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y'";
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("Presenter not found.");
+       }
+       $res = array();
+       while($resultSet = mysqli_fetch_assoc($result)) {
+        $res[$resultSet['presenterid']] = $resultSet['presentername'];
+       }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Presenters fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }
+
     // Fetch all countries list
    public static function getNUTOfShow($showID) {
      try {
-        $query = "SELECT IFNULL(ShowWEEKLY_NUT,0) as ShowWEEKLY_NUT FROM shows WHERE ShowID = $showID";
+        $query = "SELECT IFNULL(ShowWEEKLY_NUT,0) as ShowWEEKLY_NUT, 
+                         IFNULL(ShowNUMBER_OF_TRUCKS,0) as ShowNUMBER_OF_TRUCKS 
+                  FROM shows WHERE ShowID = $showID";
         $result = dbconfig::run($query);
         
         if(!$result) {
@@ -109,6 +181,7 @@ class showRoutesServices extends dbconfig {
 
         $resultSet = mysqli_fetch_assoc($result);
         $res["nut"] = $resultSet['ShowWEEKLY_NUT'];
+        $res["trucks"] = $resultSet['ShowNUMBER_OF_TRUCKS'];
 
         $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);
 
@@ -163,9 +236,11 @@ class showRoutesServices extends dbconfig {
                         rd.CAPACITY, rd.FIXED_GNTEE, 
                         rd.ROYALTY, rd.BACKEND, rd.BREAKEVEN, rd.DEAL_NOTES, 
                         rd.EST_ROYALTY, rd.ON_SUB, rd.DATE_CONF, rd.OFFER, 
-                        rd.PRICE_SCALES, rd.EXPENSES, rd.DEAL_MEMO, rd.CONTRACT 
-                  FROM routes_det rd
-                  WHERE rd.ROUTES_DETID = $detailID";
+                        rd.PRICE_SCALES, rd.EXPENSES, rd.DEAL_MEMO, rd.CONTRACT, 
+                        ro.TRUCKS * rd.MILEAGE AS TEAM_DRIVE
+                  FROM routes_det rd, routes ro 
+                  WHERE rd.ROUTES_DETID = $detailID 
+                  AND rd.ROUTESID = ro.ROUTESID";
 
        $result = dbconfig::run($query);
        if(!$result) {
@@ -200,8 +275,9 @@ class showRoutesServices extends dbconfig {
        $res["offer"] = $resultSet['OFFER'];
        $res["price_scales"] = $resultSet['PRICE_SCALES'];
        $res["expenses"] = $resultSet['EXPENSES'];
-       $res["deal_nemo"] = $resultSet['DEAL_MEMO'];
+       $res["deal_memo"] = $resultSet['DEAL_MEMO'];
        $res["contract"] = $resultSet['CONTRACT'];
+       $res["teamdrive"] = $resultSet['TEAM_DRIVE'];
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Route Detail fetched successfully.", 'result'=>$res);
        

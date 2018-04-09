@@ -1,4 +1,8 @@
 
+var setShowID = 0;
+var setVenueID = 0;
+var setPresenterID = 0;
+
 function ajaxCall() {
     this.send = function(data, url, method, success, type) {
         type = type||'json';
@@ -40,6 +44,11 @@ function getShows() {
                 $('.shows').append(option);
             });
             $(".shows").prop("disabled",false);
+
+            //set value
+            if(setShowID != 0){
+                $('.shows').val(setShowID);
+            }
         }
         else{
             alert(data.msg);
@@ -62,6 +71,11 @@ function getPresenters() {
                 $('.presenters').append(option);
             });
             $(".presenters").prop("disabled",false);
+
+            //set value
+            if(setPresenterID != 0){
+                $('.presenters').val(setPresenterID);
+            }
         }
         else{
             alert(data.msg);
@@ -84,6 +98,11 @@ function getVenues() {
                 $('.venues').append(option);
             });
             $(".venues").prop("disabled",false);
+
+            //set value
+            if(setVenueID != 0){
+                $('.venues').val(setVenueID);
+            }
         }
         else{
             alert(data.msg);
@@ -114,6 +133,56 @@ function getCityOfVenues(venueId) {
         }
     }); 
 };
+
+function findData(id){
+
+    var call = new ajaxCall();
+    var url = '../routes/contracts_route.php?type=getData&contractId=' + id;
+    var method = "GET";
+    var data = {};
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+
+            $('.id').val(data['result'].contractid);
+            $('.opening_date').val(data['result'].opening_date);
+            $('.closing_date').val(data['result'].closing_date);
+            $(".number_of_performances").val(data['result'].num_performances);
+            $('.gross_potential').val(data['result'].gross_potential);
+            $('.tax').val(data['result'].tax);
+            $('.guarantee').val(data['result'].guarantee);
+            $('.group_commission').val(data['result'].group_com);
+            $('.subscription_commission').val(data['result'].subsc_com);
+            $('.phone_commission').val(data['result'].phone_com);
+            $('.internet_commission').val(data['result'].int_com);
+            $(".credit_card_commission").val(data['result'].cc_com);
+            $('.remotes_commission').val(data['result'].rem_com);
+            $('.fixed_expense').val(data['result'].fix_com);
+            $('.documented_expense').val(data['result'].doc_com);
+            $('.total_presenter_expense').val(data['result'].pre_com);
+
+            $(".cityname").val(data['result'].cityname);
+            $(".statename").val(data['result'].statename);
+            $(".cityid").val(data['result'].cityid);
+
+            $(".cityname").prop("disabled",true);
+            $(".statename").prop("disabled",true);
+
+            setShowID = data['result'].showid;
+            setPresenterID = data['result'].presenterid;
+            setVenueID = data['result'].venueid;
+
+            getPresenters();
+            getVenues();
+            getShows();
+
+            $("#datacontract").show();
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+
+}
 
 function onloadManagement(){
     getShows();

@@ -72,9 +72,9 @@ if (isset($_POST['show']))
 	$sql = "SELECT ro.ROUTESID as idroute, 
 				sw.ShowNAME as showname, 
 				ro.TRUCKS as numberoftrucks, 
-				ro.DATE_OF_ROUTE as dateroute, 
+				DATE_FORMAT(ro.DATE_OF_ROUTE,'%m/%d/%Y') as dateroute, 
 				ro.WEEKLY_NUT as routenut, 
-				SUM(ro.TRUCKS * rod.MILEAGE * 1) as team_drive_cost 
+				SUM(ro.TRUCKS * rod.MILEAGE) as team_drive_cost 
 		FROM routes ro, shows sw, routes_det rod 
 		WHERE ro.SHOWID = $selectedid 
 		AND ro.SHOWID = sw.ShowID 
@@ -115,7 +115,7 @@ if (isset($_POST['show']))
 				<td>". $row["team_drive_cost"]."</td>
 				<td align=center> 
 				<a href=\"javascript:window.open('route_modify_selected.php?selectedid=".$row['idroute']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a> 
-				<a href=\"javascript:window.open('route_delete_selected.php?selectedid=".$row['idroute']."','Delete Selected','width=480,height=530')\"><img src='../images/delete.png' width=20></a> 
+				<a href=\"javascript:window.open('route_delete_selected.php?selectedid=".$row['idroute']."','Delete Selected','width=480,height=530')\" hidden ><img src='../images/delete.png' width=20></a> 
 				<a href=routes_details_all.php?selectedid=$id><img src='../images/route_details.png' width=20></a></td>
 			</tr>";
 	    }

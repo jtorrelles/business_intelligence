@@ -15,14 +15,33 @@ if(isset($_GET['selectedid'])){
 			<td><b>Settlement ID:</b></td>
 			<td><input style=\"background-color: lightgrey;\" readonly type='text' name='id' class=\"id\">This field cannot be modified</td>
 		</tr>";	
-	echo "<tr>
-			<td><b>Venue Name:</b></td>
-			<td><input type='text' style=\"background-color: lightgrey;\" readonly class=\"venue_name\" name='venue_name'></td>
-		</tr>";	
-	echo "<tr>
-			<td><b>Show Name:</b></td>
-			<td><input type='text' style=\"background-color: lightgrey;\" readonly class=\"show_name\" name='show_name'></td>
-		</tr>";	
+	echo "<tr><td>Country:</td>";
+    echo "<td><select name=\"country\" class=\"countries\" id=\"countryId\">";
+    echo "<option value=\"\">Select Country</option>
+        </select></td>";
+    echo "</tr>";
+    echo "<tr><td>State:</td>";
+    echo "<td><select name=\"state\" class=\"states\" id=\"stateId\">";
+    echo "<option value=\"\">Select State</option>
+       </select></td>";
+    echo "</tr>";
+    echo "<tr><td>City:</td>";
+    echo "<td><select name=\"city\" class=\"cities\" id=\"cityId\">";
+    echo "<option value=\"\">Select City</option>
+        </select></td>";
+    echo "</tr>";
+    echo "<tr>
+        <td><b>Venue:</b></td>
+        <td><select name=\"venue_name\" class=\"venues\" id=\"venueId\" required>
+            <option value=\"\">Select Venue</option>
+          </select></td>
+        </tr>"; 
+    echo "<tr>
+        <td><b>Show:</b></td>
+        <td><select name=\"show_name\" class=\"shows\" id=\"showId\" required>
+            <option value=\"\">Select Show</option>
+          </select></td>
+        </tr>";
 	echo "<tr>
 			<td><b>Opening Date:</b></td>
 			<td><input type=\"date\" class=\"opening_date\" name='opening_date'></td>

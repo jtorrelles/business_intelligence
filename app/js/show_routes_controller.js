@@ -1,4 +1,8 @@
 
+var setCityId = 0; 
+var setStateId = 0;
+var setCountryId = 0;
+
 function ajaxCall() {
     this.send = function(data, url, method, success, type) {
         type = type||'json';
@@ -69,9 +73,15 @@ function getCountries() {
             });
             $(".countries").prop("disabled",false);
 
-            //Sel United States
-            $(".countries").val("231");
-            getStates(231);
+            //set country value
+            if(setCountryId != 0){
+                $(".countries").val(setCountryId);
+            }else{
+                //Sel United States
+                $(".countries").val("231");
+                getStates(231);
+            }
+
         }
         else{
             alert(data.msg);
@@ -96,6 +106,12 @@ function getStates(id) {
                 $('.states').append(option);
             });
             $(".states").prop("disabled",false);
+
+            //set states value
+            if(setStateId != 0){ 
+                $(".states").val(setStateId);
+            }
+            
         }
         else{
             alert(data.msg);
@@ -119,11 +135,42 @@ function getCities(id) {
                 $('.cities').append(option);
             });
             $(".cities").prop("disabled",false);
+
+            //set city value
+            if(setCityId != 0){
+                $(".cities").val(setCityId);
+            }
         }
         else{
              alert(data.msg);
         }
     });
+};
+
+function getGlobalLocation(cityID) {
+    if(cityID != 0){
+        var call = new ajaxCall();
+        var url = '../routes/show_routes_route.php?type=getGlobalLocation&cityId=' + cityID;
+        var method = "GET";
+        var data = {};
+        call.send(data, url, method, function(data) {
+            if(data.tp == 1){
+                setCityId = data["result"].cityid;
+                setStateId = data["result"].stateid;
+                setCountryId = data["result"].countryid;
+
+                getCities(data["result"].stateid);
+                getStates(data["result"].countryid);
+                getCountries();
+            }
+            else{
+                 alert(data.msg);
+            }
+        });
+    }else{
+        getCountries();
+    }
+
 };
 
 function getShows() {
@@ -148,6 +195,56 @@ function getShows() {
     }); 
 }
 
+function getPresenters(presenterID) {
+    var call = new ajaxCall();
+    var url = '../routes/show_routes_route.php?type=getPresenters';
+    var method = "GET";
+    var data = {};
+    $('.presenters').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.presenters').find("option:eq(0)").html("Select Presenters");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.presenters').append(option);
+            });
+            $(".presenters").prop("disabled",false);
+
+            //set presenters value
+            $(".presenters").val(presenterID);
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
+function getVenues(venuesID) {
+    var call = new ajaxCall();
+    var url = '../routes/show_routes_route.php?type=getVenues';
+    var method = "GET";
+    var data = {};
+    $('.venues').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.venues').find("option:eq(0)").html("Select Venues");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.venues').append(option);
+            });
+            $(".venues").prop("disabled",false);
+
+            //Set venues value
+            $(".venues").val(venuesID);
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
 function getNUTOfShow(showId) {
     var call = new ajaxCall();
     var url = '../routes/show_routes_route.php?type=getNUTOfShow&showId=' + showId;
@@ -156,8 +253,10 @@ function getNUTOfShow(showId) {
     call.send(data, url, method, function(data) {
         if(data.tp == 1){
             var nut = data['result'].nut;
+            var trucks = data['result'].trucks;
 
             $(".weeklynut").prop("value",nut);
+            $(".numberoftrucks").prop("value",trucks);
         }
         else{
             alert(data.msg);
@@ -201,15 +300,15 @@ function findDetailData(id){
             $('.id').val(data['result'].routeid);
             $('.detid').val(data['result'].routedetid);
             $('.presentation_date').val(data['result'].presentation_date);
-            $('.cityid').val(data['result'].cityid);
+            //$('.cityid').val(data['result'].cityid);
             $('.mileage').val(data['result'].mileage);
             $('.book_notes').val(data['result'].book_notes);
             $('.prod_notes').val(data['result'].prod_notes);
             $('.time_zone').val(data['result'].time_zone);
             $('.show_times').val(data['result'].show_times);
             $('.perf').val(data['result'].perf);
-            $('.venueid').val(data['result'].venueid);
-            $('.presenterid').val(data['result'].presenterid);
+            //$('.venueid').val(data['result'].venueid);
+            //$('.presenterid').val(data['result'].presenterid);
             $('.capacity').val(data['result'].capacity);
             $('.fixed_gntee').val(data['result'].fixed_gntee);
             $('.royalty').val(data['result'].royalty);
@@ -217,8 +316,7 @@ function findDetailData(id){
             $('.breakeven').val(data['result'].breakeven);
             $('.deal_notes').val(data['result'].deal_notes);
             $('.est_royalty').val(data['result'].est_royalty);
-            $('.on_sub').val(data['result'].on_sub);
-            $('.date_conf').val(data['result'].date_conf);
+            $('.team_drive').val(data['result'].teamdrive);
 
             if(data['result'].holiday == 1){
                 $('.holiday').prop('checked', true);
@@ -229,11 +327,11 @@ function findDetailData(id){
             };
 
             if(data['result'].on_sub == 1){
-                $('.on_sub').prop('checked', true);
+                $('.onsub').prop('checked', true);
             };
 
             if(data['result'].date_conf == 1){
-                $('.date_conf').prop('checked', true);
+                $('.dateconf').prop('checked', true);
             };
 
             if(data['result'].offer == 1){
@@ -248,13 +346,17 @@ function findDetailData(id){
                 $('.expenses').prop('checked', true);
             };
 
-            if(data['result'].deal_nemo == 1){
-                $('.deal_nemo').prop('checked', true);
+            if(data['result'].deal_memo == 1){
+                $('.deal_memo').prop('checked', true);
             };
 
             if(data['result'].contract == 1){
                 $('.contract').prop('checked', true);
             };         
+
+            getPresenters(data['result'].presenterid);
+            getVenues(data['result'].venueid);
+            getGlobalLocation(data['result'].cityid);
 
             $("#datadetailroute").show();
         }
@@ -339,6 +441,17 @@ $(function() {
             getNUTOfShow(showId);
         }else{
             $(".shows option:gt(0)").remove();
+        }
+    });
+
+    $(".countries").on("change", function(ev) {
+        var countryId = $(this).val();
+        if(countryId != ''){
+            setCityId = 0;
+            setStateId = 0;
+            getStates(countryId);
+        }else{
+            $(".states option:gt(0)").remove();
         }
     });
 

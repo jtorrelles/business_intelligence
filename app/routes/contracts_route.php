@@ -40,6 +40,14 @@ try {
   	$data = $loc->getCityOfVenues($venueId);
   } 
 
+  if($type=='getData') {
+    if(!isset($_GET['contractId']) || empty($_GET['contractId'])) {
+      throw new exception("Contract Id is not set.");
+     }
+     $contractId = $_GET['contractId'];
+     $data = $loc->getFindData($contractId);
+  } 
+
 } catch (Exception $e) {
    $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
 } finally {

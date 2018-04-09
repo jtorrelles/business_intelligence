@@ -43,9 +43,25 @@ try {
 		$data = $loc->getCities($stateId);
 	}
 
+	if($type=='getGlobalLocation') {
+ 		if(!isset($_GET['cityId']) || empty($_GET['cityId'])) {
+			throw new exception("City Id is not set.");
+		}
+		$cityId = $_GET['cityId'];
+		$data = $loc->getGlobalLocation($cityId);
+	}
+
 	if($type=='getShows') {
 		$data = $loc->getShows();
 	} 
+
+	if($type=='getPresenters') {
+  		$data = $loc->getPresenters();
+  	} 
+
+  	if($type=='getVenues') {
+  		$data = $loc->getVenues();
+  	} 
 
 	if($type=='getNUTOfShow') {
 		if(!isset($_GET['showId']) || empty($_GET['showId'])) {
