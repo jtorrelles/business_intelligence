@@ -211,4 +211,140 @@ class showRoutesServices extends dbconfig {
         return $data;
       }
     }
+    public static function processUploadFile($dataFileName){
+      try {
+
+        //import library
+        require_once '../libs/PHPExcel/IOFactory.php';
+
+        $uploadOk = 1;
+        $target_dir = "../uploads/";
+        $imageFileType = strtolower(pathinfo($dataFileName['name'],PATHINFO_EXTENSION));
+        $target_file = $target_dir . basename($dataFileName['name']);
+
+        //Verify extension File
+        if($imageFileType != "xls" && $imageFileType != "xlsx" && 
+          $imageFileType != "ods" && $imageFileType != "csv" ) {
+
+            $message = "Sorry, only XLS, XLSX, ODS & CSV files are allowed.";
+            $uploadOk = 0;
+
+            $data = array('status'=>'error', 'tp'=>$uploadOk, 'msg'=>$message, 'result'=>null);
+
+        }else{
+          //Verify Size File < 50MB
+          if ($dataFileName['size'] > 50000000) {
+            $message = "Sorry, your file is too large.";
+            $uploadOk = 0;
+
+            $data = array('status'=>'error', 'tp'=>$uploadOk, 'msg'=>$message, 'result'=>null);
+          }else{
+
+            if (file_exists($target_file)) {
+                $message = "Sorry, file already exists.";
+                $uploadOk = 0;
+
+                $data = array('status'=>'error', 'tp'=>$uploadOk, 'msg'=>$message, 'result'=>null);
+            }else{
+
+              if ($uploadOk == 0) {
+                $message = "Sorry, your file was not uploaded.";
+                $uploadOk = 0;
+                // if everything is ok, try to upload file
+              }else{
+                //move file to target directory
+                if(move_uploaded_file($dataFileName["tmp_name"], $target_file)){
+
+                  $objPHPExcel = PHPExcel_IOFactory::load($target_file);
+
+                  //Set up all the variables from the Excel Spreadsheet
+                  $Showtoroute = $objPHPExcel->getSheet(1)->getCell('E1')->getValue();
+                  $Showtorouteid = substr($Showtoroute,0,strpos($Showtoroute,"-"));
+                  $Date_route = $objPHPExcel->getSheet(1)->getCell('R2')->getValue();
+                  $DR = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Date_route));  
+                  for($i = 0; $i < 364; $i++){
+                    $id = 8 + $i;
+                    $Presentation_date = $objPHPExcel->getSheet(1)->getCell("D".$id)->getValue();
+                    $PD[$i] = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Presentation_date));  
+                    $Holiday[$i] = $objPHPExcel->getSheet(1)->getCell("E".$id)->getValue();
+                    $City[$i] = $objPHPExcel->getSheet(1)->getCell("F".$id)->getValue();
+                    $Repeat[$i] = $objPHPExcel->getSheet(1)->getCell("H".$id)->getValue();
+                    $Mileage[$i] = $objPHPExcel->getSheet(1)->getCell("I".$id)->getValue();
+                    $Book_notes[$i] = $objPHPExcel->getSheet(1)->getCell("K".$id)->getValue();
+                    $Prod_notes[$i] = $objPHPExcel->getSheet(1)->getCell("L".$id)->getValue();
+                    $Time_zone[$i] = $objPHPExcel->getSheet(1)->getCell("N".$id)->getValue();
+                    $Show_times[$i] = $objPHPExcel->getSheet(1)->getCell("O".$id)->getValue();
+                  }   
+
+                  //Free Memory
+                  $objPHPExcel->disconnectWorksheets();
+                  unset($objPHPExcel);
+
+                  $res = array();
+
+                  $res["showtorouteid"] = $Showtorouteid;
+                  $res["showtoroute"] = substr($Showtoroute,strpos($Showtoroute,"-")+1);
+                  $query = "SELECT ShowNUMBER_OF_TRUCKS,
+                                   ShowWEEKLY_NUT
+                            FROM shows
+                            WHERE ShowID = $Showtorouteid";
+                      $result = dbconfig::run($query);
+                      if(!$result) {    
+                          //NO ESTA FUNCIONANDO ESTA EXCEPCION - PENDIENTE                    
+                          throw new exception("Show not found.");
+                      }
+                  $resultSet = mysqli_fetch_assoc($result);
+                  $res["numberoftrucks"] = $resultSet['ShowNUMBER_OF_TRUCKS'];
+                  $res["weeklynut"] = $resultSet['ShowWEEKLY_NUT'];
+                  $res["date_route"] = $DR;
+
+                  for($i = 0; $i < 364; $i++){
+                    $res["presentation_date" . $i] = $PD[$i];
+                    $res["holiday" . $i] = $Holiday[$i];
+                    $res["city" . $i] = $City[$i];
+                    $res["repeat" . $i] = $Repeat[$i];
+                    $res["mileage" . $i] = $Mileage[$i];
+                    $res["book_notes" . $i] = $Book_notes[$i];
+                    $res["prod_notes" . $i] = $Prod_notes[$i];
+                    $res["time_zone" . $i] = $Time_zone[$i];
+                    $res["show_times" . $i] = $Show_times[$i];
+                  }
+                  
+
+                  $data = array('status'=>'success', 'tp'=>$uploadOk, 'msg'=>'SpreadSheet Upload Successfully', 'result'=>$res);
+                }
+              }
+            }
+          }
+        }
+
+      } catch (Exception $e) {
+        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+      } finally {
+        return $data;
+      }
+   }
+
+   private static function checkFileSize($size){
+      $res = array();
+      // Check file size
+      if ($size > 50000000) {
+          $res["msg"] = "Sorry, your file is too large.";
+          $res["ok"] = 0;
+      }else{
+         $res["msg"] = "Size permit's.";
+         $res["ok"] = 1;
+      }
+
+      return $res;
+   }
+
+   private static function checkName($name_file){
+      $res_name = array();
+
+      $res_name["msg"] = $name_file;
+      $res_name["ok"] = 1;
+
+      return $res_name;
+   } 
 }

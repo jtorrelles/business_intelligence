@@ -69,7 +69,10 @@ try {
 		}
 		$routeDeatilId = $_GET['routeDetailId'];
 		$data = $loc->getDataOfDetailRoute($routeDeatilId);
-	} 	
+	}
+	if($type=='getUploadProcess'){
+    	$data = $loc->processUploadFile($_FILES["fileToUpload"]);
+  	} 	
 
 } catch (Exception $e) {
    $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
