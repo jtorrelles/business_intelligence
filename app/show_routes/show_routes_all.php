@@ -60,10 +60,9 @@ echo "<form action=\"show_routes_all.php\" method=\"POST\">";
 echo "</form>";
 
 echo "<br>";
-echo "<p><a href=\"javascript:window.open('route_add.php','Add New Rote','width=650,height=450')\">Add a New Route</a></p>";
-/*echo " - "; 
-echo "<a href=\"javascript:window.open('upload_route.php','Upload  Route','width=650,height=450')\">Upload a New Route</a></p>";*/
-echo "<br>";
+echo "<p><a href=\"javascript:window.open('route_add.php','Add New Rote','width=650,height=450')\">Add a New Route</a>
+	-
+	<a href=\"javascript:window.open('upload_routes.php','Upload  Route','width=650,height=450')\">Upload a New Route</a></p><br>";
 
 if (isset($_POST['show']))
 {

@@ -373,51 +373,50 @@ function getUploadFile(){
     var call = new ajaxCallUpload();
     var form = $('#fileUploadForm')[0];
     var dataForm = new FormData(form);
-    var url = '../routes/settlements_route.php?type=getUploadProcess';
+    var url = '../routes/show_routes_route.php?type=getUploadProcess';
     var method = "POST";
     var data = dataForm;
     call.sendUpload(data, url, method, function(data_response) {
         if(data_response.tp == 1){
 
             console.log(data_response);
-            
-            $('.opening_date').val(data_response['result'].opening_date);
-            $('.closing_date').val(data_response['result'].closing_Date);
-            $('.number_performances').val(data_response['result'].numberperformances);
-            $('.subsc_com').val(data_response['result'].subscription_com);
-            $('.phone_com').val(data_response['result'].phone_com);
-            $('.int_com').val(data_response['result'].internet_com);
-            $('.cc_com').val(data_response['result'].cc_com);
-            $(".remotes_com").val(data_response['result'].remotes_com);
-            $('.group_sales_com').val(data_response['result'].group_sales_com);
-            $('.gross_potential').val(data_response['result'].gross_potential);
-            $('.actual_gross').val(data_response['result'].actual_gross);
-            $('.nagbor').val(data_response['result'].nagbor);
-            $('.royality').val(data_response['result'].royality);
-            $('.guarantee').val(data_response['result'].guarantee);
 
-            //$('.address2').val(data['total_allowable_expenses'].address_2);
-            //$('.notes').val(data['st_company_compensation'].notes);
-            //$(".active").val(data['expense_budgeted'].active);
-            //$('.id').val(data['expense_actual'].id);
-            //$('.name').val(data['local_expense_budgeted'].name);
-            //$('.address1').val(data['local_expense_actual'].address_1);
-            //$('.address2').val(data['total_local_expense_budgeted'].address_2);
-            //$('.zip').val(data['total_local_expense_actual'].zip);
-            //$('.fax').val(data['total_engagement_expenses'].fax);
-            //$('.email').val(data['money_remaining'].email);
-            //$('.notes').val(data['total_company_percentage'].notes);
-            //$(".active").val(data['total_company_share'].active);
-            //$('.address1').val(data['less_direct_company_charges'].address_1);
-            //$('.address2').val(data['adjusted_company_share'].address_2);
-            //$('.zip').val(data['total_presenter_share'].zip);
-            //$('.fax').val(data['presenter_facility_fee'].fax);
-            //$('.email').val(data['adjusted_presenter_share'].email);
-            //$('.notes').val(data['total_company_percentage'].notes);
-            //$(".active").val(data['total_shares_equal'].active);
+            $('.showtorouteid').val(data_response['result'].showtorouteid);  
+            $('.showtoroute').val(data_response['result'].showtoroute); 
+            $('.numberoftrucks').val(data_response['result'].numberoftrucks); 
+            $('.weeklynut').val(data_response['result'].weeklynut);
+            $('.date_route').val(data_response['result'].date_route);
+            for(i = 0; i < 364; i++){
+              $('.presentation_date' + i).val(eval("data_response['result'].presentation_date" + i));
+              $('.holiday' + i).val(eval("data_response['result'].holiday" + i));
+              $('.city' + i).val(eval("data_response['result'].city" + i));
+              $('.repeat' + i).val(eval("data_response['result'].repeat" + i));
+              $('.mileage' + i).val(eval("data_response['result'].mileage" + i));
+              $('.book_notes' + i).val(eval("data_response['result'].book_notes" + i));
+              $('.prod_notes' + i).val(eval("data_response['result'].prod_notes" + i));
+              $('.time_zone' + i).val(eval("data_response['result'].time_zone" + i));
+              $('.show_times' + i).val(eval("data_response['result'].show_times" + i));
+              $('.perf' + i).val(eval("data_response['result'].perf" + i));
+              $('.venue' + i).val(eval("data_response['result'].venue" + i));
+              $('.presenter' + i).val(eval("data_response['result'].presenter" + i));
+              $('.capacity' + i).val(eval("data_response['result'].capacity" + i));
+              $('.fixed_gntee' + i).val(eval("data_response['result'].fixed_gntee" + i));
+              $('.royalty' + i).val(eval("data_response['result'].royalty" + i));
+              $('.backend' + i).val(eval("data_response['result'].backend" + i));
+              $('.breakeven' + i).val(eval("data_response['result'].breakeven" + i));
+              $('.deal_notes' + i).val(eval("data_response['result'].deal_notes" + i));
+              $('.est_royalty' + i).val(eval("data_response['result'].est_royalty" + i));
+              $('.on_sub' + i).val(eval("data_response['result'].on_sub" + i));
+              $('.date_conf' + i).val(eval("data_response['result'].date_conf" + i));
+              $('.offer' + i).val(eval("data_response['result'].offer" + i));
+              $('.price_scales' + i).val(eval("data_response['result'].price_scales" + i));
+              $('.expenses' + i).val(eval("data_response['result'].expenses" + i));
+              $('.deal_memo' + i).val(eval("data_response['result'].deal_memo" + i));
+              $('.contract' + i).val(eval("data_response['result'].contract" + i));
+            } 
 
-            $("#settlement_data").show();
-            $("#settlement_uploadfile").hide();
+            $("#route_data").show();
+            $("#route_uploadfile").hide();
             $("#back_to_upload").show();
 
             onloadManagement();
@@ -469,8 +468,8 @@ $(function() {
     });
 
     $("#btnBackUpload").click(function (ev) {
-        $("#settlement_data").hide();
-        $("#settlement_uploadfile").show();
+        $("#route_data").hide();
+        $("#route_uploadfile").show();
         $("#back_to_upload").hide();
     });
 
