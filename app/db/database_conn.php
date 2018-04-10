@@ -3,9 +3,9 @@
 $username = "bi_networks";
 $password = "NETworks2018!";
 $dbname = "networksbi";*/
-$servername = "userverdev";
+$servername = "localhost";
 $username = "root";
-$password = "1234";
+$password = "";
 $dbname = "networksbi";
 $conn = new mysqli($servername, $username, $password, $dbname);
 ?>

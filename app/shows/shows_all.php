@@ -56,27 +56,33 @@ $sql = "SELECT
 		categoryid_7,
 		showage,
 		showweekly_nut,
-		shownumber_of_trucks
+		shownumber_of_cast,
+		shownumber_of_musicians,
+		shownumber_of_stagehands,
+		shownumber_of_trucks,
+		shownotes
 		FROM shows ORDER BY showid ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	echo "<table id=\"shows\">
+	<col width=10%>
 	<col width=5%>
-	<col width=13%>
 	<col width=5%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
+	<col width=5%>
     <tr>
-	<th>Show ID</th>
 	<th>Show Name</th>
 	<th>Active?</th>
 	<th>Category 1</th>
@@ -88,7 +94,11 @@ if ($result->num_rows > 0) {
 	<th>Category 7</th>
 	<th>Show Age</th>
 	<th>Weekly Nut</th>
+	<th># of Cast</th>
+	<th># of Musicians</th>
+	<th># of Stagehands</th>
 	<th># of Trucks</th>
+	<th>Notes</th>
 	<th>Options</th>
 </tr>";
     while($row = $result->fetch_assoc()) {
@@ -130,7 +140,6 @@ if ($result->num_rows > 0) {
 		
         echo 
 		"<tr>
-		<td align=center>". $row["showid"]. "</td>
 		<td>". $row["showname"]. "</td>
 		<td align=center>". $row["showactive"]. "</td>
 		<td align=center>". $row1["categoryname"]. "</td>
@@ -141,11 +150,15 @@ if ($result->num_rows > 0) {
 		<td align=center>". $row6["categoryname"]. "</td>
 		<td align=center>". $row7["categoryname"]. "</td>
 		<td align=center>". $row["showage"]. "</td>
-		<td align=center>".$row["showweekly_nut"]."</td>
+		<td align=center>$ ".number_format($row["showweekly_nut"],2)."</td>
+		<td align=center>".$row["shownumber_of_cast"]."</td>
+		<td align=center>".$row["shownumber_of_musicians"]."</td>
+		<td align=center>".$row["shownumber_of_stagehands"]."</td>
 		<td align=center>".$row["shownumber_of_trucks"]."</td>
+		<td align=center>".$row["shownotes"]."</td>
 		<td align=center>
 		<a href=\"javascript:window.open('shows_modify_selected.php?selectedid=".$row['showid']."','Modify Selected','width=480,height=650')\"><img src='../images/modify.png' width=20></a>   
-		<a href=\"javascript:window.open('shows_delete_selected.php?selectedid=".$row['showid']."','Delete Selected','width=480,height=650')\" hidden ><img src='../images/delete.png' width=20></a></td>
+		<a href=\"javascript:window.open('shows_delete_selected.php?selectedid=".$row['showid']."','Delete Selected','width=480,height=650')\" hidden><img src='../images/delete.png' width=20></a></td>
 		</tr>";
     }
 	echo "</table>";

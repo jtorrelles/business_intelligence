@@ -237,7 +237,12 @@ class showRoutesServices extends dbconfig {
                         rd.ROYALTY, rd.BACKEND, rd.BREAKEVEN, rd.DEAL_NOTES, 
                         rd.EST_ROYALTY, rd.ON_SUB, rd.DATE_CONF, rd.OFFER, 
                         rd.PRICE_SCALES, rd.EXPENSES, rd.DEAL_MEMO, rd.CONTRACT, 
-                        ro.TRUCKS * rd.MILEAGE AS TEAM_DRIVE
+                        ro.TRUCKS * rd.MILEAGE AS TEAM_DRIVE, rd.GROSS_POT, 
+                        rd.SPO_GROSS_POT, rd.SUBS_TSALES, rd.GROUP_TSALES,
+                        rd.SINGLE_TSALES, rd.GROSS_SALES, rd.OTT_EXPENSES,
+                        rd.NAGBOR, rd.PL_EXPENSES, rd.TE_EXPENSES, rd.EP_LOSS,
+                        rd.GUARANTEE, rd.ROYALTY_PER, rd.MROYALTY, rd.OVERAGE_PER,
+                        rd.OVERAGE
                   FROM routes_det rd, routes ro 
                   WHERE rd.ROUTES_DETID = $detailID 
                   AND rd.ROUTESID = ro.ROUTESID";
@@ -278,6 +283,22 @@ class showRoutesServices extends dbconfig {
        $res["deal_memo"] = $resultSet['DEAL_MEMO'];
        $res["contract"] = $resultSet['CONTRACT'];
        $res["teamdrive"] = $resultSet['TEAM_DRIVE'];
+       $res["gross_pot"] = $resultSet['GROSS_POT'];
+       $res["spo_gross_pot"] = $resultSet['SPO_GROSS_POT'];
+       $res["subs_tsales"] = $resultSet['SUBS_TSALES'];
+       $res["group_tsales"] = $resultSet['GROUP_TSALES'];
+       $res["single_tsales"] = $resultSet['SINGLE_TSALES'];
+       $res["gross_sales"] = $resultSet['GROSS_SALES'];
+       $res["ott_expenses"] = $resultSet['OTT_EXPENSES'];
+       $res["nagbor"] = $resultSet['NAGBOR'];
+       $res["pl_expenses"] = $resultSet['PL_EXPENSES'];
+       $res["te_expenses"] = $resultSet['TE_EXPENSES'];
+       $res["ep_loss"] = $resultSet['EP_LOSS'];
+       $res["guarantee"] = $resultSet['GUARANTEE'];
+       $res["royalty_per"] = $resultSet['ROYALTY_PER'];
+       $res["mroyalty"] = $resultSet['MROYALTY'];
+       $res["overage_per"] = $resultSet['OVERAGE_PER'];
+       $res["overage"] = $resultSet['OVERAGE'];
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Route Detail fetched successfully.", 'result'=>$res);
        

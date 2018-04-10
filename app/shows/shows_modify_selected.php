@@ -19,13 +19,17 @@ if(isset($_GET['selectedid'])){
 				   categoryid_7,
 				   showage,
 				   showweekly_nut,
-				   shownumber_of_trucks
+				   shownumber_of_cast,
+				   shownumber_of_musicians,
+				   shownumber_of_stagehands,
+				   shownumber_of_trucks,
+				   shownotes
 				   FROM shows WHERE showid = $selectedid";
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
 	echo "<form action=\"shows_management_results.php\" method=\"POST\">";
 	echo "<table>";
-	echo "<tr><td><b>Show ID:</b></td><td><input style=\"background-color: lightgrey;\" readonly type='text' name='id_show' value='".$row['showid']."'>This field cannot be modified</td></tr>";	
+	echo "<tr><td><b>Show ID:</b></td><td><input style=\"background-color: lightgrey;\" readonly type='text' name='id_show' value='".$row['showid']."'></td></tr>";	
     echo "<tr><td><b>Show Name:</b></td><td><input autofocus='autofocus' type='text' name='name_show' value='".$row['showname']."'></td></tr>";
 
 	$active = $row['showactive'];
@@ -150,7 +154,11 @@ if(isset($_GET['selectedid'])){
 	
 	echo "<tr><td><b>Show Age:</b></td><td><input type='text' name='age_show' value='".$row['showage']."'></td></tr>";
 	echo "<tr><td><b>Nut:</b></td><td><input type='text' name='nut_show' value='".$row['showweekly_nut']."'></td></tr>";
+	echo "<tr><td><b>Number of Cast:</b></td><td><input type='text' name='cast_show' value='".$row['shownumber_of_cast']."'></td></tr>";
+	echo "<tr><td><b>Number of Musicians:</b></td><td><input type='text' name='musicians_show' value='".$row['shownumber_of_musicians']."'></td></tr>";
+	echo "<tr><td><b>Number of Stagehands:</b></td><td><input type='text' name='stagehands_show' value='".$row['shownumber_of_stagehands']."'></td></tr>";
 	echo "<tr><td><b>Number of Trucks:</b></td><td><input type='text' name='trucks_show' value='".$row['shownumber_of_trucks']."'></td></tr>";
+	echo "<tr><td><b>Notes:</b></td><td><textarea rows=4 cols=40 name='notes_show'>".$row['shownotes']."</textarea></td></tr>";
 	echo "</table>";
 	echo "<p align=center><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 	echo "</form>";

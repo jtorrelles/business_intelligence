@@ -68,7 +68,8 @@ if (isset($_GET['selectedid']))
 					IFNULL(det.PRICE_SCALES, '') as PRICE_SCALES,
 					IFNULL(det.EXPENSES, '') as EXPENSES,
 					IFNULL(det.DEAL_MEMO, '') as DEAL_MEMO,
-					IFNULL(det.CONTRACT, '') as CONTRACT
+					IFNULL(det.CONTRACT, '') as CONTRACT,
+					det.IND as IND
 			FROM routes_det det, routes ro
 			WHERE det.ROUTESID = $routeid 
 			AND det.ROUTESID = ro.ROUTESID 
@@ -183,9 +184,14 @@ if (isset($_GET['selectedid']))
 			}
 			echo
 				"<td align=center> 
-				<a href=\"javascript:window.open('route_detail_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=550,height=530')\"><img src='../images/modify.png' width=20></a> 
-			</td>
-			</tr>";
+				<a href=\"javascript:window.open('route_detail_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a>";
+			if($row["IND"] == 1){
+				echo
+				"<a href=\"javascript:window.open('market_analysis_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/analysis.png' width=20></a></td></tr>";
+			}else{
+				echo
+				"<a href=\"javascript:window.open('market_analysis_add_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/analysis.png' width=20></a></td></tr>";
+			}				
 	    }
 		echo "</table>";
 		echo "<br>";

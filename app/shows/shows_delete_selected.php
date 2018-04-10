@@ -19,7 +19,11 @@ if(isset($_GET['selectedid'])){
 				   categoryid_7,
 				   showage,
 				   showweekly_nut,
-				   shownumber_of_trucks
+				   shownumber_of_cast,
+				   shownumber_of_musicians,
+				   shownumber_of_stagehands,
+				   shownumber_of_trucks,
+				   shownotes
 				   FROM shows WHERE showid = $selectedid ";
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
@@ -73,6 +77,9 @@ if(isset($_GET['selectedid'])){
 	
 	echo "<tr><td><b>Show Age:</b></td><td>".$row['showage']."</td></tr>";
 	echo "<tr><td><b>Nut:</b></td><td>".$row['showweekly_nut']."</td></tr>";
+	echo "<tr><td><b>Number of Cast:</b></td><td>".$row['shownumber_of_cast']."</td></tr>";
+	echo "<tr><td><b>Number of Musicians:</b></td><td>".$row['shownumber_of_musicians']."</td></tr>";
+	echo "<tr><td><b>Number of Stagehands:</b></td><td>".$row['shownumber_of_stagehands']."</td></tr>";
 	echo "<tr><td><b>Number of Trucks:</b></td><td>".$row['shownumber_of_trucks']."</td></tr>";	
 	echo "<tr><td colspan=2></td></tr>";
 	echo "<tr><td colspan=2></td></tr>";

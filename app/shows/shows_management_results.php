@@ -16,8 +16,11 @@ $category6_show = $_POST['category6_show'];
 $category7_show = $_POST['category7_show'];
 $age_show = $_POST['age_show'];
 $nut_show = $_POST['nut_show'];
+$cast_show = $_POST['cast_show'];
+$musicians_show = $_POST['musicians_show'];
+$stagehands_show = $_POST['stagehands_show'];
 $trucks_show = $_POST['trucks_show'];
-
+$notes_show = $_POST['notes_show'];
 $sql = "UPDATE shows SET 
 		showid = '$id_show',
 		showname = '$name_show',
@@ -31,7 +34,11 @@ $sql = "UPDATE shows SET
 		categoryid_7 = $category7_show,
 		showage = '$age_show',
 		showweekly_nut = $nut_show,
-		shownumber_of_trucks = $trucks_show
+		shownumber_of_cast = '$cast_show',
+		shownumber_of_musicians = $musicians_show,
+		shownumber_of_stagehands = $stagehands_show,
+		shownumber_of_trucks = $trucks_show,
+		shownotes = '$notes_show'
 		WHERE showid = $id_show";
 
 if ($conn->query($sql) === TRUE) {

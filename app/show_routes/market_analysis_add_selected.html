@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form action="market_analysis_modify_selected_results.php" method="POST">
+<table>
+<tr>
+	<td><b>Route Detail ID:</b></td>
+	<td><input type="text" name="detid" value=<?php echo $id?> readonly style="background-color: lightgrey;">This field cannot be modified</td>
+</tr>
+<tr>
+	<td><b>Gross Potential:</b></td>
+	<td><input autofocus='autofocus' type="number" name="gross_pot" value=0.0 step=0.01 id="gross_pot" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Sales - Percentage of Gross Potential:</b></td>
+	<td><input type="number" name="spo_gross_pot" value=0.0 step=0.01 id="spo_gross_pot" readonly style="background-color: lightgrey;">This field is calculated</td>
+</tr>
+<tr>
+	<td><b>Subscription Ticket Sales:</b></td>
+	<td><input type="number" name="subs_tsales" value=0.0 step=0.01 id="subs_tsales" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Group Ticket Sales:</b></td>
+	<td><input type="number" name="group_tsales" value=0.0 step=0.01 id="group_tsales" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Single Ticket Sales:</b></td>
+	<td><input type="number" name="single_tsales" value=0.0 step=0.01 id="single_tsales" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Gross Sales:</b></td>
+	<td><input type="number" name="gross_sales" value=0.0 step=0.01 id="gross_sales" readonly style="background-color: lightgrey;">This field is calculated</td>
+</tr>
+<tr>
+	<td><b>Off The Top Expenses & Tax:</b></td>
+	<td><input type="number" name="ott_expenses" value=0.0 step=0.01 id="ott_expenses" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Nagbor:</b></td>
+	<td><input type="number" name="nagbor" value=0.0 step=0.01 id="nagbor" readonly style="background-color: lightgrey;">This field is calculated</td>
+</tr>
+<tr>
+	<td><b>Promoter's Local Expenses:</b></td>
+	<td><input type="number" name="pl_expenses" value=0.0 step=0.01 id="pl_expenses" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Total Engagement Expenses:</b></td>
+	<td><input type="number" name="te_expenses" value=0.0 step=0.01 id="te_expenses" readonly style="background-color: lightgrey;">This field is calculated</td>
+</tr>
+<tr>
+	<td><b>Engagement Profit / Loss:</b></td>
+	<td><input type="number" name="ep_loss" value=0.0 step=0.01 id="ep_loss" readonly style="background-color: lightgrey;">This field is calculated</td>
+</tr>
+<tr>
+	<td><b>Guarantee:</b></td>
+	<td><input type="number" name="guarantee" value=0.0 step=0.01 id="guarantee" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Royalty %:</b></td>
+	<td><input type="number" name="royalty_per" value=0.0 step=0.01 id="royalty_per" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Royalty $:</b></td>
+	<td><input type="number" name="mroyalty" value=0.0 step=0.01 id="mroyalty" readonly style="background-color: lightgrey;">This field is calculated</td>
+</tr>
+<tr>
+	<td><b>Overage %:</b></td>
+	<td><input type="number" name="overage_per" value=0.0 step=0.01 id="overage_per" onkeyup="math();"></td>
+</tr>
+<tr>
+	<td><b>Overage $:</b></td>
+	<td><input type="number" name="overage" value=0.0 step=0.01 id="overage" readonly style="background-color: lightgrey;">This field is calculated</td>
+</tr>
+<tr>
+<input type="hidden" name="ind" value=1>
+</tr>
+</table>
+<p align=center>
+<input type="submit" name="modify" value="Create / Save">
+</p>
+</form>
+</body>
+</html>

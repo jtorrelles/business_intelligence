@@ -2,13 +2,13 @@
 class dbconfig {
   // database hostname 
   //protected static $host = "localhost";
-  protected static $host = "userverdev";
+  protected static $host = "localhost";
   // database username
   //protected static $username = "root";
   protected static $username = "root";
   // database password
   //protected static $password = "C4r4lh0_V04d0r";
-  protected static $password = "1234";
+  protected static $password = "";
   //database name
   protected static $dbname = "networksbi";
   static $con;

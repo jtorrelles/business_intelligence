@@ -317,6 +317,22 @@ function findDetailData(id){
             $('.deal_notes').val(data['result'].deal_notes);
             $('.est_royalty').val(data['result'].est_royalty);
             $('.team_drive').val(data['result'].teamdrive);
+            $('.gross_pot').val(data['result'].gross_pot);
+            $('.spo_gross_pot').val(data['result'].spo_gross_pot);
+            $('.subs_tsales').val(data['result'].subs_tsales);
+            $('.group_tsales').val(data['result'].group_tsales);
+            $('.single_tsales').val(data['result'].single_tsales);
+            $('.gross_sales').val(data['result'].gross_sales);
+            $('.ott_expenses').val(data['result'].ott_expenses);
+            $('.nagbor').val(data['result'].nagbor);
+            $('.pl_expenses').val(data['result'].pl_expenses);
+            $('.te_expenses').val(data['result'].te_expenses);
+            $('.ep_loss').val(data['result'].ep_loss);
+            $('.guarantee').val(data['result'].guarantee);
+            $('.royalty_per').val(data['result'].royalty_per);
+            $('.mroyalty').val(data['result'].mroyalty);
+            $('.overage_per').val(data['result'].overage_per);
+            $('.overage').val(data['result'].overage);
 
             if(data['result'].holiday == 1){
                 $('.holiday').prop('checked', true);
@@ -352,7 +368,7 @@ function findDetailData(id){
 
             if(data['result'].contract == 1){
                 $('.contract').prop('checked', true);
-            };         
+            }; 
 
             getPresenters(data['result'].presenterid);
             getVenues(data['result'].venueid);
@@ -474,3 +490,34 @@ $(function() {
     });
 
 });
+
+function math(){
+    GS = document.getElementById("gross_sales").value;
+    GP = document.getElementById("gross_pot").value;
+    STS = document.getElementById("subs_tsales").value;
+    GTS = document.getElementById("group_tsales").value;
+    SingleTS = document.getElementById("single_tsales").value;
+    OTTET = document.getElementById("ott_expenses").value;
+    ROY = document.getElementById("mroyalty").value;
+    GTY = document.getElementById("guarantee").value;
+    PLE = document.getElementById("pl_expenses").value;
+    TEE = document.getElementById("te_expenses").value;
+    NAG = document.getElementById("nagbor").value;
+    RP = document.getElementById("royalty_per").value;
+    EPL = document.getElementById("ep_loss").value;
+    OP = document.getElementById("overage_per").value;
+    SPOGP = (parseInt(GS)/parseInt(GP))*100;
+    FGS = parseFloat(STS)+parseFloat(GTS)+parseFloat(SingleTS);
+    FNAG = parseFloat(GS)-parseFloat(OTTET);
+    FTEP = parseFloat(ROY)+parseFloat(GTY)+parseFloat(OTTET)+parseFloat(PLE);
+    FEP = parseFloat(GS)-parseFloat(TEE);
+    FROY = parseFloat(NAG)*(parseFloat(RP)/100);
+    FOV = parseFloat(EPL)*(parseFloat(OP)/100);
+    document.getElementById("spo_gross_pot").value = parseFloat(SPOGP).toFixed(2);
+    document.getElementById("gross_sales").value = parseFloat(FGS).toFixed(2);
+    document.getElementById("nagbor").value = parseFloat(FNAG).toFixed(2);
+    document.getElementById("te_expenses").value = parseFloat(FTEP).toFixed(2);
+    document.getElementById("ep_loss").value = parseFloat(FEP).toFixed(2);
+    document.getElementById("mroyalty").value = parseFloat(FROY).toFixed(2);
+    document.getElementById("overage").value = parseFloat(FOV).toFixed(2);
+}
