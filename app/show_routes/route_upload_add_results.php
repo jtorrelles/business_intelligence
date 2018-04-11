@@ -21,7 +21,7 @@ if($conn->query($sql) === TRUE) {
 
     	$presentation_date = $_POST["presentation_date" . $i];
     	if(empty($_POST["holiday" . $i])){$holiday = 0;}else{$holiday = 1;} 	
-    	$city = substr($_POST["city" . $i],0,strpos($_POST["city" . $i],"-"));
+    	$city = substr($_POST["city" . $i],strpos($_POST["city" . $i],"//")+2);
     	if(empty($city)){$city = "NULL";}else{$city = $city;} 
     	if(empty($_POST["repeat" . $i])){$repeat = 0;}else{$repeat = 1;} 
     	$mileage = $_POST["mileage" . $i];	
@@ -32,9 +32,10 @@ if($conn->query($sql) === TRUE) {
     	$show_times = $_POST["show_times" . $i];
     	$perf = $_POST["perf" . $i];	
     	if(empty($perf)){$perf = 0;}else{$perf = $perf;}
-    	$venue = substr($_POST["venue" . $i],0,strpos($_POST["venue" . $i],"-"));
+    	$venue = substr($_POST["venue" . $i],strpos($_POST["venue" . $i],"//")+2);
     	if(empty($venue)){$venue = "NULL";}else{$venue = $venue;} 
-    	$presenter = substr($_POST["presenter" . $i],0,strpos($_POST["presenter" . $i],"-"));
+    	$presenter = substr($_POST["presenter" . $i],strpos($_POST["presenter" . $i],"//")+2);
+        echo $presenter;
     	if(empty($presenter)){$presenter = "NULL";}else{$presenter = $presenter;} 
     	$capacity = $_POST["capacity" . $i];	
     	if(empty($capacity)){$capacity = 0;}else{$capacity = $capacity;}

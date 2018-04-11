@@ -100,11 +100,11 @@ class presenterServices extends dbconfig {
 
   public static function getDataPresenters($presenterId){
       try {
-       $query = "SELECT PresenterID, PresenterNAME, PresenterADDRESS_1, PresenterADDRESS_2,
+       $query = "SELECT PresenterID, PresenterNAME, PresenterPARENT_COMPANY, PresenterADDRESS_1, PresenterADDRESS_2,
                   ci.id as presentercity, st.id as presenterstate,
                   PresenterZIP, ct.id as presentercountry, PresenterPHONE,
                   PresenterFAX, PresenterEMAIL, PresenterNOTES, PresenterACTIVE, 
-                  PresenterPHONE_EXT, PresenterCONTACT_NAME, PresenterPACE 
+                  PresenterPHONE_EXT, PresenterCONTACT_NAME 
                 FROM presenters pe, cities ci, states st, countries ct 
                 WHERE pe.PresenterCITYID = ci.id 
                 AND ci.state_id = st.id 
@@ -121,6 +121,7 @@ class presenterServices extends dbconfig {
        $resultSet = mysqli_fetch_assoc($result);
        $res["id"] = $resultSet['PresenterID'];
        $res["name"] = $resultSet['PresenterNAME'];
+	   $res["parentcompany"] = $resultSet['PresenterPARENT_COMPANY'];
        $res["address_1"] = $resultSet['PresenterADDRESS_1'];
        $res["address_2"] = $resultSet['PresenterADDRESS_2'];
        $res["city"] = $resultSet['presentercity'];
@@ -134,7 +135,7 @@ class presenterServices extends dbconfig {
        $res["active"] = $resultSet['PresenterACTIVE'];
        $res["phoneext"] = $resultSet['PresenterPHONE_EXT'];
        $res["contactname"] = $resultSet['PresenterCONTACT_NAME'];
-       $res["pace"] = $resultSet['PresenterPACE'];
+       
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Presenters fetched successfully.", 'result'=>$res);
 

@@ -45,6 +45,10 @@ echo "<tr>
 		<td><input autofocus='autofocus' type='text' class=\"name\" name='name'></td>
 	</tr>";
 echo "<tr>
+		<td><b>Parent Company:</b></td>
+		<td><input type='text' name='parentcompany' class=\"parentcompany\"></td>
+	</tr>";	
+echo "<tr>
 		<td><b>Address 1:</b></td>
 		<td><input type='text' name='address1' class=\"address1\"></td>
 	</tr>";
@@ -93,10 +97,6 @@ echo "<tr>
 echo "<tr>
 		<td><b>Contact:</b></td>
 		<td><input type='text' name='contact' class=\"contact\"></td>
-	</tr>";
-echo "<tr>
-		<td><b>Pace:</b></td>
-		<td><input type='text' name='pace' class=\"pace\"></td>
 	</tr>";
 echo "<tr>
 		<td><b>Notes:</b></td>

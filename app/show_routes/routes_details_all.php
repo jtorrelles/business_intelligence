@@ -14,7 +14,7 @@ echo "
     font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
 	font-size: 11px;
     border-collapse: collapse;
-    width: 100%;
+    width: 217%;
 }
 
 #routesoffshows td, #customers th {
@@ -61,7 +61,26 @@ if (isset($_GET['selectedid']))
 					 WHERE det.CITYID = ci.ID
 					 AND ci.STATE_ID = sta.ID) as STATE,
 					IFNULL(det.REPEAT, '') as REPEAT1,
+					IFNULL(det.MILEAGE, 0) as MILEAGE, 
+					IFNULL(det.BOOK_NOTES, '') as BOOK_NOTES, 	
+					IFNULL(det.PROD_NOTES, '') as PROD_NOTES,
+					IFNULL(ro.TRUCKS * det.MILEAGE, 0) as TEAM_DRIVE,
+					IFNULL(det.TIME_ZONE, '') as TIME_ZONE,
+					IFNULL(det.SHOW_TIMES, '') as SHOW_TIMES,			
 					IFNULL(det.PERF, 0) as PERF,
+					(SELECT IFNULL(ve.VENUENAME, '') 
+					 FROM venues ve 
+					 WHERE det.VENUEID = ve.VENUEID) as VENUE,
+					(SELECT IFNULL(pre.PRESENTERNAME, '') 
+					 FROM presenters pre
+					 WHERE det.PRESENTERID = pre.PRESENTERID) as PRESENTER,
+					IFNULL(det.CAPACITY, 0) as CAPACITY,
+					IFNULL(det.FIXED_GNTEE, 0) as FIXED_GNTEE,
+					IFNULL(det.ROYALTY, 0) as ROYALTY,
+					IFNULL(det.BACKEND, 0) as BACKEND,
+					IFNULL(det.BREAKEVEN, 0) as BREAKEVEN,
+					IFNULL(det.DEAL_NOTES, '') as DEAL_NOTES,
+					IFNULL(det.EST_ROYALTY, 0) as EST_ROYALTY,  
 					IFNULL(det.ON_SUB, '') as ON_SUB,
 					IFNULL(det.DATE_CONF, '') as DATE_CONF,
 					IFNULL(det.OFFER, '') as OFFER,
@@ -77,27 +96,57 @@ if (isset($_GET['selectedid']))
 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
-		echo "<table id=\"routesoffshows\">
-		<col width=11.50%>
+		echo "<table id=\"routesoffshows\">	
 		<col width=6.00%>
-		<col width=11.50%>
-		<col width=11.50%>
-		<col width=6.00%>
-		<col width=11.50%>
-		<col width=6.00%>
-		<col width=6.00%>
-		<col width=6.00%>
-		<col width=6.00%>
-		<col width=6.00%>
-		<col width=6.00%>
-		<col width=6.00%>
+		<col width=3.00%>
+		<col width=10.00%>
+		<col width=10.00%>
+		<col width=3.00%>
+		<col width=5.00%>
+		<col width=15.00%>
+		<col width=15.00%>
+		<col width=5.00%>
+		<col width=5.00%>
+		<col width=15.00%>
+		<col width=3.00%>
+		<col width=15.00%>
+		<col width=15.00%>
+		<col width=5.00%>
+		<col width=8.00%>
+		<col width=8.00%>
+		<col width=8.00%>
+		<col width=15.00%>
+		<col width=8.00%>
+		<col width=3.00%>
+		<col width=3.00%>
+		<col width=3.00%>
+		<col width=3.00%>
+		<col width=3.00%>
+		<col width=3.00%>
+		<col width=3.00%>
+		<col width=6.00%>	
 	    <tr>
 		<th>Presentation Date</th>
 		<th>Holiday</th>
 		<th>City</th>
-		<th>State</th>
+		<th>State</th>		
 		<th>Repeat</th>
+		<th>Mileage</th>
+		<th>Booking Notes</th>
+		<th>Production Notes</th>
+		<th>Team Drive Cost Estimate</th>
+		<th>Time Zone</th>
+		<th>Show Times</th>
 		<th>Number Of Performances</th>
+		<th>Venue</th>
+		<th>Presenter</th>
+		<th>Capacity</th>
+		<th>Fixed Guarantee</th>
+		<th>Royalty</th>
+		<th>Backend</th>
+		<th>Breakeven</th>
+		<th>Deal Notes</th>
+		<th>Estimated Royalty</th>
 		<th>On Sub</th>
 		<th>Date Conf</th>
 		<th>Offer</th>
@@ -107,7 +156,6 @@ if (isset($_GET['selectedid']))
 		<th>Contract</th>
 		<th>Options</th>
 		</tr>";
-	    // output data of each row
 		$total_records = 0;
 	    while($row = $result->fetch_assoc()) {
 			$total_records = $total_records + 1;
@@ -131,8 +179,22 @@ if (isset($_GET['selectedid']))
 				echo 
 				"<td><input type='checkbox' class=\"repeat\" name='repeat' disabled></td>";
 			}	
-			echo
-				"<td>". $row["PERF"]. "</td>";
+			echo "<td>". $row["MILEAGE"]. "</td>";
+			echo "<td>". $row["BOOK_NOTES"]. "</td>";
+			echo "<td>". $row["PROD_NOTES"]. "</td>";
+			echo "<td>". $row["TEAM_DRIVE"]. "</td>";
+			echo "<td>". $row["TIME_ZONE"]. "</td>";
+			echo "<td>". $row["SHOW_TIMES"]. "</td>";
+			echo "<td>". $row["PERF"]. "</td>";
+			echo "<td>". $row["VENUE"]. "</td>";
+			echo "<td>". $row["PRESENTER"]. "</td>";
+			echo "<td>". $row["CAPACITY"]. "</td>";
+			echo "<td>". $row["FIXED_GNTEE"]. "</td>";
+			echo "<td>". $row["ROYALTY"]. "</td>";
+			echo "<td>". $row["BACKEND"]. "</td>";
+			echo "<td>". $row["BREAKEVEN"]. "</td>";
+			echo "<td>". $row["DEAL_NOTES"]. "</td>";
+			echo "<td>". $row["EST_ROYALTY"]. "</td>";
 			if($row["ON_SUB"] == 1){
 				echo 
 				"<td bgcolor=green><input type='checkbox' class=\"on_sub\" name='on_sub' checked disabled></td>";

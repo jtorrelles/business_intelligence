@@ -8,6 +8,7 @@ if ($conn->connect_error) {
 		echo "<form action=\"presenter_add_results.php\" method=\"POST\">";
 		echo "<table>";
 		echo "<tr><td>Presenter Name:</td><td><input type=text name='name_presenter'></td></tr>";
+		echo "<tr><td>Parent Company:</td><td><input type=text name='parent_presenter'></td></tr>";
 		echo "<tr><td>Address 1:</td><td><input type=text name='address1_presenter'></td></tr>";
 		echo "<tr><td>Address 2:</td><td><input type=text name='address2_presenter'></td></tr>";
 		echo "<tr><td>Country:</td>";
@@ -33,7 +34,6 @@ if ($conn->connect_error) {
 		echo "<tr><td>Fax:</td><td><input type=text name='fax_presenter'></td></tr>";
 		echo "<tr><td>Email:</td><td><input type=text name='email_presenter'></td></tr>";
 		echo "<tr><td>Contact Name:</td><td><input type=text name='contact_presenter'></td></tr>";
-		echo "<tr><td>Pace:</td><td><input type=text name='pace_presenter'></td></tr>";
 		echo "<tr><td>Notes:</td><td><textarea name='notes_presenter' rows=4 cols=40></textarea></td></tr>";
 		echo "<tr><td>Is the Presenter Active?:</td>";
     	echo "<td><select name='active_presenter'>

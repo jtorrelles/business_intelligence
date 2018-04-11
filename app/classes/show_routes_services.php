@@ -320,7 +320,7 @@ class showRoutesServices extends dbconfig {
         $target_file = $target_dir . basename($dataFileName['name']);
 
         //Verify extension File
-        if($imageFileType != "xls" && $imageFileType != "xlsx" && 
+        if($imageFileType != "xlsm" && $imageFileType != "xlsx" && 
           $imageFileType != "ods" && $imageFileType != "csv" ) {
 
             $message = "Sorry, only XLS, XLSX, ODS & CSV files are allowed.";
@@ -356,7 +356,7 @@ class showRoutesServices extends dbconfig {
 
                   //Set up all the variables from the Excel Spreadsheet
                   $Showtoroute = $objPHPExcel->getSheet(1)->getCell('E1')->getValue();
-                  $Showtorouteid = substr($Showtoroute,0,strpos($Showtoroute,"-"));
+                  $Showtorouteid = substr($Showtoroute,strpos($Showtoroute,"//")+2);
                   $Date_route = $objPHPExcel->getSheet(1)->getCell('R2')->getValue();
                   $DR = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Date_route));  
                   for($i = 0; $i < 364; $i++){
@@ -364,7 +364,7 @@ class showRoutesServices extends dbconfig {
                     $Presentation_date = $objPHPExcel->getSheet(1)->getCell("D".$id)->getValue();
                     $PD[$i] = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Presentation_date));  
                     $Holiday[$i] = $objPHPExcel->getSheet(1)->getCell("E".$id)->getValue();
-                    $City[$i] = $objPHPExcel->getSheet(1)->getCell("F".$id)->getValue();
+                    $City[$i] = $objPHPExcel->getSheet(1)->getCell("G".$id)->getValue();
                     $Repeat[$i] = $objPHPExcel->getSheet(1)->getCell("H".$id)->getValue();
                     $Mileage[$i] = $objPHPExcel->getSheet(1)->getCell("I".$id)->getValue();
                     $Book_notes[$i] = $objPHPExcel->getSheet(1)->getCell("K".$id)->getValue();
@@ -397,7 +397,7 @@ class showRoutesServices extends dbconfig {
                   $res = array();
 
                   $res["showtorouteid"] = $Showtorouteid;
-                  $res["showtoroute"] = substr($Showtoroute,strpos($Showtoroute,"-")+1);
+                  $res["showtoroute"] = substr($Showtoroute,0,strpos($Showtoroute,"//"));
                   $query = "SELECT ShowNUMBER_OF_TRUCKS,
                                    ShowWEEKLY_NUT
                             FROM shows

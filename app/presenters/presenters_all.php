@@ -44,6 +44,7 @@ echo "<p><a href=\"javascript:window.open('presenter_add.php','Add New User','wi
 
 $sql = "SELECT presenterid,
         presentername,
+		presenterparent_company,
 		presenteraddress_1,
 		presenteraddress_2,
 		ci.`name` as presentercity,
@@ -55,7 +56,6 @@ $sql = "SELECT presenterid,
 		presenterfax,
 		presentercontact_name,
 		presenteremail,
-		presenterpace,
 		presenternotes,
 		presenteractive
   	FROM presenters pr, cities ci, states st, countries ct 
@@ -66,7 +66,7 @@ $sql = "SELECT presenterid,
 	
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<table id=\"shows\">
+	echo "<table id=\"shows\" class='sortable'>
 	<col width=6.25%>
 	<col width=6.25%>
 	<col width=6.25%>
@@ -85,6 +85,7 @@ if ($result->num_rows > 0) {
 	<col width=6.25%>
     <tr>
 	<th>Presenter Name</th>
+	<th>Parent Company</th>
 	<th>Address</th>
 	<th>Address (Opt.)</th>
 	<th>City</th>
@@ -96,7 +97,6 @@ if ($result->num_rows > 0) {
 	<th>Fax</th>
 	<th>Contact</th>
 	<th>Email</th>
-	<th>Pace(?)</th>
 	<th>Notes</th>
 	<th>Active?</th>
 	<th>Options</th>
@@ -106,6 +106,7 @@ if ($result->num_rows > 0) {
         echo 
 		"<tr>
 		<td>".$row["presentername"]."</td>
+		<td>".$row["presenterparent_company"]."</td>
 		<td>".$row["presenteraddress_1"]."</td>
 		<td>".$row["presenteraddress_2"]."</td>
 		<td>".$row["presentercity"]."</td>
@@ -116,8 +117,7 @@ if ($result->num_rows > 0) {
 		<td>".$row["presenterphone_ext"]."</td>
 		<td>".$row["presenterfax"]."</td>
 		<td>".$row["presentercontact_name"]."</td>
-		<td>".$row["presenteremail"]."</td>
-		<td>".$row["presenterpace"]."</td>
+		<td>".$row["presenteremail"]."</td>		
 		<td>".$row["presenternotes"]."</td>
 		<td>".$row["presenteractive"]."</td>
 		<td align=center>

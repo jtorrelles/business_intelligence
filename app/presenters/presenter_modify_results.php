@@ -6,6 +6,7 @@ if ($conn->connect_error) {
 }
 $id = $_POST['id_presenter'];
 $name_presenter = $_POST['name'];
+$parent_presenter = $_POST['parentcompany'];
 $active_presenter = $_POST['active_presenter'];
 $address1_presenter = $_POST['address1'];
 $address2_presenter = $_POST['address2'];
@@ -16,12 +17,12 @@ $fax_presenter = $_POST['fax'];
 $email_presenter = $_POST['email'];
 $notes_presenter = $_POST['notes'];
 $contact_presenter = $_POST['contact'];
-$pace_presenter = $_POST['pace'];
 
 $cityid = $_POST['city_presenter_det'];
 
 $sql = "UPDATE presenters SET 
 		presentername = '$name_presenter',
+		presenterparent_company = '$parent_presenter', 
 		presenteractive = '$active_presenter',
 		presenteraddress_1 = '$address1_presenter',
 		presenteraddress_2 = '$address2_presenter',
@@ -32,7 +33,6 @@ $sql = "UPDATE presenters SET
 		presenteremail = '$email_presenter',
 		presenternotes = '$notes_presenter', 
 		presentercontact_name = '$contact_presenter', 
-		presenterpace = '$pace_presenter', 
 		PresenterCITYID = $cityid
 		WHERE presenterid = $id";
 
