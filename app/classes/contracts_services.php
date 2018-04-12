@@ -121,6 +121,12 @@ class contractsServices extends dbconfig {
                         ContractGROSS_POTENTIAL as GROSS,
                         ContractTAX as TAX,
                         ContractGUARANTEE as GUARANTEE,
+            						ContractVARIABLE_GUARANTEE as VARIABLE_GUARANTEE,
+            						ContractPRODUCER_OVERAGES as PRODUCER_OVERAGES,
+            						ContractSALES_TAX_1 as SALES_TAX_1,
+            						ContractSALES_TAX_2 as SALES_TAX_2,
+            						ContractFACILITY_FEES_1 as FACILITY_FEES_1,
+            						ContractFACILITY_FEES_2 as FACILITY_FEES_2,
                         ContractGROUP_COMISSION as GROUP_COM,
                         ContractSUBSCRIPTION_COMISSION as SUBSC_COM,
                         ContractPHONE_COMISSION as PHONE_COM,
@@ -129,7 +135,8 @@ class contractsServices extends dbconfig {
                         ContractREMOTES_COMISSION as REM_COM,
                         ContractTOTAL_FIXED_EXPENSE as FIX_COM,  
                         ContractTOTAL_DOCUMENTED_EXPENSE as DOC_COM,  
-                        ContractTOTAL_PRESENTER_EXPENSES  as PRE_COM
+                        ContractTOTAL_PRESENTER_EXPENSES  as PRE_COM,
+						            ContractNOTES as NOTES
                     FROM contracts co, cities ci, states st, countries ct, shows sw, presenters pr, venues ve  
                     WHERE co.ContractID = $contractID  
                     AND co.showid = sw.ShowID 
@@ -160,6 +167,12 @@ class contractsServices extends dbconfig {
        $res["gross_potential"] = $resultSet['GROSS'];
        $res["tax"] = $resultSet['TAX'];
        $res["guarantee"] = $resultSet['GUARANTEE'];
+  	   $res["variable_guarantee"] = $resultSet['VARIABLE_GUARANTEE'];
+  	   $res["producer_overages"] = $resultSet['PRODUCER_OVERAGES'];
+  	   $res["sales_tax_1"] = $resultSet['SALES_TAX_1'];
+  	   $res["sales_tax_2"] = $resultSet['SALES_TAX_2'];
+  	   $res["facility_fees_1"] = $resultSet['FACILITY_FEES_1'];
+  	   $res["facility_fees_2"] = $resultSet['FACILITY_FEES_2'];
        $res["group_com"] = $resultSet['GROUP_COM'];
        $res["subsc_com"] = $resultSet['SUBSC_COM'];
        $res["phone_com"] = $resultSet['PHONE_COM'];
@@ -169,6 +182,7 @@ class contractsServices extends dbconfig {
        $res["fix_com"] = $resultSet['FIX_COM'];
        $res["doc_com"] = $resultSet['DOC_COM'];
        $res["pre_com"] = $resultSet['PRE_COM'];
+	     $res["notes"] = $resultSet['NOTES'];
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Contract fetched successfully.", 'result'=>$res);
        

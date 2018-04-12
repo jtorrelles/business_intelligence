@@ -3,7 +3,7 @@ include '../header.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script></td>";
 echo "<script> onloadManagement(); </script>";
-echo "<h1>Add a New Contract:</h1>";
+echo "<h1>Add a New Deal:</h1>";
 echo "<form action=\"contract_add_results.php\" method=\"POST\">";
 echo "<table>
 		<tr>
@@ -46,21 +46,33 @@ echo "<table>
 			<td>Number of Performances:</td>
 			<td><input type=\"number\" name=\"number_of_performances\" max=99 min=1 step=1></td></tr>
 			<td>Gross Potential:</td>
-			<td><input type=\"number\" name=\"gross_potential\" step=0.01></td></tr>
-			<td>Tax:</td>
-			<td><input type=\"number\" name=\"tax\" step=0.01></td></tr>
+			<td><input type=\"number\" name=\"gross_potential\" value=0.0 step=0.01></td></tr>
+			<td>Withholding Tax:</td>
+			<td><input type=\"number\" name=\"tax\" value=0.0 step=0.01></td></tr>
 			<td>Guarantee:</td>
-			<td><input type=\"number\" name=\"guarantee\" step=0.01></td></tr>
+			<td><input type=\"number\" name=\"guarantee\" value=0.0 step=0.01></td></tr>
+			<td>Variable Guarantee:</td>
+			<td><input type=\"number\" name=\"variable_guarantee\" max=99 min=1 step=1></td></tr>
+			<td>Producer Overages:</td>
+			<td><input type=\"number\" name=\"producer_overages\" max=99 min=1 step=1></td></tr>
+			<td>Sales Tax 1:</td>
+			<td><input type=\"number\" name=\"sales_tax_1\" value=0.0 step=0.01></td></tr>
+			<td>Sales Tax 2:</td>
+			<td><input type=\"number\" name=\"sales_tax_2\" value=0.0 step=0.01></td></tr>
+			<td>Facility Fee 1:</td>
+			<td><input type=\"number\" name=\"facility_fees_1\" value=0.0 step=0.01></td></tr>
+			<td>Facility Fee 2:</td>
+			<td><input type=\"number\" name=\"facility_fees_2\" value=0.0 step=0.01></td></tr>			
 		</tr>
 		<tr>
 			<td colspan=2><h3>COMMISSIONS (%)</h3></td>
 			<td></td>
 		</tr>
 		<tr>
+			<td>Subscription:</td>
+			<td><input type=\"number\" name=\"subscription_commission\" max=99 min=1 step=1></td></tr>		
 			<td>Group:</td>
 			<td><input type=\"number\" name=\"group_commission\" max=99 min=1 step=1></td></tr>
-			<td>Subscription:</td>
-			<td><input type=\"number\" name=\"subscription_commission\" max=99 min=1></td></tr>
 			<td>Phone:</td>
 			<td><input type=\"number\" name=\"phone_commission\" max=99 min=1 step=1></td></tr>
 			<td>Internet:</td>
@@ -75,18 +87,24 @@ echo "<table>
 			<td></td>
 		</tr>
 		<tr>
-			<td>Total Fixed Expense:</td>
+			<td>Fixed Expense:</td>
 			<td><input type=\"number\" class=\"fixed_exp\" name=\"fixed_expense\" value=0.0 step=0.01></td></tr>
 			<td>Total Documented Expense:</td>
 			<td><input type=\"number\" class=\"document_exp\" name=\"documented_expense\" value=0.0  step=0.01></td></tr>
 			<td>Total Presenter Expenses:</td>
 			<td><input type=\"number\" class=\"total_exp\" name=\"total_presenter_expense\" value=0.0 step=0.01></td></tr>
 		</tr>
+		<tr>
+			<td colspan=2><h3>ADDITIONAL INFO</h3></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>Notes:</td>
+			<td><textarea class=\"notes_contract\" name=\"notes\" rows=4 cols=40></textarea></td></tr>		
 	</table>";
 echo "<p><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 echo "</form>";
 echo "<br>";
 echo "<br>";
-echo "Generate Proforma: If a Proforma is not generated then Settlement data needs to be input manually";
 include '../footer.html';
 ?>

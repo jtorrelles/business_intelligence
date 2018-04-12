@@ -38,14 +38,14 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>Contract Administration:</h1>";
+echo "<h1>Approved Deal & Terms Administration:</h1>";
 
 echo "<form action=\"contracts_all.php\" method=\"POST\">";
 
 echo "<table>";
 echo "<tr><td>Shows:</td>";
 echo "<td><select name=\"show\" class=\"shows\" id=\"showId\">";
-echo "<option value=\"\">Select Show</option>
+echo "<option value=\"9999\">Select Show</option>
 	  </select>";
 echo "<input type=\"submit\" name=\"search\" value=\"Find\">";
 echo "</tr>";
@@ -57,12 +57,12 @@ echo "<br>";
 if (isset($_POST['show']))
 {
 	$selectedid = $_POST['show'];
-	echo "<p><a href=\"javascript:window.open('contract_add.php','Add New Contract','width=650,height=450')\">Add Contract</a></p><br>";
+	echo "<p><a href=\"javascript:window.open('contract_add.php','Add New Deal Terms','width=650,height=450')\">Add New Deal Terms</a></p><br>";
 }
 else
 {
 	$selectedid = '9999';
-	echo "<p><a href=\"javascript:window.open('contract_add.php','Add New Contract','width=650,height=450')\">Add Contract</a></p><br>";
+	echo "<p><a href=\"javascript:window.open('contract_add.php','Add New Deal Terms','width=650,height=450')\">Add New Deal Terms</a></p><br>";
 	echo "No show selected<br>";
 }
 
@@ -88,7 +88,7 @@ $sql = "SELECT 	co.ContractID as contractID,
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<table id=\"contracts\">
+	echo "<table id=\"contracts\" class=\"sortable\">
 	<col width=9%>
 	<col width=9%>
 	<col width=9%>
@@ -129,7 +129,7 @@ if ($result->num_rows > 0) {
 		<td align=right>".number_format($row["contractTOTAL_PRESENTER_EXPENSES"],2)."</td>
 		<td align=center>
 		<a href=\"javascript:window.open('contract_modify_selected.php?selectedid=".$row['contractID']."','Modify Selected','width=650,height=530')\"><img src='../images/modify.png' width=20></a>   
-		<a href=\"javascript:window.open('contract_delete_selected.php?selectedid=".$row['contractID']."','Delete Selected','width=480,height=530')\" hidden ><img src='../images/delete.png' width=20></a>
+		<a href=\"javascript:window.open('contract_delete_selected.php?selectedid=".$row['contractID']."','Delete Selected','width=480,height=530')\" hidden><img src='../images/delete.png' width=20></a>
 		</td>
 		</tr>";
     }

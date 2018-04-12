@@ -4,7 +4,7 @@ include '../header.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script>";
 
-echo "<h1>Modify An Existing Contract:</h1>";
+echo "<h1>Modify An Existing Deal:</h1>";
 if(isset($_GET['selectedid'])){
   	echo "<script>findData(".$_GET['selectedid'].");</script>";
 
@@ -61,16 +61,28 @@ if(isset($_GET['selectedid'])){
 				<td><input type=\"number\" name='tax' class='tax' step=0.01></td></tr>
 				<td>Guarantee:</td>
 				<td><input type=\"number\" name='guarantee' class='guarantee' step=0.01></td></tr>
+				<td>Variable Guarantee:</td>
+				<td><input type=\"number\" name='variable_guarantee' class='variable_guarantee' max=99 min=1 step=1></td></tr>
+				<td>Producer Overages:</td>
+				<td><input type=\"number\" name=\"producer_overages\" class='producer_overages' max=99 min=1 step=1></td></tr>
+				<td>Sales Tax 1:</td>
+				<td><input type=\"number\" name=\"sales_tax_1\" class='sales_tax_1' step=0.01></td></tr>
+				<td>Sales Tax 2:</td>
+				<td><input type=\"number\" name=\"sales_tax_2\" class='sales_tax_2' step=0.01></td></tr>
+				<td>Facility Fee 1:</td>
+				<td><input type=\"number\" name=\"facility_fees_1\" class='facility_fees_1' step=0.01></td></tr>
+				<td>Facility Fee 2:</td>
+				<td><input type=\"number\" name=\"facility_fees_2\" class='facility_fees_2' step=0.01></td></tr>	
 			</tr>
 			<tr>
 				<td colspan=2><h3>COMMISSIONS (%)</h3></td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>Group:</td>
-				<td><input type=\"number\" name='group_commission' class='group_commission' max=99 min=1 step=1></td></tr>
 				<td>Subscription:</td>
 				<td><input type=\"number\" name='subscription_commission' class='subscription_commission' max=99 min=1></td></tr>
+				<td>Group:</td>
+				<td><input type=\"number\" name='group_commission' class='group_commission' max=99 min=1 step=1></td></tr>
 				<td>Phone:</td>
 				<td><input type=\"number\" name='phone_commission' class='phone_commission' max=99 min=1 step=1></td></tr>
 				<td>Internet:</td>
@@ -92,6 +104,13 @@ if(isset($_GET['selectedid'])){
 				<td>Total Presenter Expenses:</td>
 				<td><input type=\"number\" name='total_presenter_expense' class='total_presenter_expense' step=0.01></td></tr>
 			</tr>
+			<tr>
+				<td colspan=2><h3>ADDITIONAL INFO</h3></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>Notes:</td>
+				<td><textarea class='notes' name=\"notes\" rows=4 cols=40></textarea></td></tr>				
 		</table>";
 	echo "<p><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 	echo "</form>";

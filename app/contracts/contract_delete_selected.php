@@ -21,6 +21,12 @@ if(isset($_GET['selectedid'])){
 				   	FORMAT(ContractGROSS_POTENTIAL,2) as GROSS,
 				   	FORMAT(ContractTAX,2) as TAX,
 				   	FORMAT(ContractGUARANTEE,2) as GUARANTEE,
+					FORMAT(ContractVARIABLE_GUARANTEE,2) as VARIABLE_GUARANTEE,
+					FORMAT(ContractPRODUCER_OVERAGES,2) as PRODUCER_OVERAGES,
+					FORMAT(ContractSALES_TAX_1,2) as SALES_TAX_1,
+					FORMAT(ContractSALES_TAX_2,2) as SALES_TAX_2,
+					FORMAT(ContractFACILITY_FEES_1,2) as FACILITY_FEES_1,
+					FORMAT(ContractFACILITY_FEES_2,2) as FACILITY_FEES_2,
 				   	FORMAT(ContractGROUP_COMISSION,2) as ContractGROUP_COMISSION,
 				   	FORMAT(ContractSUBSCRIPTION_COMISSION, 2) as ContractSUBSCRIPTION_COMISSION,  
 				   	FORMAT(ContractPHONE_COMISSION,2) as ContractPHONE_COMISSION,
@@ -29,7 +35,8 @@ if(isset($_GET['selectedid'])){
 				   	FORMAT(ContractREMOTES_COMISSION, 2) as ContractREMOTES_COMISSION,
 				   	FORMAT(ContractTOTAL_FIXED_EXPENSE, 2) as ContractTOTAL_FIXED_EXPENSE,
 				   	FORMAT(ContractTOTAL_DOCUMENTED_EXPENSE,2) as ContractTOTAL_DOCUMENTED_EXPENSE, 
-				   	FORMAT(ContractTOTAL_PRESENTER_EXPENSES,2) as ContractTOTAL_PRESENTER_EXPENSES 
+				   	FORMAT(ContractTOTAL_PRESENTER_EXPENSES,2) as ContractTOTAL_PRESENTER_EXPENSES,
+					ContractNOTES
 			FROM contracts c, shows sw, venues v, presenters p, cities ci, states s, countries co 
 			WHERE ContractID = $selectedid 
 			AND c.ContractVENUEID = v.VenueID 
@@ -60,10 +67,22 @@ if(isset($_GET['selectedid'])){
 					<td>".$row['ContractNUMBER_OF_PERFORMANCES']."</td></tr>
 					<td>Gross Potential:</td>
 					<td>".$row['GROSS']."</td></tr>
-					<td>Tax:</td>
+					<td>Withholding Tax:</td>
 					<td>".$row['TAX']."</td></tr>
 					<td>Guarantee:</td>
 					<td>".$row['GUARANTEE']."</td></tr>
+					<td>Variable Guarantee:</td>
+					<td>".$row['VARIABLE_GUARANTEE']."</td></tr>
+					<td>Producer Overages:</td>
+					<td>".$row['PRODUCER_OVERAGES']."</td></tr>
+					<td>Sales Tax 1:</td>
+					<td>".$row['SALES_TAX_1']."</td></tr>
+					<td>Sales Tax 2:</td>
+					<td>".$row['SALES_TAX_2']."</td></tr>
+					<td>Facility Fees 1:</td>
+					<td>".$row['FACILITY_FEES_1']."</td></tr>
+					<td>Facility Fees 2:</td>
+					<td>".$row['FACILITY_FEES_2']."</td></tr>					
 				</tr>
 				<tr>
 					<td colspan=2><h3>COMMISSIONS (%)</h3></td>
@@ -95,6 +114,13 @@ if(isset($_GET['selectedid'])){
 					<td>Total Presenter Expenses:</td>
 					<td>".$row['ContractTOTAL_PRESENTER_EXPENSES']."</td></tr>
 				</tr>
+				<tr>
+					<td colspan=2><h3>ADDITIONAL INFO</h3></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Notes:</td>
+					<td>".$row['ContractNOTES']."</td></tr>					
 			</table>";
 
 	echo "<p style=\"text-align:center\"><input type=\"submit\" name=\"modify\" value=\"DELETE\"></p>";

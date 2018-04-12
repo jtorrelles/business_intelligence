@@ -1,4 +1,3 @@
-
 var setShowID = 0;
 var setVenueID = 0;
 var setPresenterID = 0;
@@ -150,6 +149,12 @@ function findData(id){
             $('.gross_potential').val(data['result'].gross_potential);
             $('.tax').val(data['result'].tax);
             $('.guarantee').val(data['result'].guarantee);
+            $('.variable_guarantee').val(data['result'].variable_guarantee);
+            $('.producer_overages').val(data['result'].producer_overages);
+            $('.sales_tax_1').val(data['result'].sales_tax_1);
+            $('.sales_tax_2').val(data['result'].sales_tax_2);
+            $('.facility_fees_1').val(data['result'].facility_fees_1);
+            $('.facility_fees_2').val(data['result'].facility_fees_2);
             $('.group_commission').val(data['result'].group_com);
             $('.subscription_commission').val(data['result'].subsc_com);
             $('.phone_commission').val(data['result'].phone_com);
@@ -159,11 +164,10 @@ function findData(id){
             $('.fixed_expense').val(data['result'].fix_com);
             $('.documented_expense').val(data['result'].doc_com);
             $('.total_presenter_expense').val(data['result'].pre_com);
-
+            $('.notes').val(data['result'].notes);
             $(".cityname").val(data['result'].cityname);
             $(".statename").val(data['result'].statename);
             $(".cityid").val(data['result'].cityid);
-
             $(".cityname").prop("disabled",true);
             $(".statename").prop("disabled",true);
 
