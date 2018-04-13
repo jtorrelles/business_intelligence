@@ -97,34 +97,7 @@ if (isset($_GET['selectedid']))
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		echo "<table id=\"routesoffshows\">	
-		<col width=6.00%>
-		<col width=3.00%>
-		<col width=10.00%>
-		<col width=10.00%>
-		<col width=3.00%>
-		<col width=5.00%>
-		<col width=15.00%>
-		<col width=15.00%>
-		<col width=5.00%>
-		<col width=5.00%>
-		<col width=15.00%>
-		<col width=3.00%>
-		<col width=15.00%>
-		<col width=15.00%>
-		<col width=5.00%>
-		<col width=8.00%>
-		<col width=8.00%>
-		<col width=8.00%>
-		<col width=15.00%>
-		<col width=8.00%>
-		<col width=3.00%>
-		<col width=3.00%>
-		<col width=3.00%>
-		<col width=3.00%>
-		<col width=3.00%>
-		<col width=3.00%>
-		<col width=3.00%>
-		<col width=6.00%>	
+
 	    <tr>
 		<th>Presentation Date</th>
 		<th>Holiday</th>
