@@ -8,10 +8,34 @@ if ($conn->connect_error) {
 	$numberoftrucks = $_POST['numberoftrucks'];
 	$weeklynut = $_POST['weeklynut'];;
 	$date_route = $_POST['date_route'];
+    $fday = $_POST["presentation_date1"];
+
+$sql3 = "SELECT ro.ROUTESID as ROUTESID
+         FROM routes ro, routes_det det 
+         WHERE ro.ROUTESID = det.ROUTESID
+           AND ro.SHOWID = $showid
+           AND det.PRESENTATION_DATE = '$fday'"; 
+
+$result = $conn->query($sql3);
+if ($result->num_rows > 0) { 
+    while ($row = $result->fetch_assoc()) {
+        $id = $row['ROUTESID'];
+    } 
+    $sql4 = "DELETE FROM routes_det WHERE ROUTESID = $id";
+    if ($conn->query($sql4) === TRUE) {
+        $sql5 = "DELETE FROM routes WHERE ROUTESID = $id";
+        if ($conn->query($sql5) === FALSE) {
+            echo "Error Deleting Record: " . $conn->error;            
+            exit();
+        }
+    }else {
+        echo "Error Deleting Record: " . $conn->error;        
+        exit();
+    }
+}     
 
 $sql = "INSERT INTO routes (SHOWID,TRUCKS,DATE_OF_ROUTE,WEEKLY_NUT)
 				VALUES ($showid, $numberoftrucks, '$date_route', $weeklynut)";
-
 
 if($conn->query($sql) === TRUE) {
 
@@ -35,7 +59,6 @@ if($conn->query($sql) === TRUE) {
     	$venue = substr($_POST["venue" . $i],strpos($_POST["venue" . $i],"//")+2);
     	if(empty($venue)){$venue = "NULL";}else{$venue = $venue;} 
     	$presenter = substr($_POST["presenter" . $i],strpos($_POST["presenter" . $i],"//")+2);
-        echo $presenter;
     	if(empty($presenter)){$presenter = "NULL";}else{$presenter = $presenter;} 
     	$capacity = $_POST["capacity" . $i];	
     	if(empty($capacity)){$capacity = 0;}else{$capacity = $capacity;}
@@ -76,6 +99,7 @@ if($conn->query($sql) === TRUE) {
 } else {
     echo "Error Creating record: " . $conn->error;
 }
+
 echo "
 	<script language=\"javascript\"
 		type=\"text/javascript\">

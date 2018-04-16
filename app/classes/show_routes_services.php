@@ -320,10 +320,9 @@ class showRoutesServices extends dbconfig {
         $target_file = $target_dir . basename($dataFileName['name']);
 
         //Verify extension File
-        if($imageFileType != "xlsm" && $imageFileType != "xlsx" && 
-          $imageFileType != "ods" && $imageFileType != "csv" ) {
+        if($imageFileType != "xlsx") {
 
-            $message = "Sorry, only XLS, XLSX, ODS & CSV files are allowed.";
+            $message = "Sorry, only XLSX files are allowed.";
             $uploadOk = 0;
 
             $data = array('status'=>'error', 'tp'=>$uploadOk, 'msg'=>$message, 'result'=>null);
@@ -441,7 +440,7 @@ class showRoutesServices extends dbconfig {
                     $res["contract" . $i] = $Contract[$i];
                   }
                   
-
+                  unlink($target_file); 
                   $data = array('status'=>'success', 'tp'=>$uploadOk, 'msg'=>'SpreadSheet Upload Successfully', 'result'=>$res);
                 }
               }
