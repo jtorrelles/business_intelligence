@@ -12,7 +12,7 @@ if(isset($_GET['selectedid'])){
     echo "<div style=\"display:none\" id=\"datadetailroute\">";
     echo "<form action=\"routes_detail_modify_selected_results.php\" method=\"POST\">";
     echo "<table>";
-    echo "<tr><td colspan=2><h3>GENERAL DATA</h3></td></tr>";
+    //echo "<tr><td colspan=2><h3>GENERAL DATA</h3></td></tr>";
     echo "<tr>
         <td><b>Route Detail ID:</b></td>
         <td><input style=\"background-color: lightgrey;\" readonly type='text' name='detid' class=\"detid\">This field cannot be modified</td>
@@ -21,17 +21,17 @@ if(isset($_GET['selectedid'])){
         <td><b>Presentation Date:</b></td>
         <td><input style=\"background-color: lightgrey;\" readonly type='text' class=\"presentation_date\" name='presentation_date'>This field cannot be modified</td>
       </tr>"; 
-    echo "<tr><td>Country:</td>";
+    echo "<tr><td><b>Country:</b></td>";
     echo "<td><select name=\"country_detail\" class=\"countries\" id=\"countryId\">";
     echo "<option value=\"\">Select Country</option>
         </select></td>";
     echo "</tr>";
-    echo "<tr><td>State:</td>";
+    echo "<tr><td><b>State:</b></td>";
     echo "<td><select name=\"state_detail\" class=\"states\" id=\"stateId\">";
     echo "<option value=\"\">Select State</option>
        </select></td>";
     echo "</tr>";
-    echo "<tr><td>City:</td>";
+    echo "<tr><td><b>City:</b></td>";
     echo "<td><select name=\"city_detail\" class=\"cities\" id=\"cityId\">";
     echo "<option value=\"\">Select City</option>
         </select></td>";

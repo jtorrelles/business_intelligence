@@ -10,7 +10,7 @@ if(isset($_GET['selectedid'])){
     echo "<div style=\"display:none\" id=\"datadetailroute\">";
     echo "<form action=\"market_analysis_modify_selected_results.php\" method=\"POST\">";
     echo "<table>";
-    echo "<tr><td><h2>MARKET ANALYSIS</h2></td></tr>";
+    echo "<tr><td><h2>ENGAGEMENT SNAPSHOT</h2></td></tr>";
     echo "<tr><td><h3>PROFORMA: VENUE TAB</h3></td></tr>";
     echo "<tr><td><p>A Market Analysis Has Already Been Done</p></td></tr>";
     echo "<tr>

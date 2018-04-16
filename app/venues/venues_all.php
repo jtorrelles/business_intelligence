@@ -61,7 +61,7 @@ $sql = "SELECT venueid,
 	ORDER BY venueid ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<table id=\"shows\">
+	echo "<table id=\"shows\" class='sortable'>
 	<col width=15%>
 	<col width=10%>
 	<col width=10%>
@@ -85,7 +85,7 @@ if ($result->num_rows > 0) {
 	<th>Country</th>
 	<th>Phone</th>
 	<th>Fax</th>
-	<th>Email</th>
+	<th>Contact Info</th>
 	<th>Notes</th>
 	<th>Active?</th>
 	<th>Options</th>

@@ -121,7 +121,7 @@ class presenterServices extends dbconfig {
        $resultSet = mysqli_fetch_assoc($result);
        $res["id"] = $resultSet['PresenterID'];
        $res["name"] = $resultSet['PresenterNAME'];
-	   $res["parentcompany"] = $resultSet['PresenterPARENT_COMPANY'];
+	     $res["parentcompany"] = $resultSet['PresenterPARENT_COMPANY'];
        $res["address_1"] = $resultSet['PresenterADDRESS_1'];
        $res["address_2"] = $resultSet['PresenterADDRESS_2'];
        $res["city"] = $resultSet['presentercity'];
