@@ -25,11 +25,9 @@ echo "</tr>";
 echo "<tr><td>Presenter:</td>";
 echo "<td><select name=\"presenter\" class=\"presenter\" id=\"presenterMngId\">";
 echo "<option value=\"\">Select Presenter</option>
-	 </select>";
-echo "<input type=\"button\" name=\"search\" value=\"Find\" onclick=\"findData(0)\">";
-echo "</tr>";
-
+	 </select></td><tr>";
 echo "</table>";
+echo "<input type=\"button\" name=\"search\" value=\"Find\" onclick=\"findData(0)\">";
 echo "<br>";
 
 echo "<div style=\"display:none\" id=\"datapresenter\">";
@@ -57,19 +55,19 @@ echo "<tr>
 		<td><input type='text' name='address2' class=\"address2\"></td>
 	</tr>";
 echo "<tr>
-		<td>Country:</td>
+		<td><b>Country:</b></td>
     	<td><select name=\"country_presenter_det\" class=\"countries_det\" id=\"countryId_det\">
     		<option value=\"\">Select Country</option>
         	</select></td>
     </tr>";
 echo "<tr>
-		<td>State:</td>
+		<td><b>State:</b></td>
     	<td><select name=\"state_presenter_det\" class=\"states_det\" id=\"stateId_det\">
     		<option value=\"\">Select State</option>
        		</select></td>
     </tr>";
 echo "<tr>
-		<td>City:</td>
+		<td><b>City:</b></td>
     	<td><select name=\"city_presenter_det\" class=\"cities_det\" id=\"cityId_det\">
     		<option value=\"\">Select City</option>
         	</select></td>

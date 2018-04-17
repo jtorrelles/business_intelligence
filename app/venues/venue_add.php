@@ -30,7 +30,7 @@ if ($conn->connect_error) {
 		echo "<tr><td>ZIP Code:</td><td><input type=text name='zip_venue'></td></tr>";
 		echo "<tr><td>Phone:</td><td><input type=text name='phone_venue'></td></tr>";
 		echo "<tr><td>Fax:</td><td><input type=text name='fax_venue'></td></tr>";
-		echo "<tr><td>Email:</td><td><input type=text name='email_venue'></td></tr>";
+		echo "<tr><td>Contact Info:</td><td><input type=text name='email_venue'></td></tr>";
 		echo "<tr><td>Notes:</td><td><textarea name='notes_venue' rows=4 cols=40></textarea></td></tr>";
 		echo "<tr><td>Is the Venue Active?:</td>";
     	echo "<td><select name='active_venue'>

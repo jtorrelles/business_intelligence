@@ -7,7 +7,7 @@ echo "<h1>Add a New Route:</h1>";
 echo "<form action=\"route_add_results.php\" method=\"POST\">";
 echo "<table>
 		<tr>
-			<td>Show:</td>
+			<td><b>Show:</b></td>
 			<td>
 				<select name=\"show_name\" class=\"shows\" id=\"showId\" required>
 					<option value=\"\">Select Show</option>
@@ -29,7 +29,7 @@ echo "<table>
 			<td colspan=2><h3>DETAIL ROUTE</h3></td>
 		</tr>
 		<tr>
-			<td><b>Date Beging Of Route:</b></td>
+			<td><b>Beginning Date:</b></td>
 			<td><input type=\"date\" class=\"beging_route\" name='beging_route'></td>
 		</tr>
 	</table>";

@@ -6,7 +6,7 @@ echo "<h1>Upload Route</h1>";
 echo "<div id=\"route_uploadfile\">";
 echo "<form id=\"fileUploadForm\" method=\"POST\" enctype=\"multipart/form-data\">";
 	echo "<table>";
-	echo "<tr><td><p>Select Spreadsheet (Route) to upload (XLS, XLSX, ODS and CVS only):</p></td></tr>";
+	echo "<tr><td><p>Select Spreadsheet (Route) to upload (XLSX only):</p></td></tr>";
 	echo "<tr>";
 		echo "<td><input type=\"file\" name=\"fileToUpload\" id=\"fileToUpload\">";
 	echo "</tr>";

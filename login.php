@@ -31,10 +31,10 @@
    
    <head>
       <title>Login Page</title>
-      
+      <link href="https://fonts.googleapis.com/css?family=Gudea" rel="stylesheet">
       <style type = "text/css">
          body {
-            font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+            font-family:"Gudea", sans-serif;
             font-size:14px;
          }
          label {
@@ -52,16 +52,16 @@
    <body bgcolor = "#FFFFFF">
 	
       <div align = "center">
-	     <p><img src='images/NWPlogo.png'><br>
-		 <b>BUSINESS INTELLIGENCE</b><br></p>
+	     <p><img src='images/NWPlogo.png'></p><br>
+		 <h2>BUSINESS INTELLIGENCE</h2><br>
          <div style = "width:300px; border: solid 1px #333333; " align = "left">
             <div style = "background-color:#000066; color:#FFFFFF; padding:3px;"><b>Login</b></div>
 				
             <div style = "margin:30px">
                
                <form action = "" method = "post">
-                  <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+                  <label>UserName:</label><br><input type = "text" name = "username" class = "box"/><br /><br />
+                  <label>Password:</label><br><input type = "password" name = "password" class = "box" /><br/><br />
                   <input type = "submit" value = " Submit "/><br />
                </form>
                
