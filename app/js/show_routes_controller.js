@@ -264,6 +264,32 @@ function getNUTOfShow(showId) {
     }); 
 };
 
+function getRouteDataChange(routedetid, routeid) {
+    var call = new ajaxCall();
+    $(".date_change option:gt(0)").remove();
+    var url = '../routes/show_routes_route.php?type=getChangeDataInfo&routeDetailId=' + routedetid + '&routeId='+ routeid;
+    var method = "GET";
+    var data = {};
+    $('.date_change').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        console.log(data);
+        $('.date_change').find("option:eq(0)").html("Select Date of Detail Route");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.date_change').append(option);
+            });
+            $(".date_change").prop("disabled",false);
+
+            $("#dataroutechange").show();
+        }
+        else{
+             alert(data.msg);
+        }
+    });
+};
+
 function findData(id){
 
     var call = new ajaxCall();
@@ -333,6 +359,12 @@ function findDetailData(id){
             $('.mroyalty').val(data['result'].mroyalty);
             $('.overage_per').val(data['result'].overage_per);
             $('.overage').val(data['result'].overage);
+
+            $('.cityname').val(data['result'].city_name);
+            $('.statename').val(data['result'].state_name);
+            $('.countryname').val(data['result'].country_name);
+            $('.venuename').val(data['result'].venue_name);
+            $('.presentername').val(data['result'].presenter_name);
 
             if(data['result'].holiday == 1){
                 $('.holiday').prop('checked', true);

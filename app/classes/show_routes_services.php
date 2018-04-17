@@ -226,6 +226,35 @@ class showRoutesServices extends dbconfig {
      }
    }
 
+   public static function getChangeDataInfo($routeDetailID, $routeID){
+      try {
+       $sql = "SELECT r.ROUTES_DETID, r.PRESENTATION_DATE as PRESENTATION_DATE 
+                  FROM routes_det r 
+                  WHERE r.ROUTESID = $routeID 
+                  AND r.ROUTES_DETID NOT IN ($routeDetailID) 
+                  ORDER BY PRESENTATION_DATE ASC";
+
+       $result = dbconfig::run($sql);
+
+       if(!$result) {
+         throw new exception("RouteDetail not found.");
+       }
+
+       $res = array();
+
+       while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$resultSet['ROUTES_DETID']] = $resultSet['PRESENTATION_DATE'];
+       }
+
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Data Route Detail fetched successfully.", 'result'=>$res);
+       
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }
+
     // Fetch all countries list
     public static function getDataOfDetailRoute($detailID) {
       try {
@@ -242,10 +271,16 @@ class showRoutesServices extends dbconfig {
                         rd.SINGLE_TSALES, rd.GROSS_SALES, rd.OTT_EXPENSES,
                         rd.NAGBOR, rd.PL_EXPENSES, rd.TE_EXPENSES, rd.EP_LOSS,
                         rd.GUARANTEE, rd.ROYALTY_PER, rd.MROYALTY, rd.OVERAGE_PER,
-                        rd.OVERAGE
-                  FROM routes_det rd, routes ro 
+                        rd.OVERAGE, ve.VenueNAME, pr.PresenterNAME, 
+                        ci.`name` as cityNAME, st.`name` as stateNAME, co.`name` as countryNAME
+                  FROM routes_det rd, routes ro, venues ve, presenters pr, cities ci, states st, countries co 
                   WHERE rd.ROUTES_DETID = $detailID 
-                  AND rd.ROUTESID = ro.ROUTESID";
+                  AND rd.ROUTESID = ro.ROUTESID 
+                  AND rd.VENUEID = ve.VenueID 
+                  AND rd.PRESENTERID = pr.PresenterID 
+                  AND rd.CITYID = ci.id
+                  AND ci.state_id = st.id 
+                  AND st.country_id = co.id";
 
        $result = dbconfig::run($query);
        if(!$result) {
@@ -299,6 +334,11 @@ class showRoutesServices extends dbconfig {
        $res["mroyalty"] = $resultSet['MROYALTY'];
        $res["overage_per"] = $resultSet['OVERAGE_PER'];
        $res["overage"] = $resultSet['OVERAGE'];
+       $res["venue_name"] = $resultSet['VenueNAME'];
+       $res["presenter_name"] = $resultSet['PresenterNAME'];
+       $res["city_name"] = $resultSet['cityNAME'];
+       $res["state_name"] = $resultSet['stateNAME'];
+       $res["country_name"] = $resultSet['countryNAME'];
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Route Detail fetched successfully.", 'result'=>$res);
        
@@ -308,6 +348,7 @@ class showRoutesServices extends dbconfig {
         return $data;
       }
     }
+
     public static function processUploadFile($dataFileName){
       try {
 

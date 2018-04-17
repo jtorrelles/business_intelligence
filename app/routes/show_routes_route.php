@@ -86,9 +86,24 @@ try {
 		$routeDeatilId = $_GET['routeDetailId'];
 		$data = $loc->getDataOfDetailRoute($routeDeatilId);
 	}
+
 	if($type=='getUploadProcess'){
     	$data = $loc->processUploadFile($_FILES["fileToUpload"]);
-  	} 	
+  	} 
+
+  	if($type=='getChangeDataInfo') {
+		if(!isset($_GET['routeDetailId']) || empty($_GET['routeDetailId'])) {
+			throw new exception("Route Detail Id is not set.");
+		}
+		if(!isset($_GET['routeId']) || empty($_GET['routeId'])) {
+			throw new exception("Route Id is not set.");
+		}
+
+		$routeDeatilId = $_GET['routeDetailId'];
+		$routeId = $_GET['routeId'];
+		
+		$data = $loc->getChangeDataInfo($routeDeatilId, $routeId);
+	}	
 
 } catch (Exception $e) {
    $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
