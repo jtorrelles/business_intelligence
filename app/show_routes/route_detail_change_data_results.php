@@ -10,7 +10,8 @@ include '../header.html';
 	if (empty($_POST['resetdate'])){$resetdate = 0;}else{$resetdate = 1;}
 
 	//get data of the initial date
-	$sql = "SELECT HOLIDAY, CITYID, `REPEAT`, MILEAGE, BOOK_NOTES, PROD_NOTES, TIME_ZONE, 
+	$sql = "SELECT HOLIDAY, CITYID, `REPEAT`, MILEAGE, IFNULL(BOOK_NOTES, ' ') AS BOOK_NOTES, 
+					IFNULL(PROD_NOTES, ' ') AS PROD_NOTES, TIME_ZONE, 
 					SHOW_TIMES, PERF, VENUEID, PRESENTERID, CAPACITY, FIXED_GNTEE, ROYALTY, 
 					BACKEND, BREAKEVEN, DEAL_NOTES, EST_ROYALTY, ON_SUB, DATE_CONF, OFFER, 
 					PRICE_SCALES, EXPENSES, DEAL_MEMO, CONTRACT, GROSS_POT, SPO_GROSS_POT, 
@@ -26,6 +27,7 @@ include '../header.html';
 
 		$holliday = $row['HOLIDAY'];
 		$cityid = $row['CITYID'];
+		if (empty($cityid)) { $cityid = "NULL";}
 		$repeat = $row['REPEAT'];
 		$mileage = $row['MILEAGE'];
 		$booknotes = $row['BOOK_NOTES'];
@@ -34,7 +36,9 @@ include '../header.html';
 		$showtime = $row['SHOW_TIMES'];
 		$perf = $row['PERF'];
 		$venueid = $row['VENUEID'];
+		if (empty($venueid)) { $venueid = "NULL";}
 		$presenterid = $row['PRESENTERID'];
+		if (empty($presenterid)) { $presenterid = "NULL";}
 		$capacity = $row['CAPACITY'];
 		$fixedgntee = $row['FIXED_GNTEE'];
 		$royalty = $row['ROYALTY'];
@@ -71,7 +75,8 @@ include '../header.html';
 		if($resetdate == 0){
 
 			//get data of the final date
-			$sqldatechange = "SELECT HOLIDAY, CITYID, `REPEAT`, MILEAGE, BOOK_NOTES, PROD_NOTES, TIME_ZONE, 
+			$sqldatechange = "SELECT HOLIDAY, CITYID, `REPEAT`, MILEAGE, IFNULL(BOOK_NOTES, ' ') AS BOOK_NOTES, 
+								IFNULL(PROD_NOTES, ' ') AS PROD_NOTES, TIME_ZONE, 
 								SHOW_TIMES, PERF, VENUEID, PRESENTERID, CAPACITY, FIXED_GNTEE, ROYALTY, 
 								BACKEND, BREAKEVEN, DEAL_NOTES, EST_ROYALTY, ON_SUB, DATE_CONF, OFFER, 
 								PRICE_SCALES, EXPENSES, DEAL_MEMO, CONTRACT, GROSS_POT, SPO_GROSS_POT, 
@@ -87,6 +92,7 @@ include '../header.html';
 
 				$holliday_change = $row['HOLIDAY'];
 				$cityid_change = $row['CITYID'];
+				if (empty($cityid_change)) { $cityid_change = "NULL";}
 				$repeat_change = $row['REPEAT'];
 				$mileage_change = $row['MILEAGE'];
 				$booknotes_change = $row['BOOK_NOTES'];
@@ -95,7 +101,9 @@ include '../header.html';
 				$showtime_change = $row['SHOW_TIMES'];
 				$perf_change = $row['PERF'];
 				$venueid_change = $row['VENUEID'];
+				if (empty($venueid_change)) { $venueid_change = "NULL";}
 				$presenterid_change = $row['PRESENTERID'];
+				if (empty($presenterid_change)) { $presenterid_change = "NULL";}
 				$capacity_change = $row['CAPACITY'];
 				$fixedgntee_change = $row['FIXED_GNTEE'];
 				$royalty_change = $row['ROYALTY'];

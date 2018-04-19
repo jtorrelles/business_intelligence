@@ -258,7 +258,7 @@ class showRoutesServices extends dbconfig {
     // Fetch all countries list
     public static function getDataOfDetailRoute($detailID) {
       try {
-       $query = "SELECT rd.ROUTES_DETID, rd.ROUTESID, rd.PRESENTATION_DATE, rd.HOLIDAY, 
+        $query = "SELECT rd.ROUTES_DETID, rd.ROUTESID, rd.PRESENTATION_DATE, rd.HOLIDAY, 
                         IFNULL(rd.CITYID,0) as CITYID, rd.`REPEAT`, rd.MILEAGE, 
                         rd.BOOK_NOTES, rd.PROD_NOTES, rd.TIME_ZONE, rd.SHOW_TIMES, rd.PERF, 
                         IFNULL(rd.VENUEID,0) as VENUEID, IFNULL(rd.PRESENTERID, 0) as PRESENTERID, 
@@ -271,16 +271,19 @@ class showRoutesServices extends dbconfig {
                         rd.SINGLE_TSALES, rd.GROSS_SALES, rd.OTT_EXPENSES,
                         rd.NAGBOR, rd.PL_EXPENSES, rd.TE_EXPENSES, rd.EP_LOSS,
                         rd.GUARANTEE, rd.ROYALTY_PER, rd.MROYALTY, rd.OVERAGE_PER,
-                        rd.OVERAGE, ve.VenueNAME, pr.PresenterNAME, 
-                        ci.`name` as cityNAME, st.`name` as stateNAME, co.`name` as countryNAME
-                  FROM routes_det rd, routes ro, venues ve, presenters pr, cities ci, states st, countries co 
-                  WHERE rd.ROUTES_DETID = $detailID 
-                  AND rd.ROUTESID = ro.ROUTESID 
-                  AND rd.VENUEID = ve.VenueID 
-                  AND rd.PRESENTERID = pr.PresenterID 
-                  AND rd.CITYID = ci.id
-                  AND ci.state_id = st.id 
-                  AND st.country_id = co.id";
+                        rd.OVERAGE, IFNULL(ve.VenueNAME, '') as VenueNAME, 
+                        IFNULL(pr.PresenterNAME, '') as PresenterNAME, 
+                        IFNULL(ci.`name`, '') as cityNAME, 
+                        IFNULL(st.`name`, '') as stateNAME, 
+                        IFNULL(co.`name`, '') as countryNAME
+                  FROM routes_det rd 
+                  INNER JOIN routes ro ON ro.ROUTESID = rd.ROUTESID 
+                  LEFT JOIN venues ve ON rd.VENUEID = ve.VenueID 
+                  LEFT JOIN presenters pr ON rd.PRESENTERID = pr.PresenterID 
+                  LEFT JOIN cities ci ON rd.CITYID = ci.id 
+                  LEFT JOIN states st ON ci.state_id = st.id 
+                  LEFT JOIN countries co ON st.country_id = co.id  
+                  WHERE rd.ROUTES_DETID = $detailID";
 
        $result = dbconfig::run($query);
        if(!$result) {
