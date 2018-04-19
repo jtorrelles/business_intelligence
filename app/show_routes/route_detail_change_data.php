@@ -60,7 +60,7 @@ if(isset($_GET['routedetid']) && isset($_GET['routeid'])){
     		</tr>";
     echo "<tr>
     		<td> </td>
-        	<td><input type='checkbox' class=\"resetdate\" name='resetdate'> Would you like to reset yhe initial date? </td>
+        	<td><input type='checkbox' class=\"resetdate\" name='resetdate'> Would you like to reset the initial date? </td>
       	</tr>";
 	echo "</table>";
 	echo "<p align=center><input type=\"submit\" name=\"modify\" value=\"Change\"></p>";
