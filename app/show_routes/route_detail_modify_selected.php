@@ -63,10 +63,10 @@ if(isset($_GET['selectedid'])){
     echo "<tr>
         <td><b>Time Zone:</b></td>
         <td><select name='time_zone' class='time_zone'><br><br>
-              <option value='PST'>PST</option>
-              <option value='MST'>MST</option>
-              <option value='CST'>CST</option>
-              <option value='EST'>EST</option>
+              <option value='PT'>PT</option>
+              <option value='MT'>MT</option>
+              <option value='CT'>CT</option>
+              <option value='ET'>ET</option>
             </select></td>
         </tr>";  
     echo "<tr>

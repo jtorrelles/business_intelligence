@@ -110,7 +110,7 @@ if (isset($_POST['show']))
 				<td>". $row["showname"]. "</td>
 				<td>". $row["numberoftrucks"]."</td>
 				<td>". $row["dateroute"]. "</td>
-				<td>". $row["routenut"]. "</td>
+				<td>$ ".number_format($row["routenut"],2)."</td>
 				<td>". $row["team_drive_cost"]."</td>
 				<td align=center> 
 				<a href=\"javascript:window.open('route_modify_selected.php?selectedid=".$row['idroute']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a> 

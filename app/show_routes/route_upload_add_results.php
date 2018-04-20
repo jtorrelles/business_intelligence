@@ -8,36 +8,31 @@ if ($conn->connect_error) {
 	$numberoftrucks = $_POST['numberoftrucks'];
 	$weeklynut = $_POST['weeklynut'];;
 	$date_route = $_POST['date_route'];
-    $fday = $_POST["presentation_date1"];
+    $fday = $_POST['presentation_date0'];
 
-$sql3 = "SELECT ro.ROUTESID as ROUTESID
+$sql1 = "SELECT det.PRESENTATION_DATE as FIRST_DATE
          FROM routes ro, routes_det det 
          WHERE ro.ROUTESID = det.ROUTESID
-           AND ro.SHOWID = $showid
-           AND det.PRESENTATION_DATE = '$fday'"; 
+         AND ro.SHOWID = $showid
+         ORDER BY det.PRESENTATION_DATE
+         LIMIT 1";  
 
-$result = $conn->query($sql3);
-if ($result->num_rows > 0) { 
-    while ($row = $result->fetch_assoc()) {
-        $id = $row['ROUTESID'];
-    } 
-    $sql4 = "DELETE FROM routes_det WHERE ROUTESID = $id";
-    if ($conn->query($sql4) === TRUE) {
-        $sql5 = "DELETE FROM routes WHERE ROUTESID = $id";
-        if ($conn->query($sql5) === FALSE) {
-            echo "Error Deleting Record: " . $conn->error;            
-            exit();
-        }
-    }else {
-        echo "Error Deleting Record: " . $conn->error;        
+$result = $conn->query($sql1);
+while ($row = $result->fetch_assoc()){
+    $fday_orig = $row['FIRST_DATE'];
+}   
+
+if(isset($fday_orig)){
+    if($fday==$fday_orig){
+        echo "The route is already loaded for this show on this date";
         exit();
     }
-}     
+}   
 
-$sql = "INSERT INTO routes (SHOWID,TRUCKS,DATE_OF_ROUTE,WEEKLY_NUT)
+$sql2 = "INSERT INTO routes (SHOWID,TRUCKS,DATE_OF_ROUTE,WEEKLY_NUT)
 				VALUES ($showid, $numberoftrucks, '$date_route', $weeklynut)";
 
-if($conn->query($sql) === TRUE) {
+if($conn->query($sql2) === TRUE) {
 
     $routeid = $conn->insert_id;
 
@@ -83,10 +78,10 @@ if($conn->query($sql) === TRUE) {
     	if(empty($_POST["deal_memo" . $i])){$deal_memo = 0;}else{$deal_memo = 1;} 
     	if(empty($_POST["contract" . $i])){$contract = 0;}else{$contract = 1;}     	
 
-    	$sql2 = "INSERT INTO routes_det (ROUTESID,PRESENTATION_DATE,HOLIDAY,CITYID,`REPEAT`,MILEAGE,BOOK_NOTES,PROD_NOTES,TIME_ZONE,SHOW_TIMES,PERF,VENUEID,PRESENTERID,CAPACITY,FIXED_GNTEE,ROYALTY,BACKEND,BREAKEVEN,DEAL_NOTES,EST_ROYALTY,ON_SUB,DATE_CONF,OFFER,PRICE_SCALES,EXPENSES,DEAL_MEMO,CONTRACT)
+    	$sql3 = "INSERT INTO routes_det (ROUTESID,PRESENTATION_DATE,HOLIDAY,CITYID,`REPEAT`,MILEAGE,BOOK_NOTES,PROD_NOTES,TIME_ZONE,SHOW_TIMES,PERF,VENUEID,PRESENTERID,CAPACITY,FIXED_GNTEE,ROYALTY,BACKEND,BREAKEVEN,DEAL_NOTES,EST_ROYALTY,ON_SUB,DATE_CONF,OFFER,PRICE_SCALES,EXPENSES,DEAL_MEMO,CONTRACT)
 				VALUES ($routeid,'$presentation_date',$holiday,$city,$repeat,$mileage,'$book_notes','$prod_notes','$time_zone','$show_times',$perf,$venue,$presenter,$capacity,$fixed_gntee,$royalty,$backend,$breakeven,'$deal_notes',$est_royalty,$on_sub,$date_conf,$offer,$price_scales,$expenses,$deal_memo,$contract)";
 
-		if ($conn->query($sql2) === TRUE) {
+		if ($conn->query($sql3) === TRUE) {
 			if(($i+1) ==364){
 				echo "Record Created successfully";
 			}
