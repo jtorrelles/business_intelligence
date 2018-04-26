@@ -42,7 +42,7 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>Details Routes Administration:</h1>";
+echo "<h1>Route Detail Administration:</h1>";
 
 echo "<p><a href=show_routes_all.php> Back to Routes Administration</a> - 
 	<a href=\"javascript:window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=450')\">Upload Route With Spreadsheet</a></p><br>";
