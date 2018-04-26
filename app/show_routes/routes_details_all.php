@@ -90,16 +90,23 @@ if (isset($_GET['selectedid']))
 					IFNULL(det.EXPENSES, '') as EXPENSES,
 					IFNULL(det.DEAL_MEMO, '') as DEAL_MEMO,
 					IFNULL(det.CONTRACT, '') as CONTRACT,
-					det.IND as IND
-			FROM routes_det det, routes ro
+					det.IND as IND,
+					sh.SHOWNAME as SHOWNAME
+			FROM routes_det det, routes ro, shows sh
 			WHERE det.ROUTESID = $routeid 
 			AND det.ROUTESID = ro.ROUTESID 
+			AND ro.SHOWID = sh.SHOWID
 			ORDER BY det.PRESENTATION_DATE ASC";
 
 	$result = $conn->query($sql);
-	if ($result->num_rows > 0) {
-		echo "<table id=\"routesoffshows\">	
+	$result2 = $conn->query($sql);
+	if ($result2->num_rows > 0) {
+		while($row = $result2->fetch_assoc()) {
+			$showname = $row["SHOWNAME"];
+		}	
 
+		echo "<table id=\"routesoffshows\">	
+		<tr><b>SHOW: ". $showname. "</b></tr>
 	    <tr>
 		<th>Presentation Date</th>
 		<th>Holiday</th>
