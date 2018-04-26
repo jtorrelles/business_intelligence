@@ -104,9 +104,8 @@ if (isset($_GET['selectedid']))
 		while($row = $result2->fetch_assoc()) {
 			$showname = $row["SHOWNAME"];
 		}	
-
-		echo "<table id=\"routesoffshows\">	
-		<tr><b>SHOW: ". $showname. "</b></tr>
+		echo "<h1>SHOW: ".$showname."</h1>";
+		echo "<table id=\"routesoffshows\">
 	    <tr>
 		<th>Presentation Date</th>
 		<th>Holiday</th>
