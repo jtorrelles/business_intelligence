@@ -42,9 +42,10 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>Details Routes Administration:</h1>";
+echo "<h1>Route Detail Administration:</h1>";
 
-echo "<p><a href=show_routes_all.php> Back to Routes Administration</a></p><br>";
+echo "<p><a href=show_routes_all.php> Back to Routes Administration</a> - 
+	<a href=\"javascript:window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=450')\">Upload Route With Spreadsheet</a></p><br>";
 
 if (isset($_GET['selectedid']))
 {
@@ -89,16 +90,22 @@ if (isset($_GET['selectedid']))
 					IFNULL(det.EXPENSES, '') as EXPENSES,
 					IFNULL(det.DEAL_MEMO, '') as DEAL_MEMO,
 					IFNULL(det.CONTRACT, '') as CONTRACT,
-					det.IND as IND
-			FROM routes_det det, routes ro
+					det.IND as IND,
+					sh.SHOWNAME as SHOWNAME
+			FROM routes_det det, routes ro, shows sh
 			WHERE det.ROUTESID = $routeid 
 			AND det.ROUTESID = ro.ROUTESID 
+			AND ro.SHOWID = sh.SHOWID
 			ORDER BY det.PRESENTATION_DATE ASC";
 
 	$result = $conn->query($sql);
-	if ($result->num_rows > 0) {
-		echo "<table id=\"routesoffshows\">	
-
+	$result2 = $conn->query($sql);
+	if ($result2->num_rows > 0) {
+		while($row = $result2->fetch_assoc()) {
+			$showname = $row["SHOWNAME"];
+		}	
+		echo "<h1>SHOW: ".$showname."</h1>";
+		echo "<table id=\"routesoffshows\">
 	    <tr>
 		<th>Presentation Date</th>
 		<th>Holiday</th>
