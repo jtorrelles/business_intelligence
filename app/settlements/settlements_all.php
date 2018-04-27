@@ -60,9 +60,9 @@ echo "<form action=\"settlements_all.php\" method=\"POST\">";
 echo "</form>";
 
 echo "<br>";
-echo "<p><a href=\"javascript:window.open('settlement_add.php','Add New Settlement','width=700,height=450')\">Add a New Settlement</a>";
+echo "<p><a href=\"javascript:void(window.open('settlement_add.php','Add New Settlement','width=700,height=450,top=100'))\">Add a New Settlement</a>";
 echo " - "; 
-echo "<a href=\"javascript:window.open('upload_settlement.php','Upload  Settlement','width=650,height=450')\">Upload a New Settlement</a></p>";
+echo "<a href=\"javascript:void(window.open('upload_settlement.php','Upload  Settlement','width=650,height=450,top=100'))\">Upload a New Settlement</a></p>";
 echo "<br>";
 
 if (isset($_POST['show']))
@@ -144,9 +144,9 @@ if ($result->num_rows > 0) {
 			<td>". $row["TOTAL_COMPANY_GUARANTEE"]."</td>
 			<td>". $row["MONEY_REMAINING"]."</td>
 			<td align=center>
-			<a href=\"javascript:window.open('settlement_preview_selected.php?selectedid=".$row['ID']."','Preview Selected','width=650,height=530')\"><img src='../images/view.png' width=20></a>   
-			<a href=\"javascript:window.open('settlement_modify_selected.php?selectedid=".$row['ID']."','Modify Selected','width=700,height=580')\"><img src='../images/modify.png' width=20></a> 
-			<a href=\"javascript:window.open('settlement_delete_selected.php?selectedid=".$row['ID']."','Delete Selected','width=700,height=530')\" hidden ><img src='../images/delete.png' width=20></a> 
+			<a href=\"javascript:void(window.open('settlement_preview_selected.php?selectedid=".$row['ID']."','Preview Selected','width=650,height=530,top=100'))\"><img src='../images/view.png' width=20></a>   
+			<a href=\"javascript:void(window.open('settlement_modify_selected.php?selectedid=".$row['ID']."','Modify Selected','width=700,height=580,top=100'))\"><img src='../images/modify.png' width=20></a> 
+			<a href=\"javascript:void(window.open('settlement_delete_selected.php?selectedid=".$row['ID']."','Delete Selected','width=700,height=530,top=100'))\" hidden ><img src='../images/delete.png' width=20></a> 
 		</td>
 		</tr>";
     }

@@ -648,11 +648,14 @@ function getUploadFile(){
             $("#settlement_data").show();
             $("#settlement_uploadfile").hide();
             $("#back_to_upload").show();
+            $("#loader").hide();
 
             onloadManagement();
 
         }else{
             alert(data_response.msg);
+            $("#loader").hide();
+            $("#settlement_uploadfile").show();
         }
     });
 }
@@ -694,6 +697,8 @@ $(function() {
     });
 
     $("#btnUpload").click(function (ev) {
+        $("#loader").show();
+        $("#settlement_uploadfile").hide();
         getUploadFile();
     });
 
