@@ -45,7 +45,7 @@ echo "<script> getShows(); </script>";
 echo "<h1>Details Routes Administration:</h1>";
 
 echo "<p><a href=show_routes_all.php> Back to Routes Administration</a> - 
-	<a href=\"javascript:window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=450')\">Upload Route With Spreadsheet</a></p><br>";
+	<a href=\"javascript:void(window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=500,top=100'))\">Upload Route With Spreadsheet</a></p><br>";
 
 if (isset($_GET['selectedid']))
 {
@@ -228,16 +228,16 @@ if (isset($_GET['selectedid']))
 			}
 			echo
 				"<td align=center> 
-				<a href=\"javascript:window.open('route_detail_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a>";
+				<a href=\"javascript:void(window.open('route_detail_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530,top=100'))\"><img src='../images/modify.png' width=20></a>";
 			if($row["IND"] == 1){
 				echo
-				"<a href=\"javascript:window.open('market_analysis_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/analysis.png' width=20></a>";
+				"<a href=\"javascript:void(window.open('market_analysis_modify_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530,top=100'))\"><img src='../images/analysis.png' width=20></a>";
 			}else{
 				echo
-				"<a href=\"javascript:window.open('market_analysis_add_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530')\"><img src='../images/analysis.png' width=20></a>";
+				"<a href=\"javascript:void(window.open('market_analysis_add_selected.php?selectedid=".$row['ROUTES_DETID']."','Modify Selected','width=480,height=530,top=100'))\"><img src='../images/analysis.png' width=20></a>";
 			}
 			echo
-				"<a href=\"javascript:window.open('route_detail_change_data.php?routedetid=".$row['ROUTES_DETID']."&routeid=".$row['ROUTESID']."','Change Data','width=480,height=530')\"><img src='../images/change_data.png' width=20></a></td></tr>";			
+				"<a href=\"javascript:void(window.open('route_detail_change_data.php?routedetid=".$row['ROUTES_DETID']."&routeid=".$row['ROUTESID']."','Change Data','width=480,height=530,top=100'))\"><img src='../images/change_data.png' width=20></a></td></tr>";			
 	    }
 		echo "</table>";
 		echo "<br>";

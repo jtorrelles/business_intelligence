@@ -465,12 +465,15 @@ function getUploadFile(){
 
             $("#route_data").show();
             $("#route_uploadfile").hide();
-            $("#back_to_upload").show();
+            $("#back_to_upload").show();            
+            $("#loader").hide();
 
             onloadManagement();
 
         }else{
             alert(data_response.msg);
+            $("#loader").hide();
+            $("#route_uploadfile").show();
         }
     });
 }
@@ -512,6 +515,8 @@ $(function() {
     });
 
     $("#btnUpload").click(function (ev) {
+        $("#loader").show();
+        $("#route_uploadfile").hide();
         getUploadFile();
     });
 

@@ -60,9 +60,9 @@ echo "<form action=\"show_routes_all.php\" method=\"POST\">";
 echo "</form>";
 
 echo "<br>";
-echo "<p><a href=\"javascript:window.open('route_add.php','Add New Rote','width=650,height=450')\">Add a New Route</a>
+echo "<p><a href=\"javascript:void(window.open('route_add.php','Add New Rote','width=650,height=450,top=100'))\">Add a New Route</a>
 	-
-	<a href=\"javascript:window.open('upload_routes.php','Upload  Route','width=650,height=450')\">Upload a New Route</a></p><br>";
+	<a href=\"javascript:void(window.open('upload_routes.php','Upload  Route','width=650,height=450,top=100'))\">Upload a New Route</a></p><br>";
 
 if (isset($_POST['show']))
 {
@@ -113,8 +113,8 @@ if (isset($_POST['show']))
 				<td>$ ".number_format($row["routenut"],2)."</td>
 				<td>". $row["team_drive_cost"]."</td>
 				<td align=center> 
-				<a href=\"javascript:window.open('route_modify_selected.php?selectedid=".$row['idroute']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a> 
-				<a href=\"javascript:window.open('route_delete_selected.php?selectedid=".$row['idroute']."','Delete Selected','width=480,height=530')\" hidden ><img src='../images/delete.png' width=20></a> 
+				<a href=\"javascript:void(window.open('route_modify_selected.php?selectedid=".$row['idroute']."','Modify Selected','width=480,height=530,top=100'))\"><img src='../images/modify.png' width=20></a> 
+				<a href=\"javascript:void(window.open('route_delete_selected.php?selectedid=".$row['idroute']."','Delete Selected','width=480,height=530,top=100'))\" hidden ><img src='../images/delete.png' width=20></a> 
 				<a href=routes_details_all.php?selectedid=$id><img src='../images/route_details.png' width=20></a></td>
 			</tr>";
 	    }

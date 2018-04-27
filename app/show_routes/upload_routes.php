@@ -1,5 +1,7 @@
 <?php 
 include '../header.html';
+
+echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
 echo "<h1>Upload Route</h1>";
@@ -14,6 +16,7 @@ echo "<form id=\"fileUploadForm\" method=\"POST\" enctype=\"multipart/form-data\
 	echo "<p align=center><input type=\"button\" value=\"Upload Spreadsheet\" id=\"btnUpload\"></p>";
 echo "</form>";
 echo "</div>";
+echo "<div style=\"display:none\" class=\"loader\" id=\"loader\"></div>";
 echo "<div style=\"display:none\" id=\"back_to_upload\">";
 echo "<p><a href='#' id=\"btnBackUpload\">Return to Upload SpreadSheet</a></p><br>";
 echo "</div>";
