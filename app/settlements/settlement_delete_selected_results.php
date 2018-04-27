@@ -6,23 +6,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$id = $_POST['id'];
-$sql = "DELETE FROM settlements_details WHERE SettlementID = $id";
+	$id = $_POST['id'];
+	$sql = "DELETE FROM settlements2 WHERE ID = $id";
 
-if ($conn->query($sql) === TRUE) {
-
-	$sql2 = "DELETE FROM settlements WHERE SettlementID = $id";
-	if ($conn->query($sql2) === TRUE) {
-
+	if ($conn->query($sql) === TRUE) {
 		echo "Record Deleted Successfully";
-
-	}else{
-		echo "Error Deleting Record: " . $conn->error;
+	} else {
+	    echo "Error Deleting Record: " . $conn->error;
 	}
-
-} else {
-    echo "Error Deleting Record: " . $conn->error;
-}
 
 echo "<script language=\"javascript\" type=\"text/javascript\">
 		function windowClose() {

@@ -60,9 +60,9 @@ echo "<form action=\"settlements_all.php\" method=\"POST\">";
 echo "</form>";
 
 echo "<br>";
-echo "<p><a href=\"javascript:window.open('settlement_add.php','Add New Settlement','width=650,height=450')\">Add a New Settlement</a></p>";
-/*echo " - "; 
-echo "<a href=\"javascript:window.open('upload_settlement.php','Upload  Settlement','width=650,height=450')\">Upload a New Settlement</a></p>";*/
+echo "<p><a href=\"javascript:window.open('settlement_add.php','Add New Settlement','width=700,height=450')\">Add a New Settlement</a>";
+echo " - "; 
+echo "<a href=\"javascript:window.open('upload_settlement.php','Upload  Settlement','width=650,height=450')\">Upload a New Settlement</a></p>";
 echo "<br>";
 
 if (isset($_POST['show']))
@@ -75,30 +75,29 @@ else
 	echo "No show selected<br>";
 }
 
-$sql = "SELECT 	settlementid,
+$sql = "SELECT 	se.ID,
 				sw.ShowID as showid,
-				sw.ShowNAME as settlementshow_name,
-				ve.VenueNAME as settlementvenue_name, 
-				ci.`name` as settlementcity, 
-				st.`name` as settlementstate,
-				DATE_FORMAT(settlementopening_date,'%m/%d/%Y') as settlementopening_date,
-				DATE_FORMAT(settlementclosing_date,'%m/%d/%Y') as settlementclosing_date, 
-				FORMAT(settlementgross_potential,2) as settlementgross_potential,
-				FORMAT(settlementactual_gross,2) as settlementactual_gross,
-				FORMAT(settlementactual_gross-settlementnagbor,2) as settlementtae,
-				FORMAT(settlementnagbor,2) as settlementnagbor,
-				FORMAT(settlementtotal_presenter_expense,2) as settlementtotal_presenter_expense,
-				FORMAT(settlementroyalty+settlementguarantee, 2) as settlementstcc,
-				FORMAT(settlementtotal_presenter_expense+settlementroyalty+settlementguarantee,2) as settlementengagementexpense,
-				FORMAT(settlementnagbor-settlementtotal_presenter_expense-settlementroyalty-settlementguarantee,2) as settlementmoney_remaining
-		FROM settlements se, shows sw, venues ve, cities ci, states st, countries co 
+				sw.ShowNAME as show_name,
+				ve.VenueNAME as venue_name, 
+				ci.`name` as city, 
+				st.`name` as state,
+				DATE_FORMAT(OPENINGDATE,'%m/%d/%Y') as OPENINGDATE,
+				DATE_FORMAT(CLOSINGDATE,'%m/%d/%Y') as CLOSINGDATE, 
+				GROSSBOXOFFICEPOTENTIAL as GROSS_POTENTIAL,
+				GROSSBOXOFFICERECEIPTS as GROSS_RECEIPTS,
+				NAGBOR as NAGBOR,
+				TOTALENGAGEMENTEXPENSES as TOTAL_ENGAGEMENT_EXPENSES,
+				TOTALCOMPANYROYALTY as TOTAL_COMPANY_ROYALTY,
+				TOTALCOMPANYGUARANTEE as TOTAL_COMPANY_GUARANTEE, 
+				MONEYREMAINING as MONEY_REMAINING
+		FROM settlements2 se, shows sw, venues ve, cities ci, states st, countries co 
 		WHERE sw.ShowID = $selectedid 
-		AND sw.ShowID = se.SettlementShowID 
-		AND se.SettlementVENUEID = ve.VenueID 
-		AND se.SettlementCITYID = ci.id 
+		AND sw.ShowID = se.SHOWID 
+		AND se.VENUEID = ve.VenueID 
+		AND se.CITYID = ci.id 
 		AND ci.state_id = st.id 
 		AND st.country_id = co.id 
-		ORDER BY settlementopening_date DESC";
+		ORDER BY OPENINGDATE DESC";
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -117,12 +116,11 @@ if ($result->num_rows > 0) {
 	<th>Opening Date</th>
 	<th>Closing Date</th>
 	<th>Gross Potential</th>
-	<th>Actual Gross</th>
-	<th>Total Allowable Expenses</th>
+	<th>Gross Receipts</th>
 	<th>NAGBOR</th>
-	<th>Total Presenter Expense</th>
-	<th>Subtotal Company Compensation</th>
 	<th>Total Engagement Expense</th>
+	<th>Total Company Royalty</th>
+	<th>Total Company Guarantee</th>
 	<th>Money Remaining</th>
 	<th>Options</th>
 	</tr>";
@@ -133,23 +131,22 @@ if ($result->num_rows > 0) {
 		$total_records = $total_records + 1;
 		echo 
 		"<tr>
-			<td>". $row["settlementshow_name"]. "</td>
-			<td>". $row["settlementvenue_name"]. "</td>
-			<td>". $row["settlementcity"]. "</td>
-			<td>". $row["settlementopening_date"]."</td>
-			<td>". $row["settlementclosing_date"]."</td>
-			<td>". $row["settlementgross_potential"]. "</td>
-			<td>". $row["settlementactual_gross"]. "</td>
-			<td>". $row["settlementtae"]. "</td>
-			<td>". $row["settlementnagbor"]."</td>
-			<td>". $row["settlementtotal_presenter_expense"]."</td>
-			<td>". $row["settlementstcc"]."</td>
-			<td>". $row["settlementengagementexpense"]."</td>
-			<td>". $row["settlementmoney_remaining"]."</td>
+			<td>". $row["show_name"]. "</td>
+			<td>". $row["venue_name"]. "</td>
+			<td>". $row["city"]. "</td>
+			<td>". $row["OPENINGDATE"]."</td>
+			<td>". $row["CLOSINGDATE"]."</td>
+			<td>". $row["GROSS_POTENTIAL"]. "</td>
+			<td>". $row["GROSS_RECEIPTS"]. "</td>
+			<td>". $row["NAGBOR"]."</td>
+			<td>". $row["TOTAL_ENGAGEMENT_EXPENSES"]."</td>
+			<td>". $row["TOTAL_COMPANY_ROYALTY"]."</td>
+			<td>". $row["TOTAL_COMPANY_GUARANTEE"]."</td>
+			<td>". $row["MONEY_REMAINING"]."</td>
 			<td align=center>
-			<a href=\"javascript:window.open('settlement_preview_selected.php?selectedid=".$row['settlementid']."','Preview Selected','width=480,height=530')\"><img src='../images/view.png' width=20></a>   
-			<a href=\"javascript:window.open('settlement_modify_selected.php?selectedid=".$row['settlementid']."','Modify Selected','width=650,height=580')\"><img src='../images/modify.png' width=20></a> 
-			<a href=\"javascript:window.open('settlement_delete_selected.php?selectedid=".$row['settlementid']."','Delete Selected','width=480,height=530')\" hidden ><img src='../images/delete.png' width=20></a> 
+			<a href=\"javascript:window.open('settlement_preview_selected.php?selectedid=".$row['ID']."','Preview Selected','width=650,height=530')\"><img src='../images/view.png' width=20></a>   
+			<a href=\"javascript:window.open('settlement_modify_selected.php?selectedid=".$row['ID']."','Modify Selected','width=700,height=580')\"><img src='../images/modify.png' width=20></a> 
+			<a href=\"javascript:window.open('settlement_delete_selected.php?selectedid=".$row['ID']."','Delete Selected','width=700,height=530')\" hidden ><img src='../images/delete.png' width=20></a> 
 		</td>
 		</tr>";
     }
