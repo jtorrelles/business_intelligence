@@ -84,7 +84,7 @@ if(isset($_GET['selectedid'])){
 					TOTALCOMPANYSHARE, LESSDIRECTCOMPANYCHARGES, ADJUSTEDCOMPANYSHARE,
 					TOTALPRESENTERSHARE, PRESENTERFACILITYFEE, ADJUSTEDPRESENTERSHARE,
 					NOTES, ci.`name` as city, st.`name` as state, co.sortname as country
-			FROM settlements2 se, shows sw, venues ve, cities ci, states st, countries co 
+			FROM settlements se, shows sw, venues ve, cities ci, states st, countries co 
 			WHERE se.ID = $selectedid  
 			AND se.SHOWID = sw.ShowID 
 			AND se.VENUEID = ve.VenueID 

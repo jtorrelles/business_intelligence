@@ -68,103 +68,103 @@ if(isset($_GET['selectedid'])){
 		</tr>	
 		<tr>
 			<td><b>Drop Count:</b></td>
-			<td><input type='number' class=\"drop_count\" value=0 name='drop_count'></td>
+			<td><input type='number' class=\"drop_count\" value=0.0 step=0.01 name='drop_count'></td>
 		</tr>
 		<tr>
 			<td><b>Paid Attendance:</b></td>
-			<td><input type='number' class=\"paid_attendance\" value=0 name='paid_attendance'></td>
+			<td><input type='number' class=\"paid_attendance\" value=0.0 step=0.01 name='paid_attendance'></td>
 		</tr>
 		<tr>
 			<td><b>Comps:</b></td>
-			<td><input type='number' class=\"comps\" value=0 name='comps'></td>
+			<td><input type='number' class=\"comps\" value=0.0 step=0.01 name='comps'></td>
 		</tr>
 		<tr>
 			<td><b>Total Attendance:</b></td>
-			<td><input type='number' class=\"total_attendance\" value=0 name='total_attendance'></td>
+			<td><input type='number' class=\"total_attendance\" value=0.0 step=0.01 name='total_attendance'></td>
 		</tr>
 		<tr>
 			<td><b>Capacity:</b></td>
-			<td><input type='number' class=\"capacity\" value=0 name='capacity'></td>
+			<td><input type='number' class=\"capacity\" value=0.0 step=0.01 name='capacity'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Internet Sales:</b></td>
-			<td><input type='number' class=\"internet_sales\" value=0 name='internet_sales'></td>
+			<td><input type='number' class=\"internet_sales\" value=0.0 step=0.01 name='internet_sales'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Credit Card Sales:</b></td>
-			<td><input type='number' class=\"credit_card_sales\" value=0 name='credit_card_sales'></td>
+			<td><input type='number' class=\"credit_card_sales\" value=0.0 step=0.01 name='credit_card_sales'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Remote Outlet Sales:</b></td>
-			<td><input type='number' class=\"remote_outlet_sales\" value=0 name='remote_outlet_sales'></td>
+			<td><input type='number' class=\"remote_outlet_sales\" value=0.0 step=0.01 name='remote_outlet_sales'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Single Tix:</b></td>
-			<td><input type='number' class=\"single_tix\" value=0 name='single_tix'></td>
+			<td><input type='number' class=\"single_tix\" value=0.0 step=0.01 name='single_tix'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Group Sales 1:</b></td>
-			<td><input type='number' class=\"group_sales_1\" value=0 name='group_sales_1'></td>
+			<td><input type='number' class=\"group_sales_1\" value=0.0 step=0.01 name='group_sales_1'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Group Sales 2:</b></td>
-			<td><input type='number' class=\"group_sales_2\" value=0 name='group_sales_2'></td>
+			<td><input type='number' class=\"group_sales_2\" value=0.0 step=0.01 name='group_sales_2'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Goldstar %:</b></td>
-			<td><input type='number' class=\"goldstar\" value=0 name='goldstar'></td>
+			<td><input type='number' class=\"goldstar\" value=0.0 step=0.01 name='goldstar'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Groupon %:</b></td>
-			<td><input type='number' class=\"groupon\" value=0 name='groupon'></td>
+			<td><input type='number' class=\"groupon\" value=0.0 step=0.01 name='groupon'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Traveloo %:</b></td>
-			<td><input type='number' class=\"traveloo\" value=0 name='traveloo'></td>
+			<td><input type='number' class=\"traveloo\" value=0.0 step=0.01 name='traveloo'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Living Social %:</b></td>
-			<td><input type='number' class=\"living_social\" value=0 name='living_social'></td>
+			<td><input type='number' class=\"living_social\" value=0.0 step=0.01 name='living_social'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Other %:</b></td>
-			<td><input type='number' class=\"other_percentage\" value=0 name='other_percentage'></td>
+			<td><input type='number' class=\"other_percentage\" value=0.0 step=0.01 name='other_percentage'></td>
 		</tr>
 		<tr>
 			<td><b>Gross Other $:</b></td>
-			<td><input type='number' class=\"other_amount\" value=0 name='other_amount'></td>
+			<td><input type='number' class=\"other_amount\" value=0.0 step=0.01 name='other_amount'></td>
 		</tr>
 		<tr>
 			<td><b>TTL Sub Discount:</b></td>
-			<td><input type='number' class=\"sub_discount\" value=0 name='sub_discount'></td>
+			<td><input type='number' class=\"sub_discount\" value=0.0 step=0.01 name='sub_discount'></td>
 		</tr>
 		<tr>
 			<td><b>TTL Group 1 Discount:</b></td>
-			<td><input type='number' class=\"group1_discount\" value=0 name='group1_discount'></td>
+			<td><input type='number' class=\"group1_discount\" value=0.0 step=0.01 name='group1_discount'></td>
 		</tr>
 		<tr>
 			<td><b>TTL Group 2 Discount:</b></td>
-			<td><input type='number' class=\"group2_discount\" value=0 name='group2_discount'></td>
+			<td><input type='number' class=\"group2_discount\" value=0.0 step=0.01 name='group2_discount'></td>
 		</tr>
 		<tr>
 			<td><b>Total Discounts:</b></td>
-			<td><input type='number' class=\"total_discount\" value=0 name='total_discount'></td>
+			<td><input type='number' class=\"total_discount\" value=0.0 step=0.01 name='total_discount'></td>
 		</tr>
 		<tr>
 			<td><b>TTL Comp Ticket Cost:</b></td>
-			<td><input type='number' class=\"comp_ticket_cost\" value=0 name='comp_ticket_cost'></td>
+			<td><input type='number' class=\"comp_ticket_cost\" value=0.0 step=0.01 name='comp_ticket_cost'></td>
 		</tr>
 		<tr>
 			<td><b>Demand Pricing $:</b></td>
-			<td><input type='number' class=\"demand_pricing\" value=0 name='demand_pricing'></td>
+			<td><input type='number' class=\"demand_pricing\" value=0.0 step=0.01 name='demand_pricing'></td>
 		</tr>
 		<tr>
 			<td><b>Number of Performances:</b></td>
-			<td><input type='number' class=\"number_performances\" value=0 name='number_performances'></td>
+			<td><input type='number' class=\"number_performances\" value=0.0 step=0.01 name='number_performances'></td>
 		</tr>	
 		<tr>
 			<td><b>Top Ticket Price:</b></td>
-			<td><input type='number' class=\"top_ticket_price\" value=0 name='top_ticket_price'></td>
+			<td><input type='number' class=\"top_ticket_price\" value=0.0 step=0.01 name='top_ticket_price'></td>
 		</tr>		
 		<tr>
 			<td><b>US/Canadian Exchange Rate:</b></td>

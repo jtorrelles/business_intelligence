@@ -180,7 +180,7 @@ include '../header.html';
 	$adj_pre_share = $_POST['adj_pre_share'];
 	$notes = $_POST['notes'];
 
-$sql = "UPDATE settlements2 
+$sql = "UPDATE settlements 
 			SET  SHOWID = $showid, CITYID = $cityid, VENUEID = $venueid, OPENINGDATE = '$openingdate', 
 				CLOSINGDATE = '$closingdate', DROPCOUNT = $drop_count, PAIDATTENDANCE = $paid_attendance, 
 				COMPS = $comps, TOTALATTENDANCE = $total_attendance, CAPACITY = $capacity, 

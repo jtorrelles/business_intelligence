@@ -90,7 +90,7 @@ $sql = "SELECT 	se.ID,
 				TOTALCOMPANYROYALTY as TOTAL_COMPANY_ROYALTY,
 				TOTALCOMPANYGUARANTEE as TOTAL_COMPANY_GUARANTEE, 
 				MONEYREMAINING as MONEY_REMAINING
-		FROM settlements2 se, shows sw, venues ve, cities ci, states st, countries co 
+		FROM settlements se, shows sw, venues ve, cities ci, states st, countries co 
 		WHERE sw.ShowID = $selectedid 
 		AND sw.ShowID = se.SHOWID 
 		AND se.VENUEID = ve.VenueID 

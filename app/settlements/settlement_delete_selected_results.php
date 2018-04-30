@@ -7,7 +7,7 @@ if ($conn->connect_error) {
 }
 
 	$id = $_POST['id'];
-	$sql = "DELETE FROM settlements2 WHERE ID = $id";
+	$sql = "DELETE FROM settlements WHERE ID = $id";
 
 	if ($conn->query($sql) === TRUE) {
 		echo "Record Deleted Successfully";
