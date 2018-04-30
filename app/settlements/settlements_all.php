@@ -136,13 +136,13 @@ if ($result->num_rows > 0) {
 			<td>". $row["city"]. "</td>
 			<td>". $row["OPENINGDATE"]."</td>
 			<td>". $row["CLOSINGDATE"]."</td>
-			<td>". $row["GROSS_POTENTIAL"]. "</td>
-			<td>". $row["GROSS_RECEIPTS"]. "</td>
-			<td>". $row["NAGBOR"]."</td>
-			<td>". $row["TOTAL_ENGAGEMENT_EXPENSES"]."</td>
-			<td>". $row["TOTAL_COMPANY_ROYALTY"]."</td>
-			<td>". $row["TOTAL_COMPANY_GUARANTEE"]."</td>
-			<td>". $row["MONEY_REMAINING"]."</td>
+			<td>". number_format($row["GROSS_POTENTIAL"],2) ."</td>
+			<td>". number_format($row["GROSS_RECEIPTS"],2) ."</td>
+			<td>". number_format($row["NAGBOR"],2) ."</td>
+			<td>". number_format($row["TOTAL_ENGAGEMENT_EXPENSES"],2) ."</td>
+			<td>". number_format($row["TOTAL_COMPANY_ROYALTY"],2) ."</td>
+			<td>". number_format($row["TOTAL_COMPANY_GUARANTEE"],2) ."</td>
+			<td>". number_format($row["MONEY_REMAINING"],2) ."</td>
 			<td align=center>
 			<a href=\"javascript:void(window.open('settlement_preview_selected.php?selectedid=".$row['ID']."','Preview Selected','width=650,height=530,top=100'))\"><img src='../images/view.png' width=20></a>   
 			<a href=\"javascript:void(window.open('settlement_modify_selected.php?selectedid=".$row['ID']."','Modify Selected','width=700,height=580,top=100'))\"><img src='../images/modify.png' width=20></a> 
