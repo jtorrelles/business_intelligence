@@ -4,6 +4,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>EJEMPLO REPORTES EN PHP</title>
 </head>
+<script src="../js/jquery.min.js"></script>
+<script src="../js/reports_controller.js"></script>
+<script> getShows(); </script>
 <body bgcolor="#FFFFFF">
 <p><br />
 <table border="2" width="500" bgcolor="#FFFFFF">
