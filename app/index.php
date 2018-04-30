@@ -22,6 +22,7 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
         <div>Market Analysis by Category</div>
         <div>Custom Reports</div>
 		<div>More Reports Coming Soon</div>
+    <div><a href=\"../app/reports/example.php\">Example</a></div>
     </div>
 
     <div class=\"plan\">
