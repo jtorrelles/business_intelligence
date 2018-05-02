@@ -25,7 +25,6 @@ function ajaxCall() {
 };
 
 function getShows() {
-	console.log("llego");
     var call = new ajaxCall();
     var url = '../routes/reports_route.php?type=getShows';
     var method = "GET";
@@ -34,19 +33,18 @@ function getShows() {
         if(data.tp == 1){
         	var counter = 0;
         	var size = data.result['shows'].length;
-        	//console.log(data.result['shows'][0].id);
+            $("#contenido").html('');
             while(counter < size){
-            	var tid = data.result['shows'][counter].id;
-            	console.log(tid);
+                $("#contenido").append("<tr><td>" + data.result['shows'][counter].id + 
+                                       "</td><td>" + data.result['shows'][counter].name + 
+                                       "</td><td>" + data.result['shows'][counter].active + 
+                                       "</td><td>" + data.result['shows'][counter].category1 + 
+                                       "</td></tr>");                                 
             	counter++;
-            }
-        }
-        else{
+            } 
+        }else{
             alert(data.msg);
         }
     }); 
 }
 
-$(function() {
-
-});
