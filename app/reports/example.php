@@ -4,13 +4,14 @@ include '../header.html';
 
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/reports_controller.js\"></script>";
+echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
 echo "<script> getShows() </script>";
 
 echo "<h1>EJEMPLO REPORTES EN PHP:</h1>";
 
-echo "<form action=\"show_routes_all.php\" method=\"POST\">";
+echo "<form>";
 
-echo "<table border='2' bgcolor='#FFFFFF'>";
+echo "<table id=\"tablecss\">";
 echo "<thead>";
 echo "<tr>
 		<th>SHOWID</th>
@@ -25,8 +26,6 @@ echo "</table>";
 
 echo "</form>";
 
-
-$conn->close();
 include '../footer.html';
 ?>
 
