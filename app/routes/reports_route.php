@@ -11,7 +11,7 @@ error_reporting(0);
 ob_start();
 header("Access-Control-Allow-Origin: *");
 header('Content-Type: application/json');
-include_once("../classes/reports_services.php");
+include_once("../classes/reports_services2.php");
 
 $loc = new reportsServices();	
 
@@ -23,8 +23,10 @@ try {
 
   $type = $_GET['type'];
 
-  if($type=='getShows') {
-  	$data = $loc->getShows();
+  if($type=='getAllRoutes') {
+  	$fini = $_GET['fini'];
+    $ffin = $_GET['ffin'];
+  	$data = $loc->getAllRoutes($fini,$ffin);
   } 
 
 } catch (Exception $e) {

@@ -5,22 +5,18 @@ include '../header.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/reports_controller.js\"></script>";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
-echo "<script> getShows() </script>";
+$fecha_inicio = '05/01/2018';
+$fecha_fin = '05/31/2018';
+echo "<script> getAllRoutes('$fecha_inicio','$fecha_fin') </script>";
 
-echo "<h1>EJEMPLO REPORTES EN PHP:</h1>";
+echo "<h1>All Routes Report:</h1>";
 
 echo "<form>";
 
 echo "<table id=\"tablecss\">";
-echo "<thead>";
-echo "<tr>
-		<th>SHOWID</th>
-		<th>SHOWNAME</th>
-		<th>STATUS</th>
-		<th>CATEGORY1</th>	
-	 </tr>";
+echo "<thead id=\"header\">";
 echo "</thead>";
-echo "<tbody id=\"contenido\">";
+echo "<tbody id=\"body\">";
 echo "</tbody>";
 echo "</table>";
 
