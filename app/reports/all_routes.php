@@ -19,7 +19,7 @@ echo "</div>";
 
 echo "<form>";
 
-echo "<table id=\"tablecss\">";
+echo "<table id=\"allroutestable\">";
 echo "<thead id=\"header\">";
 echo "</thead>";
 echo "<tbody id=\"body\">";
