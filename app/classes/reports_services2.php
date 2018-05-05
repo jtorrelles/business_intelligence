@@ -8,7 +8,7 @@ class reportsServices extends dbconfig {
     parent::__construct();
   }
 
-  public static function getAllRoutes($fini,$ffin){
+  public static function getAllRoutes($inid,$endd){
     try {
 
       $query = "SELECT showid, 
@@ -30,13 +30,13 @@ class reportsServices extends dbconfig {
         $data[$x]["name"] = $resultSet['showname']; 
 
         $UTC = new DateTimeZone("UTC"); 
-        $inic = new DateTime($fini, $UTC); 
-        $fin = new DateTime($ffin, $UTC); 
+        $ini = new DateTime($inid, $UTC); 
+        $end = new DateTime($endd, $UTC); 
         $y = 0;
 
-        while($fin >= $inic) { 
+        while($end >= $ini) { 
           $showid = $resultSet['showid'];
-          $date = $inic->format('Ymd');
+          $date = $ini->format('Ymd');
 
           $query2 = "SELECT (SELECT CONCAT(ci.name,'/',sta.name)
                                FROM cities ci, 
@@ -62,7 +62,7 @@ class reportsServices extends dbconfig {
             $data2[$x][$y]["citystate"] = $resultSet2['citystate'];
           } 
 
-          $inic->add(new DateInterval('P1D'));          
+          $ini->add(new DateInterval('P1D'));          
           $y++;
         } 
         $x++;       
@@ -72,7 +72,7 @@ class reportsServices extends dbconfig {
       
       $res = array();      
 
-      $res['shows'] = $data; 
+      $res['head'] = $data; 
       $res['body'] = $data2; 
 
       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);

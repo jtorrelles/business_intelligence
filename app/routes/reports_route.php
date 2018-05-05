@@ -24,9 +24,9 @@ try {
   $type = $_GET['type'];
 
   if($type=='getAllRoutes') {
-  	$fini = $_GET['fini'];
-    $ffin = $_GET['ffin'];
-  	$data = $loc->getAllRoutes($fini,$ffin);
+  	$inid = $_GET['inid'];
+    $endd = $_GET['endd'];
+  	$data = $loc->getAllRoutes($inid,$endd);
   } 
 
 } catch (Exception $e) {
