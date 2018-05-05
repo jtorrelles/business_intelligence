@@ -170,12 +170,12 @@ if (isset($_GET['selectedid']))
 			echo "<td>". $row["VENUE"]. "</td>";
 			echo "<td>". $row["PRESENTER"]. "</td>";
 			echo "<td>". $row["CAPACITY"]. "</td>";
-			echo "<td>". $row["FIXED_GNTEE"]. "</td>";
+			echo "<td>$ ".number_format($row["FIXED_GNTEE"],2)."</td>";
 			echo "<td>". $row["ROYALTY"]. "</td>";
 			echo "<td>". $row["BACKEND"]. "</td>";
 			echo "<td>". $row["BREAKEVEN"]. "</td>";
 			echo "<td>". $row["DEAL_NOTES"]. "</td>";
-			echo "<td>". $row["EST_ROYALTY"]. "</td>";
+			echo "<td>$ ".number_format($row["EST_ROYALTY"],2)."</td>";
 			if($row["ON_SUB"] == 1){
 				echo 
 				"<td bgcolor=green><input type='checkbox' class=\"on_sub\" name='on_sub' checked disabled></td>";

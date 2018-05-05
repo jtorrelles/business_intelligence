@@ -88,6 +88,7 @@ if($conn->query($sql3) === TRUE) {
     	$fixed_gntee = str_replace(",",".",$_POST["fixed_gntee" . $i]);	
     	if(empty($fixed_gntee)){$fixed_gntee = 0.00;}else{$fixed_gntee = $fixed_gntee;}
     	$royalty = str_replace(",",".",$_POST["royalty" . $i]);	
+		if(strpos($royalty,'.')==true){$royalty = $royalty * 100;}else{$royalty = str_replace(",",".",$royalty);}
     	if(empty($royalty)){$royalty = 0.00;}else{$royalty = $royalty;}    	
     	$backend = str_replace("%","",$_POST["backend" . $i]);	
     	if(strpos($backend,'.')==true){$backend = $backend * 100;}else{$backend = str_replace(",",".",$backend);}
