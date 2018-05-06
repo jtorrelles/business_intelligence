@@ -32,6 +32,7 @@ function getAllRoutes(inid,endd) {
     var counter1 = 0;
     var counter2 = 0;
     var columns = '';
+    var codhtml = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="tablecss">'
     var hcolumns = '<tr><th>DATE / SHOW NAME</th>'; 
     var files = '';
     var hfiles = '<tr>';
@@ -42,15 +43,17 @@ function getAllRoutes(inid,endd) {
     var end = datee.valueOf();
     call.send(data, url, method, function(data) {
         if(data.tp == 1){
-        	size = data.result['head'].length;
+        	size = data.result['head'].length;       
             /*HEADER*/
             $("#header").html('');
             while(counter1 < size){
                 columns = '<th>' + data.result['head'][counter1].name + '</th>';
                 hcolumns = hcolumns + columns;
+                $('.header').val(data.result['head'][counter1].name);
             	counter1++;
             }
             hcolumns = hcolumns + '</tr>';
+            codhtml = codhtml + hcolumns;
             $("#header").append(hcolumns);
             /*DETAILS*/
             counter1 = 0;
@@ -68,6 +71,8 @@ function getAllRoutes(inid,endd) {
                 counter2 = 0;
             }
             hfiles = hfiles + '</tr>';
+            codhtml = codhtml + hfiles + '</table>';
+            $('.codhtml').val(codhtml);
             $("#body").append(hfiles);
             $("#loader").hide();
             $("#export").show();
@@ -76,5 +81,3 @@ function getAllRoutes(inid,endd) {
         }
     }); 
 }
-
-

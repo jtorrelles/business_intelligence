@@ -5,19 +5,18 @@ include '../header.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/reports_controller.js\"></script>";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
-$init_date = '05/01/2018';
-$end_date = '05/31/2018';
-echo "<script> getAllRoutes('$init_date','$end_date') </script>";
+$inid = '05/01/2018';
+$endd = '05/31/2018';
+echo "<script> getAllRoutes('$inid','$endd') </script>";
 
 echo "<h1>All Routes Report:</h1>";
 
 echo "<div class=\"loader\" id=\"loader\"></div>";
 echo "<div style=\"display:none\" class=\"export\" id=\"export\">";
-echo "<a href='all_routes_excel.php'><img src='../images/excel.png' width='30' height='25'/></a>";
-echo "<a href='all_routes_pdf.php'><img src='../images/pdf.png' width='30' height='25'/></a>";
+echo "<form method=\"POST\">";
+echo "<input type=\"image\" name=\"excel\" src=\"../images/excel.png\" width=30 onclick=this.form.action=\"all_routes_excel.php\">";
+echo "<input type=\"image\" name=\"pdf\" src=\"../images/pdf.png\" width=30 onclick=this.form.action=\"all_routes_pdf.php\"></p>";
 echo "</div>";
-
-echo "<form>";
 
 echo "<table id=\"tablecss\">";
 echo "<thead id=\"header\">";
@@ -25,6 +24,8 @@ echo "</thead>";
 echo "<tbody id=\"body\">";
 echo "</tbody>";
 echo "</table>";
+
+echo "<input type='hidden' class=\"codhtml\" name=codhtml>";
 
 echo "</form>";
 

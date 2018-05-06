@@ -18,7 +18,7 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
     <div class=\"plan\">
         <div class=\"name\">BUSINESS<BR>INTELLIGENCE</div>
 		<div><hr></div>
-        <div><a href=\"../app/reports/all_routes.php\">All Routes</a></div>
+        <div><a href=\"../app/reports/all_routes.php\">ALL ROUTES</a></div>
         <div>Route Conflicts</div>
         <div>Market History</div>
         <div>Sales Summary</div>
