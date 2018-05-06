@@ -38,7 +38,7 @@ class reportsServices extends dbconfig {
           $showid = $resultSet['showid'];
           $date = $ini->format('Ymd');
 
-          $query2 = "SELECT (SELECT CONCAT(ci.name,' . ',sta.shortname)
+          $query2 = "SELECT (SELECT CONCAT(ci.name,' , ',sta.shortname)
                                FROM cities ci, 
                                     states sta
                                WHERE ci.id = det.cityid
