@@ -1,16 +1,13 @@
 <?php
 class dbconfig {
   // database hostname 
-  //protected static $host = "localhost";
-  protected static $host = "userverdev";
+  protected static $host = "";
   // database username
-  //protected static $username = "root";
-  protected static $username = "root";
+  protected static $username = "";
   // database password
-  //protected static $password = "C4r4lh0_V04d0r";
-  protected static $password = "1234";
+  protected static $password = "";
   //database name
-  protected static $dbname = "networksbi";
+  protected static $dbname = "";
   static $con;
   function __construct() {
     self::$con = self::connect(); 
