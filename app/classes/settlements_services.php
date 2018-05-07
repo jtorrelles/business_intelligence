@@ -181,7 +181,8 @@ class settlementsServices extends dbconfig {
      try {
        $query = "SELECT se.ID, se.SHOWID, sw.ShowNAME, se.CITYID, se.VENUEID, ve.VenueNAME, 
                         OPENINGDATE,CLOSINGDATE,DROPCOUNT,PAIDATTENDANCE,COMPS,TOTALATTENDANCE, 
-                        CAPACITY,GROSSINTERNETSALES,GROSSCREDITCARDSALES,GROSSREMOTEOUTLETSALES,GROSSSINGLETIX, 
+                        CAPACITY,GROSSSUBSCRIPTIONSALES,GROSSPHONESALES,GROSSINTERNETSALES,
+                        GROSSCREDITCARDSALES,GROSSREMOTEOUTLETSALES,GROSSSINGLETIX, 
                         GROSSGROUPSALES1,GROSSGROUPSALES2,GROSSGOLDSTARPERCENTAGE,GROSSGROUPONPERCENTAGE,
                         GROSSTRAVELOOPERCENTAGE,GROSSLIVINGSOCIALPERCENTAGE,GROSSOTHERPERCENTAGE,GROSSOTHERAMOUNT,
                         TTLSUBDISCOUNT,TTLGROUPDISCOUNT1,TTLGROUPDISCOUNT2,TOTALDISCOUNTS,TTLCOMPTICKETCOST, 
@@ -248,6 +249,8 @@ class settlementsServices extends dbconfig {
        $res["se_10"] = $resultSet['COMPS'];
        $res["se_11"] = $resultSet['TOTALATTENDANCE'];
        $res["se_12"] = $resultSet['CAPACITY'];
+       $res["se_12_1"] = $resultSet['GROSSSUBSCRIPTIONSALES'];
+       $res["se_12_2"] = $resultSet['GROSSPHONESALES'];
        $res["se_13"] = $resultSet['GROSSINTERNETSALES'];
        $res["se_14"] = $resultSet['GROSSCREDITCARDSALES'];
        $res["se_15"] = $resultSet['GROSSREMOTEOUTLETSALES'];
@@ -519,6 +522,8 @@ class settlementsServices extends dbconfig {
                   $comps = $objPHPExcel->getSheet(19)->getCell('I8')->getCalculatedValue();
                   $total_attendance = $objPHPExcel->getSheet(19)->getCell('I9')->getCalculatedValue();
                   $capacity = $objPHPExcel->getSheet(19)->getCell('I10')->getCalculatedValue();
+                  $subs_sales = $objPHPExcel->getSheet(19)->getCell('J37')->getValue();
+                  $phone_sales = $objPHPExcel->getSheet(19)->getCell('J38')->getValue();
                   $internet_sales = $objPHPExcel->getSheet(19)->getCell('J39')->getValue();
                   $credit_card_sales = $objPHPExcel->getSheet(19)->getCell('J40')->getValue();
                   $remote_outlet_sales = $objPHPExcel->getSheet(19)->getCell('J41')->getValue();
@@ -665,6 +670,8 @@ class settlementsServices extends dbconfig {
                   $res["se_10"] = $comps;
                   $res["se_11"] = $total_attendance;
                   $res["se_12"] = $capacity;
+                  $res["se_12_1"] = $subs_sales;
+                  $res["se_12_2"] = $phone_sales;
                   $res["se_13"] = $internet_sales;
                   $res["se_14"] = $credit_card_sales;
                   $res["se_15"] = $remote_outlet_sales;

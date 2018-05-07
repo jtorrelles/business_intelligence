@@ -13,7 +13,7 @@ if(isset($_GET['selectedid'])){
 					DATE_FORMAT(OPENINGDATE,'%m/%d/%Y') AS OPENINGDATE, 
 					DATE_FORMAT(CLOSINGDATE,'%m/%d/%Y') AS CLOSINGDATE, 
 					DROPCOUNT, PAIDATTENDANCE, COMPS, TOTALATTENDANCE, 
-					CAPACITY, GROSSINTERNETSALES,
+					CAPACITY, GROSSSUBSCRIPTIONSALES, GROSSPHONESALES, GROSSINTERNETSALES,
 					GROSSCREDITCARDSALES, GROSSREMOTEOUTLETSALES, GROSSSINGLETIX, GROSSGROUPSALES1,
 					GROSSGROUPSALES2, GROSSGOLDSTARPERCENTAGE, GROSSGROUPONPERCENTAGE,
 					GROSSTRAVELOOPERCENTAGE, GROSSLIVINGSOCIALPERCENTAGE, GROSSOTHERPERCENTAGE,
@@ -131,6 +131,14 @@ if(isset($_GET['selectedid'])){
 				<tr>
 					<td>Capacity</td>
 					<td align='right'>".$row['CAPACITY']."</td>
+				</tr>
+				<tr>
+					<td>Gross Subscription Sales</td>
+					<td align='right'>".$row['GROSSSUBSCRIPTIONSALES']."</td>
+				</tr>
+				<tr>
+					<td>Gross Phone Sales</td>
+					<td align='right'>".$row['GROSSPHONESALES']."</td>
 				</tr>
 				<tr>
 					<td>Gross Internet Sales</td>
