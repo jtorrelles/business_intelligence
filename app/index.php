@@ -19,10 +19,10 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
         <div class=\"name\">BUSINESS<BR>INTELLIGENCE</div>
 		<div><hr></div>
         <div><a href=\"../app/reports/all_routes.php\">ALL ROUTES</a></div>
-        <div>Route Conflicts</div>
-        <div>Market History</div>
-        <div>Sales Summary</div>
-		<div>More Reports Coming Soon</div>
+        <div><a href=\"../app/reports/route_conflicts.php\">ROUTES CONFLICTS</a></div>
+        <div>MARKET HISTORY</div>
+        <div>SALES SUMMARY</div>
+		<div>ANOTHER REPORTS</div>
     </div>
 
     <div class=\"plan\">

@@ -43,19 +43,15 @@ function getAllRoutes(inid,endd) {
     var end = datee.valueOf();
     call.send(data, url, method, function(data) {
         if(data.tp == 1){
-        	size = data.result['head'].length;       
-            /*HEADER*/
-            $("#header").html('');
+        	size = data.result['head'].length; 
             while(counter1 < size){
                 columns = '<th>' + data.result['head'][counter1].name + '</th>';
                 hcolumns = hcolumns + columns;
-                $('.header').val(data.result['head'][counter1].name);
             	counter1++;
             }
             hcolumns = hcolumns + '</tr>';
             codhtml = codhtml + hcolumns;
             $("#header").append(hcolumns);
-            /*DETAILS*/
             counter1 = 0;
             while(ini < end + 1){  
                 dt = ("0" + (new Date(ini).getMonth() + 1)).slice(-2) + '/' + ("0" + new Date(ini).getDate()).slice(-2) + '/' + new Date(ini).getFullYear();
@@ -77,7 +73,47 @@ function getAllRoutes(inid,endd) {
             $("#loader").hide();
             $("#export").show();
         }else{
+            alert(data.msg);            
+            $("#loader").hide();
+        }
+    }); 
+}
+
+function getRoutesConf(inid,endd) {    
+    var call = new ajaxCall();
+    var url = '../routes/reports_route.php?type=getRoutesConf&inid=' + inid + '&endd=' + endd;
+    var method = "GET";
+    var data = {};   
+    var counter1 = 0;
+    var columns = '<tr><th>CITY / SHOW</th><th>SHOWS(1)</th><th>SHOWS(2)</th><th>NOTES</th></tr>';
+    var files = '';
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){            
+            $("#header").append(columns);
+            size = data.result['body'].length; 
+            while(counter1 < size){
+                files = files + 
+                '<tr><td>' + 
+                data.result['body'][counter1].citysta + 
+                '</td><td>' + 
+                data.result['body'][counter1].showid1 + 
+                ' / ' + 
+                data.result['body'][counter1].presentation_date1 +
+                '</td><td>' + 
+                data.result['body'][counter1].showid2 + 
+                ' / ' + 
+                data.result['body'][counter1].presentation_date2 + 
+                '</td><td>' + 
+                data.result['body'][counter1].notes + 
+                '</td></tr>';
+                counter1++;
+            }
+            $("#body").append(files);
+            $("#loader").hide();
+            $("#export").show();
+        }else{
             alert(data.msg);
+            $("#loader").hide();
         }
     }); 
 }

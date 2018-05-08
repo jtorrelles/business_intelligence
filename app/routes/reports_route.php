@@ -29,6 +29,12 @@ try {
   	$data = $loc->getAllRoutes($inid,$endd);
   } 
 
+  if($type=='getRoutesConf') {
+    $inid = $_GET['inid'];
+    $endd = $_GET['endd'];
+    $data = $loc->getRoutesConf($inid,$endd);
+  } 
+
 } catch (Exception $e) {
    $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
 } finally {
