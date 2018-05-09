@@ -110,7 +110,7 @@ class reportsServices extends dbconfig {
                            AND presentation_date >= $inid
                            AND presentation_date <= $endd
                            AND cityid IS NOT NULL
-                         GROUP BY cityid,showid) A 
+                         GROUP BY cityid) A 
                 WHERE count > 1";
 
       $result = dbconfig::run($query);

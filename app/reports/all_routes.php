@@ -5,8 +5,8 @@ include '../header.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/reports_controller.js\"></script>";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
-$inid = '05/01/2018';
-$endd = '05/31/2018';
+$inid = '07/01/2018';
+$endd = '07/31/2018';
 echo "<script> getAllRoutes('$inid','$endd') </script>";
 
 echo "<h1>All Routes Report:</h1>";
