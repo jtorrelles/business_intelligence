@@ -13,7 +13,8 @@ class reportsServices extends dbconfig {
 
       $query = "SELECT showid, 
                        showname
-                  FROM shows";
+                  FROM shows
+                 WHERE showactive = 'Y'";
 
       $result = dbconfig::run($query);
       if(!$result) {
@@ -148,6 +149,7 @@ class reportsServices extends dbconfig {
         }
 
         $y = 0;
+        $back = 0;
 
         while($resultSet2 = mysqli_fetch_assoc($result2)) { 
           $data[$x]["ind"] = $y; 
@@ -183,15 +185,16 @@ class reportsServices extends dbconfig {
             }else{
               if ($date1 == $date2a){
                 $data[$x]["notes"] = 'BACK TO BACK BOOKING';
-                $data[$x]["color"] = '<font color ="#F39C12">';
-              }else{
-                if ($date1 == $date2b){
-                  $data[$x]["notes"] = 'BACK TO BACK BOOKING';
+                if ($back == 0){
+                  $back = 1;
                   $data[$x]["color"] = '<font color ="#F39C12">';
                 }else{
-                  $data[$x]["notes"] = 'PROXIMITY BOOKING';
-                  $data[$x]["color"] = '<font color ="#154360">';
-                }  
+                  $data[$x]["color"] = '<font color ="#C0392B">';
+                  $data[$x-1]["color"] = '<font color ="#C0392B">';
+                }
+              }else{
+                $data[$x]["notes"] = 'PROXIMITY BOOKING';
+                $data[$x]["color"] = '<font color ="#154360">';
               }  
             }
             $showaux = $resultSet2['showname'];
