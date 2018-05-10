@@ -113,8 +113,9 @@ function getRoutesConf(inid,endd) {
                     //'</td><td>' + 
                     //data.result['body'][counter1].show3 +
                     '</td><td rowspan="2">' + 
+                    data.result['body'][counter1].color +
                     data.result['body'][counter1].notes +
-                    '</td></tr>' + 
+                    '</font></td></tr>' + 
                     '<tr><td>' + 
                     data.result['body'][counter1].date1 +
                     ' / ' +

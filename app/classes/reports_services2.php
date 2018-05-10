@@ -157,7 +157,7 @@ class reportsServices extends dbconfig {
             $dateaux = $resultSet2['presentation_date'];
             $fdateaux = $resultSet2['format_date'];
             $venueaux = $resultSet2['venue'];
-          }else{
+          }else{            
             $data[$x]["show1"] = $showaux;
             $data[$x]["show2"] = $resultSet2['showname'];
             //$data[$x]["show3"] = '';
@@ -175,17 +175,22 @@ class reportsServices extends dbconfig {
             if ($date1 == $date2){
               if ($venueaux == $resultSet2['venue']){
                 $data[$x]["notes"] = 'DOUBLE HOLD';
+                $data[$x]["color"] = '<font color ="#6C3483">';
               }else{
                 $data[$x]["notes"] = 'OVERLAPPING MARKET HOLD';
+                $data[$x]["color"] = '<font color ="#873600">';
               }
             }else{
               if ($date1 == $date2a){
                 $data[$x]["notes"] = 'BACK TO BACK BOOKING';
+                $data[$x]["color"] = '<font color ="#F39C12">';
               }else{
                 if ($date1 == $date2b){
                   $data[$x]["notes"] = 'BACK TO BACK BOOKING';
+                  $data[$x]["color"] = '<font color ="#F39C12">';
                 }else{
                   $data[$x]["notes"] = 'PROXIMITY BOOKING';
+                  $data[$x]["color"] = '<font color ="#154360">';
                 }  
               }  
             }
