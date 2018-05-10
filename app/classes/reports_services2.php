@@ -95,19 +95,11 @@ class reportsServices extends dbconfig {
       $inid = $ini->format('Ymd');
       $endd = $end->format('Ymd'); 
 
-      $query = "SELECT cityid, 
-                       citysta
-                  FROM (SELECT cityid, 
-                               CONCAT(ci.name,' , ',sta.shortname) as citysta,
+      $query = "SELECT cityid
+                  FROM (SELECT cityid,
                                count(*) as count
-                          FROM routes_det det, 
-                               routes ro, 
-                               cities ci, 
-                               states sta
-                         WHERE det.routesid = ro.routesid
-                           AND ci.id = det.cityid
-                           AND ci.state_id = sta.id
-                           AND presentation_date >= $inid
+                          FROM routes_det det
+                         WHERE presentation_date >= $inid
                            AND presentation_date <= $endd
                            AND cityid IS NOT NULL
                          GROUP BY cityid) A 
@@ -123,21 +115,31 @@ class reportsServices extends dbconfig {
       $x = 0;
 
       while($resultSet = mysqli_fetch_assoc($result)) { 
-        $city = $resultSet['cityid'];
+        $city = $resultSet['cityid'];            
           
         $query2 = "SELECT ro.showid as showid,
                           showname,
-                          presentation_date
+                          presentation_date,
+                          DATE_FORMAT(presentation_date, '%M %d %Y') as format_date,
+                          CONCAT(ci.name,' , ',sta.shortname) as citysta,
+                          (SELECT venuename 
+                             FROM venues ve
+                            WHERE ve.venueid = det.venueid) as venue
                      FROM routes_det det, 
                           routes ro,
-                          shows sh
+                          shows sh, 
+                          cities ci, 
+                          states sta
                     WHERE det.routesid = ro.routesid
                       AND ro.showid = sh.showid
                       AND presentation_date >= $inid
                       AND presentation_date <= $endd
+                      AND ci.id = det.cityid
+                      AND ci.state_id = sta.id
                       AND cityid = $city
                     GROUP BY ro.showid,
-                             presentation_date";
+                             presentation_date
+                    ORDER BY presentation_date";
 
         $result2 = dbconfig::run($query2);
 
@@ -145,57 +147,55 @@ class reportsServices extends dbconfig {
           throw new exception("Conflicts not found.");
         }
 
+        $y = 0;
+
         while($resultSet2 = mysqli_fetch_assoc($result2)) { 
+          $data[$x]["ind"] = $y; 
 
-          $showid = $resultSet2['showid'];
-          $presentation_date = $resultSet2['presentation_date'];
-          $inid2 = date("Ymd",strtotime($presentation_date."- 20 days"));
-          $endd2 = date("Ymd",strtotime($presentation_date."+ 20 days"));
-
-          $query3 = "SELECT showname,
-                            presentation_date
-                       FROM routes_det det, 
-                            routes ro,
-                            shows sh
-                      WHERE det.routesid = ro.routesid
-                        AND ro.showid = sh.showid
-                        AND presentation_date >= $inid2
-                        AND presentation_date <= $endd2
-                        AND cityid = $city
-                        AND ro.showid <> $showid
-                      GROUP BY showname";
-
-          $result3 = dbconfig::run($query3);
-
-          if(!$result3) {
-            throw new exception("Conflicts not found.");
-          }  
-
-          while($resultSet3 = mysqli_fetch_assoc($result3)) {
-            $date1 = date("Ymd",strtotime($resultSet2['presentation_date']));
-            $date2 = date("Ymd",strtotime($resultSet3['presentation_date']));
+          if($y==0){            
+            $showaux = $resultSet2['showname'];
+            $dateaux = $resultSet2['presentation_date'];
+            $fdateaux = $resultSet2['format_date'];
+            $venueaux = $resultSet2['venue'];
+          }else{
+            $data[$x]["show1"] = $showaux;
+            $data[$x]["show2"] = $resultSet2['showname'];
+            //$data[$x]["show3"] = '';
+            $data[$x]["date1"] = $fdateaux;
+            $data[$x]["date2"] = $resultSet2['format_date'];
+            //$data[$x]["date3"] = '';
+            $data[$x]["venue1"] = $venueaux;           
+            $data[$x]["venue2"] = $resultSet2['venue'];
+            //$data[$x]["venue3"] = '';            
+            $data[$x]["citysta"] = $resultSet2['citysta'];
+            $date1 = date("Ymd",strtotime($dateaux));
+            $date2 = date("Ymd",strtotime($resultSet2['presentation_date']));
             $date2a = date("Ymd",strtotime($date2."- 1 days"));
             $date2b = date("Ymd",strtotime($date2."+ 1 days"));
-            $data[$x]["citysta"] = $resultSet['citysta'];
-            $data[$x]["showid1"] = $resultSet2['showname'];   
-            $data[$x]["presentation_date1"] = $date1;
-            $data[$x]["showid2"] = $resultSet3['showname']; 
-            $data[$x]["presentation_date2"] = $date2;
             if ($date1 == $date2){
-              $data[$x]["notes"] = 'SAME DATES';
+              if ($venueaux == $resultSet2['venue']){
+                $data[$x]["notes"] = 'DOUBLE HOLD';
+              }else{
+                $data[$x]["notes"] = 'OVERLAPPING MARKET HOLD';
+              }
             }else{
               if ($date1 == $date2a){
-                $data[$x]["notes"] = 'BACK TO BACK';
+                $data[$x]["notes"] = 'BACK TO BACK BOOKING';
               }else{
                 if ($date1 == $date2b){
-                  $data[$x]["notes"] = 'BACK TO BACK';
+                  $data[$x]["notes"] = 'BACK TO BACK BOOKING';
                 }else{
-                  $data[$x]["notes"] = 'DATES TOO CLOSE';
+                  $data[$x]["notes"] = 'PROXIMITY BOOKING';
                 }  
               }  
             }
-            $x++; 
+            $showaux = $resultSet2['showname'];
+            $dateaux = $resultSet2['presentation_date'];
+            $fdateaux = $resultSet2['format_date'];
+            $venueaux = $resultSet2['venue'];
           }
+          $y++;
+          $x++;        
         }
       }
 

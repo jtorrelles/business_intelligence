@@ -85,27 +85,50 @@ function getRoutesConf(inid,endd) {
     var method = "GET";
     var data = {};   
     var counter1 = 0;
-    var columns = '<tr><th>CITY / SHOW</th><th>SHOWS(1)</th><th>SHOWS(2)</th><th>NOTES</th></tr>';
+    var columns = '<tr><th>CITY / STATE</th>' + 
+                  '<th>SHOW(1)</th>' +
+                  '<th>SHOW(2)</th>' + 
+                  //'<th>SHOW(3)</th>' + 
+                  '<th>CONFLICTS REASON</th></tr>';
     var files = '';
     call.send(data, url, method, function(data) {
         if(data.tp == 1){            
             $("#header").append(columns);
             size = data.result['body'].length; 
             while(counter1 < size){
-                files = files + 
-                '<tr><td>' + 
-                data.result['body'][counter1].citysta + 
-                '</td><td>' + 
-                data.result['body'][counter1].showid1 + 
-                ' / ' + 
-                data.result['body'][counter1].presentation_date1 +
-                '</td><td>' + 
-                data.result['body'][counter1].showid2 + 
-                ' / ' + 
-                data.result['body'][counter1].presentation_date2 + 
-                '</td><td>' + 
-                data.result['body'][counter1].notes + 
-                '</td></tr>';
+                ind = data.result['body'][counter1].ind;
+                /*if(data.result['body'][counter1].show3 != ''){
+                    slash = ' / ';
+                }else{
+                    slash = '';
+                }*/
+                if(ind != 0){
+                    files = files + 
+                    '<tr><td rowspan="2">' + 
+                    data.result['body'][counter1].citysta +                
+                    '</td><td>' + 
+                    data.result['body'][counter1].show1 +
+                    '</td><td>' + 
+                    data.result['body'][counter1].show2 +
+                    //'</td><td>' + 
+                    //data.result['body'][counter1].show3 +
+                    '</td><td rowspan="2">' + 
+                    data.result['body'][counter1].notes +
+                    '</td></tr>' + 
+                    '<tr><td>' + 
+                    data.result['body'][counter1].date1 +
+                    ' / ' +
+                    data.result['body'][counter1].venue1 +
+                    '</td><td>' + 
+                    data.result['body'][counter1].date2 +
+                    ' / ' +
+                    data.result['body'][counter1].venue2 +
+                    //'</td><td>' + 
+                    //data.result['body'][counter1].date3 +
+                    //slash +
+                    //data.result['body'][counter1].venue3 +
+                    '</td></tr>';
+                }    
                 counter1++;
             }
             $("#body").append(files);

@@ -18,7 +18,7 @@ echo "<input type=\"image\" name=\"excel\" src=\"../images/excel.png\" width=30 
 echo "<input type=\"image\" name=\"pdf\" src=\"../images/pdf.png\" width=30 onclick=this.form.action=\"all_routes_pdf.php\"></p>";
 echo "</div>";
 
-echo "<table id=\"tablecss\">";
+echo "<table id=\"allroutestable\">";
 echo "<thead id=\"header\">";
 echo "</thead>";
 echo "<tbody id=\"body\">";
