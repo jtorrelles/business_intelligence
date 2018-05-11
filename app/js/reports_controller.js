@@ -24,9 +24,9 @@ function ajaxCall() {
 };
 
 
-function getAllRoutes(inid,endd) {    
+function getAllRoutes(inid,endd,country,state,city) {    
     var call = new ajaxCall();
-    var url = '../routes/reports_route.php?type=getAllRoutes&inid=' + inid + '&endd=' + endd;
+    var url = '../routes/reports_route.php?type=getAllRoutes&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city;
     var method = "GET";
     var data = {};   
     var counter1 = 0;
@@ -79,9 +79,9 @@ function getAllRoutes(inid,endd) {
     }); 
 }
 
-function getRoutesConf(inid,endd) {    
+function getRoutesConf(inid,endd,country,state,city) { 
     var call = new ajaxCall();
-    var url = '../routes/reports_route.php?type=getRoutesConf&inid=' + inid + '&endd=' + endd;
+    var url = '../routes/reports_route.php?type=getRoutesConf&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city;
     var method = "GET";
     var data = {};   
     var counter1 = 0;

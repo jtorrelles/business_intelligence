@@ -26,13 +26,19 @@ try {
   if($type=='getAllRoutes') {
   	$inid = $_GET['inid'];
     $endd = $_GET['endd'];
-  	$data = $loc->getAllRoutes($inid,$endd);
+    $country = $_GET['country'];
+    $state = $_GET['state'];
+    $city = $_GET['city'];
+  	$data = $loc->getAllRoutes($inid,$endd,$country,$state,$city);
   } 
 
   if($type=='getRoutesConf') {
     $inid = $_GET['inid'];
     $endd = $_GET['endd'];
-    $data = $loc->getRoutesConf($inid,$endd);
+    $country = $_GET['country'];
+    $state = $_GET['state'];
+    $city = $_GET['city'];
+    $data = $loc->getRoutesConf($inid,$endd,$country,$state,$city);
   } 
 
 } catch (Exception $e) {

@@ -8,7 +8,7 @@ class reportsServices extends dbconfig {
     parent::__construct();
   }
 
-  public static function getAllRoutes($inid,$endd){
+  public static function getAllRoutes($inid,$endd,$country,$state,$city){
     try {
 
       $query = "SELECT showid, 
@@ -43,7 +43,10 @@ class reportsServices extends dbconfig {
                                FROM cities ci, 
                                     states sta
                                WHERE ci.id = det.cityid
-                                 AND ci.state_id = sta.id) as citystate 
+                                 AND ci.state_id = sta.id
+                                 AND sta.country_id like ('$country')
+                                 AND sta.id like ('$state')
+                                 AND ci.id like ('$city')) as citystate 
                        FROM shows sh, routes ro, routes_det det 
                       WHERE sh.showid = ro.showid 
                         AND ro.routesid = det.routesid 
@@ -86,7 +89,7 @@ class reportsServices extends dbconfig {
   }
 
 
-  public static function getRoutesConf($inid,$endd){
+  public static function getRoutesConf($inid,$endd,$country,$state,$city){
     try {
 
       $UTC = new DateTimeZone("UTC"); 
@@ -102,7 +105,8 @@ class reportsServices extends dbconfig {
                           FROM routes_det det
                          WHERE presentation_date >= $inid
                            AND presentation_date <= $endd
-                           AND cityid IS NOT NULL
+                           AND cityid IS NOT NULL                           
+                           AND cityid like ('$city')
                          GROUP BY cityid) A 
                 WHERE count > 1";
 
@@ -138,6 +142,8 @@ class reportsServices extends dbconfig {
                       AND ci.id = det.cityid
                       AND ci.state_id = sta.id
                       AND cityid = $city
+                      AND sta.country_id like ('$country')
+                      AND sta.id like ('$state')
                     GROUP BY ro.showid,
                              presentation_date
                     ORDER BY presentation_date";

@@ -7,7 +7,13 @@ echo "<script src=\"../js/reports_controller.js\"></script>";
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
 $inid = '07/01/2018';
 $endd = '07/31/2018';
-echo "<script> getRoutesConf('$inid','$endd') </script>";
+$country = '%';
+//$country = '231';
+$state = '%';
+//$state = '3926';
+$city = '%';
+//$city = '43388';
+echo "<script> getRoutesConf('$inid','$endd','$country','$state','$city') </script>";
 
 echo "<h1>Route Conflicts Report:</h1>";
 
