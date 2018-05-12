@@ -89,7 +89,7 @@ class reportsServices extends dbconfig {
   }
 
 
-  public static function getRoutesConf($inid,$endd,$country,$state,$city){
+  public static function getRoutesConf($inid,$endd,$country,$state,$city,$reason){
     try {
 
       $UTC = new DateTimeZone("UTC"); 
@@ -215,7 +215,7 @@ class reportsServices extends dbconfig {
 
       dbconfig::close();
       
-      $res = array();      
+      $res = array();    
 
       $res['body'] = $data; 
 

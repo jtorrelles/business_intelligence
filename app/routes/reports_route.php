@@ -38,7 +38,8 @@ try {
     $country = $_GET['country'];
     $state = $_GET['state'];
     $city = $_GET['city'];
-    $data = $loc->getRoutesConf($inid,$endd,$country,$state,$city);
+    $reason = $_GET['reason'];
+    $data = $loc->getRoutesConf($inid,$endd,$country,$state,$city,$reason);
   } 
 
 } catch (Exception $e) {

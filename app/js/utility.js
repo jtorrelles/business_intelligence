@@ -130,4 +130,19 @@ $(function() {
 
     });
 
+    $("#btnCleanConflictsRoutes").click(function (ev) {
+        getCountries();
+
+        $(".dateini").val("");
+        $(".dateend").val("");
+        $(".reasons").val("0");
+        
+        $("#header").empty();
+        $("#body").empty();
+
+        $("#loader").hide();
+        $("#export").hide();
+
+    });
+
 });

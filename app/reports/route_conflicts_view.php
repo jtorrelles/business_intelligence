@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <script> getCountries(); </script>
 
-<h1>Report All Routes:</h1>
+<h1>Report Conflicts Routes:</h1>
 
 <form action="#" method="POST">
 	<table style="width:70%">
@@ -54,8 +54,8 @@ if ($conn->connect_error) {
 				</select>
 			</td>
 			<td align="right" rowspan="2">
-				<input type="button" class="button" id="btnFindAllRoutes" value="Find">
-				<input type="button" class="button" id="btnCleanAllRoutes" value="Clear">
+				<input type="button" class="button" id="btnFindConflictsRoutes" value="Find">
+				<input type="button" class="button" id="btnCleanConflictsRoutes" value="Clear">
 			</td>
 		</tr>
 		<tr>
@@ -73,6 +73,24 @@ if ($conn->connect_error) {
 			<td>
 			</td>
 		</tr>
+		<tr>
+			<td align="right">
+				<b>Conflict Reasons:</b>
+				<select name="conflict_reasons" class="reasons" id="reasonId">
+					<option value="0">Select Reason</option>
+					<option value="Double Hold">Double Hold</option>
+					<option value="Back To Back">Back To Back</option>
+					<option value="Proximity Booking">Proximity Booking</option>
+					<option value="Overlapping Market Hold">Overlapping Market Hold</option>
+				</select>
+			</td>
+			<td align="right">
+			</td>
+			<td align="right">
+			</td>
+			<td align="right">
+			</td>
+		</tr>		
 	</table>
 </form>	
 	<div style="display:none" class="loader" id="loader"></div>
@@ -81,7 +99,7 @@ if ($conn->connect_error) {
 			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="all_routes_excel.php">
 			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="all_routes_pdf.php">
 			</p>
-			<table id="allroutestable">
+			<table id="tablecss">
 				<thead id="header">
 				</thead>
 				<tbody id="body">

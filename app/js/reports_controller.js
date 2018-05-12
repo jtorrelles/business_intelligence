@@ -82,9 +82,14 @@ function getAllRoutes(inid,endd,country,state,city) {
     }); 
 }
 
-function getRoutesConf(inid,endd,country,state,city) { 
+function getRoutesConf(inid,endd,country,state,city,reason) { 
     var call = new ajaxCall();
-    var url = '../routes/reports_route.php?type=getRoutesConf&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city;
+    var url = '../routes/reports_route.php?type=getRoutesConf&inid=' + inid + 
+                                                            '&endd=' + endd + 
+                                                            '&country=' + country + 
+                                                            '&state=' + state + 
+                                                            '&city=' + city + 
+                                                            '&reason=' + reason;
     var method = "GET";
     var data = {};   
     var counter1 = 0;
@@ -94,6 +99,7 @@ function getRoutesConf(inid,endd,country,state,city) {
                   //'<th>SHOW(3)</th>' + 
                   '<th>CONFLICTS REASON</th></tr>';
     var files = '';
+    console.log(url);
     call.send(data, url, method, function(data) {
         if(data.tp == 1){            
             $("#header").append(columns);
@@ -182,14 +188,17 @@ $(function() {
 
         if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
             alert("Please, verify the dates inputs");
+            $("#loader").hide();
             return;
         }else{
             if(finicio.getTime() < ftoday.getTime() || ffin.getTime() < ftoday.getTime()){
                 alert("the final date can not be less than today's date");
+                $("#loader").hide();
                 return;
             }
             if(ffin.getTime() < finicio.getTime()){
                 alert("The final date can not be greater than the initial date, Verify");
+                $("#loader").hide();
                 return;
             }
         }
@@ -208,6 +217,54 @@ $(function() {
         ffin = $(".dateend").val();
 
         getAllRoutes(finicio,ffin,countryId,stateId,cityId)
+    });
+
+    $("#btnFindConflictsRoutes").click(function (ev) {
+
+        $("#header").empty();
+        $("#body").empty();
+        $("#export").hide();
+        $("#loader").show();
+        
+        var countryId = $("#countryId").val();
+        var stateId = $("#stateId").val();
+        var cityId = $("#cityId").val();
+        var reasons = $("#reasonId").val();
+        var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+        var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
+        var ftoday = new Date(globalDate);
+
+        if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
+            alert("Please, verify the dates inputs");
+            $("#loader").hide();
+            return;
+        }else{
+            if(finicio.getTime() < ftoday.getTime() || ffin.getTime() < ftoday.getTime()){
+                alert("the final date can not be less than today's date");
+                $("#loader").hide();
+                return;
+            }
+            if(ffin.getTime() < finicio.getTime()){
+                alert("The final date can not be greater than the initial date, Verify");
+                $("#loader").hide();
+                return;
+            }
+        }
+
+        if((countryId == 0)||(countryId == "")||(countryId == null)){
+            countryId = "%"
+        }
+        if((stateId == 0)||(stateId == "")||(stateId == null)){
+            stateId = "%"
+        }
+        if((cityId == 0)||(cityId == "")||(cityId == null)){
+            cityId = "%"
+        }
+
+        finicio = $(".dateini").val();
+        ffin = $(".dateend").val();
+
+        getRoutesConf(finicio,ffin,countryId,stateId,cityId,reasons);
     });
 
 });
