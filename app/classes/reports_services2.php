@@ -146,7 +146,8 @@ class reportsServices extends dbconfig {
                       AND sta.id like ('$state')
                     GROUP BY ro.showid,
                              presentation_date
-                    ORDER BY presentation_date";
+                    ORDER BY presentation_date,
+                             ro.showid";
 
         $result2 = dbconfig::run($query2);
 
@@ -168,13 +169,10 @@ class reportsServices extends dbconfig {
           }else{            
             $data[$x]["show1"] = $showaux;
             $data[$x]["show2"] = $resultSet2['showname'];
-            //$data[$x]["show3"] = '';
             $data[$x]["date1"] = $fdateaux;
             $data[$x]["date2"] = $resultSet2['format_date'];
-            //$data[$x]["date3"] = '';
             $data[$x]["venue1"] = $venueaux;           
             $data[$x]["venue2"] = $resultSet2['venue'];
-            //$data[$x]["venue3"] = '';            
             $data[$x]["citysta"] = $resultSet2['citysta'];
             $date1 = date("Ymd",strtotime($dateaux));
             $date2 = date("Ymd",strtotime($resultSet2['presentation_date']));
