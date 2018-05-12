@@ -93,54 +93,48 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     var method = "GET";
     var data = {};   
     var counter1 = 0;
+    var codhtml = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="tablecss">'
     var columns = '<tr><th>CITY / STATE</th>' + 
                   '<th>SHOW(1)</th>' +
                   '<th>SHOW(2)</th>' + 
-                  //'<th>SHOW(3)</th>' + 
                   '<th>CONFLICTS REASON</th></tr>';
     var files = '';
     console.log(url);
     call.send(data, url, method, function(data) {
-        if(data.tp == 1){            
+        if(data.tp == 1){  
+            codhtml = codhtml + columns;          
             $("#header").append(columns);
             size = data.result['body'].length; 
             while(counter1 < size){
                 ind = data.result['body'][counter1].ind;
-                /*if(data.result['body'][counter1].show3 != ''){
-                    slash = ' / ';
-                }else{
-                    slash = '';
-                }*/
                 if(ind != 0){
-                    files = files + 
-                    '<tr><td rowspan="2">' + 
-                    data.result['body'][counter1].citysta +                
-                    '</td><td>' + 
-                    data.result['body'][counter1].show1 +
-                    '</td><td>' + 
-                    data.result['body'][counter1].show2 +
-                    //'</td><td>' + 
-                    //data.result['body'][counter1].show3 +
-                    '</td><td rowspan="2"><b>' + 
-                    data.result['body'][counter1].color +
-                    data.result['body'][counter1].notes +
-                    '</font></b></td></tr>' + 
-                    '<tr><td>' + 
-                    data.result['body'][counter1].date1 +
-                    ' / ' +
-                    data.result['body'][counter1].venue1 +
-                    '</td><td>' + 
-                    data.result['body'][counter1].date2 +
-                    ' / ' +
-                    data.result['body'][counter1].venue2 +
-                    //'</td><td>' + 
-                    //data.result['body'][counter1].date3 +
-                    //slash +
-                    //data.result['body'][counter1].venue3 +
-                    '</td></tr>';
+                    if(reason == 0 || reason == data.result['body'][counter1].notes){ 
+                        files = files + 
+                        '<tr><td rowspan="2">' + 
+                        data.result['body'][counter1].citysta +                
+                        '</td><td>' + 
+                        data.result['body'][counter1].show1 +
+                        '</td><td>' + 
+                        data.result['body'][counter1].show2 +
+                        '</td><td rowspan="2"><b>' + 
+                        data.result['body'][counter1].color +
+                        data.result['body'][counter1].notes +
+                        '</font></b></td></tr>' + 
+                        '<tr><td>' + 
+                        data.result['body'][counter1].date1 +
+                        ' / ' +
+                        data.result['body'][counter1].venue1 +
+                        '</td><td>' + 
+                        data.result['body'][counter1].date2 +
+                        ' / ' +
+                        data.result['body'][counter1].venue2 +
+                        '</td></tr>';
+                    }    
                 }    
                 counter1++;
             }
+            codhtml = codhtml + files + '</table>';
+            $('.codhtml').val(codhtml);
             $("#body").append(files);
             $("#loader").hide();
             $("#export").show();

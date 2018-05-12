@@ -78,10 +78,10 @@ if ($conn->connect_error) {
 				<b>Conflict Reasons:</b>
 				<select name="conflict_reasons" class="reasons" id="reasonId">
 					<option value="0">Select Reason</option>
-					<option value="Double Hold">Double Hold</option>
-					<option value="Back To Back">Back To Back</option>
-					<option value="Proximity Booking">Proximity Booking</option>
-					<option value="Overlapping Market Hold">Overlapping Market Hold</option>
+					<option value="DOUBLE HOLD">DOUBLE HOLD</option>
+					<option value="BACK TO BACK BOOKING">BACK TO BACK BOOKING</option>
+					<option value="PROXIMITY BOOKING">PROXIMITY BOOKING</option>
+					<option value="OVERLAPPING MARKET HOLD">OVERLAPPING MARKET HOLD</option>
 				</select>
 			</td>
 			<td align="right">
@@ -96,8 +96,8 @@ if ($conn->connect_error) {
 	<div style="display:none" class="loader" id="loader"></div>
 	<div style="display:none" class="export" id="export">
 		<form method="POST">
-			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="all_routes_excel.php">
-			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="all_routes_pdf.php">
+			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
+			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
 			</p>
 			<table id="tablecss">
 				<thead id="header">
@@ -106,6 +106,7 @@ if ($conn->connect_error) {
 				</tbody>
 			</table>
 			<input type='hidden' class="codhtml" name=codhtml>
+			<input type='hidden' class="name" name=name value="Route_conflicts">
 		</form>
 	</div>
 </body>
