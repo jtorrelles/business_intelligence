@@ -51,7 +51,7 @@ class reportsServices extends dbconfig {
                       WHERE sh.showid = ro.showid 
                         AND ro.routesid = det.routesid 
                         AND sh.showid = $showid 
-                        AND det.presentation_date = '$date'";       
+                        AND det.presentation_date = '$date'";    
 
           $result2 = dbconfig::run($query2);
 

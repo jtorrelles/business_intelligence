@@ -1,3 +1,6 @@
+
+var globalDate = "";
+
 function ajaxCall() {
     this.send = function(data, url, method, success, type) {
         type = type||'json';
@@ -37,8 +40,8 @@ function getAllRoutes(inid,endd,country,state,city) {
     var files = '';
     var hfiles = '<tr>';
     var showid = '';
-    var datei = new Date(inid.substring(6,10),inid.substring(0,2)-1,inid.substring(3,5));
-    var datee = new Date(endd.substring(6,10),endd.substring(0,2)-1,endd.substring(3,5));
+    var datei = new Date(inid.replace(/-/, '/').replace(/-/, '/'));
+    var datee = new Date(endd.replace(/-/, '/').replace(/-/, '/'));
     var ini = datei.valueOf();
     var end = datee.valueOf();
     call.send(data, url, method, function(data) {
@@ -53,14 +56,14 @@ function getAllRoutes(inid,endd,country,state,city) {
             codhtml = codhtml + hcolumns;
             $("#header").append(hcolumns);
             counter1 = 0;
-            while(ini < end + 1){  
+            while(ini < end){  
                 dt = ("0" + (new Date(ini).getMonth() + 1)).slice(-2) + '/' + ("0" + new Date(ini).getDate()).slice(-2) + '/' + new Date(ini).getFullYear();
                 hfiles = hfiles + '<td>' + dt + '</td>';
                 while(counter2 < size){
                     files = '<td>' + data.result['body'][counter2][counter1].citystate + '</td>';
                     hfiles = hfiles + files;                                         
                     counter2++;
-                }            
+                }
                 ini = ini + 86400000;
                 hfiles = hfiles + '</tr><tr>';
                 counter1++;
@@ -141,3 +144,70 @@ function getRoutesConf(inid,endd,country,state,city) {
         }
     }); 
 }
+
+function getTodayDate(){
+    var ftoday = new Date();
+
+    var dd = ftoday.getDate();
+    var mm = ftoday.getMonth()+1; 
+    var yyyy = ftoday.getFullYear();
+
+    if(dd<10){
+        dd='0'+dd;
+    } 
+    if(mm<10){
+        mm='0'+mm;
+    } 
+
+    globalDate = mm+'/'+dd+'/'+yyyy;
+}
+
+$(function() {
+
+    getTodayDate();
+
+    $("#btnFindAllRoutes").click(function (ev) {
+
+        $("#header").empty();
+        $("#body").empty();
+        $("#export").hide();
+        $("#loader").show();
+        
+        var countryId = $("#countryId").val();
+        var stateId = $("#stateId").val();
+        var cityId = $("#cityId").val();
+        var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+        var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
+        var ftoday = new Date(globalDate);
+
+        if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
+            alert("Please, verify the dates inputs");
+            return;
+        }else{
+            if(finicio.getTime() < ftoday.getTime() || ffin.getTime() < ftoday.getTime()){
+                alert("the final date can not be less than today's date");
+                return;
+            }
+            if(ffin.getTime() < finicio.getTime()){
+                alert("The final date can not be greater than the initial date, Verify");
+                return;
+            }
+        }
+
+        if((countryId == 0)||(countryId == "")||(countryId == null)){
+            countryId = "%"
+        }
+        if((stateId == 0)||(stateId == "")||(stateId == null)){
+            stateId = "%"
+        }
+        if((cityId == 0)||(cityId == "")||(cityId == null)){
+            cityId = "%"
+        }
+
+        finicio = $(".dateini").val();
+        ffin = $(".dateend").val();
+
+        getAllRoutes(finicio,ffin,countryId,stateId,cityId)
+    });
+
+});

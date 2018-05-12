@@ -221,3 +221,18 @@
     color: white;
 	min-width: 150px;
 }
+
+.button {
+    background-color: #000066;
+    border: none;
+    color: white;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    margin: 0px 0px;
+    cursor: pointer;
+    border: 2px solid;
+    border-radius: 25px;
+}
