@@ -181,17 +181,17 @@ $(function() {
         var ftoday = new Date(globalDate);
 
         if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
-            alert("Please, verify the dates inputs");
+            alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
             $("#loader").hide();
             return;
         }else{
-            if(finicio.getTime() < ftoday.getTime() || ffin.getTime() < ftoday.getTime()){
-                alert("the final date can not be less than today's date");
-                $("#loader").hide();
-                return;
-            }
+            //if(finicio.getTime() < ftoday.getTime() || ffin.getTime() < ftoday.getTime()){
+            //    alert("the final date can not be less than today's date");
+            //    $("#loader").hide();
+            //    return;
+            //}
             if(ffin.getTime() < finicio.getTime()){
-                alert("The final date can not be greater than the initial date, Verify");
+                alert("INIT DATE cannot be greater than END DATE, Please verify these values.");
                 $("#loader").hide();
                 return;
             }
@@ -229,17 +229,17 @@ $(function() {
         var ftoday = new Date(globalDate);
 
         if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
-            alert("Please, verify the dates inputs");
+            alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
             $("#loader").hide();
             return;
         }else{
-            if(finicio.getTime() < ftoday.getTime() || ffin.getTime() < ftoday.getTime()){
-                alert("the final date can not be less than today's date");
-                $("#loader").hide();
-                return;
-            }
+            //if(finicio.getTime() < ftoday.getTime() || ffin.getTime() < ftoday.getTime()){
+            //    alert("the final date can not be less than today's date");
+            //    $("#loader").hide();
+            //    return;
+            //}
             if(ffin.getTime() < finicio.getTime()){
-                alert("The final date can not be greater than the initial date, Verify");
+                alert("INIT DATE cannot be greater than END DATE, Please verify these values.");
                 $("#loader").hide();
                 return;
             }
