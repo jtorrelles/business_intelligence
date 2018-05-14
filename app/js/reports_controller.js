@@ -153,9 +153,9 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     }); 
 }
 
-function getMarketHistory(inid,endd,country,state,city,fields) {    
+function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {    
     var call = new ajaxCall();
-    var url = '../routes/reports_route.php?type=getMarketHistory&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields;
+    var url = '../routes/reports_route.php?type=getMarketHistory&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&shows=' + shows + '&venues=' + venues;
     var method = "GET";
     var data = {};
     var counter1 = 0;
@@ -362,7 +362,13 @@ $(function() {
         var fields = "'DROPCOUNT','PAIDATTENDANCE','COMPS','TOTALATTENDANCE','CAPACITY','GROSSSUBSCRIPTIONSALES','GROSSPHONESALES','GROSSINTERNETSALES','GROSSCREDITCARDSALES'";
         //var fields = "";
 
-        getMarketHistory(finicio,ffin,countryId,stateId,cityId,fields)
+        var shows = "1,2,3";
+        //var shows = "";
+
+        var venues = "6,7,8";
+        //var venues = "";
+
+        getMarketHistory(finicio,ffin,countryId,stateId,cityId,fields,shows,venues)
     });
 
 });

@@ -50,7 +50,9 @@ try {
     $state = $_GET['state'];
     $city = $_GET['city'];
     $fields = $_GET['fields'];
-    $data = $loc->getMarketHistory($inid,$endd,$country,$state,$city,$fields);
+    $shows = $_GET['shows'];
+    $venues = $_GET['venues'];
+    $data = $loc->getMarketHistory($inid,$endd,$country,$state,$city,$fields,$shows,$venues);
   } 
 
 } catch (Exception $e) {
