@@ -24,58 +24,69 @@ if ($conn->connect_error) {
 <h1>Report Conflicts Routes:</h1>
 
 <form action="#" method="POST">
-	<table style="width:70%">
-		<col align="right">
-		<col align="right">
-		<col align="right">
+	<p><table style="width:70%">
 		<tr>
 			<th></th>
 			<th></th>
 			<th></th>
-			<th>Actions</th>
+			<th></th>
+			<th></th>
+			<th></th>			
+			<th>ACTIONS</th>
 		</tr>
 		<tr>
-			<td align="right">
-				<b>Contry:</b>
+			<td>
+				<b>Country:</b>
+			</td>
+			<td>
 				<select name="country" class="countries" id="countryId">
 					<option value="">Select Country</option>
 				</select>
 			</td>
-			<td align="right">
+			<td>
 				<b>State:</b>
+			</td>
+			<td>
 				<select name="state" class="states" id="stateId">
 					<option value="">Select State</option>
 				</select>
 			</td>
-			<td align="right">
+			<td>
 				<b>City:</b>
+			</td>
+			<td>
 				<select name="city" class="cities" id="cityId">
 					<option value="">Select City</option>
 				</select>
 			</td>
-			<td align="right" rowspan="2">
+			<td align="center" rowspan="3">
 				<input type="button" class="button" id="btnFindConflictsRoutes" value="Find">
 				<input type="button" class="button" id="btnCleanConflictsRoutes" value="Clear">
 			</td>
 		</tr>
 		<tr>
-			<td align="right">
-				<b>Init Date:</b>
+			<td>
+				<b>Init Date <font color=red>*</font>:</b>
+			</td>
+			<td>
 				<input type="date" class="dateini" name="dateini">
 			</td>
-			<td align="right">
-				<b>End Date:</b>
+			<td>
+				<b>End Date <font color=red>*</font>:</b>
+			</td>
+			<td>
 				<input type="date" class="dateend" name='dateend'>
 			</td>
-			<td align="right">
-
+			<td>
 			</td>
 			<td>
 			</td>
 		</tr>
 		<tr>
-			<td align="right">
-				<b>Conflict Reasons:</b>
+			<td>
+				<b>Conflict Criteria:</b>
+			</td>
+			<td>
 				<select name="conflict_reasons" class="reasons" id="reasonId">
 					<option value="0">Select Reason</option>
 					<option value="DOUBLE HOLD">DOUBLE HOLD</option>
@@ -84,14 +95,17 @@ if ($conn->connect_error) {
 					<option value="OVERLAPPING MARKET HOLD">OVERLAPPING MARKET HOLD</option>
 				</select>
 			</td>
-			<td align="right">
+			<td>
 			</td>
-			<td align="right">
+			<td>
 			</td>
-			<td align="right">
+			<td>
 			</td>
+			<td>
+			</td>			
 		</tr>		
-	</table>
+	</table><p>
+	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
 </form>	
 	<div style="display:none" class="loader" id="loader"></div>
 	<div style="display:none" class="export" id="export">
