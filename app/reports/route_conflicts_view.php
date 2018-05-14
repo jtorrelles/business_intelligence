@@ -105,7 +105,8 @@ if ($conn->connect_error) {
 				<tbody id="body">
 				</tbody>
 			</table>
-			<input type='hidden' class="codhtml" name=codhtml>
+			<input type='hidden' class="htmlpdf" name=htmlpdf>
+			<input type='hidden' class="htmlexc" name=htmlexc>
 			<input type='hidden' class="name" name=name value="Route_conflicts">
 		</form>
 	</div>

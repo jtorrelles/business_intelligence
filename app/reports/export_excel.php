@@ -1,6 +1,6 @@
 <?php
 
-$codHtml = $_POST['codhtml'];
+$codHtml = $_POST['htmlexc'];
 $name = $_POST['name'] . ".xls";
 
 header("Content-type: application/vnd.ms-excel");

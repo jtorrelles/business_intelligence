@@ -2,7 +2,7 @@
 
 require '../libs/dompdf/dompdf_config.inc.php';
 
-$codHtml = $_POST['codhtml'];
+$codHtml = $_POST['htmlpdf'];
 $name = $_POST['name'] . ".pdf";
 
 $codHtml=utf8_encode($codHtml);

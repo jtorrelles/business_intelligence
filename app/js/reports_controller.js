@@ -35,7 +35,8 @@ function getAllRoutes(inid,endd,country,state,city) {
     var counter1 = 0;
     var counter2 = 0;
     var columns = '';
-    var codhtml = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="tablecss">'
+    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="tablecss">'
+    var htmlexc = '<table>'
     var hcolumns = '<tr><th>DATE / SHOW NAME</th>'; 
     var files = '';
     var hfiles = '<tr>';
@@ -53,7 +54,8 @@ function getAllRoutes(inid,endd,country,state,city) {
             	counter1++;
             }
             hcolumns = hcolumns + '</tr>';
-            codhtml = codhtml + hcolumns;
+            htmlpdf = htmlpdf + hcolumns;
+            htmlexc = htmlexc + hcolumns;
             $("#header").append(hcolumns);
             counter1 = 0;
             while(ini < end){  
@@ -70,8 +72,10 @@ function getAllRoutes(inid,endd,country,state,city) {
                 counter2 = 0;
             }
             hfiles = hfiles + '</tr>';
-            codhtml = codhtml + hfiles + '</table>';
-            $('.codhtml').val(codhtml);
+            htmlpdf = htmlpdf + hfiles + '</table>';
+            htmlexc = htmlexc + hfiles + '</table>';
+            $('.htmlpdf').val(htmlpdf);
+            $('.htmlexc').val(htmlexc);
             $("#body").append(hfiles);
             $("#loader").hide();
             $("#export").show();
@@ -93,7 +97,8 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     var method = "GET";
     var data = {};   
     var counter1 = 0;
-    var codhtml = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="tablecss">'
+    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="tablecss">'
+    var htmlexc = '<table>'
     var columns = '<tr><th>CITY / STATE</th>' + 
                   '<th>SHOW(1)</th>' +
                   '<th>SHOW(2)</th>' + 
@@ -102,7 +107,8 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     console.log(url);
     call.send(data, url, method, function(data) {
         if(data.tp == 1){  
-            codhtml = codhtml + columns;          
+            htmlpdf = htmlpdf + columns; 
+            htmlexc = htmlexc + columns;         
             $("#header").append(columns);
             size = data.result['body'].length; 
             while(counter1 < size){
@@ -133,8 +139,10 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
                 }    
                 counter1++;
             }
-            codhtml = codhtml + files + '</table>';
-            $('.codhtml').val(codhtml);
+            htmlpdf = htmlpdf + files + '</table>';
+            htmlexc = htmlexc + files + '</table>';
+            $('.htmlpdf').val(htmlpdf);
+            $('.htmlexc').val(htmlexc);
             $("#body").append(files);
             $("#loader").hide();
             $("#export").show();
