@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <script> getCountries(); </script>
 
-<h1>Report All Routes:</h1>
+<h1>All Routes Report:</h1>
 
 <form action="#" method="POST">
 	<p><table style="width:70%">

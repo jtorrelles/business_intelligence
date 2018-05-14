@@ -145,4 +145,17 @@ $(function() {
 
     });
 
+    $("#btnCleanMarketHistory").click(function (ev) {
+        getCountries();
+
+        $(".dateini").val("");
+        $(".dateend").val("");
+        $("#header").empty();
+        $("#body").empty();
+
+        $("#loader").hide();
+        $("#export").hide();
+
+    });
+
 });

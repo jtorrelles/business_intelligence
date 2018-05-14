@@ -8,13 +8,20 @@ class reportsServices extends dbconfig {
     parent::__construct();
   }
 
-  public static function getAllRoutes($inid,$endd,$country,$state,$city){
+  public static function getAllRoutes($inid,$endd,$country,$state,$city,$fields){
     try {
+
+      if($fields==""){
+        $shows = "";
+      }else{
+        $shows = "AND showid in ($fields)";
+      }
 
       $query = "SELECT showid, 
                        showname
                   FROM shows
-                 WHERE showactive = 'Y'";
+                 WHERE showactive = 'Y' 
+                 $shows";
 
       $result = dbconfig::run($query);
       if(!$result) {
@@ -217,7 +224,110 @@ class reportsServices extends dbconfig {
 
       $res['body'] = $data; 
 
-      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);
+      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Conflicts fetched successfully.", 'result'=>$res);
+
+    }catch (Exception $e) {
+      $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+    } finally {
+      return $data;
+    }
+  }
+
+
+  public static function getMarketHistory($inid,$endd,$country,$state,$city,$fields){
+    try {
+
+      $UTC = new DateTimeZone("UTC"); 
+      $ini = new DateTime($inid, $UTC); 
+      $end = new DateTime($endd, $UTC); 
+      $inid = $ini->format('Ymd');
+      $endd = $end->format('Ymd'); 
+
+      $data = array();
+      $data2 = array();
+      $x = 0;
+
+      if($fields==""){
+        $columns = "";
+        $fields = "se.*";
+      }else{
+        $columns = "AND COLUMN_NAME in ($fields)";
+      }
+
+      $query = "SELECT column_name
+                FROM information_schema.COLUMNS
+                WHERE TABLE_SCHEMA  LIKE 'networksbi'
+                    AND TABLE_NAME = 'settlements' 
+                    AND COLUMN_NAME NOT IN ('ID','SHOWID','CITYID','VENUEID','OPENINGDATE','CLOSINGDATE')
+                    $columns";
+
+      $result = dbconfig::run($query);
+      if(!$result) {
+        throw new exception("Settlements not found.");
+      }
+
+      while($resultSet = mysqli_fetch_assoc($result)) {
+        $data[$x]["column"] = $resultSet['column_name'];
+        $x++;       
+      }
+
+      $fields = str_replace("'","",$fields);
+
+      $query2 = "SELECT showname,
+                        co.name as country,
+                        sta.name as state,
+                        ci.name as city,  
+                        IFNULL(DATE_FORMAT(openingdate, '%M %d %Y'), '') as openingdate,
+                        IFNULL(DATE_FORMAT(closingdate, '%M %d %Y'), '') as closingdate,
+                        venuename,
+                        $fields 
+                   FROM settlements se, 
+                        shows sh,
+                        cities ci,
+                        states sta,
+                        countries co,
+                        venues ve
+                  WHERE se.showid = sh.showid
+                    AND se.cityid = ci.id
+                    AND ci.state_id = sta.id
+                    AND sta.country_id = co.id
+                    AND se.venueid = ve.venueid
+                    AND openingdate >= $inid
+                    AND openingdate <= $endd
+                  ORDER BY openingdate desc";
+
+      $result2 = dbconfig::run($query2);
+      if(!$result2) {
+        throw new exception("Settlements not found.");
+      }
+
+      $y = 0;
+      
+      while($resultSet2 = mysqli_fetch_assoc($result2)) {
+        $data2[$y]['showname'] = $resultSet2['showname'];
+        $data2[$y]['openingdate'] = $resultSet2['openingdate'];
+        $data2[$y]['closingdate'] = $resultSet2['closingdate'];
+        $data2[$y]['country'] = $resultSet2['country'];
+        $data2[$y]['state'] = $resultSet2['state'];
+        $data2[$y]['city'] = $resultSet2['city'];        
+        $data2[$y]['venuename'] = $resultSet2['venuename'];
+        $z = 0;
+        while($z < $x) {
+          $col = $data[$z]["column"];
+          $data2[$y][$col] = $resultSet2[$col];
+          $z++;       
+        }        
+        $y++;
+      }
+
+      dbconfig::close();
+      
+      $res = array();      
+
+      $res['head'] = $data; 
+      $res['body'] = $data2; 
+
+      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);      
 
     }catch (Exception $e) {
       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());

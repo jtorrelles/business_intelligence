@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <script> getCountries(); </script>
 
-<h1>Routes Conflicts Report:</h1>
+<h1>Market History Report:</h1>
 
 <form action="#" method="POST">
 	<p><table style="width:70%">
@@ -59,9 +59,9 @@ if ($conn->connect_error) {
 					<option value="">Select City</option>
 				</select>
 			</td>
-			<td align="center" rowspan="3">
-				<input type="button" class="button" id="btnFindConflictsRoutes" value="Find">
-				<input type="button" class="button" id="btnCleanConflictsRoutes" value="Clear">
+			<td align="center" rowspan="2">
+				<input type="button" class="button" id="btnFindMarketHistory" value="Find">
+				<input type="button" class="button" id="btnCleanMarketHistory" value="Clear">
 			</td>
 		</tr>
 		<tr>
@@ -82,29 +82,7 @@ if ($conn->connect_error) {
 			<td>
 			</td>
 		</tr>
-		<tr>
-			<td>
-				<b>Conflict Criteria:</b>
-			</td>
-			<td>
-				<select name="conflict_reasons" class="reasons" id="reasonId">
-					<option value="0">Select Reason</option>
-					<option value="DOUBLE HOLD">DOUBLE HOLD</option>
-					<option value="BACK TO BACK BOOKING">BACK TO BACK BOOKING</option>
-					<option value="PROXIMITY BOOKING">PROXIMITY BOOKING</option>
-					<option value="OVERLAPPING MARKET HOLD">OVERLAPPING MARKET HOLD</option>
-				</select>
-			</td>
-			<td>
-			</td>
-			<td>
-			</td>
-			<td>
-			</td>
-			<td>
-			</td>			
-		</tr>		
-	</table><p>
+	</table></p>
 	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
 </form>	
 	<div style="display:none" class="loader" id="loader"></div>
@@ -113,7 +91,7 @@ if ($conn->connect_error) {
 			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
 			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
 			</p>
-			<table id="tablecss">
+			<table id="allroutestable">
 				<thead id="header">
 				</thead>
 				<tbody id="body">
@@ -121,7 +99,7 @@ if ($conn->connect_error) {
 			</table>
 			<input type='hidden' class="htmlpdf" name=htmlpdf>
 			<input type='hidden' class="htmlexc" name=htmlexc>
-			<input type='hidden' class="name" name=name value="Route_conflicts">
+			<input type='hidden' class="name" name=name value="Market_History">
 		</form>
 	</div>
 </body>

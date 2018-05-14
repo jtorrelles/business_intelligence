@@ -29,7 +29,8 @@ try {
     $country = $_GET['country'];
     $state = $_GET['state'];
     $city = $_GET['city'];
-  	$data = $loc->getAllRoutes($inid,$endd,$country,$state,$city);
+    $fields = $_GET['fields'];
+  	$data = $loc->getAllRoutes($inid,$endd,$country,$state,$city,$fields);
   } 
 
   if($type=='getRoutesConf') {
@@ -40,6 +41,16 @@ try {
     $city = $_GET['city'];
     $reason = $_GET['reason'];
     $data = $loc->getRoutesConf($inid,$endd,$country,$state,$city,$reason);
+  } 
+
+  if($type=='getMarketHistory') {
+    $inid = $_GET['inid'];
+    $endd = $_GET['endd'];
+    $country = $_GET['country'];
+    $state = $_GET['state'];
+    $city = $_GET['city'];
+    $fields = $_GET['fields'];
+    $data = $loc->getMarketHistory($inid,$endd,$country,$state,$city,$fields);
   } 
 
 } catch (Exception $e) {
