@@ -419,4 +419,50 @@ $(function() {
         getMarketHistory(finicio,ffin,countryId,stateId,cityId,fields,shows,venues)
     });
 
+    $("#btnFindSalesSumary").click(function (ev) {
+
+        $("#header").empty();
+        $("#body").empty();
+        $("#export").hide();
+        $("#loader").show();
+        
+        var countryId = $("#countryId").val();
+        var stateId = $("#stateId").val();
+        var cityId = $("#cityId").val();
+        var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+        var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
+        var ftoday = new Date(globalDate);
+        var showId = $("#showId").val();
+
+        if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
+            alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
+            $("#loader").hide();
+            return;
+        }else{
+            if(ffin.getTime() < finicio.getTime()){
+                alert("INIT DATE cannot be greater than END DATE, Please verify these values.");
+                $("#loader").hide();
+                return;
+            }
+        }
+
+        if((countryId == 0)||(countryId == "")||(countryId == null)){
+            countryId = "%"
+        }
+        if((stateId == 0)||(stateId == "")||(stateId == null)){
+            stateId = "%"
+        }
+        if((cityId == 0)||(cityId == "")||(cityId == null)){
+            cityId = "%"
+        }
+        if((showId == 0)||(showId == "")||(showId == null)){
+            showId = "%"
+        }
+
+        finicio = $(".dateini").val();
+        ffin = $(".dateend").val();
+
+        //TODO: Hacer la función para ejecutar el reporte
+    });
+
 });

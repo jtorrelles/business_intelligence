@@ -309,4 +309,18 @@ $(function() {
 
     });
 
+    $("#btnCleanSalesSumary").click(function (ev) {
+        getCountries();
+
+        $(".dateini").val("");
+        $(".dateend").val("");
+        $(".shows").val("0");
+        $("#header").empty();
+        $("#body").empty();
+
+        $("#loader").hide();
+        $("#export").hide();
+
+    });
+
 });
