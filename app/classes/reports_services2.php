@@ -106,16 +106,27 @@ class reportsServices extends dbconfig {
       $inid = $ini->format('Ymd');
       $endd = $end->format('Ymd'); 
 
-      $query = "SELECT cityid
-                  FROM (SELECT cityid,
-                               count(*) as count
-                          FROM routes_det det
-                         WHERE presentation_date >= $inid
-                           AND presentation_date <= $endd
-                           AND cityid IS NOT NULL                           
-                           AND cityid like ('$city')
-                         GROUP BY cityid) A 
-                WHERE count > 1";
+      $query = "SELECT cityid,
+                       name
+                  FROM(SELECT cityid,
+                              name,
+                              count(*) as count
+                         FROM (SELECT cityid,
+                                      showid,
+                                      name
+                                 FROM routes_det det,
+                                      routes ro,
+                                      cities ci
+                                WHERE det.routesid = ro.routesid
+                                  AND det.cityid = ci.id
+                                  AND presentation_date >= $inid
+                                  AND presentation_date <= $endd
+                                  AND cityid IS NOT NULL                           
+                                  AND cityid like ('$city')
+                                GROUP BY cityid,showid,name) A
+                        GROUP BY cityid,name) B
+                 WHERE count > 1
+                 ORDER BY name";
 
       $result = dbconfig::run($query);
 
@@ -130,9 +141,12 @@ class reportsServices extends dbconfig {
         $city = $resultSet['cityid'];            
           
         $query2 = "SELECT ro.showid as showid,
+                          ro.routesid as routesid,
                           showname,
-                          presentation_date,
-                          DATE_FORMAT(presentation_date, '%M %d %Y') as format_date,
+                          min(presentation_date) as datemin,
+                          max(presentation_date) as datemax,
+                          DATE_FORMAT(min(presentation_date), '%m/%d/%Y') as fdatemin,
+                          DATE_FORMAT(max(presentation_date), '%m/%d/%Y') as fdatemax,
                           CONCAT(ci.name,' , ',sta.shortname) as citysta,
                           (SELECT venuename 
                              FROM venues ve
@@ -152,9 +166,8 @@ class reportsServices extends dbconfig {
                       AND sta.country_id like ('$country')
                       AND sta.id like ('$state')
                     GROUP BY ro.showid,
-                             presentation_date
-                    ORDER BY presentation_date,
-                             ro.showid";
+                             ro.routesid
+                    ORDER BY 4,1";
 
         $result2 = dbconfig::run($query2);
 
@@ -166,52 +179,80 @@ class reportsServices extends dbconfig {
         $back = 0;
 
         while($resultSet2 = mysqli_fetch_assoc($result2)) { 
-          $data[$x]["ind"] = $y; 
+          $data[$x]["ind1"] = 0; 
+          $data[$x]["ind2"] = 0;
 
           if($y==0){            
-            $showaux = $resultSet2['showname'];
-            $dateaux = $resultSet2['presentation_date'];
-            $fdateaux = $resultSet2['format_date'];
-            $venueaux = $resultSet2['venue'];
-          }else{            
-            $data[$x]["show1"] = $showaux;
-            $data[$x]["show2"] = $resultSet2['showname'];
-            $data[$x]["date1"] = $fdateaux;
-            $data[$x]["date2"] = $resultSet2['format_date'];
-            $data[$x]["venue1"] = $venueaux;           
-            $data[$x]["venue2"] = $resultSet2['venue'];
-            $data[$x]["citysta"] = $resultSet2['citysta'];
-            $date1 = date("Ymd",strtotime($dateaux));
-            $date2 = date("Ymd",strtotime($resultSet2['presentation_date']));
-            $date2a = date("Ymd",strtotime($date2."- 1 days"));
-            $date2b = date("Ymd",strtotime($date2."+ 1 days"));
-            if ($date1 == $date2){
-              if ($venueaux == $resultSet2['venue']){
-                $data[$x]["notes"] = 'DOUBLE HOLD';
-                $data[$x]["color"] = '<font color ="#6C3483">';
-              }else{
-                $data[$x]["notes"] = 'OVERLAPPING MARKET HOLD';
-                $data[$x]["color"] = '<font color ="#873600">';
-              }
-            }else{
-              if ($date1 == $date2a){
-                $data[$x]["notes"] = 'BACK TO BACK BOOKING';
-                if ($back == 0){
-                  $back = 1;
-                  $data[$x]["color"] = '<font color ="#F39C12">';
+            $show1 = $resultSet2['showname'];
+            $datemax1 = $resultSet2['datemax'];
+            $fdatemin1 = $resultSet2['fdatemin'];
+            $fdatemax1 = $resultSet2['fdatemax'];
+            $venue1 = $resultSet2['venue'];
+          }else{ 
+            $datetime1 = new DateTime($datemax1);
+            $datetime2 = new DateTime($resultSet2['datemin']);
+            $interval = $datetime1->diff($datetime2);
+            
+            if($interval->format('%R%a')<=26){
+              $data[$x]["ind1"] = 1;
+              $data[$x]["show1"] = $show1;
+              $data[$x]["show2"] = $resultSet2['showname'];
+              $data[$x]["show3"] = '';
+              $data[$x]["show4"] = '';
+              $data[$x]["show5"] = '';              
+              $data[$x]["datevenue1"] = $fdatemin1 . ' - ' . 
+                                        $fdatemax1 . ' / ' . 
+                                        $venue1;
+              $data[$x]["datevenue2"] = $resultSet2['fdatemin'] . ' - ' . 
+                                        $resultSet2['fdatemax'] . ' / ' .
+                                        $resultSet2['venue'];
+              $data[$x]["datevenue3"] = '';
+              $data[$x]["datevenue4"] = '';
+              $data[$x]["datevenue5"] = '';
+              $data[$x]["citysta"] = $resultSet2['citysta'];
+              if ($interval->format('%R%a')<=0){
+                if ($venue1 == $resultSet2['venue']){
+                  $data[$x]["notes"] = 'DOUBLE HOLD';
+                  $data[$x]["color"] = '<font color ="#6C3483">';
                 }else{
-                  $data[$x]["color"] = '<font color ="#C0392B">';
-                  $data[$x-1]["color"] = '<font color ="#C0392B">';
+                  $data[$x]["notes"] = 'OVERLAPPING MARKET HOLD';
+                  $data[$x]["color"] = '<font color ="#873600">';
                 }
               }else{
-                $data[$x]["notes"] = 'PROXIMITY BOOKING';
-                $data[$x]["color"] = '<font color ="#154360">';
-              }  
-            }
-            $showaux = $resultSet2['showname'];
-            $dateaux = $resultSet2['presentation_date'];
-            $fdateaux = $resultSet2['format_date'];
-            $venueaux = $resultSet2['venue'];
+                if($interval->format('%R%a')<=2 ){
+                  $data[$x]["notes"] = 'BACK TO BACK BOOKING';
+                  $data[$x]["ind2"] = 1; 
+                  if ($back == 0){
+                    $back = 1;
+                    $data[$x]["color"] = '<font color ="#F39C12">';
+                  }else{
+                    $data[$x]["color"] = '<font color ="#C0392B">';
+                    $data[$x-1]["color"] = '<font color ="#C0392B">';
+                    $data[$x-1]["show3"] = $resultSet2['showname'];
+                    $data[$x-2]["show4"] = $resultSet2['showname'];
+                    $data[$x-3]["show5"] = $resultSet2['showname'];
+                    $data[$x-1]["datevenue3"] = $resultSet2['fdatemin'] . ' - ' . 
+                                              $resultSet2['fdatemax'] . ' / ' .
+                                              $resultSet2['venue'];
+                    $data[$x-2]["datevenue4"] = $resultSet2['fdatemin'] . ' - ' . 
+                                              $resultSet2['fdatemax'] . ' / ' .
+                                              $resultSet2['venue'];
+                    $data[$x-3]["datevenue5"] = $resultSet2['fdatemin'] . ' - ' . 
+                                              $resultSet2['fdatemax'] . ' / ' .
+                                              $resultSet2['venue'];                  
+                    $data[$x]["ind1"] = 0;     
+                  }
+                }else{
+                  $data[$x]["notes"] = 'PROXIMITY BOOKING';
+                  $data[$x]["color"] = '<font color ="#154360">';
+                }  
+              }
+              $show1 = $resultSet2['showname'];
+              $datemax1 = $resultSet2['datemax'];
+              $fdatemin1 = $resultSet2['fdatemin'];
+              $fdatemax1 = $resultSet2['fdatemax'];
+              $venue1 = $resultSet2['venue'];              
+            }  
           }
           $y++;
           $x++;        
