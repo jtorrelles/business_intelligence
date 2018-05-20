@@ -102,6 +102,9 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     var columns = '<tr><th>CITY / STATE</th>' + 
                   '<th>SHOW(1)</th>' +
                   '<th>SHOW(2)</th>' + 
+                  '<th>SHOW(3)</th>' + 
+                  '<th>SHOW(4)</th>' + 
+                  '<th>SHOW(5)</th>' + 
                   '<th>CONFLICTS REASON</th></tr>';
     var files = '';
     console.log(url);
@@ -112,29 +115,79 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
             $("#header").append(columns);
             size = data.result['body'].length; 
             while(counter1 < size){
-                ind = data.result['body'][counter1].ind;
-                if(ind != 0){
+                ind1 = data.result['body'][counter1].ind1;
+                ind2 = data.result['body'][counter1].ind2;
+                if(ind2 == 0){
+                    data.result['body'][counter1].show5 = '';
+                    data.result['body'][counter1].datevenue5 = '';
+                }
+                if(ind1 == 1){
                     if(reason == 0 || reason == data.result['body'][counter1].notes){ 
                         files = files + 
-                        '<tr><td rowspan="2">' + 
-                        data.result['body'][counter1].citysta +                
-                        '</td><td>' + 
-                        data.result['body'][counter1].show1 +
-                        '</td><td>' + 
-                        data.result['body'][counter1].show2 +
-                        '</td><td rowspan="2"><b>' + 
-                        data.result['body'][counter1].color +
-                        data.result['body'][counter1].notes +
-                        '</font></b></td></tr>' + 
-                        '<tr><td>' + 
-                        data.result['body'][counter1].date1 +
-                        ' / ' +
-                        data.result['body'][counter1].venue1 +
-                        '</td><td>' + 
-                        data.result['body'][counter1].date2 +
-                        ' / ' +
-                        data.result['body'][counter1].venue2 +
-                        '</td></tr>';
+                        '<tr>' + 
+                            '<td rowspan="2">' + 
+                                data.result['body'][counter1].citysta + 
+                            '</td>' + 
+                            '<td>' + 
+                                '<b>' + 
+                                    '<font size="4">' + 
+                                        data.result['body'][counter1].show1 + 
+                                    '</font>' +
+                                '</b>' + 
+                            '</td>' + 
+                            '<td>' + 
+                                '<b>' + 
+                                    '<font size="4">' + 
+                                        data.result['body'][counter1].show2 + 
+                                    '</font>' +
+                                '</b>' + 
+                            '</td>' + 
+                            '<td>' + 
+                                '<b>' + 
+                                    '<font size="4">' + 
+                                        data.result['body'][counter1].show3 + 
+                                    '</font>' +
+                                '</b>' + 
+                            '</td>' + 
+                            '<td>' + 
+                                '<b>' + 
+                                    '<font size="4">' + 
+                                        data.result['body'][counter1].show4 + 
+                                    '</font>' +
+                                '</b>' + 
+                            '</td>' + 
+                            '<td>' + 
+                                '<b>' + 
+                                    '<font size="4">' + 
+                                        data.result['body'][counter1].show5 + 
+                                    '</font>' +
+                                '</b>' + 
+                            '</td>' + 
+                            '<td rowspan="2">' +
+                                '<b>' + 
+                                    data.result['body'][counter1].color + 
+                                    data.result['body'][counter1].notes + 
+                                    '</font>' + 
+                                '</b>' +
+                            '</td>' +
+                        '</tr>' + 
+                        '<tr>' +
+                            '<td>' + 
+                                data.result['body'][counter1].datevenue1 + 
+                            '</td>' +
+                            '<td>' + 
+                                data.result['body'][counter1].datevenue2 + 
+                            '</td>' +
+                            '<td>' + 
+                                data.result['body'][counter1].datevenue3 + 
+                            '</td>' +
+                            '<td>' + 
+                                data.result['body'][counter1].datevenue4 + 
+                            '</td>' +
+                            '<td>' + 
+                                data.result['body'][counter1].datevenue5 + 
+                            '</td>' +
+                        '</tr>';
                     }    
                 }    
                 counter1++;
@@ -271,8 +324,8 @@ $(function() {
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
 
-        //var fields = "1,2,3,4,5,6,7,8,9,10";
-        var fields = "";
+        var fields = "18,22,23,24,25,35,39,45,50,59,73";
+        //var fields = "";
 
         getAllRoutes(finicio,ffin,countryId,stateId,cityId,fields)
     });

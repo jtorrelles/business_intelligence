@@ -88,7 +88,7 @@ if ($conn->connect_error) {
 			</td>
 			<td>
 				<select name="conflict_reasons" class="reasons" id="reasonId">
-					<option value="0">Select Reason</option>
+					<option value="0">--Select--</option>
 					<option value="DOUBLE HOLD">DOUBLE HOLD</option>
 					<option value="BACK TO BACK BOOKING">BACK TO BACK BOOKING</option>
 					<option value="PROXIMITY BOOKING">PROXIMITY BOOKING</option>
