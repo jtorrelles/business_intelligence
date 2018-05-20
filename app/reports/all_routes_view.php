@@ -16,15 +16,24 @@ if ($conn->connect_error) {
 <body>
 
 <script src="../js/jquery.min.js"></script>
+<script src="../js/multiple/multiple-select.js"></script>
 <script src="../js/utility.js"></script>
 <script src="../js/reports_controller.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
-<script> getCountries(); </script>
+<link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
+<script> getCountries();  getShows();</script>
 
 <h1>All Routes Report:</h1>
 
 <form action="#" method="POST">
-	<p><table style="width:70%">
+	<table style="width:100%">
+		<col align="right">
+		<col align="right">
+		<col align="right">
+		<col align="right">
+		<col align="right">
+		<col align="right">
+		<col align="center">
 		<tr>
 			<th></th>
 			<th></th>
@@ -35,26 +44,26 @@ if ($conn->connect_error) {
 			<th>ACTIONS</th>
 		</tr>
 		<tr>
-			<td>
-				<b>Country:</b>
+			<td align="right">
+				<b>Contry:</b>
 			</td>
-			<td>
+			<td align="left">
 				<select name="country" class="countries" id="countryId">
 					<option value="">Select Country</option>
 				</select>
 			</td>
-			<td>
+			<td align="right">
 				<b>State:</b>
 			</td>
-			<td>
+			<td align="left">
 				<select name="state" class="states" id="stateId">
 					<option value="">Select State</option>
 				</select>
 			</td>
-			<td>
+			<td align="right">
 				<b>City:</b>
-			</td>
-			<td>
+			</td>			
+			<td align="left">
 				<select name="city" class="cities" id="cityId">
 					<option value="">Select City</option>
 				</select>
@@ -65,25 +74,51 @@ if ($conn->connect_error) {
 			</td>
 		</tr>
 		<tr>
-			<td>
+			<td align="right">
 				<b>Init Date <font color=red>*</font>:</b>
-			</td>
-			<td>
+			</td >
+			<td align="left">
 				<input type="date" class="dateini" name="dateini">
 			</td>
-			<td>
+			<td align="right">
 				<b>End Date <font color=red>*</font>:</b>
 			</td>
-			<td>
+			<td align="left">
 				<input type="date" class="dateend" name='dateend'>
 			</td>
 			<td>
 			</td>
 			<td>
 			</td>
+			<td>
+			</td>
 		</tr>
-	</table></p>
-	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
+		<tr>
+			<td align="right">
+				<b>Shows:</b>
+			</td>
+			<td align="left">
+				<select name="shows[]" multiple="multiple" id="shows">
+					<option value="0">Select Shows</option>
+				</select>
+			</td>
+			<td align="right">
+				<b>Weekending:</b>
+			</td>
+			<td>
+				<input type='checkbox' class="weekending" name="weekending">
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	<p>
+		<b><font color=red>*</font> Indicates a mandatory field</b>
+	</p>
 </form>	
 	<div style="display:none" class="loader" id="loader"></div>
 	<div style="display:none" class="export" id="export">

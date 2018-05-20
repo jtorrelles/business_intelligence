@@ -97,7 +97,145 @@ function getCities(id) {
     });
 }
 
+function getShows() {
+    var call = new ajaxCall();
+    var url = '../routes/contracts_route.php?type=getShows';
+    var method = "GET";
+    var data = {};
+    //$('#shows').multipleSelect({placeholder:"Please wait.."});
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+            $('#shows').find("option:eq(0)").remove();
+            $.each(data['result'], function(key, val) {
+                $opt = $("<option />", {
+                    value: key,
+                    text: val
+                });
+                $('#shows').append($opt).multipleSelect("refresh");
+            });
+
+            $("#shows").remove("option[value='0']");
+            //$("#shows").multipleSelect("checkAll");
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
+function getBasicShows() {
+    var call = new ajaxCall();
+    var url = '../routes/contracts_route.php?type=getShows';
+    var method = "GET";
+    var data = {};
+    $('.shows').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.shows').find("option:eq(0)").html("Select Shows");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                $opt = $("<option />", {
+                    value: key,
+                    text: val
+                });
+                $('.shows').append($opt);
+            });
+            $(".shows").prop("disabled",false);
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
+function getVenues() {
+    var call = new ajaxCall();
+    var url = '../routes/settlements_route.php?type=getVenues';
+    var method = "GET";
+    var data = {};
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+            $('#venues').find("option:eq(0)").remove();
+            $.each(data['result'], function(key, val) {
+                $opt = $("<option />", {
+                    value: key,
+                    text: val
+                });
+                $('#venues').append($opt).multipleSelect("refresh");
+            });
+
+            $("#venues").remove("option[value='0']");
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
+function getCategories() {
+    var call = new ajaxCall();
+    var url = '../routes/categories_route.php?type=getCategories';
+    var method = "GET";
+    var data = {};
+    $('.categories').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.categories').find("option:eq(0)").html("Select Category");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.categories').append(option);
+            });
+            $(".categories").prop("disabled",false);
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
+function getShowsByCategory(categoryId){
+    var call = new ajaxCall();
+    var url = '../routes/shows_route.php?type=getShowsByCategory&categoryId='+categoryId;
+    var method = "GET";
+    var data = {};
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+            var showsKeys = [];
+            $.each(data['result'], function(key, val) {
+                showsKeys.push(key); 
+            });
+            $("#shows").multipleSelect('uncheckAll');
+            $("#shows").multipleSelect("setSelects", showsKeys);
+            $(".categories").prop("disabled",false);
+        }
+        else{
+            alert(data.msg);
+        }
+    });
+}
+
 $(function() {
+
+    $('#shows').multipleSelect({
+        placeholder: "Select Shows",
+        filter:true,
+        checkAll:false,
+        width: '100%'
+    });
+
+    $('#fields').multipleSelect({
+        placeholder: "Select Fields",
+        filter:true,
+        checkAll:false,
+        width: '100%'
+    });
+
+    $('#venues').multipleSelect({
+        placeholder: "Select Venues",
+        filter:true,
+        checkAll:false,
+        width: '100%'
+    }); 
 
     $(".countries").on("change", function(ev) {
         var countryId = $(this).val();
@@ -117,6 +255,15 @@ $(function() {
         }
     });
 
+    $(".categories").on("change", function(ev) {
+        var categoryId = $(this).val();
+        if(categoryId != ''){
+            getShowsByCategory(categoryId);
+        }else{
+            $(".categories option:gt(0)").remove();
+        }
+    });    
+
     $("#btnCleanAllRoutes").click(function (ev) {
         getCountries();
 
@@ -127,7 +274,7 @@ $(function() {
 
         $("#loader").hide();
         $("#export").hide();
-
+        $('#shows').multipleSelect("uncheckAll");
     });
 
     $("#btnCleanConflictsRoutes").click(function (ev) {
@@ -142,7 +289,6 @@ $(function() {
 
         $("#loader").hide();
         $("#export").hide();
-
     });
 
     $("#btnCleanMarketHistory").click(function (ev) {
@@ -150,11 +296,16 @@ $(function() {
 
         $(".dateini").val("");
         $(".dateend").val("");
+        $(".venues").val("0");
+        $(".presenters").val("0");
+        $(".categories").val("0");
         $("#header").empty();
         $("#body").empty();
 
         $("#loader").hide();
         $("#export").hide();
+        $('#shows').multipleSelect("uncheckAll");
+        $('#fields').multipleSelect("uncheckAll");
 
     });
 

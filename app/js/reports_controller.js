@@ -26,8 +26,7 @@ function ajaxCall() {
     }
 };
 
-
-function getAllRoutes(inid,endd,country,state,city,fields) {    
+function getAllRoutes(inid,endd,country,state,city,fields,weekending) {    
     var call = new ajaxCall();
     var url = '../routes/reports_route.php?type=getAllRoutes&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields;
     var method = "GET";
@@ -104,7 +103,6 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
                   '<th>SHOW(2)</th>' + 
                   '<th>CONFLICTS REASON</th></tr>';
     var files = '';
-    console.log(url);
     call.send(data, url, method, function(data) {
         if(data.tp == 1){  
             htmlpdf = htmlpdf + columns; 
@@ -245,6 +243,9 @@ $(function() {
         var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
         var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
         var ftoday = new Date(globalDate);
+        var shows = $("#shows").multipleSelect("getSelects");
+        var weekending = 0;
+        if ($(".weekending").is(":checked")){weekending = 1;}
 
         if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
             alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
@@ -271,10 +272,7 @@ $(function() {
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
 
-        //var fields = "1,2,3,4,5,6,7,8,9,10";
-        var fields = "";
-
-        getAllRoutes(finicio,ffin,countryId,stateId,cityId,fields)
+        getAllRoutes(finicio,ffin,countryId,stateId,cityId,shows,weekending);
     });
 
     $("#btnFindConflictsRoutes").click(function (ev) {
@@ -333,6 +331,9 @@ $(function() {
         var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
         var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
         var ftoday = new Date(globalDate);
+        var shows = $("#shows").multipleSelect("getSelects");
+        var fields = $("#fields").multipleSelect("getSelects");
+        var venues = $("#venues").multipleSelect("getSelects");
 
         if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
             alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
@@ -358,15 +359,6 @@ $(function() {
 
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
-        
-        var fields = "'DROPCOUNT','PAIDATTENDANCE','COMPS','TOTALATTENDANCE','CAPACITY','GROSSSUBSCRIPTIONSALES','GROSSPHONESALES','GROSSINTERNETSALES','GROSSCREDITCARDSALES'";
-        //var fields = "";
-
-        var shows = "1,2,3";
-        //var shows = "";
-
-        var venues = "6,7,8";
-        //var venues = "";
 
         getMarketHistory(finicio,ffin,countryId,stateId,cityId,fields,shows,venues)
     });

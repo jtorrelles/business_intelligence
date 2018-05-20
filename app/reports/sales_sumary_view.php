@@ -21,9 +21,9 @@ if ($conn->connect_error) {
 <script src="../js/reports_controller.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
-<script> getCountries();</script>
+<script> getCountries(); getBasicShows(); </script>
 
-<h1>Routes Conflicts Report:</h1>
+<h1>Report Sales Sumary:</h1>
 
 <form action="#" method="POST">
 	<table style="width:100%">
@@ -33,15 +33,15 @@ if ($conn->connect_error) {
 		<col align="right">
 		<col align="right">
 		<col align="right">
-		<col align="center">	
+		<col align="center">
 		<tr>
 			<th></th>
 			<th></th>
 			<th></th>
 			<th></th>
 			<th></th>
-			<th></th>			
-			<th>ACTIONS</th>
+			<th></th>
+			<th>Actions</th>
 		</tr>
 		<tr>
 			<td align="right">
@@ -54,7 +54,7 @@ if ($conn->connect_error) {
 			</td>
 			<td align="right">
 				<b>State:</b>
-			</td>		
+			</td>
 			<td align="left">
 				<select name="state" class="states" id="stateId">
 					<option value="">Select State</option>
@@ -69,20 +69,20 @@ if ($conn->connect_error) {
 				</select>
 			</td>
 			<td align="center" rowspan="2">
-				<input type="button" class="button" id="btnFindConflictsRoutes" value="Find">
-				<input type="button" class="button" id="btnCleanConflictsRoutes" value="Clear">
+				<input type="button" class="button" id="btnFindSalesSumary" value="Find">
+				<input type="button" class="button" id="btnCleanSalesSumary" value="Clear">
 			</td>
 		</tr>
 		<tr>
 			<td align="right">
 				<b>Init Date <font color=red>*</font>:</b>
-			</td>		
+			</td >
 			<td align="left">
 				<input type="date" class="dateini" name="dateini">
 			</td>
 			<td align="right">
 				<b>End Date <font color=red>*</font>:</b>
-			</td>	
+			</td>
 			<td align="left">
 				<input type="date" class="dateend" name='dateend'>
 			</td>
@@ -95,15 +95,11 @@ if ($conn->connect_error) {
 		</tr>
 		<tr>
 			<td align="right">
-				<b>Conflict Criteria:</b>
+				<b>Shows:</b>
 			</td>
 			<td align="left">
-				<select name="conflict_reasons" class="reasons" id="reasonId">
-					<option value="0">Select Reason</option>
-					<option value="DOUBLE HOLD">DOUBLE HOLD</option>
-					<option value="BACK TO BACK BOOKING">BACK TO BACK BOOKING</option>
-					<option value="PROXIMITY BOOKING">PROXIMITY BOOKING</option>
-					<option value="OVERLAPPING MARKET HOLD">OVERLAPPING MARKET HOLD</option>
+				<select name="show"  class="shows" id="showId">
+					<option value="0">Select Shows</option>
 				</select>
 			</td>
 			<td>
@@ -115,26 +111,24 @@ if ($conn->connect_error) {
 			<td>
 			</td>
 			<td>
-			</td>			
-		</tr>		
+			</td>
+		</tr>
 	</table>
 	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
 </form>	
 	<div style="display:none" class="loader" id="loader"></div>
 	<div style="display:none" class="export" id="export">
 		<form method="POST">
-			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
-			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
+			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="all_routes_excel.php">
+			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="all_routes_pdf.php">
 			</p>
-			<table id="tablecss">
+			<table id="salessumarytable">
 				<thead id="header">
 				</thead>
 				<tbody id="body">
 				</tbody>
 			</table>
-			<input type='hidden' class="htmlpdf" name=htmlpdf>
-			<input type='hidden' class="htmlexc" name=htmlexc>
-			<input type='hidden' class="name" name=name value="Route_conflicts">
+			<input type='hidden' class="codhtml" name=codhtml>
 		</form>
 	</div>
 </body>

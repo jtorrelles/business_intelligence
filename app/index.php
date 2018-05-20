@@ -21,7 +21,7 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
         <div><a href=\"../app/reports/all_routes_view.php\">ALL ROUTES</a></div>
         <div><a href=\"../app/reports/route_conflicts_view.php\">ROUTES CONFLICTS</a></div>
         <div><a href=\"../app/reports/market_history_view.php\">MARKET HISTORY</a></div>
-        <div>SALES SUMMARY</div>
+        <div><a href=\"../app/reports/sales_sumary_view.php\">SALES SUMMARY</a></div>
 		<div>ANOTHER REPORTS</div>
     </div>
 

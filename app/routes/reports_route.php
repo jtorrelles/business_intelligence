@@ -29,6 +29,7 @@ try {
     $country = $_GET['country'];
     $state = $_GET['state'];
     $city = $_GET['city'];
+    $shows = $_GET['shows'];
     $fields = $_GET['fields'];
   	$data = $loc->getAllRoutes($inid,$endd,$country,$state,$city,$fields);
   } 
