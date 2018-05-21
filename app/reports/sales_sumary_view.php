@@ -23,7 +23,7 @@ if ($conn->connect_error) {
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
 <script> getCountries(); getBasicShows(); </script>
 
-<h1>Report Sales Sumary:</h1>
+<h1>Sales Sumary Report:</h1>
 
 <form action="#" method="POST">
 	<table style="width:100%">
@@ -45,7 +45,7 @@ if ($conn->connect_error) {
 		</tr>
 		<tr>
 			<td align="right">
-				<b>Contry:</b>
+				<b>Country:</b>
 			</td>
 			<td align="left">
 				<select name="country" class="countries" id="countryId">

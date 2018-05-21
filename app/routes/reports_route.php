@@ -57,6 +57,17 @@ try {
     $data = $loc->getMarketHistory($inid,$endd,$country,$state,$city,$fields,$shows,$venues);
   } 
 
+  if($type=='getSalesSummary') {
+    $inid = $_GET['inid'];
+    $endd = $_GET['endd'];
+    $country = $_GET['country'];
+    $state = $_GET['state'];
+    $city = $_GET['city'];
+    $fields = $_GET['fields'];
+    $shows = $_GET['shows'];
+    $data = $loc->getSalesSummary($inid,$endd,$country,$state,$city,$fields,$shows);
+  } 
+
 } catch (Exception $e) {
    $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
 } finally {
