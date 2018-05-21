@@ -31,7 +31,8 @@ try {
     $city = $_GET['city'];
     $shows = $_GET['shows'];
     $fields = $_GET['fields'];
-  	$data = $loc->getAllRoutes($inid,$endd,$country,$state,$city,$fields);
+    $weekending = $_GET['weekending'];
+  	$data = $loc->getAllRoutes($inid,$endd,$country,$state,$city,$fields,$weekending);
   } 
 
   if($type=='getRoutesConf') {

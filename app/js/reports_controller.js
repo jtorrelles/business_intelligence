@@ -28,7 +28,7 @@ function ajaxCall() {
 
 function getAllRoutes(inid,endd,country,state,city,fields,weekending) {    
     var call = new ajaxCall();
-    var url = '../routes/reports_route.php?type=getAllRoutes&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields;
+    var url = '../routes/reports_route.php?type=getAllRoutes&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&weekending=' + weekending;
     var method = "GET";
     var data = {};   
     var counter1 = 0;
@@ -57,18 +57,21 @@ function getAllRoutes(inid,endd,country,state,city,fields,weekending) {
             htmlexc = htmlexc + hcolumns;
             $("#header").append(hcolumns);
             counter1 = 0;
-            while(ini < end){  
-                dt = ("0" + (new Date(ini).getMonth() + 1)).slice(-2) + '/' + ("0" + new Date(ini).getDate()).slice(-2) + '/' + new Date(ini).getFullYear();
-                hfiles = hfiles + '<td>' + dt + '</td>';
-                while(counter2 < size){
-                    files = '<td>' + data.result['body'][counter2][counter1].citystate + '</td>';
-                    hfiles = hfiles + files;                                         
-                    counter2++;
+            while(ini <= end){  
+                sunday = new Date(ini).getUTCDay();
+                if(weekending == 0 || sunday == 0){
+                    dt = ("0" + (new Date(ini).getMonth() + 1)).slice(-2) + '/' + ("0" + new Date(ini).getDate()).slice(-2) + '/' + new Date(ini).getFullYear();
+                    hfiles = hfiles + '<td>' + dt + '</td>';
+                    while(counter2 < size){
+                        files = '<td>' + data.result['body'][counter2][counter1].citystate + '</td>';
+                        hfiles = hfiles + files;                                         
+                        counter2++;
+                    }                    
+                    hfiles = hfiles + '</tr><tr>';                    
+                    counter2 = 0;
                 }
-                ini = ini + 86400000;
-                hfiles = hfiles + '</tr><tr>';
-                counter1++;
-                counter2 = 0;
+                ini = ini + 86400000;                 
+                counter1++;               
             }
             hfiles = hfiles + '</tr>';
             htmlpdf = htmlpdf + hfiles + '</table>';
@@ -116,6 +119,10 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
                 ind1 = data.result['body'][counter1].ind1;
                 ind2 = data.result['body'][counter1].ind2;
                 if(ind2 == 0){
+                    data.result['body'][counter1].show3 = '';
+                    data.result['body'][counter1].datevenue3 = '';
+                    data.result['body'][counter1].show4 = '';
+                    data.result['body'][counter1].datevenue4 = '';
                     data.result['body'][counter1].show5 = '';
                     data.result['body'][counter1].datevenue5 = '';
                 }

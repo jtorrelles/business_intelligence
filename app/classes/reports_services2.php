@@ -8,13 +8,19 @@ class reportsServices extends dbconfig {
     parent::__construct();
   }
 
-  public static function getAllRoutes($inid,$endd,$country,$state,$city,$fields){
+  public static function getAllRoutes($inid,$endd,$country,$state,$city,$fields,$weekending){
     try {
 
       if($fields==""){
         $shows = "";
       }else{
         $shows = "AND showid in ($fields)";
+      }
+
+      if($weekending==0){
+        $sunday = "";
+      }else{
+        $sunday = "AND DAYOFWEEK(presentation_date) = 1";
       }
 
       $query = "SELECT showid, 
@@ -39,14 +45,14 @@ class reportsServices extends dbconfig {
 
         $UTC = new DateTimeZone("UTC"); 
         $ini = new DateTime($inid, $UTC); 
-        $end = new DateTime($endd, $UTC); 
+        $end = new DateTime($endd, $UTC);
         $y = 0;
 
         while($end >= $ini) { 
           $showid = $resultSet['showid'];
           $date = $ini->format('Ymd');
 
-          $query2 = "SELECT (SELECT CONCAT(ci.name,' , ',sta.shortname)
+          $query2 = "SELECT (SELECT CONCAT(ci.name,',',sta.shortname)
                                FROM cities ci, 
                                     states sta
                                WHERE ci.id = det.cityid
@@ -58,7 +64,8 @@ class reportsServices extends dbconfig {
                       WHERE sh.showid = ro.showid 
                         AND ro.routesid = det.routesid 
                         AND sh.showid = $showid 
-                        AND det.presentation_date = '$date'";    
+                        AND det.presentation_date = '$date' 
+                        $sunday"; 
 
           $result2 = dbconfig::run($query2);
 
@@ -147,7 +154,7 @@ class reportsServices extends dbconfig {
                           max(presentation_date) as datemax,
                           DATE_FORMAT(min(presentation_date), '%m/%d/%Y') as fdatemin,
                           DATE_FORMAT(max(presentation_date), '%m/%d/%Y') as fdatemax,
-                          CONCAT(ci.name,' , ',sta.shortname) as citysta,
+                          CONCAT(ci.name,',',sta.shortname) as citysta,
                           (SELECT venuename 
                              FROM venues ve
                             WHERE ve.venueid = det.venueid) as venue
@@ -201,10 +208,10 @@ class reportsServices extends dbconfig {
               $data[$x]["show4"] = '';
               $data[$x]["show5"] = '';              
               $data[$x]["datevenue1"] = $fdatemin1 . ' - ' . 
-                                        $fdatemax1 . ' / ' . 
+                                        $fdatemax1 . '<br>' . 
                                         $venue1;
               $data[$x]["datevenue2"] = $resultSet2['fdatemin'] . ' - ' . 
-                                        $resultSet2['fdatemax'] . ' / ' .
+                                        $resultSet2['fdatemax'] . '<br>' .
                                         $resultSet2['venue'];
               $data[$x]["datevenue3"] = '';
               $data[$x]["datevenue4"] = '';
@@ -226,19 +233,21 @@ class reportsServices extends dbconfig {
                     $back = 1;
                     $data[$x]["color"] = '<font color ="#F39C12">';
                   }else{
+                    $data[$x]["notes"] = 'BACK TO BACK TO BACK';
+                    $data[$x-1]["notes"] = 'BACK TO BACK TO BACK';
                     $data[$x]["color"] = '<font color ="#C0392B">';
                     $data[$x-1]["color"] = '<font color ="#C0392B">';
                     $data[$x-1]["show3"] = $resultSet2['showname'];
                     $data[$x-2]["show4"] = $resultSet2['showname'];
                     $data[$x-3]["show5"] = $resultSet2['showname'];
                     $data[$x-1]["datevenue3"] = $resultSet2['fdatemin'] . ' - ' . 
-                                              $resultSet2['fdatemax'] . ' / ' .
+                                              $resultSet2['fdatemax'] . '<br>' .
                                               $resultSet2['venue'];
                     $data[$x-2]["datevenue4"] = $resultSet2['fdatemin'] . ' - ' . 
-                                              $resultSet2['fdatemax'] . ' / ' .
+                                              $resultSet2['fdatemax'] . '<br>' .
                                               $resultSet2['venue'];
                     $data[$x-3]["datevenue5"] = $resultSet2['fdatemin'] . ' - ' . 
-                                              $resultSet2['fdatemax'] . ' / ' .
+                                              $resultSet2['fdatemax'] . '<br>' .
                                               $resultSet2['venue'];                  
                     $data[$x]["ind1"] = 0;     
                   }

@@ -101,9 +101,10 @@ if ($conn->connect_error) {
 				<select name="conflict_reasons" class="reasons" id="reasonId">
 					<option value="0">--Select--</option>
 					<option value="DOUBLE HOLD">DOUBLE HOLD</option>
-					<option value="BACK TO BACK BOOKING">BACK TO BACK BOOKING</option>
-					<option value="PROXIMITY BOOKING">PROXIMITY BOOKING</option>
 					<option value="OVERLAPPING MARKET HOLD">OVERLAPPING MARKET HOLD</option>
+					<option value="PROXIMITY BOOKING">PROXIMITY BOOKING</option>
+					<option value="BACK TO BACK BOOKING">BACK TO BACK BOOKING</option>
+					<option value="BACK TO BACK TO BACK">BACK TO BACK TO BACK</option>					
 				</select>
 			</td>
 			<td>
@@ -126,7 +127,7 @@ if ($conn->connect_error) {
 			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
 			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
 			</p>
-			<table id="tablecss">
+			<table id="allroutestable">
 				<thead id="header">
 				</thead>
 				<tbody id="body">
