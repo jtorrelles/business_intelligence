@@ -52,7 +52,7 @@ class reportsServices extends dbconfig {
           $showid = $resultSet['showid'];
           $date = $ini->format('Ymd');
 
-          $query2 = "SELECT (SELECT CONCAT(ci.name,',',sta.shortname)
+          $query2 = "SELECT (SELECT CONCAT(ci.name,', ',sta.shortname)
                                FROM cities ci, 
                                     states sta
                                WHERE ci.id = det.cityid
@@ -154,7 +154,7 @@ class reportsServices extends dbconfig {
                           max(presentation_date) as datemax,
                           DATE_FORMAT(min(presentation_date), '%m/%d/%Y') as fdatemin,
                           DATE_FORMAT(max(presentation_date), '%m/%d/%Y') as fdatemax,
-                          CONCAT(ci.name,',',sta.shortname) as citysta,
+                          CONCAT(ci.name,', ',sta.shortname) as citysta,
                           (SELECT venuename 
                              FROM venues ve
                             WHERE ve.venueid = det.venueid) as venue
