@@ -250,7 +250,11 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
                                   '<td>' + data.result['body'][counter1].venuename + '</td>';
                 while(counter2 < size){ 
                     col = data.result['head'][counter2].column;
-                    files = '<td>' + eval("data.result['body'][counter1]." + col) + '</td>';
+                    if(col=='NOTES'){
+                        files = '<td>' + eval("data.result['body'][counter1]." + col) + '</td>';
+                    }else{
+                        files = '<td>' + number_format(eval("data.result['body'][counter1]." + col),2) + '</td>';
+                    }
                     hfiles = hfiles + files;                                         
                     counter2++;
                 }
@@ -274,50 +278,108 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     var url = '../routes/reports_route.php?type=getSalesSummary&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&shows=' + shows;
     var method = "GET";
     var data = {};
-    var counter1 = 0;
-    var counter2 = 0;
-    var columns = '';
-    var hcolumns = '<tr><th>SHOW NAME</th>' +
-                   '<th>OPENINGDATE</th>' + 
-                   '<th>CLOSINGDATE</th>' +
-                   '<th>COUNTRY</th>' +
-                   '<th>STATE</th>' +
-                   '<th>CITY</th>' +                    
-                   '<th>VENUE NAME</th>'; 
-    var files = '';
-    var hfiles = '<tr>';
+    var counter = 0;
+    var columns = '<tr><th>SHOW NAME</th>' +
+                  '<th>OPENINGDATE</th>' + 
+                  '<th>CLOSINGDATE</th>' +
+                  '<th>COUNTRY</th>' +
+                  '<th>STATE</th>' +
+                  '<th>CITY</th>' +
+                  '<th>GROSS POTENTIAL</th>' +
+                  '<th>SUBSCRIPTION SALES</th>' +
+                  '<th>GROUPS SALES</th>' +
+                  '<th>SINGLE TICKET SALES</th>'; 
+    var files = '<tr>';
+
+    if(fields.indexOf("1")>=0){
+       columns = columns + '<th>SUBS VS. GROSS %</th>';
+    }
+    if(fields.indexOf("2")>=0){
+       columns = columns + '<th>SUBS VS. GROSS POTENTIAL %</th>';
+    }
+    if(fields.indexOf("3")>=0){
+       columns = columns + '<th>GROUPS VS. GROSS %</th>';
+    }
+    if(fields.indexOf("4")>=0){
+       columns = columns + '<th>GROUPS VS. GROSS POTENTIAL %</th>';
+    }
+    if(fields.indexOf("5")>=0){
+       columns = columns + '<th>SINGLE VS. GROSS %</th>';
+    }
+    if(fields.indexOf("6")>=0){
+       columns = columns + '<th>SINGLE VS. GROSS POTENTIAL %</th>';
+    }
+    columns = columns + '</tr>';
+
     call.send(data, url, method, function(data) {
-        if(data.tp == 1){
-            size = data.result['head'].length; 
-            while(counter1 < size){
-                columns = '<th>' + data.result['head'][counter1].column + '</th>';
-                hcolumns = hcolumns + columns;
-                counter1++;
-            }
-            hcolumns = hcolumns + '</tr>';
-            $("#header").append(hcolumns);
-            size2 = data.result['body'].length; 
-            counter1 = 0;
-            while(counter1 < size2){  
-                hfiles = hfiles + '<td>' + data.result['body'][counter1].showname + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].openingdate + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].closingdate + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].country + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].state + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].city + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].venuename + '</td>';
-                while(counter2 < size){ 
-                    col = data.result['head'][counter2].column;
-                    files = '<td>' + eval("data.result['body'][counter1]." + col) + '</td>';
-                    hfiles = hfiles + files;                                         
-                    counter2++;
+        if(data.tp == 1){            
+            $("#header").append(columns);
+            size = data.result['body'].length;
+            while(counter < size){
+                gp = data.result['body'][counter].gp;
+                ss = data.result['body'][counter].ss;
+                gs = data.result['body'][counter].gs;
+                st = data.result['body'][counter].st;
+
+                files = files + '<td>' + data.result['body'][counter].showname + '</td>' + 
+                                '<td>' + data.result['body'][counter].openingdate + '</td>' + 
+                                '<td>' + data.result['body'][counter].closingdate + '</td>' + 
+                                '<td>' + data.result['body'][counter].country + '</td>' + 
+                                '<td>' + data.result['body'][counter].state + '</td>' + 
+                                '<td>' + data.result['body'][counter].city + '</td>' + 
+                                '<td>' + gp + '</td>' + 
+                                '<td>' + ss + '</td>' + 
+                                '<td>' + gs + '</td>' + 
+                                '<td>' + st + '</td>';
+
+                if(fields.indexOf("1")>=0){                    
+                    if((ss+gs+st)>0){
+                        files = files + '<td>' + number_format(ss/(ss+gs+st),2) + '%</td>';
+                    }else{
+                        files = files + '<td>' + number_format(0,2) + '%</td>';
+                    }    
                 }
-                hfiles = hfiles + '</tr><tr>';
-                counter1++;
-                counter2 = 0;
+                if(fields.indexOf("2")>=0){
+                    if(gp>0){
+                        files = files + '<td>' + number_format(ss/gp,2) + '%</td>';
+                    }else{
+                        files = files + '<td>' + number_format(0,2) + '%</td>';
+                    }    
+                }
+                if(fields.indexOf("3")>=0){
+                    if((ss+gs+st)>0){
+                        files = files + '<td>' + number_format(gs/(ss+gs+st),2) + '%</td>';
+                    }else{
+                        files = files + '<td>' + number_format(0,2) + '%</td>';
+                    }    
+                }
+                if(fields.indexOf("4")>=0){
+                    if(gp>0){
+                        files = files + '<td>' + number_format(gs/gp,2) + '%</td>';
+                    }else{
+                        files = files + '<td>' + number_format(0,2) + '%</td>';
+                    }    
+                }
+                if(fields.indexOf("5")>=0){
+                    if((ss+gs+st)>0){
+                        files = files + '<td>' + number_format(st/(ss+gs+st),2) + '%</td>';
+                    }else{
+                        files = files + '<td>' + number_format(0,2) + '%</td>';
+                    }    
+                }
+                if(fields.indexOf("6")>=0){
+                    if(gp>0){
+                        files = files + '<td>' + number_format(st/gp,2) + '%</td>';
+                    }else{
+                        files = files + '<td>' + number_format(0,2) + '%</td>';
+                    }    
+                }
+
+                counter++;
+                files = files + '</tr><tr>';
             }
-            hfiles = hfiles + '</tr>';
-            $("#body").append(hfiles);
+            files = files + '</tr>';
+            $("#body").append(files);
             $("#loader").hide();
             $("#export").show();
         }else{
@@ -389,9 +451,6 @@ $(function() {
 
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
-
-        //var fields = "18,22,23,24,25,35,39,45,50,59,73";
-        //var fields = "";
 
         getAllRoutes(finicio,ffin,countryId,stateId,cityId,shows,weekending);
     });
@@ -527,7 +586,10 @@ $(function() {
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
 
-        //TODO: Hacer la función para ejecutar el reporte
-    });
+        var shows = "1,2,3,4,5,6";
+        var fields = "1,2,3,4,5,6";
+
+        getSalesSummary(finicio,ffin,countryId,stateId,cityId,fields,shows)
+    });    
 
 });

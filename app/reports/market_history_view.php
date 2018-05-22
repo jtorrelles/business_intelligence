@@ -147,7 +147,7 @@ if ($conn->connect_error) {
 			</td>
 			<td align="left">
 				<select name="fields[]" multiple="multiple" id="fields">
-					<option value="'DROPCOUNT'"> DROP COUNT </option>
+					<option value="FORMAT(DROPCOUNT,2)"> DROP COUNT </option>
 					<option value="'PAIDATTENDANCE'"> PAID ATTENDANCE </option>
 					<option value="'COMPS'"> COMPS </option>
 					<option value="'TOTALATTENDANCE'"> TOTAL ATTENDANCE </option>

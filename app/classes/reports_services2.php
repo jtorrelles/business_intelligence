@@ -391,7 +391,7 @@ class reportsServices extends dbconfig {
       $res['head'] = $data; 
       $res['body'] = $data2; 
 
-      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);      
+      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Settlements fetched successfully.", 'result'=>$res);      
 
     }catch (Exception $e) {
       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -410,15 +410,7 @@ class reportsServices extends dbconfig {
       $endd = $end->format('Ymd'); 
 
       $data = array();
-      $data2 = array();
       $x = 0;
-
-      if($fields==""){
-        $columns = "";
-        $fields = "se.*";
-      }else{
-        $columns = "AND COLUMN_NAME in ($fields)";
-      }
 
       if($shows==""){
         $shows = "";
@@ -426,18 +418,32 @@ class reportsServices extends dbconfig {
         $shows = "AND se.showid in ($shows) ";
       }
 
-      if($venues==""){
-        $venues = "";
-      }else{
-        $venues = "AND se.venueid in ($venues) ";
-      }
-
-      $query = "SELECT column_name
-                FROM information_schema.COLUMNS
-                WHERE TABLE_SCHEMA  LIKE 'networksbi'
-                    AND TABLE_NAME = 'settlements' 
-                    AND COLUMN_NAME NOT IN ('ID','SHOWID','CITYID','VENUEID','OPENINGDATE','CLOSINGDATE')
-                    $columns";
+      $query = "SELECT showname,
+                       co.name as country,
+                       sta.name as state,
+                       ci.name as city,  
+                       IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as openingdate,
+                       IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as closingdate,
+                       grossboxofficepotential as gp,
+                       grosssubscriptionsales as ss,
+                       grossgroupsales1 as gs,
+                       singletixamount as st
+                  FROM settlements se, 
+                        shows sh,
+                        cities ci,
+                        states sta,
+                        countries co
+                 WHERE se.showid = sh.showid
+                   AND se.cityid = ci.id
+                   AND ci.state_id = sta.id
+                   AND sta.country_id = co.id
+                   AND sta.country_id like ('$country')
+                   AND sta.id like ('$state')
+                   AND ci.id like ('$city')
+                   AND openingdate >= $inid
+                   AND openingdate <= $endd
+                   $shows
+                 ORDER BY openingdate desc";
 
       $result = dbconfig::run($query);
       if(!$result) {
@@ -445,71 +451,26 @@ class reportsServices extends dbconfig {
       }
 
       while($resultSet = mysqli_fetch_assoc($result)) {
-        $data[$x]["column"] = $resultSet['column_name'];
+        $data[$x]["showname"] = $resultSet['showname'];
+        $data[$x]["openingdate"] = $resultSet['openingdate'];
+        $data[$x]["closingdate"] = $resultSet['closingdate'];
+        $data[$x]["country"] = $resultSet['country'];
+        $data[$x]["state"] = $resultSet['state'];
+        $data[$x]["city"] = $resultSet['city'];
+        $data[$x]["gp"] = $resultSet['gp'];
+        $data[$x]["ss"] = $resultSet['ss'];
+        $data[$x]["gs"] = $resultSet['gs'];
+        $data[$x]["st"] = $resultSet['st'];
         $x++;       
-      }
-
-      $fields = str_replace("'","",$fields);
-
-      $query2 = "SELECT showname,
-                        co.name as country,
-                        sta.name as state,
-                        ci.name as city,  
-                        IFNULL(DATE_FORMAT(openingdate, '%M %d %Y'), '') as openingdate,
-                        IFNULL(DATE_FORMAT(closingdate, '%M %d %Y'), '') as closingdate,
-                        venuename,
-                        $fields 
-                   FROM settlements se, 
-                        shows sh,
-                        cities ci,
-                        states sta,
-                        countries co,
-                        venues ve
-                  WHERE se.showid = sh.showid
-                    AND se.cityid = ci.id
-                    AND ci.state_id = sta.id
-                    AND sta.country_id = co.id
-                    AND se.venueid = ve.venueid
-                    AND sta.country_id like ('$country')
-                    AND sta.id like ('$state')
-                    AND ci.id like ('$city')
-                    AND openingdate >= $inid
-                    AND openingdate <= $endd
-                    $shows $venues
-                  ORDER BY openingdate desc";
-
-      $result2 = dbconfig::run($query2);
-      if(!$result2) {
-        throw new exception("Settlements not found.");
-      }
-
-      $y = 0;
-      
-      while($resultSet2 = mysqli_fetch_assoc($result2)) {
-        $data2[$y]['showname'] = $resultSet2['showname'];
-        $data2[$y]['openingdate'] = $resultSet2['openingdate'];
-        $data2[$y]['closingdate'] = $resultSet2['closingdate'];
-        $data2[$y]['country'] = $resultSet2['country'];
-        $data2[$y]['state'] = $resultSet2['state'];
-        $data2[$y]['city'] = $resultSet2['city'];        
-        $data2[$y]['venuename'] = $resultSet2['venuename'];
-        $z = 0;
-        while($z < $x) {
-          $col = $data[$z]["column"];
-          $data2[$y][$col] = $resultSet2[$col];
-          $z++;       
-        }        
-        $y++;
-      }
+      }      
 
       dbconfig::close();
       
       $res = array();      
 
-      $res['head'] = $data; 
-      $res['body'] = $data2; 
+      $res['body'] = $data; 
 
-      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);      
+      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Settlements fetched successfully.", 'result'=>$res);      
 
     }catch (Exception $e) {
       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());

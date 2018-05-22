@@ -122,7 +122,7 @@ if ($conn->connect_error) {
 			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="all_routes_excel.php">
 			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="all_routes_pdf.php">
 			</p>
-			<table id="salessumarytable">
+			<table id="allroutestable">
 				<thead id="header">
 				</thead>
 				<tbody id="body">
