@@ -23,17 +23,10 @@ if ($conn->connect_error) {
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
 <script> getCountries(); getBasicShows(); </script>
 
-<h1>Sales Sumary Report:</h1>
+<h1>Sales Summary Report:</h1>
 
 <form action="#" method="POST">
 	<table style="width:100%">
-		<col align="right">
-		<col align="right">
-		<col align="right">
-		<col align="right">
-		<col align="right">
-		<col align="right">
-		<col align="center">
 		<tr>
 			<th></th>
 			<th></th>
@@ -44,26 +37,26 @@ if ($conn->connect_error) {
 			<th>Actions</th>
 		</tr>
 		<tr>
-			<td align="right">
+			<td>
 				<b>Country:</b>
 			</td>
-			<td align="left">
+			<td>
 				<select name="country" class="countries" id="countryId">
 					<option value="">Select Country</option>
 				</select>
 			</td>
-			<td align="right">
+			<td>
 				<b>State:</b>
 			</td>
-			<td align="left">
+			<td>
 				<select name="state" class="states" id="stateId">
 					<option value="">Select State</option>
 				</select>
 			</td>
-			<td align="right">
+			<td>
 				<b>City:</b>
 			</td>			
-			<td align="left">
+			<td>
 				<select name="city" class="cities" id="cityId">
 					<option value="">Select City</option>
 				</select>
@@ -74,16 +67,16 @@ if ($conn->connect_error) {
 			</td>
 		</tr>
 		<tr>
-			<td align="right">
+			<td>
 				<b>Init Date <font color=red>*</font>:</b>
 			</td >
-			<td align="left">
+			<td>
 				<input type="date" class="dateini" name="dateini">
 			</td>
-			<td align="right">
+			<td>
 				<b>End Date <font color=red>*</font>:</b>
 			</td>
-			<td align="left">
+			<td>
 				<input type="date" class="dateend" name='dateend'>
 			</td>
 			<td>
@@ -94,10 +87,10 @@ if ($conn->connect_error) {
 			</td>
 		</tr>
 		<tr>
-			<td align="right">
+			<td>
 				<b>Shows:</b>
 			</td>
-			<td align="left">
+			<td>
 				<select name="show"  class="shows" id="showId">
 					<option value="0">Select Shows</option>
 				</select>
