@@ -33,7 +33,7 @@ function getAllRoutes(inid,endd,country,state,city,fields,weekending) {
     var data = {};   
     var counter1 = 0;
     var counter2 = 0;    
-    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="tablecss">'
+    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
     var columns = '';
     var hcolumns = '<tr><th>DATE / SHOW NAME</th>'; 
@@ -99,7 +99,8 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     var method = "GET";
     var data = {};   
     var counter1 = 0;
-    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="tablecss">'
+    var counter2 = 0;
+    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css">'
     var htmlexc = '<table>'
     var columns = '<tr><th>CITY / STATE</th>' + 
                   '<th>SHOW(1)</th>' +
@@ -109,9 +110,9 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
                   '<th>SHOW(5)</th>' + 
                   '<th>CONFLICTS REASON</th></tr>';
     var files = '';
+    var files2 = '';
     call.send(data, url, method, function(data) {
         if(data.tp == 1){  
-            htmlpdf = htmlpdf + columns; 
             htmlexc = htmlexc + columns;         
             $("#header").append(columns);
             size = data.result['body'].length; 
@@ -128,8 +129,7 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
                 }
                 if(ind1 == 1){
                     if(reason == 0 || reason == data.result['body'][counter1].notes){ 
-                        files = files + 
-                        '<tr>' + 
+                        files = '<tr>' + 
                             '<td rowspan="2">' + 
                                 data.result['body'][counter1].citysta + 
                             '</td>' + 
@@ -193,15 +193,28 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
                                 data.result['body'][counter1].datevenue5 + 
                             '</td>' +
                         '</tr>';
+
+                        files2 = files2 + files
+
+                        if (counter2 % 7 == 0){
+                            if (counter2 == 0){
+                                htmlpdf = htmlpdf + '<table id="allroutestable">' + columns + files;
+                            }else{
+                                htmlpdf = htmlpdf + '</table><br><table style="page-break-after:always;"></br></table><br><table id="allroutestable">' + columns + files;
+                            }
+                        }else{                           
+                            htmlpdf = htmlpdf + files;
+                        }  
+                        counter2++; 
                     }    
                 }    
                 counter1++;
             }
-            htmlpdf = htmlpdf + files + '</table>';
+            htmlpdf = htmlpdf + '</table>';
             htmlexc = htmlexc + files + '</table>';
             $('.htmlpdf').val(htmlpdf);
             $('.htmlexc').val(htmlexc);
-            $("#body").append(files);
+            $("#body").append(files2);
             $("#loader").hide();
             $("#export").show();
         }else{
@@ -218,6 +231,8 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
     var data = {};
     var counter1 = 0;
     var counter2 = 0;
+    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
+    var htmlexc = '<table>'
     var columns = '';
     var hcolumns = '<tr><th>SHOW NAME</th>' +
                    '<th>OPENINGDATE</th>' + 
@@ -237,6 +252,8 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
                 counter1++;
             }
             hcolumns = hcolumns + '</tr>';
+            htmlpdf = htmlpdf + hcolumns; 
+            htmlexc = htmlexc + hcolumns;    
             $("#header").append(hcolumns);
             size2 = data.result['body'].length; 
             counter1 = 0;
@@ -260,9 +277,13 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
                 }
                 hfiles = hfiles + '</tr><tr>';
                 counter1++;
-                counter2 = 0;
+                counter2 = 0;                
             }
             hfiles = hfiles + '</tr>';
+            htmlpdf = htmlpdf + hfiles + '</table>';
+            htmlexc = htmlexc + hfiles + '</table>';
+            $('.htmlpdf').val(htmlpdf);
+            $('.htmlexc').val(htmlexc);
             $("#body").append(hfiles);
             $("#loader").hide();
             $("#export").show();
@@ -279,6 +300,8 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     var method = "GET";
     var data = {};
     var counter = 0;
+    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
+    var htmlexc = '<table>'
     var columns = '<tr><th>SHOW NAME</th>' +
                   '<th>OPENINGDATE</th>' + 
                   '<th>CLOSINGDATE</th>' +
@@ -312,7 +335,9 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     columns = columns + '</tr>';
 
     call.send(data, url, method, function(data) {
-        if(data.tp == 1){            
+        if(data.tp == 1){    
+            htmlpdf = htmlpdf + columns; 
+            htmlexc = htmlexc + columns;         
             $("#header").append(columns);
             size = data.result['body'].length;
             while(counter < size){
@@ -379,6 +404,10 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
                 files = files + '</tr><tr>';
             }
             files = files + '</tr>';
+            htmlpdf = htmlpdf + files + '</table>';
+            htmlexc = htmlexc + files + '</table>';
+            $('.htmlpdf').val(htmlpdf);
+            $('.htmlexc').val(htmlexc);
             $("#body").append(files);
             $("#loader").hide();
             $("#export").show();

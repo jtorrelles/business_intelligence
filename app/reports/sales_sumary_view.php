@@ -119,8 +119,8 @@ if ($conn->connect_error) {
 	<div style="display:none" class="loader" id="loader"></div>
 	<div style="display:none" class="export" id="export">
 		<form method="POST">
-			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="all_routes_excel.php">
-			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="all_routes_pdf.php">
+			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
+			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
 			</p>
 			<table id="allroutestable">
 				<thead id="header">
@@ -128,7 +128,9 @@ if ($conn->connect_error) {
 				<tbody id="body">
 				</tbody>
 			</table>
-			<input type='hidden' class="codhtml" name=codhtml>
+			<input type='hidden' class="htmlpdf" name=htmlpdf>
+			<input type='hidden' class="htmlexc" name=htmlexc>
+			<input type='hidden' class="name" name=name value="Sales_summary">
 		</form>
 	</div>
 </body>
