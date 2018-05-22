@@ -36,7 +36,7 @@ function getAllRoutes(inid,endd,country,state,city,fields,weekending) {
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
     var columns = '';
-    var hcolumns = '<tr><th>DATE / SHOW NAME</th>'; 
+    var hcolumns = '<tr><th>DATE</th>'; 
     var files = '';
     var hfiles = '<tr>';
     var showid = '';
