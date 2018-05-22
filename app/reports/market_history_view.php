@@ -27,13 +27,6 @@ if ($conn->connect_error) {
 
 <form action="#" method="POST">
 	<table style="width:100%">
-		<col align="center">
-		<col align="center">
-		<col align="center">
-		<col align="center">
-		<col align="center">
-		<col align="center">
-		<col align="center">
 		<tr>
 			<th></th>
 			<th></th>
@@ -41,29 +34,29 @@ if ($conn->connect_error) {
 			<th></th>
 			<th></th>
 			<th></th>
-			<th>Actions</th>
+			<th>ACTIONS</th>
 		</tr>
 		<tr>
-			<td align="right">
-				<b>Contry:</b>
+			<td>
+				<b>Country:</b>
 			</td>
-			<td align="left">
+			<td>
 				<select name="country" class="countries" id="countryId">
 					<option value="">Select Country</option>
 				</select>
 			</td>
-			<td align="right">
+			<td>
 				<b>State:</b>
 			</td>
-			<td align="left">
+			<td>
 				<select name="state" class="states" id="stateId">
 					<option value="">Select State</option>
 				</select>
 			</td>
-			<td align="right">
+			<td>
 				<b>City:</b>
 			</td>			
-			<td align="left">
+			<td>
 				<select name="city" class="cities" id="cityId">
 					<option value="">Select City</option>
 				</select>
@@ -74,16 +67,16 @@ if ($conn->connect_error) {
 			</td>
 		</tr>
 		<tr>
-			<td align="right">
+			<td>
 				<b>Init Date <font color=red>*</font>:</b>
 			</td >
-			<td align="left">
+			<td>
 				<input type="date" class="dateini" name="dateini">
 			</td>
-			<td align="right">
+			<td>
 				<b>End Date <font color=red>*</font>:</b>
 			</td>
-			<td align="left">
+			<td>
 				<input type="date" class="dateend" name='dateend'>
 			</td>
 			<td>
@@ -94,10 +87,10 @@ if ($conn->connect_error) {
 			</td>
 		</tr>
 		<tr>
-			<td align="right">
-				<b>Venue <font color=red>*</font>:</b>
+			<td>
+				<b>Venue:</b>
 			</td>
-			<td align="left">
+			<td>
 				<select name="venues[]" multiple="multiple" id="venues">
 					<option value="0">Select Venues</option>
 				</select>			
@@ -114,10 +107,10 @@ if ($conn->connect_error) {
 			</td>
 		</tr>
 		<tr>
-			<td align="right">
+			<td>
 				<b>Categories:</b>
 			</td>
-			<td align="left">
+			<td>
 				<select name="category" class="categories" id="categoryId">
 					<option value="0">Select Category</option>
 				</select>
@@ -134,15 +127,15 @@ if ($conn->connect_error) {
 			</td>
 		</tr>		
 		<tr>
-			<td align="right">
+			<td>
 				<b>Shows:</b>
 			</td>
-			<td align="left">
+			<td>
 				<select name="shows[]" multiple="multiple" id="shows">
 					<option value="0">Select Shows</option>
 				</select>
 			</td>
-			<td align="right">
+			<td>
 				<b>Fields:</b>
 			</td>
 			<td align="left">
