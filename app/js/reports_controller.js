@@ -103,12 +103,12 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css">'
     var htmlexc = '<table>'
     var columns = '<tr><th>CITY / STATE</th>' + 
-                  '<th>SHOW(1)</th>' +
-                  '<th>SHOW(2)</th>' + 
-                  '<th>SHOW(3)</th>' + 
-                  '<th>SHOW(4)</th>' + 
-                  '<th>SHOW(5)</th>' + 
-                  '<th>CONFLICTS REASON</th></tr>';
+                  '<th>SHOW</th>' +
+                  '<th>SHOW</th>' + 
+                  '<th>SHOW</th>' + 
+                  '<th>SHOW</th>' + 
+                  '<th>SHOW</th>' + 
+                  '<th>CONFLICT REASON</th></tr>';
     var files = '';
     var files2 = '';
     call.send(data, url, method, function(data) {
@@ -235,8 +235,8 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
     var htmlexc = '<table>'
     var columns = '';
     var hcolumns = '<tr><th>SHOW NAME</th>' +
-                   '<th>OPENINGDATE</th>' + 
-                   '<th>CLOSINGDATE</th>' +
+                   '<th>OPENING DATE</th>' + 
+                   '<th>CLOSING DATE</th>' +
                    '<th>COUNTRY</th>' +
                    '<th>STATE</th>' +
                    '<th>CITY</th>' +                    
@@ -303,8 +303,8 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
     var columns = '<tr><th>SHOW NAME</th>' +
-                  '<th>OPENINGDATE</th>' + 
-                  '<th>CLOSINGDATE</th>' +
+                  '<th>OPENING DATE</th>' + 
+                  '<th>CLOSING DATE</th>' +
                   '<th>COUNTRY</th>' +
                   '<th>STATE</th>' +
                   '<th>CITY</th>' +
