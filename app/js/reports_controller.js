@@ -327,10 +327,10 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
                                 '<td>' + data.result['body'][counter].country + '</td>' + 
                                 '<td>' + data.result['body'][counter].state + '</td>' + 
                                 '<td>' + data.result['body'][counter].city + '</td>' + 
-                                '<td>' + gp + '</td>' + 
-                                '<td>' + ss + '</td>' + 
-                                '<td>' + gs + '</td>' + 
-                                '<td>' + st + '</td>';
+                                '<td>' + number_format(gp,2) + '</td>' + 
+                                '<td>' + number_format(ss,2) + '</td>' + 
+                                '<td>' + number_format(gs,2) + '</td>' + 
+                                '<td>' + number_format(st,2) + '</td>';
 
                 if(fields.indexOf("1")>=0){                    
                     if((ss+gs+st)>0){
