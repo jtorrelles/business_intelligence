@@ -295,12 +295,13 @@ class reportsServices extends dbconfig {
       $data2 = array();
       $x = 0;
 
-      if($fields==""){
-        $columns = "";
-        $fields = "se.*";
-      }else{
-        $columns = "AND COLUMN_NAME in ($fields)";
-      }
+      if($fields==""){ 
+        $columns = "'%XYZ%'";
+      }else{       
+        $columns = $fields;
+        $fields = "," . $fields;
+        $fields = str_replace("'","",$fields);
+      } 
 
       if($shows==""){
         $shows = "";
@@ -318,8 +319,7 @@ class reportsServices extends dbconfig {
                 FROM information_schema.COLUMNS
                 WHERE TABLE_SCHEMA  LIKE 'networksbi'
                     AND TABLE_NAME = 'settlements' 
-                    AND COLUMN_NAME NOT IN ('ID','SHOWID','CITYID','VENUEID','OPENINGDATE','CLOSINGDATE')
-                    $columns";
+                    AND COLUMN_NAME in ($columns)";
 
       $result = dbconfig::run($query);
       if(!$result) {
@@ -331,15 +331,22 @@ class reportsServices extends dbconfig {
         $x++;       
       }
 
-      $fields = str_replace("'","",$fields);
-
       $query2 = "SELECT showname,
-                        co.name as country,
                         sta.name as state,
                         ci.name as city,  
                         IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as openingdate,
                         IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as closingdate,
                         venuename,
+                        numberofperformances as perf,
+                        grossboxofficepotential as gross,
+                        grossboxofficereceipts as agross,
+                        nagbor as nagbor,
+                        grosssubscriptionsales as subs,
+                        totalcompanyguarantee as guarantee,
+                        totalcompanyroyalty as royalty,
+                        totalcompanyoverageamount as overage,
+                        advertisingactual as advertising,
+                        localfixedactual as lfe
                         $fields 
                    FROM settlements se, 
                         shows sh,
@@ -371,10 +378,19 @@ class reportsServices extends dbconfig {
         $data2[$y]['showname'] = $resultSet2['showname'];
         $data2[$y]['openingdate'] = $resultSet2['openingdate'];
         $data2[$y]['closingdate'] = $resultSet2['closingdate'];
-        $data2[$y]['country'] = $resultSet2['country'];
         $data2[$y]['state'] = $resultSet2['state'];
         $data2[$y]['city'] = $resultSet2['city'];        
         $data2[$y]['venuename'] = $resultSet2['venuename'];
+        $data2[$y]['perf'] = $resultSet2['perf'];
+        $data2[$y]['gross'] = $resultSet2['gross'];
+        $data2[$y]['agross'] = $resultSet2['agross'];
+        $data2[$y]['nagbor'] = $resultSet2['nagbor'];
+        $data2[$y]['subs'] = $resultSet2['subs'];
+        $data2[$y]['guarantee'] = $resultSet2['guarantee'];
+        $data2[$y]['royalty'] = $resultSet2['royalty'];
+        $data2[$y]['overage'] = $resultSet2['overage'];
+        $data2[$y]['advertising'] = $resultSet2['advertising'];
+        $data2[$y]['lfe'] = $resultSet2['lfe'];
         $z = 0;
         while($z < $x) {
           $col = $data[$z]["column"];
@@ -419,15 +435,16 @@ class reportsServices extends dbconfig {
       }
 
       $query = "SELECT showname,
-                       co.name as country,
                        sta.name as state,
                        ci.name as city,  
                        IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as openingdate,
                        IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as closingdate,
+                       numberofperformances as perf,
                        grossboxofficepotential as gp,
                        grosssubscriptionsales as ss,
                        grossgroupsales1 as gs,
-                       singletixamount as st
+                       singletixamount as st,
+                       advertisingactual as ad
                   FROM settlements se, 
                         shows sh,
                         cities ci,
@@ -454,13 +471,14 @@ class reportsServices extends dbconfig {
         $data[$x]["showname"] = $resultSet['showname'];
         $data[$x]["openingdate"] = $resultSet['openingdate'];
         $data[$x]["closingdate"] = $resultSet['closingdate'];
-        $data[$x]["country"] = $resultSet['country'];
         $data[$x]["state"] = $resultSet['state'];
         $data[$x]["city"] = $resultSet['city'];
+        $data[$x]["perf"] = $resultSet['perf'];
         $data[$x]["gp"] = $resultSet['gp'];
         $data[$x]["ss"] = $resultSet['ss'];
         $data[$x]["gs"] = $resultSet['gs'];
         $data[$x]["st"] = $resultSet['st'];
+        $data[$x]["ad"] = $resultSet['ad'];
         $x++;       
       }      
 

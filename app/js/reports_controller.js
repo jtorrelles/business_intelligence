@@ -235,12 +235,21 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
     var htmlexc = '<table>'
     var columns = '';
     var hcolumns = '<tr><th>SHOW NAME</th>' +
-                   '<th>OPENING DATE</th>' + 
-                   '<th>CLOSING DATE</th>' +
-                   '<th>COUNTRY</th>' +
+                   '<th>OPENED DATE</th>' + 
+                   '<th>CLOSED DATE</th>' +
                    '<th>STATE</th>' +
                    '<th>CITY</th>' +                    
-                   '<th>VENUE NAME</th>'; 
+                   '<th>VENUE NAME</th>' +
+                   '<th>PERFORMANCES</th>' +
+                   '<th>GROSS POTENTIAL</th>' +
+                   '<th>ACTUAL GROSS</th>' +
+                   '<th>NAGBOR</th>' +
+                   '<th>SUBSCRIPTIONS</th>' +
+                   '<th>GUARANTEE</th>' +
+                   '<th>ROYALTY</th>' + 
+                   '<th>OVERAGE</th>' +
+                   '<th>ADVERTISING</th>' +
+                   '<th>LOCAL FIXED EXPENSES</th>'; 
     var files = '';
     var hfiles = '<tr>';
     call.send(data, url, method, function(data) {
@@ -261,10 +270,19 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
                 hfiles = hfiles + '<td>' + data.result['body'][counter1].showname + '</td>' + 
                                   '<td>' + data.result['body'][counter1].openingdate + '</td>' + 
                                   '<td>' + data.result['body'][counter1].closingdate + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].country + '</td>' + 
                                   '<td>' + data.result['body'][counter1].state + '</td>' + 
                                   '<td>' + data.result['body'][counter1].city + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].venuename + '</td>';
+                                  '<td>' + data.result['body'][counter1].venuename + '</td>' +
+                                  '<td>' + number_format(data.result['body'][counter1].perf,0) + '</td>' +
+                                  '<td>' + number_format(data.result['body'][counter1].gross,2) + '</td>' + 
+                                  '<td>' + number_format(data.result['body'][counter1].agross,2) + '</td>' + 
+                                  '<td>' + number_format(data.result['body'][counter1].nagbor,2) + '</td>' + 
+                                  '<td>' + number_format(data.result['body'][counter1].subs,2) + '</td>' + 
+                                  '<td>' + number_format(data.result['body'][counter1].guarantee,2) + '</td>' + 
+                                  '<td>' + number_format(data.result['body'][counter1].royalty,2) + '</td>' + 
+                                  '<td>' + number_format(data.result['body'][counter1].overage,2) + '</td>' + 
+                                  '<td>' + number_format(data.result['body'][counter1].advertising,2) + '</td>' + 
+                                  '<td>' + number_format(data.result['body'][counter1].lfe,2) + '</td>';
                 while(counter2 < size){ 
                     col = data.result['head'][counter2].column;
                     if(col=='NOTES'){
@@ -303,15 +321,16 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
     var columns = '<tr><th>SHOW NAME</th>' +
-                  '<th>OPENING DATE</th>' + 
-                  '<th>CLOSING DATE</th>' +
-                  '<th>COUNTRY</th>' +
+                  '<th>OPENED DATE</th>' + 
+                  '<th>CLOSED DATE</th>' +
                   '<th>STATE</th>' +
                   '<th>CITY</th>' +
+                  '<th>NUMBER OF PERFORMANCES</th>' +
                   '<th>GROSS POTENTIAL</th>' +
                   '<th>SUBSCRIPTION SALES</th>' +
                   '<th>GROUPS SALES</th>' +
-                  '<th>SINGLE TICKET SALES</th>'; 
+                  '<th>SINGLE TICKET SALES</th>' +
+                  '<th>ADVERTISING</th>'; 
     var files = '<tr>';
 
     if(fields.indexOf("1")>=0){
@@ -332,6 +351,9 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     if(fields.indexOf("6")>=0){
        columns = columns + '<th>SINGLE VS. GROSS POTENTIAL %</th>';
     }
+    if(fields.indexOf("7")>=0){
+       columns = columns + '<th>ADVERTISING VS. SINGLES %</th>';
+    }
     columns = columns + '</tr>';
 
     call.send(data, url, method, function(data) {
@@ -345,17 +367,19 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
                 ss = data.result['body'][counter].ss;
                 gs = data.result['body'][counter].gs;
                 st = data.result['body'][counter].st;
+                ad = data.result['body'][counter].ad;
 
                 files = files + '<td>' + data.result['body'][counter].showname + '</td>' + 
                                 '<td>' + data.result['body'][counter].openingdate + '</td>' + 
                                 '<td>' + data.result['body'][counter].closingdate + '</td>' + 
-                                '<td>' + data.result['body'][counter].country + '</td>' + 
                                 '<td>' + data.result['body'][counter].state + '</td>' + 
                                 '<td>' + data.result['body'][counter].city + '</td>' + 
+                                '<td>' + data.result['body'][counter].perf + '</td>' + 
                                 '<td>' + number_format(gp,2) + '</td>' + 
                                 '<td>' + number_format(ss,2) + '</td>' + 
                                 '<td>' + number_format(gs,2) + '</td>' + 
-                                '<td>' + number_format(st,2) + '</td>';
+                                '<td>' + number_format(st,2) + '</td>' +
+                                '<td>' + number_format(ad,2) + '</td>';
 
                 if(fields.indexOf("1")>=0){                    
                     if((ss+gs+st)>0){
@@ -399,6 +423,14 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
                         files = files + '<td>' + number_format(0,2) + '%</td>';
                     }    
                 }
+                if(fields.indexOf("7")>=0){
+                    if(st>0){
+                        files = files + '<td>' + number_format(ad/st,2) + '%</td>';
+                    }else{
+                        files = files + '<td>' + number_format(0,2) + '%</td>';
+                    }    
+                }
+
 
                 counter++;
                 files = files + '</tr><tr>';
@@ -616,7 +648,7 @@ $(function() {
         ffin = $(".dateend").val();
 
         var shows = "1,2,3,4,5,6";
-        var fields = "1,2,3,4,5,6";
+        var fields = "1,2,3,4,5,6,7";
 
         getSalesSummary(finicio,ffin,countryId,stateId,cityId,fields,shows)
     });    
