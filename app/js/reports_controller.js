@@ -315,6 +315,7 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
 function getSalesSummary(inid,endd,country,state,city,fields,shows) {    
     var call = new ajaxCall();
     var url = '../routes/reports_route.php?type=getSalesSummary&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&shows=' + shows;
+    console.log(url);
     var method = "GET";
     var data = {};
     var counter = 0;
@@ -617,7 +618,8 @@ $(function() {
         var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
         var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
         var ftoday = new Date(globalDate);
-        var showId = $("#showId").val();
+        var shows = $("#shows").multipleSelect("getSelects");
+        var fields = $("#fields").multipleSelect("getSelects");
 
         if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
             alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
@@ -640,15 +642,12 @@ $(function() {
         if((cityId == 0)||(cityId == "")||(cityId == null)){
             cityId = "%"
         }
-        if((showId == 0)||(showId == "")||(showId == null)){
-            showId = "%"
-        }
 
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
 
-        var shows = "1,2,3,4,5,6";
-        var fields = "1,2,3,4,5,6,7";
+        //var shows = "1,2,3,4,5,6";
+        //var fields = "1,2,3,4,5,6,7";
 
         getSalesSummary(finicio,ffin,countryId,stateId,cityId,fields,shows)
     });    

@@ -111,7 +111,7 @@ if ($conn->connect_error) {
 				<b>Categories:</b>
 			</td>
 			<td>
-				<select name="category" class="categories" id="categoryId">
+				<select name="categories[]" multiple="multiple" id="categories">
 					<option value="0">Select Category</option>
 				</select>
 			</td>

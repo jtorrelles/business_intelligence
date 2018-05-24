@@ -24,11 +24,11 @@ try {
 
   if($type=='getShowsByCategory') {
 
-	if(!isset($_GET['categoryId']) || empty($_GET['categoryId'])) {
+	/*if(!isset($_GET['categoryId']) || empty($_GET['categoryId'])) {
       throw new exception("Category Id is not set.");
-	}
+	}*/
 
-	$categoryId = $_GET['categoryId'];  	
+	  $categoryId = $_GET['categoryId'];
   	$data = $loc->getByCategory($categoryId);
   } 
 

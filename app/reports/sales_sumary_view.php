@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 <script src="../js/reports_controller.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
-<script> getCountries(); getBasicShows(); </script>
+<script> getCountries(); getShows(); </script>
 
 <h1>Sales Summary Report:</h1>
 
@@ -91,13 +91,23 @@ if ($conn->connect_error) {
 				<b>Shows:</b>
 			</td>
 			<td>
-				<select name="show"  class="shows" id="showId">
+				<select name="shows[]" multiple="multiple" id="shows">
 					<option value="0">Select Shows</option>
 				</select>
 			</td>
 			<td>
+				<b>Fields:</b>
 			</td>
 			<td>
+				<select name="fields[]" multiple="multiple" id="fields">
+					<option value="1"> SUBS VS. GROSS % </option>
+					<option value="2"> SUBS VS. GROSS POTENTIAL % </option>
+					<option value="3"> GROUPS VS. GROSS % </option>
+					<option value="4"> GROUPS VS. GROSS POTENTIAL % </option>
+					<option value="5"> SINGLE VS. GROSS % </option>
+					<option value="6"> SINGLE VS. GROSS POTENTIAL % </option>
+					<option value="7"> ADVERTISING VS. SINGLES % </option>
+				</select>
 			</td>
 			<td>
 			</td>

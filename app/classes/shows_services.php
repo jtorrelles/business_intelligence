@@ -20,13 +20,13 @@ class showsServices extends dbconfig {
      try {
        $query = "SELECT showid, showname 
                   FROM shows 
-                  WHERE CategoryID_1 = $categoryId 
-                  OR CategoryID_2 = $categoryId  
-                  OR CategoryID_3 = $categoryId 
-                  OR CategoryID_4 = $categoryId  
-                  OR CategoryID_5 = $categoryId  
-                  OR CategoryID_6 = $categoryId  
-                  OR CategoryID_7 = $categoryId";
+                  WHERE CategoryID_1 IN ($categoryId)  
+                  OR CategoryID_2 IN ($categoryId)  
+                  OR CategoryID_3 IN ($categoryId) 
+                  OR CategoryID_4 IN ($categoryId)  
+                  OR CategoryID_5 IN ($categoryId)   
+                  OR CategoryID_6 IN ($categoryId)  
+                  OR CategoryID_7 IN ($categoryId)";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Shows not found.");

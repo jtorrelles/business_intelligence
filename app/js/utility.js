@@ -111,35 +111,10 @@ function getShows() {
                     value: key,
                     text: val
                 });
-                $('#shows').append($opt).multipleSelect("refresh");
+                $('#shows').append($opt);
             });
-
+            $("#shows").multipleSelect("refresh");
             $("#shows").remove("option[value='0']");
-            //$("#shows").multipleSelect("checkAll");
-        }
-        else{
-            alert(data.msg);
-        }
-    }); 
-};
-
-function getBasicShows() {
-    var call = new ajaxCall();
-    var url = '../routes/contracts_route.php?type=getShows';
-    var method = "GET";
-    var data = {};
-    $('.shows').find("option:eq(0)").html("Please wait..");
-    call.send(data, url, method, function(data) {
-        $('.shows').find("option:eq(0)").html("Select Shows");
-        if(data.tp == 1){
-            $.each(data['result'], function(key, val) {
-                $opt = $("<option />", {
-                    value: key,
-                    text: val
-                });
-                $('.shows').append($opt);
-            });
-            $(".shows").prop("disabled",false);
         }
         else{
             alert(data.msg);
@@ -160,9 +135,9 @@ function getVenues() {
                     value: key,
                     text: val
                 });
-                $('#venues').append($opt).multipleSelect("refresh");
+                $('#venues').append($opt);
             });
-
+            $('#venues').multipleSelect("refresh");
             $("#venues").remove("option[value='0']");
         }
         else{
@@ -176,16 +151,18 @@ function getCategories() {
     var url = '../routes/categories_route.php?type=getCategories';
     var method = "GET";
     var data = {};
-    $('.categories').find("option:eq(0)").html("Please wait..");
     call.send(data, url, method, function(data) {
-        $('.categories').find("option:eq(0)").html("Select Category");
         if(data.tp == 1){
+            $('#categories').find("option:eq(0)").remove();
             $.each(data['result'], function(key, val) {
-                var option = $('<option />');
-                option.attr('value', key).text(val);
-                $('.categories').append(option);
+                $opt = $("<option />", {
+                    value: key,
+                    text: val
+                });
+                $('#categories').append($opt);
             });
-            $(".categories").prop("disabled",false);
+            $('#categories').multipleSelect("refresh");
+            $("#categories").remove("option[value='0']");
         }
         else{
             alert(data.msg);
@@ -193,9 +170,10 @@ function getCategories() {
     }); 
 };
 
-function getShowsByCategory(categoryId){
+function getShowsByCategory(categories){
     var call = new ajaxCall();
-    var url = '../routes/shows_route.php?type=getShowsByCategory&categoryId='+categoryId;
+    var url = '../routes/shows_route.php?type=getShowsByCategory&categoryId='+categories;
+    console.log(url);
     var method = "GET";
     var data = {};
     call.send(data, url, method, function(data) {
@@ -257,6 +235,18 @@ $(function() {
         width: '100%'
     }); 
 
+    $('#categories').multipleSelect({
+        placeholder: "Select Categories",
+        filter:true,
+        checkAll:false,
+        selectAll: false,
+        width: '100%',
+        onClick: function(view) {
+            $('#shows').multipleSelect("uncheckAll");
+            getShowsByCategory($('#categories').multipleSelect("getSelects"));
+        }
+    });     
+
     $(".countries").on("change", function(ev) {
         var countryId = $(this).val();
         if(countryId != ''){
@@ -273,16 +263,7 @@ $(function() {
         }else{
             $(".cities option:gt(0)").remove();
         }
-    });
-
-    $(".categories").on("change", function(ev) {
-        var categoryId = $(this).val();
-        if(categoryId != ''){
-            getShowsByCategory(categoryId);
-        }else{
-            $(".categories option:gt(0)").remove();
-        }
-    });    
+    }); 
 
     $("#btnCleanAllRoutes").click(function (ev) {
         getCountries();
@@ -295,6 +276,7 @@ $(function() {
         $("#loader").hide();
         $("#export").hide();
         $('#shows').multipleSelect("uncheckAll");
+        $(".weekending").prop('checked',false);
     });
 
     $("#btnCleanConflictsRoutes").click(function (ev) {
@@ -324,6 +306,8 @@ $(function() {
 
         $("#loader").hide();
         $("#export").hide();
+        $('#venues').multipleSelect("uncheckAll");
+        $('#categories').multipleSelect("uncheckAll");
         $('#shows').multipleSelect("uncheckAll");
         $('#fields').multipleSelect("uncheckAll");
 
@@ -334,12 +318,13 @@ $(function() {
 
         $(".dateini").val("");
         $(".dateend").val("");
-        $(".shows").val("0");
         $("#header").empty();
         $("#body").empty();
 
         $("#loader").hide();
         $("#export").hide();
+        $('#shows').multipleSelect("uncheckAll");
+        $('#fields').multipleSelect("uncheckAll");
 
     });
 
