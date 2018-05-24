@@ -32,6 +32,7 @@
    <head>
       <title>Login Page</title>
       <link href="https://fonts.googleapis.com/css?family=Gudea" rel="stylesheet">
+      <link rel="icon" type="image/png" href="/BIBETA/app/images/favicon.png">
       <style type = "text/css">
          body {
             font-family:"Gudea", sans-serif;
