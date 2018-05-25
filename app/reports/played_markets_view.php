@@ -21,9 +21,9 @@ if ($conn->connect_error) {
 <script src="../js/reports_controller.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
-<script> getCountries();</script>
+<script> getCountries(); getShows(); getCategories();</script>
 
-<h1>Route Conflicts Report:</h1>
+<h1>Played Markets Report:</h1>
 
 <form action="#" method="POST">
 	<table style="width:100%">
@@ -33,7 +33,7 @@ if ($conn->connect_error) {
 			<th></th>
 			<th></th>
 			<th></th>
-			<th></th>			
+			<th></th>
 			<th>ACTIONS</th>
 		</tr>
 		<tr>
@@ -47,7 +47,7 @@ if ($conn->connect_error) {
 			</td>
 			<td>
 				<b>State:</b>
-			</td>		
+			</td>
 			<td>
 				<select name="state" class="states" id="stateId">
 					<option value="">Select State</option>
@@ -61,21 +61,21 @@ if ($conn->connect_error) {
 					<option value="">Select City</option>
 				</select>
 			</td>
-			<td align="center" rowspan="2">
-				<input type="button" class="button" id="btnFindConflictsRoutes" value="Find">
-				<input type="button" class="button" id="btnCleanConflictsRoutes" value="Clear">
+			<td align="center" rowspan="5">
+				<input type="button" class="button" id="btnFindPlayedMarket" value="Find">
+				<input type="button" class="button" id="btnCleanPlayedMarket" value="Clear">
 			</td>
 		</tr>
 		<tr>
 			<td>
 				<b>Init Date <font color=red>*</font>:</b>
-			</td>		
+			</td >
 			<td>
 				<input type="date" class="dateini" name="dateini">
 			</td>
 			<td>
 				<b>End Date <font color=red>*</font>:</b>
-			</td>	
+			</td>
 			<td>
 				<input type="date" class="dateend" name='dateend'>
 			</td>
@@ -88,16 +88,11 @@ if ($conn->connect_error) {
 		</tr>
 		<tr>
 			<td>
-				<b>Conflict Criteria:</b>
+				<b>Categories:</b>
 			</td>
 			<td>
-				<select name="conflict_reasons" class="reasons" id="reasonId">
-					<option value="0">--Select--</option>
-					<option value="DOUBLE HOLD">DOUBLE HOLD</option>
-					<option value="OVERLAPPING MARKET HOLD">OVERLAPPING MARKET HOLD</option>
-					<option value="PROXIMITY BOOKING">PROXIMITY BOOKING</option>
-					<option value="BACK TO BACK BOOKING">BACK TO BACK BOOKING</option>
-					<option value="BACK TO BACK TO BACK">BACK TO BACK TO BACK</option>					
+				<select name="categories[]" multiple="multiple" id="categories">
+					<option value="0">Select Category</option>
 				</select>
 			</td>
 			<td>
@@ -111,8 +106,30 @@ if ($conn->connect_error) {
 			<td>
 			</td>
 		</tr>		
+		<tr>
+			<td>
+				<b>Shows:</b>
+			</td>
+			<td>
+				<select name="shows[]" multiple="multiple" id="shows">
+					<option value="0">Select Shows</option>
+				</select>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+
+			</td>
+			<td>
+
+			</td>
+			<td>
+			</td>
+		</tr>
 	</table>
-	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
+	<b><font color=red>*</font> Indicates a mandatory field</b></p>
 </form>	
 	<div style="display:none" class="loader" id="loader"></div>
 	<div style="display:none" class="export" id="export">
@@ -120,7 +137,7 @@ if ($conn->connect_error) {
 			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
 			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
 			</p>
-			<table id="allroutestable" style="width: 100%;">
+			<table id="allroutestable">
 				<thead id="header">
 				</thead>
 				<tbody id="body">
@@ -128,7 +145,7 @@ if ($conn->connect_error) {
 			</table>
 			<input type='hidden' class="htmlpdf" name=htmlpdf>
 			<input type='hidden' class="htmlexc" name=htmlexc>
-			<input type='hidden' class="name" name=name value="Route_conflicts">
+			<input type='hidden' class="name" name=name value="Market_History">
 		</form>
 	</div>
 </body>

@@ -23,7 +23,7 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
         <div><a href=\"../app/reports/market_history_view.php\">MARKET HISTORY</a></div>
         <div><a href=\"../app/reports/sales_sumary_view.php\">SALES SUMMARY</a></div>
 	<div><a href=\"../app/reports/breakeven.php\">BREAKEVEN ANALYSIS</a></div>
-	<div><a href=\"#\">PLAYED MARKETS</a></div>
+	<div><a href=\"../app/reports/played_markets_view.php\">PLAYED MARKETS</a></div>
     </div>
 
     <div class=\"plan\">

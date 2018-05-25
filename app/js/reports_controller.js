@@ -315,7 +315,6 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
 function getSalesSummary(inid,endd,country,state,city,fields,shows) {    
     var call = new ajaxCall();
     var url = '../routes/reports_route.php?type=getSalesSummary&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&shows=' + shows;
-    console.log(url);
     var method = "GET";
     var data = {};
     var counter = 0;
@@ -451,6 +450,11 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     }); 
 }
 
+
+function getPlayedMarkets(inid,endd,country,state,city,shows) {    
+    
+}
+
 function getTodayDate(){
     var ftoday = new Date();
 
@@ -494,6 +498,7 @@ $(function() {
             $("#loader").hide();
             return;
         }else{
+
             if(ffin.getTime() < finicio.getTime()){
                 alert("INIT DATE cannot be greater than END DATE, Please verify these values.");
                 $("#loader").hide();
@@ -537,6 +542,7 @@ $(function() {
             $("#loader").hide();
             return;
         }else{
+            
             if(ffin.getTime() < finicio.getTime()){
                 alert("INIT DATE cannot be greater than END DATE, Please verify these values.");
                 $("#loader").hide();
@@ -582,6 +588,7 @@ $(function() {
             $("#loader").hide();
             return;
         }else{
+
             if(ffin.getTime() < finicio.getTime()){
                 alert("INIT DATE cannot be greater than END DATE, Please verify these values.");
                 $("#loader").hide();
@@ -646,10 +653,51 @@ $(function() {
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
 
-        //var shows = "1,2,3,4,5,6";
-        //var fields = "1,2,3,4,5,6,7";
-
         getSalesSummary(finicio,ffin,countryId,stateId,cityId,fields,shows)
-    });    
+    });  
+
+    $("#btnFindPlayedMarket").click(function (ev) {
+
+        $("#header").empty();
+        $("#body").empty();
+        $("#export").hide();
+        $("#loader").show();
+        
+        var countryId = $("#countryId").val();
+        var stateId = $("#stateId").val();
+        var cityId = $("#cityId").val();
+        var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+        var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
+        var ftoday = new Date(globalDate);
+        var shows = $("#shows").multipleSelect("getSelects");
+
+        if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
+            alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
+            $("#loader").hide();
+            return;
+        }else{
+
+            if(ffin.getTime() < finicio.getTime()){
+                alert("INIT DATE cannot be greater than END DATE, Please verify these values.");
+                $("#loader").hide();
+                return;
+            }
+        }
+
+        if((countryId == 0)||(countryId == "")||(countryId == null)){
+            countryId = "%"
+        }
+        if((stateId == 0)||(stateId == "")||(stateId == null)){
+            stateId = "%"
+        }
+        if((cityId == 0)||(cityId == "")||(cityId == null)){
+            cityId = "%"
+        }
+
+        finicio = $(".dateini").val();
+        ffin = $(".dateend").val();
+
+        getPlayedMarkets(finicio,ffin,countryId,stateId,cityId,shows);
+    });
 
 });
