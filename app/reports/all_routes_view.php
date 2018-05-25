@@ -108,6 +108,22 @@ if ($conn->connect_error) {
 			<td>
 			</td>
 		</tr>
+		<tr>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+		</tr>
 	</table>
 	<p>
 		<b><font color=red>*</font> Indicates a mandatory field</b>
