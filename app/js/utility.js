@@ -104,7 +104,6 @@ function getShows() {
     var url = '../routes/contracts_route.php?type=getShows';
     var method = "GET";
     var data = {};
-    //$('#shows').multipleSelect({placeholder:"Please wait.."});
     call.send(data, url, method, function(data) {
         if(data.tp == 1){
             $('#shows').find("option:eq(0)").remove();
@@ -175,7 +174,6 @@ function getCategories() {
 function getShowsByCategory(categories){
     var call = new ajaxCall();
     var url = '../routes/shows_route.php?type=getShowsByCategory&categoryId='+categories;
-    console.log(url);
     var method = "GET";
     var data = {};
     call.send(data, url, method, function(data) {
@@ -266,7 +264,7 @@ $(function() {
             $('#shows').multipleSelect("uncheckAll");
             getShowsByCategory($('#categories').multipleSelect("getSelects"));
         }
-    });     
+    });  
 
     $(".countries").on("change", function(ev) {
         var countryId = $(this).val();
@@ -328,9 +326,6 @@ $(function() {
 
         $(".dateini").val("");
         $(".dateend").val("");
-        $(".venues").val("0");
-        $(".presenters").val("0");
-        $(".categories").val("0");
         $("#header").empty();
         $("#body").empty();
 
@@ -356,6 +351,21 @@ $(function() {
         $('#shows').multipleSelect("uncheckAll");
         $('#fields').multipleSelect("uncheckAll");
 
-    });
+    }); 
+
+    $("#btnCleanPlayedMarket").click(function (ev) {
+        getCountries();
+
+        $(".dateini").val("");
+        $(".dateend").val("");
+        $("#header").empty();
+        $("#body").empty();
+
+        $("#loader").hide();
+        $("#export").hide();
+        $('#categories').multipleSelect("uncheckAll");
+        $('#shows').multipleSelect("uncheckAll");
+
+    });    
 
 });
