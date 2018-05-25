@@ -184,13 +184,32 @@ function getShowsByCategory(categories){
             });
             $("#shows").multipleSelect('uncheckAll');
             $("#shows").multipleSelect("setSelects", showsKeys);
-            $(".categories").prop("disabled",false);
         }
         else{
             alert(data.msg);
         }
     });
 }
+
+function getVenuesByCities(stateId) {
+    var call = new ajaxCall();
+    var url = '../routes/venues_route.php?type=getVenues&stateId='+stateId;
+    var method = "GET";
+    var data = {};
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+            var venuesKeys = [];
+            $.each(data['result'], function(key, val) {
+                venuesKeys.push(key); 
+            });
+            $("#venues").multipleSelect('uncheckAll');
+            $("#venues").multipleSelect("setSelects", venuesKeys);
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
 
 function number_format(amount, decimals) {
 
@@ -260,6 +279,7 @@ $(function() {
         var stateId = $(this).val();
         if(stateId != ''){
             getCities(stateId);
+            getVenuesByCities(stateId);
         }else{
             $(".cities option:gt(0)").remove();
         }

@@ -82,7 +82,7 @@ class venuesServices extends dbconfig {
                  FROM venues ve, cities ci, states st 
                  WHERE st.id = ci.state_id 
                  AND ci.id = ve.venuecityid
-                 AND st.id = ".$stateId;
+                 AND st.id IN ($stateId)";
 
        $result = dbconfig::run($query);
        if(!$result) {
