@@ -97,6 +97,28 @@ function getCities(id) {
     });
 }
 
+function getBasicShows() {
+    var call = new ajaxCall();
+    var url = '../routes/contracts_route.php?type=getShows';
+    var method = "GET";
+    var data = {};
+    $('.shows').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.shows').find("option:eq(0)").html("Select Show");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.shows').append(option);
+            });
+            $(".shows").prop("disabled",false);
+        }
+        else{
+             alert(data.msg);
+        }
+    }); 
+};
+
 function getShows() {
     var call = new ajaxCall();
     var url = '../routes/contracts_route.php?type=getShows';
