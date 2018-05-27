@@ -68,6 +68,16 @@ try {
     $data = $loc->getSalesSummary($inid,$endd,$country,$state,$city,$fields,$shows);
   } 
 
+  if($type=='getPlayedMarkets') {
+    $inid = $_GET['inid'];
+    $endd = $_GET['endd'];
+    $country = $_GET['country'];
+    $state = $_GET['state'];
+    $city = $_GET['city'];
+    $shows = $_GET['shows'];
+    $data = $loc->getPlayedMarkets($inid,$endd,$country,$state,$city,$shows);
+  } 
+
 } catch (Exception $e) {
    $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
 } finally {
