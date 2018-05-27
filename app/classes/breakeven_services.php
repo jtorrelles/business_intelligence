@@ -3,10 +3,9 @@ require_once('../db/dbconfig2.php');
 class breakevenServices extends dbconfig {
 
 	public static $data;
-
 	protected static $result;
 	protected static $sql;
-
+	
 	function __construct() {
 		parent::__construct();
 	}

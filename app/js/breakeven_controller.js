@@ -62,8 +62,6 @@ function BCalc() {
     document.getElementById("NAPTII").value = number_format(NAPTII,2) + '$';
 }
 
-
-
 $(function() {
 
 	$("#btnFindBreakevenSelection").click(function (ev) {
@@ -131,4 +129,5 @@ $(document).ready(function(){
   $('.money4').mask('000.000.000.000%', {reverse: true});
   $('.money5').mask('000.000.000.000,00$', {reverse: true});
   $('.money6').mask('000.000.000.000$', {reverse: true});
+
 });
