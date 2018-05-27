@@ -498,6 +498,128 @@ class reportsServices extends dbconfig {
       return $data;
     }
   }
+
+  public static function getPlayedMarkets($inid,$endd,$country,$state,$city,$shows){
+    try {
+
+      $UTC = new DateTimeZone("UTC"); 
+      $ini = new DateTime($inid, $UTC); 
+      $end = new DateTime($endd, $UTC); 
+      $inid = $ini->format('Ymd');
+      $endd = $end->format('Ymd'); 
+
+      $data = array();
+      $data2 = array();
+      $data3 = array();
+      $x = 0;
+
+      if($shows!=""){
+        $shows = "AND showid in ($shows)";
+      } 
+
+      $query = "SELECT showid, 
+                       showname
+                  FROM shows
+                 WHERE showactive in ('Y','N')
+                 $shows";
+
+      $result = dbconfig::run($query);
+      if(!$result) {
+        throw new exception("Shows not found.");
+      }      
+
+      while($resultSet = mysqli_fetch_assoc($result)){
+        $showid = $resultSet['showid'];
+        $data[$x]["id"] = $resultSet['showid'];
+        $data[$x]["name"] = $resultSet['showname'];
+        $x++;       
+      }
+
+      $query2 = "SELECT ci.name as city,  
+                        sta.name as state,
+                        ci.id as cityid,
+                        showid,
+                        openingdate,
+                        closingdate,
+                        IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as fopeningdate,
+                        IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as fclosingdate
+                   FROM settlements se,
+                        cities ci,
+                        states sta,
+                        countries co
+                  WHERE se.cityid = ci.id
+                    AND ci.state_id = sta.id
+                    AND sta.country_id = co.id
+                    AND sta.country_id like ('$country')
+                    AND sta.id like ('$state')
+                    AND ci.id like ('$city')
+                    AND openingdate >= $inid
+                    AND openingdate <= $endd
+                    $shows
+                  GROUP BY ci.name,  
+                          sta.name,
+                          ci.id,
+                          showid,
+                          openingdate,
+                          closingdate
+                  ORDER BY ci.name,  
+                          sta.name,
+                          showid,
+                          openingdate,
+                          closingdate";
+
+      $result2 = dbconfig::run($query2);
+      if(!$result2) {
+        throw new exception("Settlements not found.");
+      }    
+
+      $y = 0;
+      while($resultSet2 = mysqli_fetch_assoc($result2)){ 
+        $daterange = $resultSet2['fopeningdate'] . " - " . $resultSet2['fclosingdate'] . ";";
+        if($cityaux!=$resultSet2['city']){
+          $data2[$y]['city'] = $resultSet2['city'];
+          $data2[$y]['state'] = $resultSet2['state'];
+          $a = 0;
+          while($a<$x){
+            if($resultSet2['showid']==$data[$a]["id"]){
+              $data3[$y][$a]['daterange'] = $daterange;
+            }else{
+              $data3[$y][$a]['daterange'] = '';
+            }$a++;
+          }$y++;
+        }else{          
+          $a = 0;
+          while($a<$x){
+            if($resultSet2['showid']==$data[$a]["id"]){
+              if(empty($data3[$y-1][$a]['daterange'])){
+                $data3[$y-1][$a]['daterange'] = $daterange;
+              }else{
+                $data3[$y-1][$a]['daterange'] = $data3[$y-1][$a]['daterange'] . '</br>' .$daterange;
+              }
+            }else{
+              $data3[$y][$a]['daterange'] = '';
+            }$a++;
+          }  
+        }
+        $cityaux = $resultSet2['city'];     
+      }        
+      
+      dbconfig::close();
+      
+      $res = array();      
+
+      $res['head'] = $data; 
+      $res['cbody'] = $data2;
+      $res['ebody'] = $data3; 
+
+      $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);
+
+    }catch (Exception $e) {
+      $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+    } finally {
+      return $data;
+    }
+  }
 }
 
 ?>
