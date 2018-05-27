@@ -82,7 +82,45 @@ class venuesServices extends dbconfig {
                  FROM venues ve, cities ci, states st 
                  WHERE st.id = ci.state_id 
                  AND ci.id = ve.venuecityid
-                 AND st.id IN ($stateId)";
+                 AND st.id = $stateId";
+
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("Venues not found.");
+       }
+       $res = array();
+       while($resultSet = mysqli_fetch_assoc($result)) {
+        $res[$resultSet['venueid']] = $resultSet['venuename'];
+       }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Venues fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }
+
+      // Fetch all states list by country id
+  public static function getVenuesFilter($countryId, $stateId, $cityId) {
+
+     try {
+                
+            if($countryId != 0){
+              $filter = "AND co.id IN ($countryId)";
+            }
+            if($cityId != 0){
+              $filter = "AND ci.id IN ($cityId)";
+            }
+            if($stateId != 0){
+              $filter = "AND st.id IN ($stateId)";
+            }
+
+      $query = "SELECT venueid, venuename 
+                FROM venues ve, countries co, cities ci, states st 
+                WHERE co.id = st.country_id 
+                AND st.id = ci.state_id
+                AND ci.id = ve.venuecityid 
+                $filter";
 
        $result = dbconfig::run($query);
        if(!$result) {

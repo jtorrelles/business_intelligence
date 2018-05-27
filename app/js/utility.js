@@ -42,6 +42,8 @@ function getCountries() {
             //Sel United States
             $(".countries").val("231");
             getStates(231);
+
+            getVenuesFilters($("#countryId").val(),0,0);
         }
         else{
             alert(data.msg);
@@ -191,9 +193,9 @@ function getShowsByCategory(categories){
     });
 }
 
-function getVenuesByCities(stateId) {
+function getVenuesFilters(countryId, stateId, cityId) {
     var call = new ajaxCall();
-    var url = '../routes/venues_route.php?type=getVenues&stateId='+stateId;
+    var url = '../routes/venues_route.php?type=getVenuesFilter&countryId='+countryId+'&stateId='+stateId+'&cityId='+cityId;
     var method = "GET";
     var data = {};
     call.send(data, url, method, function(data) {
@@ -270,6 +272,7 @@ $(function() {
         var countryId = $(this).val();
         if(countryId != ''){
             getStates(countryId);
+            getVenuesFilters(countryId,0,0);
         }else{
             $(".states option:gt(0)").remove();
         }
@@ -279,11 +282,18 @@ $(function() {
         var stateId = $(this).val();
         if(stateId != ''){
             getCities(stateId);
-            getVenuesByCities(stateId);
+            getVenuesFilters(0,stateId,0);
         }else{
             $(".cities option:gt(0)").remove();
         }
-    }); 
+    });
+
+    $(".cities").on("change", function(ev) {
+        var cityId = $(this).val();
+        if(cityId != ''){
+            getVenuesFilters(0,0,cityId);
+        }
+    });  
 
     $("#btnCleanAllRoutes").click(function (ev) {
         getCountries();
