@@ -452,7 +452,51 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
 
 
 function getPlayedMarkets(inid,endd,country,state,city,shows) {    
-    
+    var call = new ajaxCall();
+    var url = '../routes/reports_route.php?type=getPlayedMarkets&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&shows=' + shows;
+    var method = "GET";
+    var data = {};   
+    var counter1 = 0;
+    var counter2 = 0;  
+    var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
+    var htmlexc = '<table>'
+    var columns = '<tr><th>CITY</th><th>STATE</th>'; 
+    var files = '<tr>';
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+            size = data.result['head'].length; 
+            while(counter1 < size){
+                columns = columns + '<th>' + data.result['head'][counter1].name + '</th>';
+                counter1++;
+            }
+            columns = columns + '</tr>';
+            htmlpdf = htmlpdf + columns;
+            htmlexc = htmlexc + columns;
+            $("#header").append(columns);
+            size2 = data.result['cbody'].length;
+            while(counter2 < size2){                
+               files = files + '<td>' + data.result['cbody'][counter2].city + '</td>' 
+                             + '<td>' + data.result['cbody'][counter2].state + '</td>';
+                counter3 = 0;
+                while(counter3 < size){
+                    files = files + '<td>' + data.result['ebody'][counter2][counter3].daterange  + '</td>';
+                    counter3++; 
+                }                
+                files = files + '</tr><tr>';           
+                counter2++;              
+            }
+            htmlpdf = htmlpdf + files + '</table>';
+            htmlexc = htmlexc + files + '</table>';
+            $('.htmlpdf').val(htmlpdf);
+            $('.htmlexc').val(htmlexc);
+            $("#body").append(files);
+            $("#loader").hide();
+            $("#export").show();
+        }else{
+            alert(data.msg);            
+            $("#loader").hide();
+        }
+    });     
 }
 
 function getTodayDate(){

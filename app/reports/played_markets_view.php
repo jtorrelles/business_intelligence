@@ -145,7 +145,7 @@ if ($conn->connect_error) {
 			</table>
 			<input type='hidden' class="htmlpdf" name=htmlpdf>
 			<input type='hidden' class="htmlexc" name=htmlexc>
-			<input type='hidden' class="name" name=name value="Market_History">
+			<input type='hidden' class="name" name=name value="Played_market">
 		</form>
 	</div>
 </body>
