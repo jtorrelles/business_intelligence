@@ -42,7 +42,7 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>Routes of Shows Administration:</h1>";
+echo "<h1>ROUTE MANAGEMENT:</h1>";
 $selectedid = '0';
 $selectedstate = '0';
 
