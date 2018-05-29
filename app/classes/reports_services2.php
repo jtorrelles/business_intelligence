@@ -367,8 +367,7 @@ class reportsServices extends dbconfig {
                     AND openingdate >= $inid
                     AND openingdate <= $endd
                     $shows $venues
-                  ORDER BY openingdate,
-                           closingdate";
+                  ORDER BY openingdate DESC";
 
       $result2 = dbconfig::run($query2);
       if(!$result2) {
