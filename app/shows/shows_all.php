@@ -37,7 +37,7 @@ echo "
 </style>
 </head>
 <body>";
-echo "<h1>Current Shows:</h1>";
+echo "<h1>SHOWS MANAGEMENT:</h1>";
 echo "<p>
 	  <a href=\"javascript:window.open('shows_add.php','Add Show','width=480,height=650')\">Add New Show</a>
 	   - 
@@ -61,7 +61,7 @@ $sql = "SELECT
 		shownumber_of_stagehands,
 		shownumber_of_trucks,
 		shownotes
-		FROM shows ORDER BY showid ASC";
+		FROM shows ORDER BY showname ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	echo "<table id=\"shows\">
