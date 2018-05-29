@@ -1,5 +1,7 @@
 <?php
 require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
 include '../header.html';
 
 if ($conn->connect_error) {
