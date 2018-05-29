@@ -37,7 +37,7 @@ echo "
 </style>
 </head>
 <body>";
-echo "<h1>Venue Administration:</h1>";
+echo "<h1>VENUES MANAGEMENT:</h1>";
 echo "<p><a href=\"javascript:window.open('venue_add.php','Add New User','width=480,height=530')\">Add New Venue</a> - 
 	  <a href=\"javascript:window.open('venue_management.php','Modify Any Venue','width=550,height=650')\">Modify Venue</a>
 	  </p>";
