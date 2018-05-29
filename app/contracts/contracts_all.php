@@ -38,7 +38,7 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>Approved Deal & Terms Administration:</h1>";
+echo "<h1>APPROVED DEALS & TERMS MANAGEMENT:</h1>";
 
 echo "<form action=\"contracts_all.php\" method=\"POST\">";
 
