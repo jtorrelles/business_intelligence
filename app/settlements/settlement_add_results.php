@@ -1,6 +1,10 @@
 <?php
 require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
 include '../header.html';
+$description = "Added a Settlement for: ".$_POST['show_name']." on date: ".$_POST['opening_date'];
+include '../security_log.php';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

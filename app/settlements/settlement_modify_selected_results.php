@@ -1,5 +1,9 @@
 <?php
 require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
+$description = "Modified Settlement for Show: ".$_POST['show_name']." on date: ".$_POST['opening_date'];
+include '../security_log.php';
 include '../header.html';
 
 	if ($conn->connect_error) {
