@@ -37,7 +37,7 @@ echo "
 </style>
 </head>
 <body>";
-echo "<h1>Presenters Administration:</h1>";
+echo "<h1>PRESENTERS MANAGEMENT:</h1>";
 echo "<p><a href=\"javascript:window.open('presenter_add.php','Add New User','width=480,height=530')\">Add New Presenter</a> - 
 	  <a href=\"javascript:window.open('presenters_management.php','Modify Any Venue','width=480,height=650')\">Modify Presenter</a>
 	  </p>";
