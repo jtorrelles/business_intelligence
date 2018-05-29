@@ -1,7 +1,8 @@
 <?php
-require 'config/database_conn.php';
-include 'session.php';
-include 'header.html';
+require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
+include '../header.html';
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -38,7 +39,8 @@ echo "
 </head>
 <body>";
 echo "<h1>User Administration</h1>";
-echo "<p><a href=\"javascript:window.open('user_add.php','Add New User','width=480,height=530')\">Add New User</a></p>";
+echo "<p><a href=\"javascript:window.open('user_add.php','Add New User','width=480,height=530')\">Add New User</a> - ";
+echo "<a href='security_management_log.php'>View Security Log</a></p>";
 $sql = "SELECT userid, userfirst_name, userlast_name, username, userpassword, userprofile FROM security ORDER BY userid ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -67,8 +69,8 @@ if ($result->num_rows > 0) {
 		<td>••••••••</td>
 		<td>".$row["userprofile"]."</td>
 		<td align=center>
-		<a href=\"javascript:window.open('user_modify_selected.php?selectedid=".$row['userid']."','Modify Selected','width=480,height=530')\"><img src='images/modify.png' width=20></a>   
-		<a href=\"javascript:window.open('user_delete_selected.php?selectedid=".$row['userid']."','Delete Selected','width=480,height=530')\"><img src='images/delete.png' width=20></a>
+		<a href=\"javascript:window.open('user_modify_selected.php?selectedid=".$row['userid']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a>   
+		<a href=\"javascript:window.open('user_delete_selected.php?selectedid=".$row['userid']."','Delete Selected','width=480,height=530')\"><img src='../images/delete.png' width=20></a>
 		</td>
 		</tr>";
     }
@@ -79,5 +81,5 @@ echo "No Users - Please check your database connection.";
 }
 echo "</body></html>";
 $conn->close();
-include 'footer.html';
+include '../footer.html';
 ?> 
