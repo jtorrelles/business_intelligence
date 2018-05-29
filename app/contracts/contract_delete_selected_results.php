@@ -1,6 +1,10 @@
  <?php
 require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
 include '../header.html';
+$description = "Deleted Approved Deals & Terms ID: ".$_POST['id_contract'];
+include '../security_log.php';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
