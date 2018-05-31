@@ -258,6 +258,13 @@ function number_format(amount, decimals) {
     return amount_parts.join('.');
 }
 
+function strtonum(amount) {
+    amount = amount.replace(/\./g,"");
+    amount = amount.replace(",",".");
+    amount = parseFloat(amount);
+    return amount
+}
+
 $(function() {
 
     $('#shows').multipleSelect({
