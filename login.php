@@ -75,5 +75,5 @@
       </div>
 
    </body>
-   <?php include 'footer.html';?>
+   <?php include 'login_footer.html';?>
 </html>
