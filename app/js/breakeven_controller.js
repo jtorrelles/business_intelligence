@@ -40,6 +40,14 @@ function getBreakevenSelection(inid,endd,country,state,city,showId) {
     }); 
 }
 
+function BCalc() {
+    var NSPWII = document.getElementById("NSPWII").value;
+    document.getElementById("HOCAW1").value = NSPWII;
+    document.getElementById("HOCAW2").value = NSPWII;
+    document.getElementById("HOCAW3").value = NSPWII;
+    document.getElementById("HOCAW4").value = NSPWII;
+}
+
 $(function() {
 
 	$("#btnFindBreakevenSelection").click(function (ev) {
