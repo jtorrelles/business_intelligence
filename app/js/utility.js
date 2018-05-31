@@ -99,9 +99,14 @@ function getCities(id) {
     });
 }
 
-function getBasicShows() {
+/*
+    % - All shows
+    Y - Active Shows
+    N - Inactive Shows
+*/
+function getBasicShowsByStatus(status) {
     var call = new ajaxCall();
-    var url = '../routes/contracts_route.php?type=getShows';
+    var url = '../routes/shows_route.php?type=getShowsByStatus&status='+status;
     var method = "GET";
     var data = {};
     $('.shows').find("option:eq(0)").html("Please wait..");
@@ -121,9 +126,9 @@ function getBasicShows() {
     }); 
 };
 
-function getShows() {
+function getShows(status) {
     var call = new ajaxCall();
-    var url = '../routes/contracts_route.php?type=getShows';
+    var url = '../routes/shows_route.php?type=getShowsByStatus&status='+status;
     var method = "GET";
     var data = {};
     call.send(data, url, method, function(data) {

@@ -66,6 +66,9 @@ class breakevenServices extends dbconfig {
 			$sql = $query.$filter1;
 
 			$result = dbconfig::run($sql);
+
+			$count = dbconfig::num_rows($result);
+
 			if(!$result) {
 				throw new exception("Settlements not found.");
 			}

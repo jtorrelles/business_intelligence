@@ -32,6 +32,15 @@ try {
   	$data = $loc->getByCategory($categoryId);
   } 
 
+  if($type=='getShowsByStatus') {
+
+  if(!isset($_GET['status']) || empty($_GET['status'])) {
+      throw new exception("Show Status is not set.");
+  }
+    $statusFilter = $_GET['status'];
+    $data = $loc->getByStatus($statusFilter);
+  } 
+
 } catch (Exception $e) {
    $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
 } finally {
