@@ -28,7 +28,25 @@ if(isset($_GET['selectedid'])){
 				   shownotes
 				   FROM shows WHERE showid = $selectedid";
 	$result = $conn->query($sql);
+
 	while ($row = $result->fetch_assoc()) {
+	$description = "Accessed show data for: ".$row['showname'].". Current data is: 
+	showactive: ".$row['showactive'].", 
+	categoryid_1: ".$row['categoryid_1'].", 
+	categoryid_2: ".$row['categoryid_2'].", 
+	categoryid_3: ".$row['categoryid_3'].", 
+	categoryid_4: ".$row['categoryid_4'].", 
+	categoryid_5: ".$row['categoryid_5'].", 
+	categoryid_6: ".$row['categoryid_6'].", 
+	categoryid_7: ".$row['categoryid_7'].", 
+	showage: ".$row['showage'].", 
+	showweekly_nut: ".$row['showweekly_nut'].", 
+	shownumber_of_cast: ".$row['shownumber_of_cast'].", 
+	shownumber_of_musicians: ".$row['shownumber_of_musicians'].", 
+	shownumber_of_stagehands: ".$row['shownumber_of_stagehands'].", 
+	shownumber_of_trucks: ".$row['shownumber_of_trucks'].", 
+	shownotes: ".$row['shownotes'];
+	include '../security_log.php';
 	echo "<form action=\"shows_management_results.php\" method=\"POST\">";
 	echo "<table>";
 	echo "<tr><td><b>Show ID:</b></td><td><input style=\"background-color: lightgrey;\" readonly type='text' name='id_show' value='".$row['showid']."'></td></tr>";	
