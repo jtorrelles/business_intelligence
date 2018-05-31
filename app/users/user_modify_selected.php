@@ -14,7 +14,8 @@ if(isset($_GET['selectedid'])){
 				   userpassword,
 				   userfirst_name,
 				   userlast_name,
-				   userprofile
+				   userprofile,
+				   useractive
 				   FROM security WHERE userid = $selectedid";
 	$result = $conn->query($sql);
 	while ($row = $result->fetch_assoc()) {
@@ -36,6 +37,21 @@ if(isset($_GET['selectedid'])){
 				     </select>
 				</td>
 		 </tr>";
+	echo "<tr>
+			    <td>Choose Status:</td>
+				<td>
+				     <select name='user_active'>";
+						
+						if ($row["useractive"] == 'Y') {
+							echo "<option value='".$row['useractive']."'>ENABLED</option>";
+							echo "<option value='N'>DISABLED</option>";
+						} else {
+							echo "<option hidden selected value='".$row['useractive']."'>DISABLED</option>";
+							echo "<option value='Y'>ENABLED</option>";
+						}
+				     echo "</select>
+				</td>
+		 </tr>";		 
 	echo "</table>";
 	echo "<p align=center><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 	echo "</form>";

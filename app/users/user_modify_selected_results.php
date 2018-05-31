@@ -12,13 +12,15 @@ $last_name = $_POST['last_name'];
 $user_name = $_POST['user_name'];
 $user_password = $_POST['user_password'];
 $user_profile = $_POST['user_profile'];
+$user_active = $_POST['user_active'];
 
 $sql = "UPDATE security SET
 username = '$user_name',
 userpassword = '$user_password',
 userfirst_name = '$first_name',
 userlast_name = '$last_name',
-userprofile = '$user_profile'
+userprofile = '$user_profile',
+useractive = '$user_active'
 WHERE userid = $user_id";
 
 if ($conn->query($sql) === TRUE) {

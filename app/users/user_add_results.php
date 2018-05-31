@@ -11,11 +11,12 @@ $last_name = $_POST['last_name'];
 $user_name = $_POST['user_name'];
 $user_password = $_POST['user_password'];
 $user_profile = $_POST['user_profile'];
+$user_active = $_POST['user_active'];
 
 $sql = "INSERT INTO security 
-(username,userpassword,userfirst_name,userlast_name,userprofile)
+(username,userpassword,userfirst_name,userlast_name,userprofile,useractive)
 VALUES
-('$user_name','$user_password','$first_name','$last_name','$user_profile')";
+('$user_name','$user_password','$first_name','$last_name','$user_profile','$user_active')";
 
 if ($conn->query($sql) === TRUE) {
     echo "<p>User Created successfully</p>";
