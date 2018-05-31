@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 <script src="../js/breakeven_controller.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
-<script> getCountries(); getBasicShows();</script>
+<script> getCountries(); getBasicShowsByStatus('Y'); getVenues();</script>
 
 <h1>Breakeven Analysis Report:</h1>
 
@@ -106,7 +106,27 @@ if ($conn->connect_error) {
 			</td>
 			<td>
 			</td>
-		</tr>		
+		</tr>	
+		<tr>
+		<td>
+				<b>Venues:</b>
+			</td>
+			<td>
+				<select name="venues[]" multiple="multiple" id="venues">
+					<option value="0">Select Venues</option>
+				</select>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+		</tr>	
 	</table>
 	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
 </form>	
