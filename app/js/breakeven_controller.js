@@ -59,12 +59,10 @@ function BCalc() {
         NAPTII = '0.00';
     }
 
-    document.getElementById("NAPTII").value = number_format(NAPTII,2) + '$';
-    document.getElementById("HOCAW1").value = NSPWII;
-    document.getElementById("HOCAW2").value = NSPWII;
-    document.getElementById("HOCAW3").value = NSPWII;
-    document.getElementById("HOCAW4").value = NSPWII;
+    document.getElementById("NAPTII").value = number_format(NAPTII,2) + '%';
 }
+
+
 
 $(function() {
 
@@ -133,5 +131,4 @@ $(document).ready(function(){
   $('.money4').mask('000.000.000.000%', {reverse: true});
   $('.money5').mask('000.000.000.000,00$', {reverse: true});
   $('.money6').mask('000.000.000.000$', {reverse: true});
-
 });
