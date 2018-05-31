@@ -3,16 +3,6 @@ require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
 include '../header.html';
-$securityid = $_POST['detid'];
-$security_sql = "SELECT shows.showname 
-				 FROM routes_det 
-				 INNER JOIN routes on routes.routesid = routes_det.routesid 
-				 INNER JOIN shows on routes.showid = shows.showid
-				 WHERE routes_det.routes_detid = '$securityid';";
-$security_result = $conn->query($security_sql);
-$security_row = $security_result->fetch_assoc();
-$description = "Modified Route Detail for Show: ".$security_row['showname']." on Date: ".$_POST['presentation_date'];
-include '../security_log.php';
 
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
@@ -196,14 +186,28 @@ include '../security_log.php';
 					if ($conn->query($sqlUpdate2) === TRUE) {
 
 						echo "Record updated successfully";
+						$securityid = $_POST['detid'];
+						$security_sql = "SELECT shows.showname 
+									     FROM routes_det 
+										 INNER JOIN routes on routes.routesid = routes_det.routesid 
+										 INNER JOIN shows on routes.showid = shows.showid
+										 WHERE routes_det.routes_detid = '$securityid';";
+						$security_result = $conn->query($security_sql);
+						$security_row = $security_result->fetch_assoc();
+						$description = "Modified Route Detail for Show: ".$security_row['showname']." on Date: ".$_POST['presentation_date']." using this query: ".str_replace("'"," ",$sql);
+						include '../security_log.php';
 					}else{
-
-						echo "Error updating record: " . $conn->error;
+						$error = "Error updating record: " .$conn->error;
+						echo $error;
+						$description = "Error Modifying Route Detail ID: ".$_POST['detid'].". The database returned this error: ".str_replace("'"," ",$error)." using this query: ".str_replace("'"," ",$sql);
+						include '../security_log.php';
 					}
 					
 				}else{
-
-					echo "Error updating record: " . $conn->error;
+						$error = "Error updating record: " .$conn->error;
+						echo $error;
+						$description = "Error Modifying Route Detail ID: ".$_POST['detid'].". The database returned this error: ".str_replace("'"," ",$error)." using this query: ".str_replace("'"," ",$sql);
+						include '../security_log.php';
 				}
 			}
 		}else{	//reset the initial date
@@ -249,20 +253,38 @@ include '../security_log.php';
 
 				if ($conn->query($sqlOrigin) === TRUE) {
 
-					echo "Record updated successfully";
+						echo "Record updated successfully";
+						$securityid = $_POST['detid'];
+						$security_sql = "SELECT shows.showname 
+									     FROM routes_det 
+										 INNER JOIN routes on routes.routesid = routes_det.routesid 
+										 INNER JOIN shows on routes.showid = shows.showid
+										 WHERE routes_det.routes_detid = '$securityid';";
+						$security_result = $conn->query($security_sql);
+						$security_row = $security_result->fetch_assoc();
+						$description = "Modified Route Detail for Show: ".$security_row['showname']." on Date: ".$_POST['presentation_date']." using this query: ".str_replace("'"," ",$sql);
+						include '../security_log.php';
 
 				}else{
-
-					echo "Error updating record: " . $conn->error;
+						$error = "Error updating record: " .$conn->error;
+						echo $error;
+						$description = "Error Modifying Route Detail ID: ".$_POST['detid'].". The database returned this error: ".str_replace("'"," ",$error)." using this query: ".str_replace("'"," ",$sql);
+						include '../security_log.php';
 				}
 
 			}else{
-				echo "Error updating record: " . $conn->error;
+						$error = "Error updating record: " .$conn->error;
+						echo $error;
+						$description = "Error Modifying Route Detail ID: ".$_POST['detid'].". The database returned this error: ".str_replace("'"," ",$error)." using this query: ".str_replace("'"," ",$sql);
+						include '../security_log.php';
 			}
 		}
 
 	} else {
-	    echo "Error updating record: " . $conn->error;
+						$error = "Error updating record: " .$conn->error;
+						echo $error;
+						$description = "Error Modifying Route Detail ID: ".$_POST['detid'].". The database returned this error: ".str_replace("'"," ",$error)." using this query: ".str_replace("'"," ",$sql);
+						include '../security_log.php';
 	}
 
 	echo "<script language=\"javascript\"type=\"text/javascript\">
