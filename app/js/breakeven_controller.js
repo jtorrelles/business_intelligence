@@ -60,6 +60,10 @@ function BCalc() {
     }
 
     document.getElementById("NAPTII").value = number_format(NAPTII,2) + '$';
+    document.getElementById("HOCAW1").value = NSPWII;
+    document.getElementById("HOCAW2").value = NSPWII;
+    document.getElementById("HOCAW3").value = NSPWII;
+    document.getElementById("HOCAW4").value = NSPWII;
 }
 
 $(function() {

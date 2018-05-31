@@ -238,38 +238,28 @@
     border-radius: 25px;
 }
 
-
-.text {
+input[type=number]
+{
   width: 100px;
   text-align: right;
 }
 
 .bgreena {
-  width: 100px;
-  text-align: right;
-  background-color: #ccffdd;
+    background-color: #ccffdd;
 }
 
 .bgreenb {
-  width: 100px;
-  text-align: right;
-  background-color: green;
+    background-color: green;
 }
 
 .bblue {
-  width: 100px;
-  text-align: right;
-  background-color: lightblue;
+    background-color: lightblue;
 } 
 
 .byellow {
-  width: 100px;
-  text-align: right;
-  background-color: yellow;
+    background-color: yellow;
 } 
 
 .bpink {
-  width: 100px;
-  text-align: right;
-  background-color: #ffe6e6;
+    background-color: #ffe6e6;
 }      
