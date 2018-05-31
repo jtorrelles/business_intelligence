@@ -171,6 +171,21 @@ class venuesServices extends dbconfig {
        $res["email"] = $resultSet['venueemail'];
        $res["notes"] = $resultSet['venuenotes'];
        $res["active"] = $resultSet['venueactive'];
+	   
+	   include '../session.php';
+	   $description = "Accessed venue data for: ".$res["name"].". Current data is: 
+	   venueaddress_1: ".$res["address_1"].", 
+	   venueaddress_2: ".$res["address_2"].", 
+	   venuecity: ".$res["city"].", 
+	   venuestate: ".$res["state"].", 
+	   venuecountry: ".$res["country"].", 
+	   venuezip: ".$res["zip"].", 
+	   venuephone: ".$res["phone"].", 
+	   venuefax: ".$res["fax"].", 
+	   venueemail: ".$res["email"].", 
+	   venuenotes: ".$res["notes"].", 
+	   venueactive: ".$res["active"];
+	   include '../security_log.php';
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Venues fetched successfully.", 'result'=>$res);
 

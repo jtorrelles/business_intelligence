@@ -216,6 +216,15 @@ class showRoutesServices extends dbconfig {
        $res["numberoftrucks"] = $resultSet['numberoftrucks'];
        $res["dateroute"] = $resultSet['dateroute'];
        $res["nut"] = $resultSet['routenut'];
+	   
+	   include '../session.php';
+	   $description = "Accessed main route data for show: ".$res['showname'].". Current data is: 
+	   id: ".$res["routeid"].", 
+	   showname: ".$res["showname"].", 
+	   numberoftrucks: ".$res["numberoftrucks"].", 
+	   dateroute: ".$res["dateroute"].", 
+	   routenut: ".$res['nut'];
+	   include '../security_log.php';
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Route fetched successfully.", 'result'=>$res);
        
@@ -245,7 +254,9 @@ class showRoutesServices extends dbconfig {
        while($resultSet = mysqli_fetch_assoc($result)) {
           $res[$resultSet['ROUTES_DETID']] = $resultSet['PRESENTATION_DATE'];
        }
-
+	   include '../session.php';
+	   $description = "Modified / changed the date of a Route detail";
+	   include '../security_log.php';
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Data Route Detail fetched successfully.", 'result'=>$res);
        
      } catch (Exception $e) {
@@ -342,6 +353,60 @@ class showRoutesServices extends dbconfig {
        $res["city_name"] = $resultSet['cityNAME'];
        $res["state_name"] = $resultSet['stateNAME'];
        $res["country_name"] = $resultSet['countryNAME'];
+	   
+	   include '../session.php';
+	   $description = "Accessed detail data for Route ID: ".$res['routeid'].". On Detail ID: ".$res['routedetid'].". Current data is: 
+ROUTES_DETID: ".$res["routedetid"].", 
+ROUTESID: ".$res["routeid"].", 
+PRESENTATION_DATE: ".$res["presentation_date"].", 
+HOLIDAY: ".$res["holiday"].", 
+CITYID: ".$res["cityid"].", 
+REPEAT: ".$res["repeat"].", 
+MILEAGE: ".$res["mileage"].", 
+BOOK_NOTES: ".$res["book_notes"].", 
+PROD_NOTES: ".$res["prod_notes"].", 
+TIME_ZONE: ".$res["time_zone"].", 
+SHOW_TIMES: ".$res["show_times"].", 
+PERF: ".$res["perf"].", 
+VENUEID: ".$res["venueid"].", 
+PRESENTERID: ".$res["presenterid"].", 
+CAPACITY: ".$res["capacity"].", 
+FIXED_GNTEE: ".$res["fixed_gntee"].", 
+ROYALTY: ".$res["royalty"].", 
+BACKEND: ".$res["backend"].", 
+BREAKEVEN: ".$res["breakeven"].", 
+DEAL_NOTES: ".$res["deal_notes"].", 
+EST_ROYALTY: ".$res["est_royalty"].", 
+ON_SUB: ".$res["on_sub"].", 
+DATE_CONF: ".$res["date_conf"].", 
+OFFER: ".$res["offer"].", 
+PRICE_SCALES: ".$res["price_scales"].", 
+EXPENSES: ".$res["expenses"].", 
+DEAL_MEMO: ".$res["deal_memo"].", 
+CONTRACT: ".$res["contract"].", 
+TEAM_DRIVE: ".$res["teamdrive"].", 
+GROSS_POT: ".$res["gross_pot"].", 
+SPO_GROSS_POT: ".$res["spo_gross_pot"].", 
+SUBS_TSALES: ".$res["subs_tsales"].", 
+GROUP_TSALES: ".$res["group_tsales"].", 
+SINGLE_TSALES: ".$res["single_tsales"].", 
+GROSS_SALES: ".$res["gross_sales"].", 
+OTT_EXPENSES: ".$res["ott_expenses"].", 
+NAGBOR: ".$res["nagbor"].", 
+PL_EXPENSES: ".$res["pl_expenses"].", 
+TE_EXPENSES: ".$res["te_expenses"].", 
+EP_LOSS: ".$res["ep_loss"].", 
+GUARANTEE: ".$res["guarantee"].", 
+ROYALTY_PER: ".$res["royalty_per"].", 
+MROYALTY: ".$res["mroyalty"].", 
+OVERAGE_PER: ".$res["overage_per"].", 
+OVERAGE: ".$res["overage"].", 
+VenueNAME: ".$res["venue_name"].", 
+PresenterNAME: ".$res["presenter_name"].", 
+cityNAME: ".$res["city_name"].", 
+stateNAME: ".$res["state_name"].", 
+countryNAME: ".$res["country_name"];
+	   include '../security_log.php';
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Route Detail fetched successfully.", 'result'=>$res);
        
@@ -483,7 +548,9 @@ class showRoutesServices extends dbconfig {
                     $res["deal_memo" . $i] = $Deal_memo[$i];
                     $res["contract" . $i] = $Contract[$i];
                   }
-                  
+                  include '../session.php';
+				  $description = "Uploaded a new route for Show ID: ".$res["showtoroute"];
+				  include '../security_log.php';
                   unlink($target_file); 
                   $data = array('status'=>'success', 'tp'=>$uploadOk, 'msg'=>'SpreadSheet Upload Successfully', 'result'=>$res);
                 }
