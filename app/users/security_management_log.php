@@ -36,14 +36,14 @@ echo "
 <body>";
 echo "<h1>SECURITY LOG</h1>";
 echo "<p><a href='security_management.php'>Back to User Management</a></p>";
-$sql = "SELECT user, description, date, time FROM security_log ORDER BY date, time DESC";
+$sql = "SELECT user, description, date, time FROM security_log ORDER BY date DESC, time DESC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	echo "<table id=\"shows\">
-	<col width=25%>
-	<col width=25%>
-	<col width=25%>
-	<col width=25%>
+	<col width=10%>
+	<col width=70%>
+	<col width=10%>
+	<col width=10%>
     <tr>
 	<th>Username</th>
 	<th>Description</th>
