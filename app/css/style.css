@@ -187,7 +187,7 @@
 #tablecss tr:hover {background-color: #ddd;}
 
 #tablecss th {
-  padding: 8px;
+    padding: 8px;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
@@ -237,3 +237,29 @@
     border: 2px solid;
     border-radius: 25px;
 }
+
+input[type=number]
+{
+  width: 100px;
+  text-align: right;
+}
+
+.bgreena {
+    background-color: #ccffdd;
+}
+
+.bgreenb {
+    background-color: green;
+}
+
+.bblue {
+    background-color: lightblue;
+} 
+
+.byellow {
+    background-color: yellow;
+} 
+
+.bpink {
+    background-color: #ffe6e6;
+}      
