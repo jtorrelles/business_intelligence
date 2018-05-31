@@ -54,7 +54,7 @@ function BCalc() {
         NAPTII = '0.00';
     }
 
-    document.getElementById("NAPTII").value = number_format(NAPTII,2) + '%';
+    document.getElementById("NAPTII").value = number_format(NAPTII,2) + '$';
 }
 
 
