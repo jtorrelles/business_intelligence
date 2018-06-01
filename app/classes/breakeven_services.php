@@ -4,18 +4,24 @@ class breakevenServices extends dbconfig {
 
 	public static $data;
 
+	protected static $result;
+	protected static $sql;
+
 	function __construct() {
 		parent::__construct();
 	}
 
-	public static function getAnalysisSelection($inid,$endd,$country,$state,$city,$show){
+	public static function getAnalysisSelection($inid,$endd,$country,$state,$city,$show,$venues){
 
 		$data = array();
 
 		$data["settlements"] = self::getAnalysisBySettlements($country,$state,$city,$show);
-		$data["contracts"] = self::getAnalysisByContracts($inid,$endd,$country,$state,$city,$show);
+		$data["contracts"] = self::getAnalysisByContracts($inid,$endd,$country,$state,$city,$show,$venues);
+		$data["routes"] = self::getAnalysisByRoutes($inid,$endd,$country,$state,$city,$show,$venues);
 
-		$data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$data);
+		$data = array('status'=>'success', 'tp'=>1, 'msg'=>"Analysis Succesfull.", 'result'=>$data);
+
+		dbconfig::close();
 
 		return $data;
 	}
@@ -58,25 +64,55 @@ class breakevenServices extends dbconfig {
 					AND st.country_id = co.id";
 
 			$filter1 = "
-					AND st.country_id like ('$country') 
-					AND st.id like ('$state') 
 					AND ci.id like ('$city')
-					AND se.SHOWID = $show ";
+					AND se.SHOWID = $show 
+					ORDER BY se.OPENINGDATE DESC 
+					LIMIT 4";			
 
-			$sql = $query.$filter1;
+			$filter2 = "
+					AND st.id like ('$state') 
+					AND se.SHOWID = $show 
+					ORDER BY se.OPENINGDATE DESC 
+					LIMIT 4";
+			$filter3 = "
+					AND se.SHOWID = $show 
+					ORDER BY se.OPENINGDATE DESC 
+					LIMIT 4";			
 
-			$result = dbconfig::run($sql);
+			self::$sql = $query.$filter1;
 
-			$count = dbconfig::num_rows($result);
-
-			if(!$result) {
+			self::$result = dbconfig::run(self::$sql);
+			if(!self::$result) {
 				throw new exception("Settlements not found.");
+			}
+
+			$count = dbconfig::num_rows(self::$result);
+			if($count == 0){
+
+				self::$sql = $query.$filter2;
+
+				self::$result = dbconfig::run(self::$sql);
+				if(!self::$result) {
+					throw new exception("Settlements not found.");
+				}
+
+				$count = dbconfig::num_rows(self::$result);
+
+				if($count == 0){
+					self::$sql = $query.$filter3;
+
+					self::$result = dbconfig::run(self::$sql);
+					if(!self::$result) {
+						throw new exception("Settlements not found.");
+					}
+
+				}
 			}
 
 			$data = array();
 			$x = 0;
 
-			while($resultSet = mysqli_fetch_assoc($result)) {
+			while($resultSet = mysqli_fetch_assoc(self::$result)) {
 
 				$capacity = $resultSet["CAPACITY"];
 				$numberofweeks =  $resultSet['NUMBEROFWEEKS'];
@@ -142,8 +178,6 @@ class breakevenServices extends dbconfig {
 				$x++;			
 			}
 
-			dbconfig::close();
-
 		}catch (Exception $e) {
 			$data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
 		} finally {
@@ -151,7 +185,7 @@ class breakevenServices extends dbconfig {
 		}
 	}
 
-	public static function getAnalysisByContracts($inid,$endd,$country,$state,$city,$show){
+	public static function getAnalysisByContracts($inid,$endd,$country,$state,$city,$show,$venues){
 
 		try{
 
@@ -160,6 +194,7 @@ class breakevenServices extends dbconfig {
 						ROUND((co.ContractCLOSING_DATE-co.ContractOPENING_DATE)/7,2) AS NUMBEROFWEEKS, 
 						co.ContractNUMBER_OF_PERFORMANCES AS NUMBEROFPERFORMANCES, 
 						co.ContractGROSS_POTENTIAL AS GROSSBOXOFFICEPOTENTIAL, 
+						1 AS EXCHANGERATE, 
 						co.ContractSALES_TAX_1 AS SALESTAX1, 
 						co.ContractSALES_TAX_2 AS SALESTAX2, 
 						co.ContractFACILITY_FEES_1 AS FACILITYFEE1, 
@@ -178,24 +213,60 @@ class breakevenServices extends dbconfig {
 						AND st.country_id = cou.id";
 
 			$filter1 = "
-					AND st.country_id like ('$country') 
-					AND st.id like ('$state') 
 					AND ci.id like ('$city') 
 					AND co.ShowID = $show 
-					AND co.ContractOPENING_DATE >= '$inid'
-					AND co.ContractCLOSING_DATE <= '$endd'";
+					AND co.ContractOPENING_DATE >= '$inid' 
+					AND co.ContractCLOSING_DATE <= '$endd' 
+					AND co.ContractVENUEID IN ('$venues') 
+					ORDER BY co.ContractOPENING_DATE DESC 
+					LIMIT 4";
 
-			$sql = $query.$filter1;
+			$filter2 = "
+					AND ci.id like ('$city') 
+					AND co.ShowID = $show 
+					ORDER BY co.ContractOPENING_DATE DESC 
+					LIMIT 4";
 
-			$result = dbconfig::run($sql);
-			if(!$result) {
+			$filter3 = "
+					AND st.id like ('$state') 
+					AND co.ShowID = $show 
+					ORDER BY co.ContractOPENING_DATE DESC 
+					LIMIT 4";
+
+			self::$sql = $query.$filter1;
+
+			self::$result = dbconfig::run(self::$sql);
+			if(!self::$result) {
 				throw new exception("Contracts not found.");
+			}
+
+			$count = dbconfig::num_rows(self::$result);
+			if($count == 0){
+
+				self::$sql = $query.$filter2;
+
+				self::$result = dbconfig::run(self::$sql);
+				if(!self::$result) {
+					throw new exception("Contracts not found.");
+				}
+
+				$count = dbconfig::num_rows(self::$result);
+
+				if($count == 0){
+					self::$sql = $query.$filter3;
+
+					self::$result = dbconfig::run(self::$sql);
+					if(!self::$result) {
+						throw new exception("Contracts not found.");
+					}
+
+				}
 			}
 
 			$data = array();
 			$x = 0;
 
-			while($resultSet = mysqli_fetch_assoc($result)) {
+			while($resultSet = mysqli_fetch_assoc(self::$result)) {
 
 				$numberofweeks =  $resultSet['NUMBEROFWEEKS'];
 				$numberofshowsperweek = $resultSet['NUMBEROFPERFORMANCES'] / $numberofweeks;
@@ -209,6 +280,7 @@ class breakevenServices extends dbconfig {
 				$data[$x]["NUMBEROFSHOWSPERWEEKS"] = round($numberofshowsperweek);
 				$data[$x]["CAPACITY"] = $resultSet['CAPACITY'];
 				$data[$x]["WEEKLYGROSSPOTENTIAL"] = round($weeklygross,2);
+				$data[$x]["EXCHANGERATE"] = $resultSet['EXCHANGERATE'];
 				$data[$x]["SALESTAX1"] = $resultSet['SALESTAX1'];
 				$data[$x]["SALESTAX2"] = $resultSet['SALESTAX2'];
 				$data[$x]["FACILITYFEE1"] = $resultSet['FACILITYFEE1'];
@@ -223,14 +295,76 @@ class breakevenServices extends dbconfig {
 				$x++;			
 			}
 
-			dbconfig::close();
+		}catch (Exception $e) {
+			$data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+		} finally {
+			return $data;
+		}
+	}
+
+	public static function getAnalysisByRoutes($inid,$endd,$country,$state,$city,$show,$venues){
+
+		try{
+
+			$query = "SELECT ro.ROUTESID AS ID, rd.ROUTES_DETID AS DET_ID, ro.SHOWID AS SHOWID, 
+							sw.ShowNAME, rd.CITYID AS CITYID, rd.PRESENTATION_DATE, rd.CAPACITY, rd.PERF, 
+							ROUND((MAX(rd.PRESENTATION_DATE) - MIN(rd.PRESENTATION_DATE)) / 7, 2) AS NUMBEROFWEEKS, 
+							rd.FIXED_GNTEE, rd.ROYALTY, 
+							ci.`name` as city, st.`name` as state, cou.sortname as country 
+						FROM routes ro, routes_det rd, shows sw, cities ci, states st, countries cou 
+						WHERE ro.ROUTESID = rd.ROUTESID 
+						AND ro.ShowID = sw.ShowID 
+						AND rd.CITYID = ci.id 
+						AND ci.state_id = st.id 
+						AND st.country_id = cou.id 
+						AND ci.id like ('$city') 
+						AND ro.SHOWID = $show 
+						AND rd.PRESENTATION_DATE >= '$inid' 
+						AND rd.PRESENTATION_DATE <= '$endd' 
+						AND rd.VENUEID IN ('$venues') 
+						GROUP BY ID";
+
+			self::$result = dbconfig::run($query);
+			if(!self::$result) {
+				throw new exception("Contracts not found.");
+			}
+
+			$data = array();
+			$x = 0;
+
+			$count = dbconfig::num_rows(self::$result);
+
+			if($count > 0){
+
+				while($resultSet = mysqli_fetch_assoc(self::$result)) {
+
+					$numberofweeks =  $resultSet['NUMBEROFWEEKS'];
+					$numberofshowsperweek = $resultSet['PERF'] / $numberofweeks;
+
+					$data[$x]["ID"] = $resultSet['ID'];
+					$data[$x]["DET_ID"] = $resultSet['DET_ID'];
+					$data[$x]["SHOWID"] = $resultSet['SHOWID'];
+					$data[$x]["SHOWNAME"] = $resultSet['ShowNAME'];
+					$data[$x]["NUMBEROFWEEKS"] = $resultSet['NUMBEROFWEEKS'];
+					$data[$x]["NUMBEROFSHOWSPERWEEKS"] = round($numberofshowsperweek);
+					$data[$x]["EXCHANGERATE"] = 1;
+					$data[$x]["CITYID"] = $resultSet['CITYID'];
+					$data[$x]["CAPACITY"] = $resultSet['CAPACITY'];
+					$data[$x]["PERF"] = $resultSet['PERF'];
+					$data[$x]["FIXED_GNTEE"] = $resultSet['FIXED_GNTEE'];
+					$data[$x]["ROYALTY"] = $resultSet['ROYALTY'];
+
+					$x++;			
+				}
+
+			}
 
 		}catch (Exception $e) {
 			$data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
 		} finally {
 			return $data;
 		}
-	}	
+	}		
 
 }
 
