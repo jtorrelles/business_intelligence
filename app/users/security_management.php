@@ -44,7 +44,7 @@ echo "<a href='security_management_log.php'>View Security Log</a></p>";
 $sql = "SELECT userid, userfirst_name, userlast_name, username, userpassword, userprofile, useractive FROM security ORDER BY userid ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<table id=\"shows\">
+	echo "<table id=\"shows\" class='sortable'>
 	<col width=14.28%>
 	<col width=14.28%>
 	<col width=14.28%>
