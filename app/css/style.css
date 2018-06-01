@@ -237,3 +237,39 @@
     border: 2px solid;
     border-radius: 25px;
 }
+
+
+.text {
+  width: 100px;
+  text-align: right;
+}
+
+.bgreena {
+  width: 100px;
+  text-align: right;
+  background-color: #ccffdd;
+}
+
+.bgreenb {
+  width: 100px;
+  text-align: right;
+  background-color: green;
+}
+
+.bblue {
+  width: 100px;
+  text-align: right;
+  background-color: lightblue;
+} 
+
+.byellow {
+  width: 100px;
+  text-align: right;
+  background-color: yellow;
+} 
+
+.bpink {
+  width: 100px;
+  text-align: right;
+  background-color: #ffe6e6;
+}      

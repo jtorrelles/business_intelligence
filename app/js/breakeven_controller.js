@@ -46,6 +46,23 @@ function getBreakevenSelection(inid,endd,country,state,city,showId,venues) {
     }); 
 }
 
+function BCalc() {
+
+    var NSPWII = strtonum(document.getElementById("NSPWII").value);
+    var NOW1II = strtonum(document.getElementById("NOW1II").value);
+    var SPSHII = strtonum(document.getElementById("SPSHII").value);
+    var WGPOII = strtonum(document.getElementById("WGPOII").value);
+    var EXRAII = strtonum(document.getElementById("EXRAII").value);
+
+    if(NSPWII!=0 && SPSHII!=0){
+        NAPTII = WGPOII / (NSPWII * SPSHII);
+    }else{
+        NAPTII = '0.00';
+    }
+
+    document.getElementById("NAPTII").value = number_format(NAPTII,2) + '$';
+}
+
 $(function() {
 
 	$("#btnFindBreakevenSelection").click(function (ev) {
@@ -100,7 +117,17 @@ $(function() {
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
 
-        getBreakevenSelection(finicio,ffin,countryId,stateId,cityId,showId,venues);
+        getBreakevenSelection(finicio,ffin,countryId,stateId,cityId,showId);
     });
 
+});
+
+
+$(document).ready(function(){  
+  $('.money1').mask('000.000.000.000,00', {reverse: true});
+  $('.money2').mask('000.000.000.000', {reverse: true});
+  $('.money3').mask('000.000.000.000,00%', {reverse: true});
+  $('.money4').mask('000.000.000.000%', {reverse: true});
+  $('.money5').mask('000.000.000.000,00$', {reverse: true});
+  $('.money6').mask('000.000.000.000$', {reverse: true});
 });

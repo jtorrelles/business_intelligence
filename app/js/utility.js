@@ -99,6 +99,7 @@ function getCities(id) {
     });
 }
 
+<<<<<<< HEAD
 /*
     % - All shows
     Y - Active Shows
@@ -107,6 +108,11 @@ function getCities(id) {
 function getBasicShowsByStatus(status) {
     var call = new ajaxCall();
     var url = '../routes/shows_route.php?type=getShowsByStatus&status='+status;
+=======
+function getBasicShows() {
+    var call = new ajaxCall();
+    var url = '../routes/contracts_route.php?type=getShows';
+>>>>>>> 4c5d5de7b6a7ff3a83d942aa253c4c8c7bf84b9f
     var method = "GET";
     var data = {};
     $('.shows').find("option:eq(0)").html("Please wait..");
@@ -256,6 +262,13 @@ function number_format(amount, decimals) {
         amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
 
     return amount_parts.join('.');
+}
+
+function strtonum(amount) {
+    amount = amount.replace(/\./g,"");
+    amount = amount.replace(",",".");
+    amount = parseFloat(amount);
+    return amount
 }
 
 $(function() {
