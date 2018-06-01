@@ -170,24 +170,24 @@
   }
 }	
 
-#tablecss {
+.tablecss {
     font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
   font-size: 11px;
     border-collapse: collapse;
     width: 100%;
 }
 
-#tablecss td, #customers th {
+.tablecss td, #customers th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#tablecss tr:nth-child(even){background-color: #f2f2f2;}
+.tablecss tr:nth-child(even){background-color: #f2f2f2;}
 
-#tablecss tr:hover {background-color: #ddd;}
+.tablecss tr:hover {background-color: #ddd;}
 
-#tablecss th {
-    padding: 8px;
+.tablecss th {
+  padding: 8px;
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
