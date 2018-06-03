@@ -38,8 +38,10 @@ echo "
 </style>
 </head>
 <body>";
-echo "<h1>User Administration</h1>";
+echo "<h1>SECURITY MANAGEMENT</h1>";
 echo "<p><a href=\"javascript:window.open('user_add.php','Add New User','width=480,height=530')\">Add New User</a> - ";
+//echo "<a href=\"javascript:window.open('backup.php','Backup Database','width=480,height=530')\">Backup Database</a> - ";
+echo "<a href='backup.php'>Backup Database</a> - ";
 echo "<a href='security_management_log.php'>View Security Log</a></p>";
 $sql = "SELECT userid, userfirst_name, userlast_name, username, userpassword, userprofile, useractive FROM security ORDER BY userid ASC";
 $result = $conn->query($sql);
