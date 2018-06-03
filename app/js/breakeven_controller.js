@@ -62,8 +62,6 @@ function BCalc() {
     document.getElementById("NAPTII").value = number_format(NAPTII,2) + '$';
 }
 
-
-
 $(function() {
 
 	$("#btnFindBreakevenSelection").click(function (ev) {
