@@ -1,14 +1,4 @@
 <?php
-// Database configuration
-//$host = "localhost";
-//$username = "root";
-//$password = "C4r4lh0_V04d0r";
-//$database_name = "networksbi";
-
-// Get connection object and set the charset
-//$conn = mysqli_connect($host, $username, $password, $database_name);
-//$conn->set_charset("utf8");
-
 require '../db/database_conn.php';
 require '../session.php';
 require 'access_control.php';
