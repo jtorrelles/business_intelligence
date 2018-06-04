@@ -48,6 +48,15 @@ try {
   	 $data = $loc->getVenues($stateId);
   }
 
+  if($type=='getVenuesFilter') {
+
+    $countryId = $_GET['countryId'];
+    $stateId = $_GET['stateId'];
+    $cityId = $_GET['cityId'];
+
+    $data = $loc->getVenuesFilter($countryId,$stateId,$cityId);
+  }
+
   if($type=='getDataVenues') {
      if(!isset($_GET['venueId']) || empty($_GET['venueId'])) {
       throw new exception("Venue Id is not set.");

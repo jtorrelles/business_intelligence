@@ -32,6 +32,7 @@ class dbconfig {
   public static function close() {
      mysqli_close(self::$con);
   }
+
   public static function run($query) {
     try {
       if(empty($query) && !isset($query)) {
@@ -44,4 +45,8 @@ class dbconfig {
     }
      
   } 
+
+  public static function num_rows($result){
+      return mysqli_num_rows($result);
+  }
 }

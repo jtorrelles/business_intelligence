@@ -1,7 +1,10 @@
 <?php
 require '../db/database_conn.php';
 include '../session.php';
+include 'access_control.php';
 include '../header.html';
+$description = "Accessed APPROVED DEALS & TERMS Module";
+include '../security_log.php';
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -38,7 +41,7 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>Approved Deal & Terms Administration:</h1>";
+echo "<h1>APPROVED DEALS & TERMS MANAGEMENT:</h1>";
 
 echo "<form action=\"contracts_all.php\" method=\"POST\">";
 

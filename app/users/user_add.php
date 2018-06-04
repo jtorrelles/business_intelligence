@@ -1,7 +1,8 @@
 <?php
-require 'config/database_conn.php';
-include 'session.php';
-include 'header.html';
+require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
+include '../header.html';
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -25,10 +26,20 @@ echo "
 				     </select>
 				</td>
 			</tr>
+			<tr>
+			    <td>Status:</td>
+				<td>
+				     <select name='user_active'>
+					    <option disabled hidden selected>Select a Status...</option>
+						<option value='Y'>ENABLED</option>
+						<option value='N'>DISABLED</option>
+				     </select>
+				</td>
+			</tr>			
 		</table>
 		<p align=center><input type=\"submit\" name=\"save\" value=\"Save / Create\"></p>
 		</form>
 ";
 $conn->close();
-include 'footer.html';
+include '../footer.html';
 ?> 

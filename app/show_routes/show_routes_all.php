@@ -1,7 +1,10 @@
 <?php
 require '../db/database_conn.php';
 include '../session.php';
+include 'access_control.php';
 include '../header.html';
+$description = "Accessed ROUTE MANAGEMENT Module";
+include '../security_log.php';
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -42,7 +45,7 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>Routes of Shows Administration:</h1>";
+echo "<h1>ROUTES MANAGEMENT:</h1>";
 $selectedid = '0';
 $selectedstate = '0';
 

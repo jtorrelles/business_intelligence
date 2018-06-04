@@ -31,8 +31,9 @@ include_once("../classes/breakeven_services.php");
 			$state = $_GET['state'];
 			$city = $_GET['city'];
 			$showId = $_GET['showId'];
+			$venues = $_GET['venues'];
 
-			$data = $loc->getAnalysisSelection($inid,$endd,$country,$state,$city,$showId);
+			$data = $loc->getAnalysisSelection($inid,$endd,$country,$state,$city,$showId,$venues);
 		}
 
 	} catch (Exception $e) {

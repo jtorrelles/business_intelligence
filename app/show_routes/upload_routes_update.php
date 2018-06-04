@@ -1,4 +1,6 @@
 <?php 
+include '../session.php';
+include 'access_control.php';
 include '../header.html';
 
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";

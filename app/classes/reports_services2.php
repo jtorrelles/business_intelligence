@@ -334,8 +334,10 @@ class reportsServices extends dbconfig {
       $query2 = "SELECT showname,
                         sta.name as state,
                         ci.name as city,  
-                        IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as openingdate,
-                        IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as closingdate,
+                        openingdate,
+                        closingdate,
+                        IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as fopeningdate,
+                        IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as fclosingdate,
                         venuename,
                         numberofperformances as perf,
                         grossboxofficepotential as gross,
@@ -365,7 +367,7 @@ class reportsServices extends dbconfig {
                     AND openingdate >= $inid
                     AND openingdate <= $endd
                     $shows $venues
-                  ORDER BY openingdate desc";
+                  ORDER BY openingdate DESC";
 
       $result2 = dbconfig::run($query2);
       if(!$result2) {
@@ -376,8 +378,8 @@ class reportsServices extends dbconfig {
       
       while($resultSet2 = mysqli_fetch_assoc($result2)) {
         $data2[$y]['showname'] = $resultSet2['showname'];
-        $data2[$y]['openingdate'] = $resultSet2['openingdate'];
-        $data2[$y]['closingdate'] = $resultSet2['closingdate'];
+        $data2[$y]['openingdate'] = $resultSet2['fopeningdate'];
+        $data2[$y]['closingdate'] = $resultSet2['fclosingdate'];
         $data2[$y]['state'] = $resultSet2['state'];
         $data2[$y]['city'] = $resultSet2['city'];        
         $data2[$y]['venuename'] = $resultSet2['venuename'];

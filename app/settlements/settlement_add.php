@@ -1,5 +1,7 @@
 <?php
 include '../header.html';
+include '../session.php';
+include 'access_control.php';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/settlements_controller.js\"></script></td>";
 echo "<script> onloadManagement(); </script>";

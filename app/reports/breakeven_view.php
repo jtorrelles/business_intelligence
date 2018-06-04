@@ -18,7 +18,6 @@ if ($conn->connect_error) {
 <script src="../js/breakeven_controller.js"></script>
 <script src="../js/jquery.maskMoney.min.js"></script>
 <script src="../js/utility.js"></script>
-
 <h1>BREAKEVEN ANALYSIS</h1>
 <p><table width=100% id="btable">
 <col width=20%>

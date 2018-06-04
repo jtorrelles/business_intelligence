@@ -1,7 +1,10 @@
 <?php
 require '../db/database_conn.php';
 include '../session.php';
+include 'access_control.php';
 include '../header.html';
+$description = "Accessed PRESENTERS MANAGEMENT Module";
+include '../security_log.php';
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -37,7 +40,7 @@ echo "
 </style>
 </head>
 <body>";
-echo "<h1>Presenters Administration:</h1>";
+echo "<h1>PRESENTERS MANAGEMENT:</h1>";
 echo "<p><a href=\"javascript:window.open('presenter_add.php','Add New User','width=480,height=530')\">Add New Presenter</a> - 
 	  <a href=\"javascript:window.open('presenters_management.php','Modify Any Venue','width=480,height=650')\">Modify Presenter</a>
 	  </p>";

@@ -1,6 +1,8 @@
  <?php
-require 'config/database_conn.php';
-include 'header.html';
+require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
+include '../header.html';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -27,5 +29,5 @@ echo "
 	</p>
 ";
 $conn->close();
-include 'footer.html';
+include '../footer.html';
 ?> 

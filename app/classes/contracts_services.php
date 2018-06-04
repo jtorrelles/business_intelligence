@@ -182,7 +182,41 @@ class contractsServices extends dbconfig {
        $res["fix_com"] = $resultSet['FIX_COM'];
        $res["doc_com"] = $resultSet['DOC_COM'];
        $res["pre_com"] = $resultSet['PRE_COM'];
-	     $res["notes"] = $resultSet['NOTES'];
+	   $res["notes"] = $resultSet['NOTES'];
+	   
+include '../session.php';
+$description = "Accessed contract data for Show ID: ".$res['showid'].". The current data for this AD&T is: 
+contractID: ".$res["contractid"].", 
+contractSHOW_NAME: ".$res["showid"].", 
+contractPRESENTER_NAME: ".$res["presenterid"].", 
+contractVENUE_NAME: ".$res["venueid"].", 
+contractCITYID: ".$res["cityid"].", 
+contractSTATEID: ".$res["stateid"].", 
+contractCITY: ".$res["cityname"].", 
+contractSTATE: ".$res["statename"].", 
+OPENING: ".$res["opening_date"].", 
+CLOSING: ".$res["closing_date"].", 
+PERFORMANCE: ".$res["num_performances"].", 
+GROSS: ".$res["gross_potential"].", 
+TAX: ".$res["tax"].", 
+GUARANTEE: ".$res["guarantee"].", 
+VARIABLE_GUARANTEE: ".$res["variable_guarantee"].", 
+PRODUCER_OVERAGES: ".$res["producer_overages"].", 
+SALES_TAX_1: ".$res["sales_tax_1"].", 
+SALES_TAX_2: ".$res["sales_tax_2"].", 
+FACILITY_FEES_1: ".$res["facility_fees_1"].", 
+FACILITY_FEES_2: ".$res["facility_fees_2"].", 
+GROUP_COM: ".$res["group_com"].", 
+SUBSC_COM: ".$res["subsc_com"].", 
+PHONE_COM: ".$res["phone_com"].", 
+INT_COM: ".$res["int_com"].", 
+CC_COM: ".$res["cc_com"].", 
+REM_COM: ".$res["rem_com"].", 
+FIX_COM: ".$res["fix_com"].", 
+DOC_COM: ".$res["doc_com"].", 
+PRE_COM: ".$res["pre_com"].", 
+NOTES: ".$res["notes"];
+include '../security_log.php';	   
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Contract fetched successfully.", 'result'=>$res);
        

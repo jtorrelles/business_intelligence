@@ -496,7 +496,7 @@ function getPlayedMarkets(inid,endd,country,state,city,shows) {
             alert(data.msg);            
             $("#loader").hide();
         }
-    });     
+    }); 
 }
 
 function getTodayDate(){

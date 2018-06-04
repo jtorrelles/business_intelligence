@@ -121,7 +121,7 @@ class presenterServices extends dbconfig {
        $resultSet = mysqli_fetch_assoc($result);
        $res["id"] = $resultSet['PresenterID'];
        $res["name"] = $resultSet['PresenterNAME'];
-	     $res["parentcompany"] = $resultSet['PresenterPARENT_COMPANY'];
+	   $res["parentcompany"] = $resultSet['PresenterPARENT_COMPANY'];
        $res["address_1"] = $resultSet['PresenterADDRESS_1'];
        $res["address_2"] = $resultSet['PresenterADDRESS_2'];
        $res["city"] = $resultSet['presentercity'];
@@ -135,7 +135,24 @@ class presenterServices extends dbconfig {
        $res["active"] = $resultSet['PresenterACTIVE'];
        $res["phoneext"] = $resultSet['PresenterPHONE_EXT'];
        $res["contactname"] = $resultSet['PresenterCONTACT_NAME'];
-       
+	   
+	   include '../session.php';
+       $description = "Accessed presenter data for: ".$res["name"].". Current data is: 
+	   PresenterPARENT_COMPANY: ".$res["parentcompany"].", 
+	   PresenterADDRESS_1: ".$res["address_1"].", 
+	   PresenterADDRESS_2: ".$res["address_2"].", 
+	   presentercity: ".$res["city"].", 
+	   presenterstate: ".$res["state"].", 
+	   presentercountry: ".$res["country"].", 
+	   PresenterZIP: ".$res["zip"].", 
+	   PresenterPHONE: ".$res["phone"].", 
+	   PresenterFAX: ".$res["fax"].", 
+	   PresenterEMAIL: ".$res["email"].", 
+	   PresenterNOTES: ".$res["notes"].", 
+	   PresenterACTIVE: ".$res["active"].", 
+	   PresenterPHONE_EXT: ".$res["phoneext"].", 
+	   PresenterCONTACT_NAME: ".$res["contactname"];
+	   include '../security_log.php';
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Presenters fetched successfully.", 'result'=>$res);
 

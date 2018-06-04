@@ -1,6 +1,9 @@
  <?php
 require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
 include '../header.html';
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -38,8 +41,13 @@ $sql = "UPDATE presenters SET
 
 if ($conn->query($sql) === TRUE) {
     echo "Record updated successfully";
+	$description = "Modified Presenter: ".$_POST['name']." using this query: ".str_replace("'"," ",$sql);
+    include '../security_log.php';
 } else {
-    echo "Error updating record: " . $conn->error;
+    $error = "Error updating record: " .$conn->error;
+	echo $error;
+	$description = "Error Modifying Presenter: ".$_POST['name_show'].". The database returned this error: ".str_replace("'"," ",$error)." using this query: ".str_replace("'"," ",$sql);
+	include '../security_log.php';
 }
 echo "
 	<script language=\"javascript\"

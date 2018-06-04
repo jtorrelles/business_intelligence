@@ -1,5 +1,7 @@
 <?php
 require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
 include '../header.html';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -113,15 +115,23 @@ if($conn->query($sql3) === TRUE) {
 		if ($conn->query($sql4) === TRUE) {
 			if(($i+1) ==364){
 				echo "Record Created successfully";
+				$description = "A Route was uploaded for Show ID: ".$showid.". Using query: ".str_replace("'"," ",$sql4);
+				include '../security_log.php';
 			}
 		}else{
-			echo "Error Creating Detail: " . $conn->error;
+			$error = "Error Creating Detail: " .$conn->error;
+			echo $error;
+			$description = "Failed to upload route for Show ID: ".$showid.". The database returned the following error: ".str_replace("'"," ",$error).". Using query: ".str_replace("'"," ",$sql4);
+			include '../security_log.php';
 		}
 
     }
 
 } else {
-    echo "Error Creating record: " . $conn->error;
+			$error = "Error Creating Detail: " .$conn->error;
+			echo $error;
+			$description = "Failed to upload route for Show ID: ".$showid.". The database returned the following error: ".str_replace("'"," ",$error).". Using query: ".str_replace("'"," ",$sql4);
+			include '../security_log.php';
 }
 
 echo "

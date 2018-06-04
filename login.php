@@ -6,11 +6,12 @@
       // username and password sent from form 
       
       $myusername = mysqli_real_escape_string($conn,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($conn,$_POST['password']); 
+      $mypassword = mysqli_real_escape_string($conn,$_POST['password']);
       
-      $sql = "SELECT userid FROM security WHERE username = '$myusername' and userpassword = '$mypassword'";
+      $sql = "SELECT userid,userprofile FROM security WHERE useractive = 'Y' and username = '$myusername' and userpassword = '$mypassword'";
       $result = mysqli_query($conn,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+	  $myprofile = $row["userprofile"];
       //$active = $row['active'];
       
       $count = mysqli_num_rows($result);
@@ -20,9 +21,10 @@
       if($count == 1) {
          //session_register("myusername");
          $_SESSION['login_user'] = $myusername;
+		 $_SESSION['user_profile'] = $myprofile;
          header("location: app/index.php");
       }else {
-         $error = "Your Login Name or Password is invalid";
+         $error = "Your Login Name or Password is invalid / disabled";
       }
    }
 
@@ -75,5 +77,5 @@
       </div>
 
    </body>
-   <?php include 'footer.html';?>
+   <?php include 'login_footer.html';?>
 </html>

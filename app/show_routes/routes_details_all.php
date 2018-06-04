@@ -1,7 +1,10 @@
 <?php
 require '../db/database_conn.php';
 include '../session.php';
+include 'access_control.php';
 include '../header.html';
+$description = "Accessed Route Details for Show ID: ".$_GET['selectedid'];
+include '../security_log.php';
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -42,7 +45,7 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>Route Detail Administration:</h1>";
+echo "<h1>ROUTE DETAIL MANAGEMENT:</h1>";
 
 echo "<p><a href=show_routes_all.php> Back to Routes Administration</a> - 
 	<a href=\"javascript:void(window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=500,top=100'))\">Upload Route With Spreadsheet</a></p><br>";
@@ -104,7 +107,7 @@ if (isset($_GET['selectedid']))
 		while($row = $result2->fetch_assoc()) {
 			$showname = $row["SHOWNAME"];
 		}	
-		echo "<h1>SHOW: ".$showname."</h1>";
+		echo "<h1>Show Title: ".$showname."</h1>";
 		echo "<table id=\"routesoffshows\">
 	    <tr>
 		<th>Presentation Date</th>

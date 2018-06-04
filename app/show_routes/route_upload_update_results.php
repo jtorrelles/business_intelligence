@@ -1,5 +1,7 @@
 <?php
 require '../db/database_conn.php';
+include '../session.php';
+include 'access_control.php';
 include '../header.html';
 
 if ($conn->connect_error) {
@@ -90,6 +92,8 @@ if(isset($_GET['selectedid'])){
                         if ($conn->query($sql4) === TRUE) {
                             if(($i+1) ==364){
                                 echo "Record Updated successfully";
+								$description = "A Route was updated using an upload for Show ID: ".$showid.". Using query: ".str_replace("'"," ",$sql4);
+								include '../security_log.php';
                             }
                         }else{
                             echo "Error Updating Detail: " . $conn->error;

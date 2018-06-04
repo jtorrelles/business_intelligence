@@ -1,7 +1,10 @@
 <?php
 require '../db/database_conn.php';
 include '../session.php';
+include 'access_control.php';
 include '../header.html';
+$description = "Accessed SHOWS MANAGEMENT Module";
+include '../security_log.php';
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -37,7 +40,7 @@ echo "
 </style>
 </head>
 <body>";
-echo "<h1>Current Shows:</h1>";
+echo "<h1>SHOWS MANAGEMENT:</h1>";
 echo "<p>
 	  <a href=\"javascript:window.open('shows_add.php','Add Show','width=480,height=650')\">Add New Show</a>
 	   - 
@@ -61,7 +64,7 @@ $sql = "SELECT
 		shownumber_of_stagehands,
 		shownumber_of_trucks,
 		shownotes
-		FROM shows ORDER BY showid ASC";
+		FROM shows ORDER BY showname ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	echo "<table id=\"shows\">

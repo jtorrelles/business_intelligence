@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 <script src="../js/breakeven_controller.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
-<script> getCountries(); getBasicShows();</script>
+<script> getCountries(); getBasicShowsByStatus('Y'); getVenues();</script>
 
 <h1>Breakeven Analysis Report:</h1>
 
@@ -106,7 +106,27 @@ if ($conn->connect_error) {
 			</td>
 			<td>
 			</td>
-		</tr>		
+		</tr>	
+		<tr>
+		<td>
+				<b>Venues:</b>
+			</td>
+			<td>
+				<select name="venues[]" multiple="multiple" id="venues">
+					<option value="0">Select Venues</option>
+				</select>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+			<td>
+			</td>
+		</tr>	
 	</table>
 	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
 </form>	
@@ -115,13 +135,109 @@ if ($conn->connect_error) {
 	<h3><font color=blue>Results of Breakeven Selection:</font></h3>
 	<div class="settements_data" id="settements_data">
 		<h3>Settlements:</h3>
+		<table style="width:100%" class="tablecss">
+			<tr>
+				<th>Show Name</th>
+				<th>Opening Date</th>
+				<th>Closing Date</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Venue</th>			
+				<th>OPTIONS</th>
+			</tr>
+			<tbody id="body_settlements">
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+	</div>
+	<div class="settements_nodata" id="settements_nodata">
+		<h3>No Settlements Data:</font></h3>
 	</div>
 	<div class="contracts_data" id="contracts_data">
 		<h3>Contracts:</h3>
+		<table style="width:100%" class="tablecss">
+			<tr>
+				<th>Show Name</th>
+				<th>Opening Date</th>
+				<th>Closing Date</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Venue</th>			
+				<th>OPTIONS</th>
+			</tr>
+			<tbody id="body_contracts">
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+			</tbody>
+		</table>		
+	</div>
+	<div class="contracts_nodata" id="contracts_nodata">
+		<h3>No Approved Deals & Terms Data:</font></h3>
 	</div>
 	<div class="routes_data" id="routes_data">
 		<h3>Routes:</h3>
+		<table style="width:100%" class="tablecss">
+			<tr>
+				<th>Show Name</th>
+				<th>Opening Date</th>
+				<th>Closing Date</th>
+				<th>City</th>
+				<th>State</th>
+				<th>Venue</th>			
+				<th>OPTIONS</th>
+			</tr>
+			<tbody id="body_routes">
+				<tr>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+			</tbody>
+		</table>		
 	</div>
+	<div class="routes_nodata" id="routes_nodata">
+		<h3>No Routes / Details Routes Data:</font></h3>
+	</div>	
 </div>
 
 <div style="display:none" class="loader" id="loader"></div>
