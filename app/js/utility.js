@@ -233,12 +233,14 @@ function getVenuesByCities(stateId) {
 
 function number_format(amount, decimals) {
 
+    sign = '';
     amount += '';
+    if(parseFloat(amount)<0){sign = '-';}
     amount = parseFloat(amount.replace(/[^0-9\.]/g, ''));
     decimals = decimals || 0; 
 
     if (isNaN(amount) || amount === 0) 
-        return parseFloat(0).toFixed(decimals);
+        return sign + parseFloat(0).toFixed(decimals);
 
     amount = '' + amount.toFixed(decimals);
 
@@ -248,12 +250,12 @@ function number_format(amount, decimals) {
     while (regexp.test(amount_parts[0]))
         amount_parts[0] = amount_parts[0].replace(regexp, '$1' + ',' + '$2');
 
-    return amount_parts.join('.');
+    return sign + amount_parts.join('.');
 }
 
 function strtonum(amount) {
-    amount = amount.replace(/\./g,"");
-    amount = amount.replace(",",".");
+    amount = amount.replace("%","");
+    amount = amount.replace(/\,/g,"");
     amount = parseFloat(amount);
     return amount
 }
