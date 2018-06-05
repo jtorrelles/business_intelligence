@@ -130,10 +130,10 @@ if ($conn->connect_error) {
 	</table>
 	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
 </form>	
-
-<div class="results" id="results">
+<div style="display:none" class="loader" id="loader"></div>
+<div style="display:none" class="results" id="results">
 	<h3><font color=blue>Results of Breakeven Selection:</font></h3>
-	<div class="settements_data" id="settements_data">
+	<div style="display:none" class="settements_data" id="settements_data">
 		<h3>Settlements:</h3>
 		<table style="width:100%" class="tablecss">
 			<tr>
@@ -146,29 +146,10 @@ if ($conn->connect_error) {
 				<th>OPTIONS</th>
 			</tr>
 			<tbody id="body_settlements">
-				<tr>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
 			</tbody>
 		</table>	
 	</div>
-	<div class="settements_nodata" id="settements_nodata">
-		<h3>No Settlements Data:</font></h3>
-	</div>
-	<div class="contracts_data" id="contracts_data">
+	<div style="display:none" class="contracts_data" id="contracts_data">
 		<h3>Contracts:</h3>
 		<table style="width:100%" class="tablecss">
 			<tr>
@@ -181,29 +162,10 @@ if ($conn->connect_error) {
 				<th>OPTIONS</th>
 			</tr>
 			<tbody id="body_contracts">
-				<tr>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
 			</tbody>
 		</table>		
 	</div>
-	<div class="contracts_nodata" id="contracts_nodata">
-		<h3>No Approved Deals & Terms Data:</font></h3>
-	</div>
-	<div class="routes_data" id="routes_data">
+	<div style="display:none" class="routes_data" id="routes_data">
 		<h3>Routes:</h3>
 		<table style="width:100%" class="tablecss">
 			<tr>
@@ -216,48 +178,19 @@ if ($conn->connect_error) {
 				<th>OPTIONS</th>
 			</tr>
 			<tbody id="body_routes">
-				<tr>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
 			</tbody>
 		</table>		
 	</div>
-	<div class="routes_nodata" id="routes_nodata">
-		<h3>No Routes / Details Routes Data:</font></h3>
+	<div style="display:none" class="settements_nodata" id="settements_nodata">
+		<h3><font color=red>No Settlements Data</font></h3>
+	</div>
+	<div style="display:none" class="contracts_nodata" id="contracts_nodata">
+		<h3><font color=red>No Approved Deals & Terms Data</font></h3>
+	</div>	
+	<div style="display:none" class="routes_nodata" id="routes_nodata">
+		<h3><font color=red>No Routes / Details Routes Data</font></h3>
 	</div>	
 </div>
-
-<div style="display:none" class="loader" id="loader"></div>
-<div style="display:none" class="export" id="export">
-	<form method="POST">
-		<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
-		<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
-		</p>
-		<table id="allroutestable" style="width: 100%;">
-			<thead id="header">
-			</thead>
-			<tbody id="body">
-			</tbody>
-		</table>
-		<input type='hidden' class="htmlpdf" name=htmlpdf>
-		<input type='hidden' class="htmlexc" name=htmlexc>
-		<input type='hidden' class="name" name=name value="Route_conflicts">
-	</form>
-</div>
-
 </body>
 </html>
 <?php

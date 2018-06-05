@@ -32,16 +32,97 @@ function getBreakevenSelection(inid,endd,country,state,city,showId,venues) {
                                                                         '&city=' + city + 
                                                                         '&showId=' + showId + 
                                                                         '&venues=' + venues;
-    console.log(url);
     var method = "GET";
     var data = {};
+    var tableSet;
+    var tableCont;
+    var tableRoutes;
     call.send(data, url, method, function(data) {
-    	console.log(data);
-        /*if(data.tp == 1){
+        if(data.tp == 1){
+            settlementsSize = data.result['settlements'].length; 
+            contractsSize = data.result['contracts'].length; 
+            routesSize = data.result['routes'].length; 
+
+            //Settlements
+            if(settlementsSize > 0){
+                for(var x=0; x<settlementsSize; x++){
+                    tableSet = tableSet + "<tr>";
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].SHOWNAME  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].OPENINGDATE  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].CLOSINGDATE  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].CITYNAME  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].STATENAME  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].VENUENAME  + '</td>';
+                    tableSet = tableSet + '<td><input type="button" class="button" id="btnSett'+data.result['settlements'][x].ID+'" value="Select"></td>';
+                    tableSet = tableSet + "</tr>";
+                }
+
+                $("#body_settlements").append(tableSet);
+                $("#settements_data").show();
+                $("#settements_nodata").hide();
+
+            }else{
+
+                $("#settements_data").hide();
+                $("#settements_nodata").show();
+            }
+
+            //Contracts
+            if(contractsSize > 0){
+                for(var x=0; x<contractsSize; x++){
+                    tableCont = tableCont + "<tr>";
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].SHOWNAME  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].OPENINGDATE  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].CLOSINGDATE  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].CITYNAME  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].STATENAME  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].VENUENAME  + '</td>';
+                    tableCont = tableCont + '<td><input type="button" class="button" id="btnSett'+data.result['contracts'][x].ID+'" value="Select"></td>';
+                    tableCont = tableCont + "</tr>";
+                }
+
+                $("#body_contracts").append(tableCont);
+                $("#contracts_data").show();
+                $("#contracts_nodata").hide();
+                
+            }else{
+
+                $("#contracts_data").hide();
+                $("#contracts_nodata").show();
+            } 
+
+            //Routes
+            if(routesSize > 0){
+                for(var x=0; x<routesSize; x++){
+                    tableRoutes = tableRoutes + "<tr>";
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].SHOWNAME  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].OPENINGDATE  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].CLOSINGDATE  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].CITYNAME  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].STATENAME  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].VENUENAME  + '</td>';
+                    tableRoutes = tableRoutes + '<td><input type="button" class="button" id="btnSett'+data.result['routes'][x].ID+'" value="Select"></td>';
+                    tableRoutes = tableRoutes + "</tr>";
+                }
+
+                $("#body_routes").append(tableRoutes);
+                $("#routes_data").show();
+                $("#routes_nodata").hide();
+                
+            }else{
+                $("#routes_data").hide();
+                $("#routes_nodata").show();
+            }  
+
+            $("#loader").hide();
+            $("#results").show();
 
         }else{
             alert(data.msg);  
-        }*/
+
+            $("#loader").hide();
+            $("#results").hide();
+        }
     }); 
 }
 
@@ -65,6 +146,20 @@ function BCalc() {
 $(function() {
 
 	$("#btnFindBreakevenSelection").click(function (ev) {
+
+        $("#body_settlements").empty();
+        $("#body_contracts").empty();
+        $("#body_routes").empty();
+
+        $("#routes_data").hide();
+        $("#routes_nodata").hide();
+        $("#settements_data").hide();
+        $("#settements_nodata").hide();
+        $("#contracts_data").hide();
+        $("#contracts_nodata").hide();
+
+        $("#results").hide(); 
+        $("#loader").show();        
 
 		var countryId = $("#countryId").val();
 		var stateId = $("#stateId").val();
@@ -98,10 +193,8 @@ $(function() {
             return;
         }
         if((cityId == 0)||(cityId == "")||(cityId == null)){
-            alert("CITY is not selected, Please verify these values.");
-            $("#loader").hide();
-            return;
-        }        
+            cityId = "%"
+        }
         if((showId == 0)||(showId == "")||(showId == null)){
             alert("SHOW is not selected, Please verify these values.");
             $("#loader").hide();
@@ -117,6 +210,31 @@ $(function() {
         ffin = $(".dateend").val();
 
         getBreakevenSelection(finicio,ffin,countryId,stateId,cityId,showId,venues);
+    });
+
+    $("#btnCleanBreakevenSelection").click(function (ev) {
+
+        getCountries();
+
+        $("#body_settlements").empty();
+        $("#body_contracts").empty();
+        $("#body_routes").empty();
+
+        $("#routes_data").hide();
+        $("#routes_nodata").hide();
+        $("#settements_data").hide();
+        $("#settements_nodata").hide();
+        $("#contracts_data").hide();
+        $("#contracts_nodata").hide();
+
+        $("#results").hide(); 
+        $("#loader").hide();  
+
+        $(".dateini").val("");
+        $(".dateend").val("");
+        $(".shows").val(0);
+        $('#venues').multipleSelect("uncheckAll");
+
     });
 
 });
