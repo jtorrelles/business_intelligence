@@ -260,15 +260,15 @@ function BCalc() {
 
     LSUDII = strtonum(document.getElementById("LSUDII").value)/100;
 
-    document.getElementById("LSUDW1").value = number_format(-(SLINW1/(1-LSUDII))+SLINW1,2);
-    document.getElementById("LSUDW2").value = number_format(-(SLINW2/(1-LSUDII))+SLINW2,2);
-    document.getElementById("LSUDW3").value = number_format(-(SLINW3/(1-LSUDII))+SLINW3,2);
-    document.getElementById("LSUDW4").value = number_format(-(SLINW4/(1-LSUDII))+SLINW4,2);
-    document.getElementById("LSUDR1").value = number_format(-(SLINR1/(1-LSUDII))+SLINR1,2);
-    document.getElementById("LSUDR2").value = number_format(-(SLINR2/(1-LSUDII))+SLINR2,2);
-    document.getElementById("LSUDR3").value = number_format(-(SLINR3/(1-LSUDII))+SLINR3,2);
-    document.getElementById("LSUDR4").value = number_format(-(SLINR4/(1-LSUDII))+SLINR4,2);
-    document.getElementById("LSUDTT").value = number_format(-(SLINTT/(1-LSUDII))+SLINTT,2);
+    document.getElementById("LSUDW1").value = number_format(-(SLINW1/(1-LSUDII))+SLINW1);
+    document.getElementById("LSUDW2").value = number_format(-(SLINW2/(1-LSUDII))+SLINW2);
+    document.getElementById("LSUDW3").value = number_format(-(SLINW3/(1-LSUDII))+SLINW3);
+    document.getElementById("LSUDW4").value = number_format(-(SLINW4/(1-LSUDII))+SLINW4);
+    document.getElementById("LSUDR1").value = number_format(-(SLINR1/(1-LSUDII))+SLINR1);
+    document.getElementById("LSUDR2").value = number_format(-(SLINR2/(1-LSUDII))+SLINR2);
+    document.getElementById("LSUDR3").value = number_format(-(SLINR3/(1-LSUDII))+SLINR3);
+    document.getElementById("LSUDR4").value = number_format(-(SLINR4/(1-LSUDII))+SLINR4);
+    document.getElementById("LSUDTT").value = number_format(-(SLINTT/(1-LSUDII))+SLINTT);
 
     LSUDW1 = strtonum(document.getElementById("LSUDW1").value);
     LSUDW2 = strtonum(document.getElementById("LSUDW2").value);
@@ -282,15 +282,15 @@ function BCalc() {
 
     LGRDII = strtonum(document.getElementById("LGRDII").value)/100;
 
-    document.getElementById("LGRDW1").value = number_format(-(ESGRW1/(1-LGRDII))+ESGRW1,2);
-    document.getElementById("LGRDW2").value = number_format(-(ESGRW2/(1-LGRDII))+ESGRW2,2);
-    document.getElementById("LGRDW3").value = number_format(-(ESGRW3/(1-LGRDII))+ESGRW3,2);
-    document.getElementById("LGRDW4").value = number_format(-(ESGRW4/(1-LGRDII))+ESGRW4,2);
-    document.getElementById("LGRDR1").value = number_format(-(ESGRR1/(1-LGRDII))+ESGRR1,2);
-    document.getElementById("LGRDR2").value = number_format(-(ESGRR2/(1-LGRDII))+ESGRR2,2);
-    document.getElementById("LGRDR3").value = number_format(-(ESGRR3/(1-LGRDII))+ESGRR3,2);
-    document.getElementById("LGRDR4").value = number_format(-(ESGRR4/(1-LGRDII))+ESGRR4,2);
-    document.getElementById("LGRDTT").value = number_format(-(ESGRTT/(1-LGRDII))+ESGRTT,2);
+    document.getElementById("LGRDW1").value = number_format(-(ESGRW1/(1-LGRDII))+ESGRW1);
+    document.getElementById("LGRDW2").value = number_format(-(ESGRW2/(1-LGRDII))+ESGRW2);
+    document.getElementById("LGRDW3").value = number_format(-(ESGRW3/(1-LGRDII))+ESGRW3);
+    document.getElementById("LGRDW4").value = number_format(-(ESGRW4/(1-LGRDII))+ESGRW4);
+    document.getElementById("LGRDR1").value = number_format(-(ESGRR1/(1-LGRDII))+ESGRR1);
+    document.getElementById("LGRDR2").value = number_format(-(ESGRR2/(1-LGRDII))+ESGRR2);
+    document.getElementById("LGRDR3").value = number_format(-(ESGRR3/(1-LGRDII))+ESGRR3);
+    document.getElementById("LGRDR4").value = number_format(-(ESGRR4/(1-LGRDII))+ESGRR4);
+    document.getElementById("LGRDTT").value = number_format(-(ESGRTT/(1-LGRDII))+ESGRTT);
 
     LGRDW1 = strtonum(document.getElementById("LGRDW1").value);
     LGRDW2 = strtonum(document.getElementById("LGRDW2").value);
@@ -352,7 +352,7 @@ function BCalc() {
     document.getElementById("AGPPR2").value = number_format((AGROR2/(WGPOII*NOW1II))*100) + '%';
     document.getElementById("AGPPR3").value = number_format((AGROR3/(WGPOII*NOW1II))*100) + '%';
     document.getElementById("AGPPR4").value = number_format((AGROR4/(WGPOII*NOW1II))*100) + '%';
-    document.getElementById("AGPPTT").value = number_format((AGROTT/WGPOII)*100,2) + '%';
+    document.getElementById("AGPPTT").value = number_format((AGROTT/WGPOII)*100) + '%';
 
     AGPPW1 = strtonum(document.getElementById("AGPPW1").value)/100;
     AGPPW2 = strtonum(document.getElementById("AGPPW2").value)/100;
@@ -610,6 +610,16 @@ function BCalc() {
     document.getElementById("GUA1R4").value = number_format(GUA1II*EXRAII*NOW1II);
     document.getElementById("GUA1TT").value = number_format(GUA1II*EXRAII);
 
+    GUA1W1 = strtonum(document.getElementById("GUA1W1").value);
+    GUA1W2 = strtonum(document.getElementById("GUA1W2").value);
+    GUA1W3 = strtonum(document.getElementById("GUA1W3").value);
+    GUA1W4 = strtonum(document.getElementById("GUA1W4").value);
+    GUA1R1 = strtonum(document.getElementById("GUA1R1").value);
+    GUA1R2 = strtonum(document.getElementById("GUA1R2").value);
+    GUA1R3 = strtonum(document.getElementById("GUA1R3").value);
+    GUA1R4 = strtonum(document.getElementById("GUA1R4").value);
+    GUA1TT = strtonum(document.getElementById("GUA1TT").value);
+
     VGUAII = strtonum(document.getElementById("VGUAII").value)/100;
 
     document.getElementById("VGUAW1").value = number_format(NABRW1*VGUAII);
@@ -621,6 +631,16 @@ function BCalc() {
     document.getElementById("VGUAR3").value = number_format(NABRR3*VGUAII);
     document.getElementById("VGUAR4").value = number_format(NABRR4*VGUAII);
     document.getElementById("VGUATT").value = number_format(NABRTT*VGUAII);
+
+    VGUAW1 = strtonum(document.getElementById("VGUAW1").value);
+    VGUAW2 = strtonum(document.getElementById("VGUAW2").value);
+    VGUAW3 = strtonum(document.getElementById("VGUAW3").value);
+    VGUAW4 = strtonum(document.getElementById("VGUAW4").value);
+    VGUAR1 = strtonum(document.getElementById("VGUAR1").value);
+    VGUAR2 = strtonum(document.getElementById("VGUAR2").value);
+    VGUAR3 = strtonum(document.getElementById("VGUAR3").value);
+    VGUAR4 = strtonum(document.getElementById("VGUAR4").value);
+    VGUATT = strtonum(document.getElementById("VGUATT").value);
 
     ADVEII = strtonum(document.getElementById("ADVEII").value);
 
@@ -732,26 +752,26 @@ function BCalc() {
 
     INSUII = strtonum(document.getElementById("INSUII").value);
 
-    document.getElementById("INSUW1").value = number_format(TISOW1*INSUII,2);
-    document.getElementById("INSUW2").value = number_format(TISOW2*INSUII,2);
-    document.getElementById("INSUW3").value = number_format(TISOW3*INSUII,2);
-    document.getElementById("INSUW4").value = number_format(TISOW4*INSUII,2);
-    document.getElementById("INSUR1").value = number_format(TISOR1*INSUII,2);
-    document.getElementById("INSUR2").value = number_format(TISOR2*INSUII,2);
-    document.getElementById("INSUR3").value = number_format(TISOR3*INSUII,2);
-    document.getElementById("INSUR4").value = number_format(TISOR4*INSUII,2);
+    document.getElementById("INSUW1").value = number_format(TISOW1*INSUII);
+    document.getElementById("INSUW2").value = number_format(TISOW2*INSUII);
+    document.getElementById("INSUW3").value = number_format(TISOW3*INSUII);
+    document.getElementById("INSUW4").value = number_format(TISOW4*INSUII);
+    document.getElementById("INSUR1").value = number_format(TISOR1*INSUII);
+    document.getElementById("INSUR2").value = number_format(TISOR2*INSUII);
+    document.getElementById("INSUR3").value = number_format(TISOR3*INSUII);
+    document.getElementById("INSUR4").value = number_format(TISOR4*INSUII);
     document.getElementById("INSUTT").value = number_format(TISOTT*INSUII);
 
     TIPRII = strtonum(document.getElementById("TIPRII").value);
 
-    document.getElementById("TIPRW1").value = number_format(TISOW1*TIPRII,2);
-    document.getElementById("TIPRW2").value = number_format(TISOW2*TIPRII,2);
-    document.getElementById("TIPRW3").value = number_format(TISOW3*TIPRII,2);
-    document.getElementById("TIPRW4").value = number_format(TISOW4*TIPRII,2);
-    document.getElementById("TIPRR1").value = number_format(TISOR1*TIPRII,2);
-    document.getElementById("TIPRR2").value = number_format(TISOR2*TIPRII,2);
-    document.getElementById("TIPRR3").value = number_format(TISOR3*TIPRII,2);
-    document.getElementById("TIPRR4").value = number_format(TISOR4*TIPRII,2);
+    document.getElementById("TIPRW1").value = number_format(TISOW1*TIPRII);
+    document.getElementById("TIPRW2").value = number_format(TISOW2*TIPRII);
+    document.getElementById("TIPRW3").value = number_format(TISOW3*TIPRII);
+    document.getElementById("TIPRW4").value = number_format(TISOW4*TIPRII);
+    document.getElementById("TIPRR1").value = number_format(TISOR1*TIPRII);
+    document.getElementById("TIPRR2").value = number_format(TISOR2*TIPRII);
+    document.getElementById("TIPRR3").value = number_format(TISOR3*TIPRII);
+    document.getElementById("TIPRR4").value = number_format(TISOR4*TIPRII);
     document.getElementById("TIPRTT").value = number_format(TISOTT*TIPRII);
 
     OTH1II = strtonum(document.getElementById("OTH1II").value);
@@ -1061,6 +1081,577 @@ function BCalc() {
     TLEXR3 = strtonum(document.getElementById("TLEXR3").value);
     TLEXR4 = strtonum(document.getElementById("TLEXR4").value);
     TLEXTT = strtonum(document.getElementById("TLEXTT").value);
+
+    document.getElementById("FOCHW1").value = number_format(TLEXW1);
+    document.getElementById("FOCHW2").value = number_format(TLEXW2);
+    document.getElementById("FOCHW3").value = number_format(TLEXW3);
+    document.getElementById("FOCHW4").value = number_format(TLEXW4);
+    document.getElementById("FOCHR1").value = number_format(TLEXR1);
+    document.getElementById("FOCHR2").value = number_format(TLEXR2);
+    document.getElementById("FOCHR3").value = number_format(TLEXR3);
+    document.getElementById("FOCHR4").value = number_format(TLEXR4);
+    document.getElementById("FOCHTT").value = number_format(TLEXTT);
+
+    document.getElementById("MOREW1").value = number_format(NABRW1-TLEXW1);
+    document.getElementById("MOREW2").value = number_format(NABRW2-TLEXW2);
+    document.getElementById("MOREW3").value = number_format(NABRW3-TLEXW3);
+    document.getElementById("MOREW4").value = number_format(NABRW4-TLEXW4);
+    document.getElementById("MORER1").value = number_format(NABRR1-TLEXR1);
+    document.getElementById("MORER2").value = number_format(NABRR2-TLEXR2);
+    document.getElementById("MORER3").value = number_format(NABRR3-TLEXR3);
+    document.getElementById("MORER4").value = number_format(NABRR4-TLEXR4);
+    document.getElementById("MORETT").value = number_format(NABRTT-TLEXTT);
+
+    MOREW1 = strtonum(document.getElementById("MOREW1").value);
+    MOREW2 = strtonum(document.getElementById("MOREW2").value);
+    MOREW3 = strtonum(document.getElementById("MOREW3").value);
+    MOREW4 = strtonum(document.getElementById("MOREW4").value);
+    MORER1 = strtonum(document.getElementById("MORER1").value);
+    MORER2 = strtonum(document.getElementById("MORER2").value);
+    MORER3 = strtonum(document.getElementById("MORER3").value);
+    MORER4 = strtonum(document.getElementById("MORER4").value);
+    MORETT = strtonum(document.getElementById("MORETT").value);
+
+    NPROBB = strtonum(document.getElementById("NPROBB").value.replace("$",""));
+    NPROII = strtonum(document.getElementById("NPROII").value)/100;    
+
+    if(MOREW1>0){
+        if(MOREW1>NPROBB){
+            NPROW1 = NPROBB*NPROII;
+        }else{
+            NPROW1 = MOREW1*NPROII;
+        }            
+    }else{
+        NPROW1 = '0';
+    }
+
+    if(MOREW2>0){
+        if(MOREW2>NPROBB){
+            NPROW2 = NPROBB*NPROII;
+        }else{
+            NPROW2 = MOREW2*NPROII;
+        }            
+    }else{
+        NPROW2 = '0';
+    }
+
+    if(MOREW3>0){
+        if(MOREW3>NPROBB){
+            NPROW3 = NPROBB*NPROII;
+        }else{
+            NPROW3 = MOREW3*NPROII;
+        }            
+    }else{
+        NPROW3 = '0';
+    }
+
+    if(MOREW4>0){
+        if(MOREW4>NPROBB){
+            NPROW4 = NPROBB*NPROII;
+        }else{
+            NPROW4 = MOREW4*NPROII;
+        }            
+    }else{
+        NPROW4 = '0';
+    }
+
+    document.getElementById("NPROW1").value = number_format(NPROW1);
+    document.getElementById("NPROW2").value = number_format(NPROW2);
+    document.getElementById("NPROW3").value = number_format(NPROW3);
+    document.getElementById("NPROW4").value = number_format(NPROW4);
+
+    if(MORER1>0){
+        if(MORER1>NPROBB*NOW1II){
+            NPROR1 = NPROBB*NPROII*NOW1II;
+        }else{
+            NPROR1 = MORER1*NPROII*NOW1II;
+        }            
+    }else{
+        NPROR1 = '0';
+    }
+
+    if(MORER2>0){
+        if(MORER2>NPROBB*NOW1II){
+            NPROR2 = NPROBB*NPROII*NOW1II;
+        }else{
+            NPROR2 = MORER2*NPROII*NOW1II;
+        }            
+    }else{
+        NPROR2 = '0';
+    }
+
+    if(MORER3>0){
+        if(MORER3>NPROBB*NOW1II){
+            NPROR3 = NPROBB*NPROII*NOW1II;
+        }else{
+            NPROR3 = MORER3*NPROII*NOW1II;
+        }            
+    }else{
+        NPROR3 = '0';
+    }
+
+    if(MORER4>0){
+        if(MORER4>NPROBB*NOW1II){
+            NPROR4 = NPROBB*NPROII*NOW1II;
+        }else{
+            NPROR4 = MORER4*NPROII*NOW1II;
+        }            
+    }else{
+        NPROR4 = '0';
+    }
+
+    document.getElementById("NPROR1").value = number_format(NPROR1);
+    document.getElementById("NPROR2").value = number_format(NPROR2);
+    document.getElementById("NPROR3").value = number_format(NPROR3);
+    document.getElementById("NPROR4").value = number_format(NPROR4);
+
+    if(MORETT>0){
+        if(MORETT>NPROBB){
+            NPROTT = NPROBB*NPROII;
+        }else{
+            NPROTT = MORETT*NPROII;
+        }            
+    }else{
+        NPROTT = '0';
+    }
+
+    document.getElementById("NPROTT").value = number_format(NPROTT);
+
+    NPROW1 = strtonum(document.getElementById("NPROW1").value);
+    NPROW2 = strtonum(document.getElementById("NPROW2").value);
+    NPROW3 = strtonum(document.getElementById("NPROW3").value);
+    NPROW4 = strtonum(document.getElementById("NPROW4").value);
+    NPROR1 = strtonum(document.getElementById("NPROR1").value);
+    NPROR2 = strtonum(document.getElementById("NPROR2").value);
+    NPROR3 = strtonum(document.getElementById("NPROR3").value);
+    NPROR4 = strtonum(document.getElementById("NPROR4").value);
+    NPROTT = strtonum(document.getElementById("NPROTT").value);
+
+    NPREBB = strtonum(document.getElementById("NPREBB").value.replace("$",""));
+    NPREII = strtonum(document.getElementById("NPREII").value)/100;
+
+    if(MOREW1>0){
+        if(MOREW1>NPREBB){
+            NPREW1 = NPREBB*NPREII;
+        }else{
+            NPREW1 = MOREW1*NPREII;
+        }            
+    }else{
+        NPREW1 = '0';
+    }
+
+    if(MOREW2>0){
+        if(MOREW2>NPREBB){
+            NPREW2 = NPREBB*NPREII;
+        }else{
+            NPREW2 = MOREW2*NPREII;
+        }            
+    }else{
+        NPREW2 = '0';
+    }
+
+    if(MOREW3>0){
+        if(MOREW3>NPREBB){
+            NPREW3 = NPREBB*NPREII;
+        }else{
+            NPREW3 = MOREW3*NPREII;
+        }            
+    }else{
+        NPREW3 = '0';
+    }
+
+    if(MOREW4>0){
+        if(MOREW4>NPREBB){
+            NPREW4 = NPREBB*NPREII;
+        }else{
+            NPREW4 = MOREW4*NPREII;
+        }            
+    }else{
+        NPREW4 = '0';
+    }
+
+    document.getElementById("NPREW1").value = number_format(NPREW1);
+    document.getElementById("NPREW2").value = number_format(NPREW2);
+    document.getElementById("NPREW3").value = number_format(NPREW3);
+    document.getElementById("NPREW4").value = number_format(NPREW4);
+
+    if(MORER1>0){
+        if(MORER1>NPREBB*NOW1II){
+            NPRER1 = NPREBB*NPREII*NOW1II;
+        }else{
+            NPRER1 = MORER1*NPREII*NOW1II;
+        }            
+    }else{
+        NPRER1 = '0';
+    }
+
+    if(MORER2>0){
+        if(MORER2>NPREBB*NOW1II){
+            NPRER2 = NPREBB*NPREII*NOW1II;
+        }else{
+            NPRER2 = MORER2*NPREII*NOW1II;
+        }            
+    }else{
+        NPRER2 = '0';
+    }
+
+    if(MORER3>0){
+        if(MORER3>NPREBB*NOW1II){
+            NPRER3 = NPREBB*NPREII*NOW1II;
+        }else{
+            NPRER3 = MORER3*NPREII*NOW1II;
+        }            
+    }else{
+        NPRER3 = '0';
+    }
+
+    if(MORER4>0){
+        if(MORER4>NPREBB*NOW1II){
+            NPRER4 = NPREBB*NPREII*NOW1II;
+        }else{
+            NPRER4 = MORER4*NPREII*NOW1II;
+        }            
+    }else{
+        NPRER4 = '0';
+    }
+
+    document.getElementById("NPRER1").value = number_format(NPRER1);
+    document.getElementById("NPRER2").value = number_format(NPRER2);
+    document.getElementById("NPRER3").value = number_format(NPRER3);
+    document.getElementById("NPRER4").value = number_format(NPRER4);
+
+    if(MORETT>0){
+        if(MORETT>NPREBB){
+            NPRETT = NPREBB*NPREII;
+        }else{
+            NPRETT = MORETT*NPREII;
+        }            
+    }else{
+        NPRETT = '0';
+    }
+
+    document.getElementById("NPRETT").value = number_format(NPRETT);
+
+    NPREW1 = strtonum(document.getElementById("NPREW1").value);
+    NPREW2 = strtonum(document.getElementById("NPREW2").value);
+    NPREW3 = strtonum(document.getElementById("NPREW3").value);
+    NPREW4 = strtonum(document.getElementById("NPREW4").value);
+    NPRER1 = strtonum(document.getElementById("NPRER1").value);
+    NPRER2 = strtonum(document.getElementById("NPRER2").value);
+    NPRER3 = strtonum(document.getElementById("NPRER3").value);
+    NPRER4 = strtonum(document.getElementById("NPRER4").value);
+    NPRETT = strtonum(document.getElementById("NPRETT").value);
+
+    document.getElementById("TEPRW1").value = number_format(MOREW1-NPROW1-NPREW1);
+    document.getElementById("TEPRW2").value = number_format(MOREW2-NPROW2-NPREW2);
+    document.getElementById("TEPRW3").value = number_format(MOREW3-NPROW3-NPREW3);
+    document.getElementById("TEPRW4").value = number_format(MOREW4-NPROW4-NPREW4);
+    document.getElementById("TEPRR1").value = number_format(MORER1-NPROR1-NPRER1);
+    document.getElementById("TEPRR2").value = number_format(MORER2-NPROR2-NPRER2);
+    document.getElementById("TEPRR3").value = number_format(MORER3-NPROR3-NPRER3);
+    document.getElementById("TEPRR4").value = number_format(MORER4-NPROR4-NPRER4);
+    document.getElementById("TEPRTT").value = number_format(MORETT-NPROTT-NPRETT);
+
+    TEPRW1 = strtonum(document.getElementById("TEPRW1").value);
+    TEPRW2 = strtonum(document.getElementById("TEPRW2").value);
+    TEPRW3 = strtonum(document.getElementById("TEPRW3").value);
+    TEPRW4 = strtonum(document.getElementById("TEPRW4").value);
+    TEPRR1 = strtonum(document.getElementById("TEPRR1").value);
+    TEPRR2 = strtonum(document.getElementById("TEPRR2").value);
+    TEPRR3 = strtonum(document.getElementById("TEPRR3").value);
+    TEPRR4 = strtonum(document.getElementById("TEPRR4").value);
+    TEPRTT = strtonum(document.getElementById("TEPRTT").value);
+
+    PREOII = strtonum(document.getElementById("PREOII").value)/100;
+
+    if(TEPRW1>0){
+        PREOW1 = TEPRW1*PREOII;        
+    }else{
+        PREOW1 = '0';
+    }
+
+    if(TEPRW2>0){
+        PREOW2 = TEPRW2*PREOII;        
+    }else{
+        PREOW2 = '0';
+    }
+
+    if(TEPRW3>0){
+        PREOW3 = TEPRW3*PREOII;        
+    }else{
+        PREOW3 = '0';
+    }
+
+    if(TEPRW4>0){
+        PREOW4 = TEPRW4*PREOII;        
+    }else{
+        PREOW4 = '0';
+    }
+
+    if(TEPRR1>0){
+        PREOR1 = TEPRR1*PREOII;        
+    }else{
+        PREOR1 = '0';
+    }
+
+    if(TEPRR2>0){
+        PREOR2 = TEPRR2*PREOII;        
+    }else{
+        PREOR2 = '0';
+    }
+
+    if(TEPRR3>0){
+        PREOR3 = TEPRR3*PREOII;        
+    }else{
+        PREOR3 = '0';
+    }
+
+    if(TEPRR4>0){
+        PREOR4 = TEPRR4*PREOII;        
+    }else{
+        PREOR4 = '0';
+    }
+
+    document.getElementById("PREOW1").value = number_format(PREOW1);
+    document.getElementById("PREOW2").value = number_format(PREOW2);
+    document.getElementById("PREOW3").value = number_format(PREOW3);
+    document.getElementById("PREOW4").value = number_format(PREOW4);
+    document.getElementById("PREOR1").value = number_format(PREOR1);
+    document.getElementById("PREOR2").value = number_format(PREOR2);
+    document.getElementById("PREOR3").value = number_format(PREOR3);
+    document.getElementById("PREOR4").value = number_format(PREOR4);
+    document.getElementById("PREOTT").value = number_format(PREOTT);
+
+    PREOW1 = strtonum(document.getElementById("PREOW1").value);
+    PREOW2 = strtonum(document.getElementById("PREOW2").value);
+    PREOW3 = strtonum(document.getElementById("PREOW3").value);
+    PREOW4 = strtonum(document.getElementById("PREOW4").value);
+    PREOR1 = strtonum(document.getElementById("PREOR1").value);
+    PREOR2 = strtonum(document.getElementById("PREOR2").value);
+    PREOR3 = strtonum(document.getElementById("PREOR3").value);
+    PREOR4 = strtonum(document.getElementById("PREOR4").value);
+    PREOTT = strtonum(document.getElementById("PREOTT").value);
+
+    document.getElementById("PROOW1").value = number_format(TEPRW1-PREOW1);
+    document.getElementById("PROOW2").value = number_format(TEPRW2-PREOW2);
+    document.getElementById("PROOW3").value = number_format(TEPRW3-PREOW3);
+    document.getElementById("PROOW4").value = number_format(TEPRW4-PREOW4);
+    document.getElementById("PROOR1").value = number_format(TEPRR1-PREOR1);
+    document.getElementById("PROOR2").value = number_format(TEPRR2-PREOR2);
+    document.getElementById("PROOR3").value = number_format(TEPRR3-PREOR3);
+    document.getElementById("PROOR4").value = number_format(TEPRR4-PREOR4);
+    document.getElementById("PROOTT").value = number_format(TEPRTT-PREOTT);
+
+    PROOW1 = strtonum(document.getElementById("PROOW1").value);
+    PROOW2 = strtonum(document.getElementById("PROOW2").value);
+    PROOW3 = strtonum(document.getElementById("PROOW3").value);
+    PROOW4 = strtonum(document.getElementById("PROOW4").value);
+    PROOR1 = strtonum(document.getElementById("PROOR1").value);
+    PROOR2 = strtonum(document.getElementById("PROOR2").value);
+    PROOR3 = strtonum(document.getElementById("PROOR3").value);
+    PROOR4 = strtonum(document.getElementById("PROOR4").value);
+    PROOTT = strtonum(document.getElementById("PROOTT").value);
+
+    document.getElementById("NEMOW1").value = number_format(NPROW1);
+    document.getElementById("NEMOW2").value = number_format(NPROW2);
+    document.getElementById("NEMOW3").value = number_format(NPROW3);
+    document.getElementById("NEMOW4").value = number_format(NPROW4);
+    document.getElementById("NEMOR1").value = number_format(NPROR1);
+    document.getElementById("NEMOR2").value = number_format(NPROR2);
+    document.getElementById("NEMOR3").value = number_format(NPROR3);
+    document.getElementById("NEMOR4").value = number_format(NPROR4);
+    document.getElementById("NEMOTT").value = number_format(NPROTT);
+
+    document.getElementById("VAGUW1").value = number_format(VGUAW1);
+    document.getElementById("VAGUW2").value = number_format(VGUAW2);
+    document.getElementById("VAGUW3").value = number_format(VGUAW3);
+    document.getElementById("VAGUW4").value = number_format(VGUAW4);
+    document.getElementById("VAGUR1").value = number_format(VGUAR1);
+    document.getElementById("VAGUR2").value = number_format(VGUAR2);
+    document.getElementById("VAGUR3").value = number_format(VGUAR3);
+    document.getElementById("VAGUR4").value = number_format(VGUAR4);
+    document.getElementById("VAGUTT").value = number_format(VGUATT);
+
+    document.getElementById("GUA2W1").value = number_format(GUA1W1);
+    document.getElementById("GUA2W2").value = number_format(GUA1W2);
+    document.getElementById("GUA2W3").value = number_format(GUA1W3);
+    document.getElementById("GUA2W4").value = number_format(GUA1W4);
+    document.getElementById("GUA2R1").value = number_format(GUA1R1);
+    document.getElementById("GUA2R2").value = number_format(GUA1R2);
+    document.getElementById("GUA2R3").value = number_format(GUA1R3);
+    document.getElementById("GUA2R4").value = number_format(GUA1R4);
+    document.getElementById("GUA2TT").value = number_format(GUA1TT);
+
+    document.getElementById("TTPRW1").value = number_format(PREOW1+PROOW1+NPROW1+VGUAW1+GUA1W1);
+    document.getElementById("TTPRW2").value = number_format(PREOW2+PROOW2+NPROW2+VGUAW2+GUA1W2);
+    document.getElementById("TTPRW3").value = number_format(PREOW3+PROOW3+NPROW3+VGUAW3+GUA1W3);
+    document.getElementById("TTPRW4").value = number_format(PREOW4+PROOW4+NPROW4+VGUAW4+GUA1W4);
+    document.getElementById("TTPRR1").value = number_format(PREOR1+PROOR1+NPROR1+VGUAR1+GUA1R1);
+    document.getElementById("TTPRR2").value = number_format(PREOR2+PROOR2+NPROR2+VGUAR2+GUA1R2);
+    document.getElementById("TTPRR3").value = number_format(PREOR3+PROOR3+NPROR3+VGUAR3+GUA1R3);
+    document.getElementById("TTPRR4").value = number_format(PREOR4+PROOR4+NPROR4+VGUAR4+GUA1R4);
+    document.getElementById("TTPRTT").value = number_format(PREOTT+PROOTT+NPROTT+VGUATT+GUA1TT);
+
+    TTPRW1 = strtonum(document.getElementById("TTPRW1").value);
+    TTPRW2 = strtonum(document.getElementById("TTPRW2").value);
+    TTPRW3 = strtonum(document.getElementById("TTPRW3").value);
+    TTPRW4 = strtonum(document.getElementById("TTPRW4").value);
+    TTPRR1 = strtonum(document.getElementById("TTPRR1").value);
+    TTPRR2 = strtonum(document.getElementById("TTPRR2").value);
+    TTPRR3 = strtonum(document.getElementById("TTPRR3").value);
+    TTPRR4 = strtonum(document.getElementById("TTPRR4").value);
+    TTPRTT = strtonum(document.getElementById("TTPRTT").value);
+
+    document.getElementById("USRAW1").value = '$ ' + number_format(TTPRW1*EXRAII);
+    document.getElementById("USRAW2").value = '$ ' + number_format(TTPRW2*EXRAII);
+    document.getElementById("USRAW3").value = '$ ' + number_format(TTPRW3*EXRAII);
+    document.getElementById("USRAW4").value = '$ ' + number_format(TTPRW4*EXRAII);
+    document.getElementById("USRAR1").value = '$ ' + number_format(TTPRR1*EXRAII);
+    document.getElementById("USRAR2").value = '$ ' + number_format(TTPRR2*EXRAII);
+    document.getElementById("USRAR3").value = '$ ' + number_format(TTPRR3*EXRAII);
+    document.getElementById("USRAR4").value = '$ ' + number_format(TTPRR4*EXRAII);
+    document.getElementById("USRATT").value = '$ ' + number_format(TTPRTT*EXRAII);
+
+    LIT1II = strtonum(document.getElementById("LIT1II").value)/100;
+
+    document.getElementById("LIT1W1").value = number_format(-TTPRW1*LIT1II);
+    document.getElementById("LIT1W2").value = number_format(-TTPRW2*LIT1II);
+    document.getElementById("LIT1W3").value = number_format(-TTPRW3*LIT1II);
+    document.getElementById("LIT1W4").value = number_format(-TTPRW4*LIT1II);
+    document.getElementById("LIT1R1").value = number_format(-TTPRR1*LIT1II*NOW1II);
+    document.getElementById("LIT1R2").value = number_format(-TTPRR2*LIT1II*NOW1II);
+    document.getElementById("LIT1R3").value = number_format(-TTPRR3*LIT1II*NOW1II);
+    document.getElementById("LIT1R4").value = number_format(-TTPRR4*LIT1II*NOW1II);
+    document.getElementById("LIT1TT").value = number_format(-TTPRTT*LIT1II);
+
+    LIT1W1 = strtonum(document.getElementById("LIT1W1").value);
+    LIT1W2 = strtonum(document.getElementById("LIT1W2").value);
+    LIT1W3 = strtonum(document.getElementById("LIT1W3").value);
+    LIT1W4 = strtonum(document.getElementById("LIT1W4").value);
+    LIT1R1 = strtonum(document.getElementById("LIT1R1").value);
+    LIT1R2 = strtonum(document.getElementById("LIT1R2").value);
+    LIT1R3 = strtonum(document.getElementById("LIT1R3").value);
+    LIT1R4 = strtonum(document.getElementById("LIT1R4").value);
+    LIT1TT = strtonum(document.getElementById("LIT1TT").value);
+
+    LIT2II = strtonum(document.getElementById("LIT2II").value);
+
+    document.getElementById("LIT2W1").value = number_format(-LIT2II);
+    document.getElementById("LIT2W2").value = number_format(-LIT2II);
+    document.getElementById("LIT2W3").value = number_format(-LIT2II);
+    document.getElementById("LIT2W4").value = number_format(-LIT2II);
+    document.getElementById("LIT2R1").value = number_format(-LIT2II*NOW1II);
+    document.getElementById("LIT2R2").value = number_format(-LIT2II*NOW1II);
+    document.getElementById("LIT2R3").value = number_format(-LIT2II*NOW1II);
+    document.getElementById("LIT2R4").value = number_format(-LIT2II*NOW1II);
+    document.getElementById("LIT2TT").value = number_format(-LIT2II*NOW1II);
+
+    LIT2W1 = strtonum(document.getElementById("LIT2W1").value);
+    LIT2W2 = strtonum(document.getElementById("LIT2W2").value);
+    LIT2W3 = strtonum(document.getElementById("LIT2W3").value);
+    LIT2W4 = strtonum(document.getElementById("LIT2W4").value);
+    LIT2R1 = strtonum(document.getElementById("LIT2R1").value);
+    LIT2R2 = strtonum(document.getElementById("LIT2R2").value);
+    LIT2R3 = strtonum(document.getElementById("LIT2R3").value);
+    LIT2R4 = strtonum(document.getElementById("LIT2R4").value);
+    LIT2TT = strtonum(document.getElementById("LIT2TT").value);
+
+    document.getElementById("NITPW1").value = number_format(TTPRW1+LIT1W1+LIT2W1);
+    document.getElementById("NITPW2").value = number_format(TTPRW2+LIT1W2+LIT2W2);
+    document.getElementById("NITPW3").value = number_format(TTPRW3+LIT1W3+LIT2W3);
+    document.getElementById("NITPW4").value = number_format(TTPRW4+LIT1W4+LIT2W4);
+    document.getElementById("NITPR1").value = number_format(TTPRR1+LIT1R1+LIT2R1);
+    document.getElementById("NITPR2").value = number_format(TTPRR2+LIT1R2+LIT2R2);
+    document.getElementById("NITPR3").value = number_format(TTPRR3+LIT1R3+LIT2R3);
+    document.getElementById("NITPR4").value = number_format(TTPRR4+LIT1R4+LIT2R4);
+    document.getElementById("NITPTT").value = number_format(TTPRTT+LIT1TT+LIT2TT);
+
+    NITPW1 = strtonum(document.getElementById("NITPW1").value);
+    NITPW2 = strtonum(document.getElementById("NITPW2").value);
+    NITPW3 = strtonum(document.getElementById("NITPW3").value);
+    NITPW4 = strtonum(document.getElementById("NITPW4").value);
+    NITPR1 = strtonum(document.getElementById("NITPR1").value);
+    NITPR2 = strtonum(document.getElementById("NITPR2").value);
+    NITPR3 = strtonum(document.getElementById("NITPR3").value);
+    NITPR4 = strtonum(document.getElementById("NITPR4").value);
+    NITPTT = strtonum(document.getElementById("NITPTT").value);
+
+    WOEXII = strtonum(document.getElementById("WOEXII").value);
+
+    document.getElementById("WOEXW1").value = number_format(-WOEXII);
+    document.getElementById("WOEXW2").value = number_format(-WOEXII);
+    document.getElementById("WOEXW3").value = number_format(-WOEXII);
+    document.getElementById("WOEXW4").value = number_format(-WOEXII);
+    document.getElementById("WOEXR1").value = number_format(-WOEXII*NOW1II);
+    document.getElementById("WOEXR2").value = number_format(-WOEXII*NOW1II);
+    document.getElementById("WOEXR3").value = number_format(-WOEXII*NOW1II);
+    document.getElementById("WOEXR4").value = number_format(-WOEXII*NOW1II);
+    document.getElementById("WOEXTT").value = number_format(-WOEXII);
+
+    WOEXW1 = strtonum(document.getElementById("WOEXW1").value);
+    WOEXW2 = strtonum(document.getElementById("WOEXW2").value);
+    WOEXW3 = strtonum(document.getElementById("WOEXW3").value);
+    WOEXW4 = strtonum(document.getElementById("WOEXW4").value);
+    WOEXR1 = strtonum(document.getElementById("WOEXR1").value);
+    WOEXR2 = strtonum(document.getElementById("WOEXR2").value);
+    WOEXR3 = strtonum(document.getElementById("WOEXR3").value);
+    WOEXR4 = strtonum(document.getElementById("WOEXR4").value);
+    WOEXTT = strtonum(document.getElementById("WOEXTT").value);
+
+    ROMIII = strtonum(document.getElementById("ROMIII").value);
+
+    document.getElementById("ROMIW1").value = number_format(-ROMIII);
+    document.getElementById("ROMIW2").value = number_format(-ROMIII);
+    document.getElementById("ROMIW3").value = number_format(-ROMIII);
+    document.getElementById("ROMIW4").value = number_format(-ROMIII);
+    document.getElementById("ROMIR1").value = number_format(-ROMIII*NOW1II);
+    document.getElementById("ROMIR2").value = number_format(-ROMIII*NOW1II);
+    document.getElementById("ROMIR3").value = number_format(-ROMIII*NOW1II);
+    document.getElementById("ROMIR4").value = number_format(-ROMIII*NOW1II);
+    document.getElementById("ROMITT").value = number_format(-ROMIII*NOW1II);
+
+    ROMIW1 = strtonum(document.getElementById("ROMIW1").value);
+    ROMIW2 = strtonum(document.getElementById("ROMIW2").value);
+    ROMIW3 = strtonum(document.getElementById("ROMIW3").value);
+    ROMIW4 = strtonum(document.getElementById("ROMIW4").value);
+    ROMIR1 = strtonum(document.getElementById("ROMIR1").value);
+    ROMIR2 = strtonum(document.getElementById("ROMIR2").value);
+    ROMIR3 = strtonum(document.getElementById("ROMIR3").value);
+    ROMIR4 = strtonum(document.getElementById("ROMIR4").value);
+    ROMITT = strtonum(document.getElementById("ROMITT").value);
+
+    VAROII = strtonum(document.getElementById("VAROII").value)/100;
+
+    document.getElementById("VAROW1").value = number_format(-(NITPW1-WOEXW1)*VAROII);
+    document.getElementById("VAROW2").value = number_format(-(NITPW2-WOEXW2)*VAROII);
+    document.getElementById("VAROW3").value = number_format(-(NITPW3-WOEXW3)*VAROII);
+    document.getElementById("VAROW4").value = number_format(-(NITPW4-WOEXW4)*VAROII);
+    document.getElementById("VAROR1").value = number_format(-(NITPR1-WOEXR1)*VAROII);
+    document.getElementById("VAROR2").value = number_format(-(NITPR2-WOEXR2)*VAROII);
+    document.getElementById("VAROR3").value = number_format(-(NITPR3-WOEXR3)*VAROII);
+    document.getElementById("VAROR4").value = number_format(-(NITPR4-WOEXR4)*VAROII);
+    document.getElementById("VAROTT").value = number_format(-(NITPTT-WOEXTT)*VAROII);
+
+    VAROW1 = strtonum(document.getElementById("VAROW1").value);
+    VAROW2 = strtonum(document.getElementById("VAROW2").value);
+    VAROW3 = strtonum(document.getElementById("VAROW3").value);
+    VAROW4 = strtonum(document.getElementById("VAROW4").value);
+    VAROR1 = strtonum(document.getElementById("VAROR1").value);
+    VAROR2 = strtonum(document.getElementById("VAROR2").value);
+    VAROR3 = strtonum(document.getElementById("VAROR3").value);
+    VAROR4 = strtonum(document.getElementById("VAROR4").value);
+    VAROTT = strtonum(document.getElementById("VAROTT").value);
+
+    document.getElementById("TSPRW1").value = number_format(NITPW1+WOEXW1+ROMIW1+VAROW1);
+    document.getElementById("TSPRW2").value = number_format(NITPW2+WOEXW2+ROMIW2+VAROW2);
+    document.getElementById("TSPRW3").value = number_format(NITPW3+WOEXW3+ROMIW3+VAROW3);
+    document.getElementById("TSPRW4").value = number_format(NITPW4+WOEXW4+ROMIW4+VAROW4);
+    document.getElementById("TSPRR1").value = number_format(NITPR1+WOEXR1+ROMIR1+VAROR1);
+    document.getElementById("TSPRR2").value = number_format(NITPR2+WOEXR2+ROMIR2+VAROR2);
+    document.getElementById("TSPRR3").value = number_format(NITPR3+WOEXR3+ROMIR3+VAROR3);
+    document.getElementById("TSPRR4").value = number_format(NITPR4+WOEXR4+ROMIR4+VAROR4);
+    document.getElementById("TSPRTT").value = number_format(NITPTT+WOEXTT+ROMITT+VAROTT);
+
 }
     
 $(function() {

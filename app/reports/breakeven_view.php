@@ -79,7 +79,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">No. of Shows Per Week:</td>
-		<td class="a0 a3"><input id="NSPWII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="NSPWII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -92,7 +92,7 @@ if ($conn->connect_error) {
 	</tr>	
 	<tr>
 		<td class="a1"># of Weeks:</td>
-		<td class="a0 a3"><input id="NOW1II" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="NOW1II" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -105,7 +105,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Seats Per Show:</td>
-		<td class="a0 a3"><input id="SPSHII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="SPSHII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -118,7 +118,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Weekly Gross Potential:</td>
-		<td class="a0 a3"><input id="WGPOII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="WGPOII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -144,7 +144,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Exchange Rate:</td>
-		<td class="a0 a3"><input id="EXRAII" type=text value="1" class="m4 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="EXRAII" type=text value="1" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -159,8 +159,8 @@ if ($conn->connect_error) {
 		<td></td>
 	</tr>
 	<tr>
-		<td></td>
-		<td></td>
+		<td class="a1">Next Monies - To Producer (Base):</td>
+		<td class="a0 a3"><input id="NPROBB" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -172,8 +172,8 @@ if ($conn->connect_error) {
 		<td  class="a1" align=center>Weekly Engagement</td>
 	</tr>
 	<tr>
-		<td></td>
-		<td></td>
+		<td class="a1">Next Monies - To Presenter (Base):</td>
+		<td class="a0 a3"><input id="NPREBB" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a1"  align=center>Weekly</td>
 		<td class="a1" align=center>Weekly</td>
 		<td class="a1" align=center>Weekly</td>
@@ -183,6 +183,9 @@ if ($conn->connect_error) {
 		<td class="a1" align=center>RUN</td>
 		<td class="a1" align=center>RUN</td>
 		<td class="a1" align=center>BREAKEVEN</td>
+	</tr>
+	<tr>
+		<td></td>
 	</tr>
 	<tr>
 		<td class="a1">House Capacity:</td>
@@ -200,15 +203,15 @@ if ($conn->connect_error) {
 	<tr>
 		<td class="a1">Performance Capacity:</td>
 		<td></td>
-		<td class="a0 a6"><input id="PECAW1" type=text value="100.00%" class="m5 b3" onkeyup="BCalc()" tabindex=1></td>
-		<td class="a0 a6"><input id="PECAW2" type=text value="90.00%" class="m5 b3" onkeyup="BCalc()" tabindex=1></td>
-		<td class="a0 a6"><input id="PECAW3" type=text value="80.00%" class="m5 b3" onkeyup="BCalc()" tabindex=1></td>
-		<td class="a0 a6"><input id="PECAW4" type=text value="70.00%" class="m5 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="PECAW1" type=text value="100.00%" class="m5 b3" onkeyup="BCalc()" tabindex="1"></td>
+		<td class="a0 a6"><input id="PECAW2" type=text value="90.00%" class="m5 b3" onkeyup="BCalc()" tabindex="1"></td>
+		<td class="a0 a6"><input id="PECAW3" type=text value="80.00%" class="m5 b3" onkeyup="BCalc()" tabindex="1"></td>
+		<td class="a0 a6"><input id="PECAW4" type=text value="70.00%" class="m5 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0 a6"><input id="PECAR1" type=text value="100.00%" class="b3" readonly></td>
 		<td class="a0 a6"><input id="PECAR2" type=text value="90.00%" class="b3" readonly></td>
 		<td class="a0 a6"><input id="PECAR3" type=text value="80.00%" class="b3" readonly></td>
 		<td class="a0 a6"><input id="PECAR4" type=text value="70.00%" class="b3" readonly></td>
-		<td class="a0 a4"><input id="PECATT" type=text value="0.00%" class="m5 b4" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a4"><input id="PECATT" type=text value="0.00%" class="m5 b4" onkeyup="BCalc()" tabindex="1"></td>
 	</tr>
 	<tr>
 		<td class="a1">Tickets Sold:</td>
@@ -251,7 +254,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Sub Load-in:</td>
-		<td class="a0 a6"><input id="SLINII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="SLINII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="SLINW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="SLINW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="SLINW3" type=text value="0" class="t1" readonly></td>
@@ -264,7 +267,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Estimated Groups:</td>
-		<td class="a0 a6"><input id="ESGRII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="ESGRII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="ESGRW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ESGRW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ESGRW3" type=text value="0" class="t1" readonly></td>
@@ -290,7 +293,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Less Subs Discounts:</td>
-		<td class="a0 a6"><input id="LSUDII" type=text value="0.00%" class="m5 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="LSUDII" type=text value="0.00%" class="m5 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LSUDW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LSUDW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LSUDW3" type=text value="0" class="t1" readonly></td>
@@ -303,7 +306,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Less Group Discounts:</td>
-		<td class="a0 a6"><input id="LGRDII" type=text value="0.00%" class="m5 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="LGRDII" type=text value="0.00%" class="m5 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LGRDW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LGRDW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LGRDW3" type=text value="0" class="t1" readonly></td>
@@ -316,7 +319,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Less Single Discounts:</td>
-		<td class="a0 a6"><input id="LSIDII" type=text value="0.00%" class="m5 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="LSIDII" type=text value="0.00%" class="m5 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LSIDW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LSIDW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LSIDW3" type=text value="0" class="t1" readonly></td>
@@ -351,11 +354,11 @@ if ($conn->connect_error) {
 		<td class="a0 a5"><input id="AGPPR2" type=text value="0%" class="b5" readonly></td>
 		<td class="a0 a5"><input id="AGPPR3" type=text value="0%" class="b5" readonly></td>
 		<td class="a0 a5"><input id="AGPPR4" type=text value="0%" class="b5" readonly></td>
-		<td class="a0 a2"><input id="AGPPTT" type=text value="0.00%" class="b1" readonly></td>
+		<td class="a0 a2"><input id="AGPPTT" type=text value="0%" class="b1" readonly></td>
 	</tr>
 	<tr>
 		<td class="a1">Sales Tax 1:</td>
-		<td class="a0 a3"><input id="TAX1II" type=text value="0.00%" class="m5 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="TAX1II" type=text value="0.00%" class="m5 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="TAX1W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="TAX1W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="TAX1W3" type=text value="0" class="t1" readonly></td>
@@ -368,7 +371,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Sales Tax 2:</td>
-		<td class="a0 a3"><input id="TAX2II" type=text value="0.00%" class="m5 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="TAX2II" type=text value="0.00%" class="m5 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="TAX2W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="TAX2W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="TAX2W3" type=text value="0" class="t1" readonly></td>
@@ -381,7 +384,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Facility Fee 1:</td>
-		<td class="a0 a3"><input id="FAF1II" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="FAF1II" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="FAF1W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="FAF1W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="FAF1W3" type=text value="0" class="t1" readonly></td>
@@ -394,7 +397,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Facility Fee 2:</td>
-		<td class="a0 a3"><input id="FAF2II" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="FAF2II" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="FAF2W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="FAF2W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="FAF2W3" type=text value="0" class="t1" readonly></td>
@@ -407,7 +410,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Subscription Commission:</td>
-		<td class="a0 a3"><input id="SUBCII" type=text value="0%" class="m6 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="SUBCII" type=text value="0%" class="m6 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="SUBCW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="SUBCW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="SUBCW3" type=text value="0" class="t1" readonly></td>
@@ -420,7 +423,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Group Sales Commission:</td>
-		<td class="a0 a3"><input id="GSACII" type=text value="0%" class="m6 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="GSACII" type=text value="0%" class="m6 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="GSACW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="GSACW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="GSACW3" type=text value="0" class="t1" readonly></td>
@@ -433,7 +436,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Credit Card & Other Commissions:</td>
-		<td class="a0 a3"><input id="CCOCII" type=text value="0%" class="m6 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="CCOCII" type=text value="0%" class="m6 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="CCOCW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="CCOCW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="CCOCW3" type=text value="0" class="t1" readonly></td>
@@ -478,7 +481,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Guarantee:</td>
-		<td class="a0 a3"><input id="GUA1II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="GUA1II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="GUA1W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="GUA1W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="GUA1W3" type=text value="0" class="t1" readonly></td>
@@ -491,7 +494,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Variable Guarantee:</td>
-		<td class="a0 a3"><input id="VGUAII" type=text value="0.00%" class="m5 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="VGUAII" type=text value="0.00%" class="m5 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="VGUAW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="VGUAW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="VGUAW3" type=text value="0" class="t1" readonly></td>
@@ -504,7 +507,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Advertising (at gross):</td>
-		<td class="a0 a3"><input id="ADVEII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="ADVEII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="ADVEW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ADVEW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ADVEW3" type=text value="0" class="t1" readonly></td>
@@ -517,7 +520,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Stagehands (Load-in):</td>
-		<td class="a0 a3"><input id="STINII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="STINII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="STINW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="STINW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="STINW3" type=text value="0" class="t1" readonly></td>
@@ -530,7 +533,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Stagehands (Load-out):</td>
-		<td class="a0 a3"><input id="STOTII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="STOTII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="STOTW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="STOTW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="STOTW3" type=text value="0" class="t1" readonly></td>
@@ -543,7 +546,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Stagehands (Running):</td>
-		<td class="a0 a3"><input id="STRUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="STRUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="STRUW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="STRUW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="STRUW3" type=text value="0" class="t1" readonly></td>
@@ -556,7 +559,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Wardrobe & Hair (Load-in):</td>
-		<td class="a0 a3"><input id="WHINII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="WHINII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="WHINW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="WHINW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="WHINW3" type=text value="0" class="t1" readonly></td>
@@ -569,7 +572,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Wardrobe & Hair (Load-out):</td>
-		<td class="a0 a3"><input id="WHOTII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="WHOTII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="WHOTW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="WHOTW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="WHOTW3" type=text value="0" class="t1" readonly></td>
@@ -582,7 +585,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Wardrobe & Hair (Running):</td>
-		<td class="a0 a3"><input id="WHRUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="WHRUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="WHRUW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="WHRUW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="WHRUW3" type=text value="0" class="t1" readonly></td>
@@ -595,7 +598,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Labor Catering:</td>
-		<td class="a0 a3"><input id="LACAII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="LACAII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LACAW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LACAW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LACAW3" type=text value="0" class="t1" readonly></td>
@@ -608,7 +611,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Musicians:</td>
-		<td class="a0 a3"><input id="MUSIII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="MUSIII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="MUSIW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="MUSIW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="MUSIW3" type=text value="0" class="t1" readonly></td>
@@ -621,33 +624,33 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Insurance (on drop count):</td>
-		<td class="a0 a3"><input id="INSUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
-		<td class="a0"><input id="INSUW1" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="INSUW2" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="INSUW3" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="INSUW4" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="INSUR1" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="INSUR2" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="INSUR3" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="INSUR4" type=text value="0.00" class="t1" readonly></td>
+		<td class="a0 a3"><input id="INSUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td class="a0"><input id="INSUW1" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="INSUW2" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="INSUW3" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="INSUW4" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="INSUR1" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="INSUR2" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="INSUR3" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="INSUR4" type=text value="0" class="t1" readonly></td>
 		<td class="a0 a2"><input id="INSUTT" type=text value="0" class="b1" readonly></td>
 	</tr>
 	<tr>
 		<td class="a1">Ticket Printing:</td>
-		<td class="a0 a3"><input id="TIPRII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
-		<td class="a0"><input id="TIPRW1" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="TIPRW2" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="TIPRW3" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="TIPRW4" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="TIPRR1" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="TIPRR2" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="TIPRR3" type=text value="0.00" class="t1" readonly></td>
-		<td class="a0"><input id="TIPRR4" type=text value="0.00" class="t1" readonly></td>
+		<td class="a0 a3"><input id="TIPRII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td class="a0"><input id="TIPRW1" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="TIPRW2" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="TIPRW3" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="TIPRW4" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="TIPRR1" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="TIPRR2" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="TIPRR3" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="TIPRR4" type=text value="0" class="t1" readonly></td>
 		<td class="a0 a2"><input id="TIPRTT" type=text value="0" class="b1" readonly></td>
 	</tr>
 	<tr>
 		<td class="a1">Other:</td>
-		<td class="a0 a3"><input id="OTH1II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="OTH1II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="OTH1W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH1W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH1W3" type=text value="0" class="t1" readonly></td>
@@ -660,7 +663,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Ada Expense:</td>
-		<td class="a0 a3"><input id="ADEXII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="ADEXII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="ADEXW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ADEXW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ADEXW3" type=text value="0" class="t1" readonly></td>
@@ -673,7 +676,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Box Office:</td>
-		<td class="a0 a3"><input id="BOOFII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="BOOFII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="BOOFW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="BOOFW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="BOOFW3" type=text value="0" class="t1" readonly></td>
@@ -686,7 +689,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Dry Ice/Co2:</td>
-		<td class="a0 a3"><input id="DRICII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="DRICII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="DRICW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="DRICW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="DRICW3" type=text value="0" class="t1" readonly></td>
@@ -699,7 +702,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Fire Marshall/Pyro:</td>
-		<td class="a0 a3"><input id="FIMAII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="FIMAII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="FIMAW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="FIMAW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="FIMAW3" type=text value="0" class="t1" readonly></td>
@@ -712,7 +715,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Hospitality/Water:</td>
-		<td class="a0 a3"><input id="HOWAII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="HOWAII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="HOWAW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="HOWAW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="HOWAW3" type=text value="0" class="t1" readonly></td>
@@ -725,7 +728,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">House Staff:</td>
-		<td class="a0 a3"><input id="HOSTII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="HOSTII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="HOSTW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="HOSTW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="HOSTW3" type=text value="0" class="t1" readonly></td>
@@ -738,7 +741,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Licenses/Permits:</td>
-		<td class="a0 a3"><input id="LIPEII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="LIPEII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LIPEW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LIPEW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LIPEW3" type=text value="0" class="t1" readonly></td>
@@ -751,7 +754,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Limos/Auto (Stars/Pr):</td>
-		<td class="a0 a3"><input id="LIAUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="LIAUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LIAUW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LIAUW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LIAUW3" type=text value="0" class="t1" readonly></td>
@@ -764,7 +767,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Piano Tunings:</td>
-		<td class="a0 a3"><input id="PITUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="PITUII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="PITUW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PITUW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PITUW3" type=text value="0" class="t1" readonly></td>
@@ -777,7 +780,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Police/Security:</td>
-		<td class="a0 a3"><input id="POSEII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="POSEII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="POSEW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="POSEW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="POSEW3" type=text value="0" class="t1" readonly></td>
@@ -790,7 +793,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Presenter Profit:</td>
-		<td class="a0 a3"><input id="PRPRII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="PRPRII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="PRPRW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PRPRW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PRPRW3" type=text value="0" class="t1" readonly></td>
@@ -803,7 +806,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Press Agent Fee:</td>
-		<td class="a0 a3"><input id="PRAFII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="PRAFII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="PRAFW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PRAFW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PRAFW3" type=text value="0" class="t1" readonly></td>
@@ -816,7 +819,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Programs:</td>
-		<td class="a0 a3"><input id="PROGII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="PROGII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="PROGW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PROGW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PROGW3" type=text value="0" class="t1" readonly></td>
@@ -829,7 +832,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Rent:</td>
-		<td class="a0 a3"><input id="RENTII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="RENTII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="RENTW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="RENTW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="RENTW3" type=text value="0" class="t1" readonly></td>
@@ -842,7 +845,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Sound/Lights:</td>
-		<td class="a0 a3"><input id="SOLIII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="SOLIII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="SOLIW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="SOLIW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="SOLIW3" type=text value="0" class="t1" readonly></td>
@@ -855,7 +858,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Telephones/Internet:</td>
-		<td class="a0 a3"><input id="TEINII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="TEINII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="TEINW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="TEINW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="TEINW3" type=text value="0" class="t1" readonly></td>
@@ -868,7 +871,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">3rd Party Equipment Rental:</td>
-		<td class="a0 a3"><input id="PAERII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="PAERII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="PAERW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PAERW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PAERW3" type=text value="0" class="t1" readonly></td>
@@ -881,7 +884,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Truck Parking/Wreckers:</td>
-		<td class="a0 a3"><input id="TRPAII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="TRPAII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="TRPAW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="TRPAW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="TRPAW3" type=text value="0" class="t1" readonly></td>
@@ -894,7 +897,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Other:</td>
-		<td class="a0 a3"><input id="OTH2II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="OTH2II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="OTH2W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH2W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH2W3" type=text value="0" class="t1" readonly></td>
@@ -907,7 +910,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Other:</td>
-		<td class="a0 a3"><input id="OTH3II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="OTH3II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="OTH3W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH3W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH3W3" type=text value="0" class="t1" readonly></td>
@@ -920,7 +923,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Other:</td>
-		<td class="a0 a3"><input id="OTH4II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="OTH4II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="OTH4W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH4W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH4W3" type=text value="0" class="t1" readonly></td>
@@ -933,7 +936,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Other:</td>
-		<td class="a0 a3"><input id="OTH5II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="OTH5II" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="OTH5W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH5W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="OTH5W3" type=text value="0" class="t1" readonly></td>
@@ -946,7 +949,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Local Fixed:</td>
-		<td class="a0 a3"><input id="LOFIII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="LOFIII" type=text value="0.00" class="m3 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LOFIW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LOFIW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LOFIW3" type=text value="0" class="t1" readonly></td>
@@ -1007,7 +1010,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Next Monies - To Producer:</td>
-		<td class="a0 a6"><input id="NPROII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="NPROII" type=text value="0%" class="m6 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="NPROW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="NPROW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="NPROW3" type=text value="0" class="t1" readonly></td>
@@ -1020,7 +1023,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Next Monies - To Presenter:</td>
-		<td class="a0 a6"><input id="NPREII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="NPREII" type=text value="0%" class="m6 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="NPREW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="NPREW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="NPREW3" type=text value="0" class="t1" readonly></td>
@@ -1052,7 +1055,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Producer Share of Overages:</td>
-		<td class="a0 a6"><input id="PROOII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="PROOII" type=text value="0%" class="m6 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="PROOW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PROOW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PROOW3" type=text value="0" class="t1" readonly></td>
@@ -1065,7 +1068,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Presenter Share of Overages:</td>
-		<td class="a0 a6"><input id="PREOII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="PREOII" type=text value="0%" class="m6 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="PREOW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PREOW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="PREOW3" type=text value="0" class="t1" readonly></td>
@@ -1146,7 +1149,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Less Income Taxes Witheld (1):</td>
-		<td class="a0 a3"><input id="LIT1II" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="LIT1II" type=text value="0.00%" class="m5 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LIT1W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LIT1W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LIT1W3" type=text value="0" class="t1" readonly></td>
@@ -1159,7 +1162,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Less Income Taxes Witheld (2):</td>
-		<td class="a0 a6"><input id="LIT2II" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="LIT2II" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="LIT2W1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LIT2W2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="LIT2W3" type=text value="0" class="t1" readonly></td>
@@ -1178,9 +1181,9 @@ if ($conn->connect_error) {
 		<td class="a0"><input id="NITPW3" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="NITPW4" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="NITPR1" type=text value="0" class="t1" readonly></td>
-		<td class="a0"><input id="NITPW2" type=text value="0" class="t1" readonly></td>
-		<td class="a0"><input id="NITPW3" type=text value="0" class="t1" readonly></td>
-		<td class="a0"><input id="NITPW4" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="NITPR2" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="NITPR3" type=text value="0" class="t1" readonly></td>
+		<td class="a0"><input id="NITPR4" type=text value="0" class="t1" readonly></td>
 		<td class="a0 a2"><input id="NITPTT" type=text value="0" class="b1" readonly></td>
 	</tr>
 	<tr>
@@ -1188,7 +1191,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Weekly Operating Expenses (include Amort):</td>
-		<td class="a0 a3"><input id="WOEXII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a3"><input id="WOEXII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="WOEXW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="WOEXW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="WOEXW3" type=text value="0" class="t1" readonly></td>
@@ -1201,7 +1204,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Royalty Minimum $:</td>
-		<td class="a0 a6"><input id="ROMIII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="ROMIII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="ROMIW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ROMIW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ROMIW3" type=text value="0" class="t1" readonly></td>
@@ -1214,7 +1217,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Variable Royalty %:</td>
-		<td class="a0 a6"><input id="VAROII" type=text value="0" class="m4 b3" onkeyup="BCalc()" tabindex=1></td>
+		<td class="a0 a6"><input id="VAROII" type=text value="0%" class="m6 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="VAROW1" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="VAROW2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="VAROW3" type=text value="0" class="t1" readonly></td>
