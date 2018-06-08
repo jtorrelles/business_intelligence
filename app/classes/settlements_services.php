@@ -651,7 +651,7 @@ include '../security_log.php';
                 if(move_uploaded_file($dataFileName["tmp_name"], $target_file)){
 
                   $objPHPExcel = PHPExcel_IOFactory::load($target_file);
-
+		  ob_clean();
                   //Set up all the variables from the Excel Spreadsheet
                   $ShowName = $objPHPExcel->getSheet(20)->getCell('A1')->getValue();
                   $CityState = $objPHPExcel->getSheet(20)->getCell('A2')->getValue();
