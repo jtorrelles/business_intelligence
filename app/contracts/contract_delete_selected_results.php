@@ -1,4 +1,4 @@
- <?php
+<?php
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
