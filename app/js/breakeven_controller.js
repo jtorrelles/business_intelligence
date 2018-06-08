@@ -42,10 +42,10 @@ function getBreakevenSelection(inid,endd,country,state,city,showId,venues) {
             settlementsSize = data.result['settlements'].length; 
             contractsSize = data.result['contracts'].length; 
             routesSize = data.result['routes'].length; 
-
             //Settlements
             if(settlementsSize > 0){
                 for(var x=0; x<settlementsSize; x++){
+
                     tableSet = tableSet + "<tr>";
                     tableSet = tableSet + '<td>' + data.result['settlements'][x].SHOWNAME  + '</td>';
                     tableSet = tableSet + '<td>' + data.result['settlements'][x].OPENINGDATE  + '</td>';
@@ -53,11 +53,16 @@ function getBreakevenSelection(inid,endd,country,state,city,showId,venues) {
                     tableSet = tableSet + '<td>' + data.result['settlements'][x].CITYNAME  + '</td>';
                     tableSet = tableSet + '<td>' + data.result['settlements'][x].STATENAME  + '</td>';
                     tableSet = tableSet + '<td>' + data.result['settlements'][x].VENUENAME  + '</td>';
-                    tableSet = tableSet + '<td><input type="button" class="button" id="btnSett'+data.result['settlements'][x].ID+'" value="Select"></td>';
+                    tableSet = tableSet + '<td><input type="hidden" class="data" id="sett'+x+'"><input type="button" class="button" id="btnSett'+x+'" onclick="setDataSettlementsToBreakeven('+x+')" value="Select"></td>';
                     tableSet = tableSet + "</tr>";
+
+                    $("#body_settlements").append(tableSet);
+
+                    tableSet = "";
+
+                    document.getElementById("sett"+x).value = JSON.stringify(data.result['settlements'][x]);
                 }
 
-                $("#body_settlements").append(tableSet);
                 $("#settements_data").show();
                 $("#settements_nodata").hide();
 
@@ -77,11 +82,16 @@ function getBreakevenSelection(inid,endd,country,state,city,showId,venues) {
                     tableCont = tableCont + '<td>' + data.result['contracts'][x].CITYNAME  + '</td>';
                     tableCont = tableCont + '<td>' + data.result['contracts'][x].STATENAME  + '</td>';
                     tableCont = tableCont + '<td>' + data.result['contracts'][x].VENUENAME  + '</td>';
-                    tableCont = tableCont + '<td><input type="button" class="button" id="btnSett'+data.result['contracts'][x].ID+'" value="Select"></td>';
+                    tableCont = tableCont + '<td><input type="hidden" class="data" id="cont'+x+'"><input type="button" class="button" id="btnCont'+x+'" onclick="setDataContractsToBreakeven('+x+')" value="Select"></td>';
                     tableCont = tableCont + "</tr>";
+
+                    $("#body_contracts").append(tableCont);
+
+                    tableCont = "";
+
+                    document.getElementById("cont"+x).value  = JSON.stringify(data.result['contracts'][x]);
                 }
 
-                $("#body_contracts").append(tableCont);
                 $("#contracts_data").show();
                 $("#contracts_nodata").hide();
                 
@@ -101,11 +111,16 @@ function getBreakevenSelection(inid,endd,country,state,city,showId,venues) {
                     tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].CITYNAME  + '</td>';
                     tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].STATENAME  + '</td>';
                     tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].VENUENAME  + '</td>';
-                    tableRoutes = tableRoutes + '<td><input type="button" class="button" id="btnSett'+data.result['routes'][x].ID+'" value="Select"></td>';
+                    tableRoutes = tableRoutes + '<td><input type="hidden" class="data" id="route'+x+'"><input type="button" class="button" id="btnRoute'+x+'" onclick="setDataRoutesToBreakeven('+x+')" value="Select"></td>';
                     tableRoutes = tableRoutes + "</tr>";
+
+                    $("#body_routes").append(tableRoutes);
+
+                    tableRoutes = "";
+
+                    document.getElementById("route"+x).value  = JSON.stringify(data.result['routes'][x]);
                 }
 
-                $("#body_routes").append(tableRoutes);
                 $("#routes_data").show();
                 $("#routes_nodata").hide();
                 
@@ -1734,6 +1749,147 @@ function BCalc() {
     document.getElementById("TSPRTT").value = number_format(NITPTT+WOEXTT+ROMITT+VAROTT);
 
 }
+
+function setDataSettlementsToBreakeven(value){
+
+    var id = "#sett"+value;
+    var data = JSON.parse($(id).val());
+
+    $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
+    $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
+    $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
+    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
+    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
+
+    $("#NSPWII").val(data.NUMBEROFSHOWSPERWEEKS);
+    $("#NOW1II").val(data.NUMBEROFWEEKS);
+    $("#WGPOII").val(data.WEEKLYGROSSPOTENTIAL);
+    $("#NAPTII").val(data.NETAVERAGEPERTICKET);
+    $("#EXRAII").val(data.EXCHANGERATE);
+    $("#SPSHII").val(data.CAPACITY);
+    $("#SLINII").val(data.SUBLOADIN);
+    $("#ESGRII").val(data.ESTIMATEDGROUPS);
+    $("#TAX1II").val(data.SALESTAX1);
+    $("#TAX2II").val(data.SALESTAX2);
+    $("#FAF1II").val(data.FACILITYFEE1);
+    $("#SUBCII").val(data.SUBSCRIPTIONCOMMISION);
+    $("#GSACII").val(data.GROUPSALESCOMMISION);
+    $("#CCOCII").val(data.CREDITCARDCOMMISION);
+    $("#GUA1II").val(data.GUARANTEE);
+    $("#VGUAII").val(data.VARIABLEGUARANTEE);
+    $("#ADVEII").val(data.ADVERTISING);
+    $("#STINII").val(data.STAGEHANDSLOAINACTUAL);
+    $("#STOTII").val(data.STAGEHANDSLOADOUTACTUAL);
+    $("#STRUII").val(data.STAGEHANDSRUNNINGACTUAL);
+    $("#WHINII").val(data.WARDROBELOADINACTUAL);
+    $("#WHOTII").val(data.WARDROBELOADOUTACTUAL);
+    $("#WHRUII").val(data.WARDROBERUNNINGACTUAL);   
+    $("#LACAII").val(data.LABORCATERING);  
+    $("#MUSIII").val(data.MUSICIANS);  
+    $("#INSUII").val(data.INSURANCE);   
+    $("#TIPRII").val(data.TICKETPRINTING); 
+    $("#OTH1II").val(data.OTHER); 
+    $("#ADEXII").val(data.ADAEXPENSES); 
+    $("#BOOFII").val(data.BOXOFFICE); 
+    $("#DRICII").val(data.DRYICE); 
+    $("#HOWAII").val(data.HOSPITALITY); 
+    $("#HOSTII").val(data.HOUSESTAFF); 
+    $("#LIPEII").val(data.LICENSES); 
+    $("#LIAUII").val(data.LIMOS); 
+    $("#PITUII").val(data.PIANO); 
+    $("#POSEII").val(data.POLICESECURITY); 
+    $("#PRPRII").val(data.PRESENTERPROFIT); 
+    $("#PRAFII").val(data.PRESSAGENTFEE); 
+    $("#PROGII").val(data.PROGRAMS); 
+    $("#RENTII").val(data.RENT); 
+    $("#SOLIII").val(data.SOUND); 
+    $("#TEINII").val(data.TELEPHONES); 
+    $("#PAERII").val(data.EQUIPMENTRENTAL); 
+    $("#OTH2II").val(data.OTHERDACTUAL); 
+    $("#OTH3II").val(data.OTHEREACTUAL); 
+    $("#OTH4II").val(data.OTHERFACTUAL); 
+    $("#OTH5II").val(data.OTHERGACTUAL); 
+    $("#LOFIII").val(data.LOCALFIX); 
+    $("#LIT1II").val(data.LESSINCOMETAXES1); 
+
+    $("#results").hide(); 
+    $("#loader").hide(); 
+    $("#selection_data").hide();
+
+    $("#breakeven_data").show(); 
+    $("#back_to_selection").show();
+
+    BCalc();
+
+}
+
+function setDataContractsToBreakeven(value){
+
+    var id = "#cont"+value;
+    var data = JSON.parse($(id).val());
+
+    $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
+    $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
+    $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
+    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
+    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
+
+    $("#NSPWII").val(data.NUMBEROFSHOWSPERWEEKS);
+    $("#NOW1II").val(data.NUMBEROFWEEKS);
+    $("#WGPOII").val(data.WEEKLYGROSSPOTENTIAL);
+    $("#EXRAII").val(data.EXCHANGERATE);
+    $("#TAX1II").val(data.SALESTAX1);
+    $("#TAX2II").val(data.SALESTAX2);
+    $("#FAF1II").val(data.FACILITYFEE1);
+    $("#FAF2II").val(data.FACILITYFEE2);
+    $("#SUBCII").val(data.SUBSCRIPTIONCOMMISION);
+    $("#GSACII").val(data.GROUPSALESCOMMISION);
+    $("#CCOCII").val(data.CREDITCARDCOMMISION);
+    $("#GUA1II").val(data.GUARANTEE);
+    $("#VGUAII").val(data.VARIABLEGUARANTEE);
+    $("#LIT1II").val(data.LESSINCOMETAXES1);  
+
+    $("#results").hide(); 
+    $("#loader").hide(); 
+    $("#selection_data").hide();
+
+    $("#breakeven_data").show(); 
+    $("#back_to_selection").show();
+
+    BCalc();  
+}
+
+function setDataRoutesToBreakeven(value){
+
+    var id = "#route"+value;
+    var data = JSON.parse($(id).val());
+
+    $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
+    $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
+    $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
+    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
+    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
+
+    $("#NSPWII").val(data.NUMBEROFSHOWSPERWEEKS);
+    $("#NOW1II").val(data.NUMBEROFWEEKS);
+    $("#WGPOII").val(data.WEEKLYGROSSPOTENTIAL);
+    $("#EXRAII").val(data.EXCHANGERATE);
+    $("#SPSHII").val(data.CAPACITY);
+    $("#GUA1II").val(data.FIXED_GNTEE);
+    $("#VGUAII").val(data.ROYALTY);     
+
+    $("#results").hide(); 
+    $("#loader").hide(); 
+    $("#selection_data").hide();
+
+    $("#breakeven_data").show(); 
+    $("#back_to_selection").show();
+
+    BCalc(); 
+}
     
 $(function() {
 
@@ -1828,6 +1984,17 @@ $(function() {
         $('#venues').multipleSelect("uncheckAll");
 
     });
+
+    $("#btnBackSelection").click(function (ev) {
+
+        $("#results").show(); 
+        $("#selection_data").show();
+        $("#loader").hide(); 
+
+        $("#breakeven_data").hide(); 
+        $("#back_to_selection").hide();
+
+    });    
 
 });
 

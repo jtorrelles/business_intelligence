@@ -306,7 +306,7 @@ $(function() {
         var countryId = $(this).val();
         if(countryId != ''){
             getStates(countryId);
-            getVenuesFilters(countryId,0,0);
+            getVenuesFilters(countryId,0,0); 
         }else{
             $(".states option:gt(0)").remove();
         }
@@ -316,17 +316,36 @@ $(function() {
         var stateId = $(this).val();
         if(stateId != ''){
             getCities(stateId);
-            getVenuesFilters(0,stateId,0);
+            if(stateId == 0){
+                var countryId = $("#countryId").val();
+                getVenuesFilters(countryId,0,0); 
+            }else{
+                getVenuesFilters(0,stateId,0);
+            } 
         }else{
+            
+            var countryId = $("#countryId").val();
+            getVenuesFilters(countryId,0,0);  
+
             $(".cities option:gt(0)").remove();
         }
     });
 
     $(".cities").on("change", function(ev) {
         var cityId = $(this).val();
+
         if(cityId != ''){
-            getVenuesFilters(0,0,cityId);
+            if(cityId == 0){
+                var stateId = $("#stateId").val();
+                getVenuesFilters(0,stateId,0); 
+            }else{
+                getVenuesFilters(0,0,cityId);
+            } 
+        }else{
+            var stateId = $("#stateId").val();
+            getVenuesFilters(0,stateId,0); 
         }
+
     });  
 
     $("#btnCleanAllRoutes").click(function (ev) {

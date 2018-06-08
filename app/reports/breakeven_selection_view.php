@@ -24,8 +24,7 @@ if ($conn->connect_error) {
 <script> getCountries(); getBasicShowsByStatus('Y'); getVenues();</script>
 
 <h1>Breakeven Analysis Report:</h1>
-
-<form action="#" method="POST">
+<div id="selection_data">
 	<table style="width:100%">
 		<tr>
 			<th></th>
@@ -129,7 +128,7 @@ if ($conn->connect_error) {
 		</tr>	
 	</table>
 	<p><b><font color=red>*</font> Indicates a mandatory field</b></p>
-</form>	
+</div>
 <div style="display:none" class="loader" id="loader"></div>
 <div style="display:none" class="results" id="results">
 	<h3><font color=blue>Results of Breakeven Selection:</font></h3>
