@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 <script src="../js/reports_controller.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
-<script> getCountries();  getShows();</script>
+<script> getCountries();  getShows("%");</script>
 
 <h1>Routing Side by Side Report:</h1>
 
