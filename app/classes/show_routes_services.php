@@ -461,7 +461,7 @@ countryNAME: ".$res["country_name"];
                 if(move_uploaded_file($dataFileName["tmp_name"], $target_file)){
 
                   $objPHPExcel = PHPExcel_IOFactory::load($target_file);
-
+		  ob_clean();
                   //Set up all the variables from the Excel Spreadsheet
                   $Showtoroute = $objPHPExcel->getSheet(1)->getCell('E1')->getValue();
                   $Showtorouteid = substr($Showtoroute,strpos($Showtoroute,"//")+2);
