@@ -2,10 +2,6 @@
 require "../db/database_conn.php";
 include "../session.php";
 include "../header.html";
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 ?>
 
 <html>
@@ -18,8 +14,13 @@ if ($conn->connect_error) {
 <script src="../js/breakeven_controller.js"></script>
 <script src="../js/jquery.maskMoney.min.js"></script>
 <script src="../js/utility.js"></script>
+
+<form method="POST" target="pp">
+<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="breakeven_excel.php">
+<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
+
 <h1>BREAKEVEN ANALYSIS</h1>
-<p><table width=100% id="btable">
+<p><table width=100% class="btable" id="Exportar_a_Excel">
 <col width=20%>
 <col width=8%>
 <col width=8%>
@@ -79,7 +80,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">No. of Shows Per Week:</td>
-		<td class="a0 a3"><input id="NSPWII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td class="a0 a3"><input id="NSPWII" name="NSPWII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -92,7 +93,7 @@ if ($conn->connect_error) {
 	</tr>	
 	<tr>
 		<td class="a1"># of Weeks:</td>
-		<td class="a0 a3"><input id="NOW1II" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td class="a0 a3"><input id="NOW1II" name="NOW1II" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -105,7 +106,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Seats Per Show:</td>
-		<td class="a0 a3"><input id="SPSHII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td class="a0 a3"><input id="SPSHII" name="SPSHII" type=text value="0" class="m4 b2" onkeyup="BCalc()" tabindex="1"></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -131,7 +132,7 @@ if ($conn->connect_error) {
 	</tr>
 	<tr>
 		<td class="a1">Net Avg. Per Tix:</td>
-		<td class="a0"><input id="NAPTII" type=text value="$ 0.00" class="m7 t1" readonly></td>
+		<td class="a0"><input id="NAPTII" type=text value="$ 0.00" class="t1" readonly></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -153,14 +154,14 @@ if ($conn->connect_error) {
 		<td></td>
 		<td></td>
 		<td></td>
-		<td class="a0 a3"><input id="CUEBII" type=text value="$ 0" class="b2" readonly"></td>
+		<td class="a0"><input id="CUEBII" type=text value="$ 0" class="t1" readonly></td>
 	</tr>
 	<tr>
 		<td></td>
 	</tr>
 	<tr>
-		<td class="a1">Next Monies - To Producer (Base):</td>
-		<td class="a0 a3"><input id="NPROBB" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td></td>
+		<td></td>
 		<td></td>
 		<td></td>
 		<td></td>
@@ -172,8 +173,8 @@ if ($conn->connect_error) {
 		<td  class="a1" align=center>Weekly Engagement</td>
 	</tr>
 	<tr>
-		<td class="a1">Next Monies - To Presenter (Base):</td>
-		<td class="a0 a3"><input id="NPREBB" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td></td>
+		<td></td>
 		<td class="a1"  align=center>Weekly</td>
 		<td class="a1" align=center>Weekly</td>
 		<td class="a1" align=center>Weekly</td>
@@ -289,7 +290,7 @@ if ($conn->connect_error) {
 		<td class="a0"><input id="ESSIR2" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ESSIR3" type=text value="0" class="t1" readonly></td>
 		<td class="a0"><input id="ESSIR4" type=text value="0" class="t1" readonly></td>
-		<td class="a0 a4"><input id="ESSITT" type=text value="0" class="b4" readonly></td>
+		<td class="a0 a2"><input id="ESSITT" type=text value="0" class="b1" readonly></td>
 	</tr>
 	<tr>
 		<td class="a1">Less Subs Discounts:</td>
@@ -1009,6 +1010,19 @@ if ($conn->connect_error) {
 		<td></td>
 	</tr>
 	<tr>
+		<td class="a1">Next Monies - To Producer (Base):</td>
+		<td class="a0 a3"><input id="NPROBB" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr>
 		<td class="a1">Next Monies - To Producer:</td>
 		<td class="a0 a6"><input id="NPROII" type=text value="0%" class="m6 b3" onkeyup="BCalc()" tabindex="1"></td>
 		<td class="a0"><input id="NPROW1" type=text value="0" class="t1" readonly></td>
@@ -1021,6 +1035,19 @@ if ($conn->connect_error) {
 		<td class="a0"><input id="NPROR4" type=text value="0" class="t1" readonly></td>
 		<td class="a0 a2"><input id="NPROTT" type=text value="0" class="b1" readonly></td>
 	</tr>
+	<tr>
+		<td class="a1">Next Monies - To Presenter (Base):</td>
+		<td class="a0 a3"><input id="NPREBB" type=text value="$ 0.00" class="m7 b2" onkeyup="BCalc()" tabindex="1"></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>	
 	<tr>
 		<td class="a1">Next Monies - To Presenter:</td>
 		<td class="a0 a6"><input id="NPREII" type=text value="0%" class="m6 b3" onkeyup="BCalc()" tabindex="1"></td>
@@ -1248,6 +1275,10 @@ if ($conn->connect_error) {
 
 </body>
 </html>
+</form>
+<iframe name="pp" style="position:absolute; top:-1500px;"></iframe>
+
+
 
 <?
 $conn->close();

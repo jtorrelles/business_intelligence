@@ -1714,13 +1714,18 @@ $(function() {
 });
 
 $(document).ready(function(){  
-  $(".m1").maskMoney({precision:2, allowNegative:true});
-  $(".m2").maskMoney({precision:0, allowNegative:true});
-  $(".m3").maskMoney({precision:2});
-  $(".m4").maskMoney({precision:0});
-  $(".m5").maskMoney({precision:2, suffix:'%'});
-  $(".m6").maskMoney({precision:0, suffix:'%'});
-  $(".m7").maskMoney({precision:2, prefix:'$ '});
-  $(".m8").maskMoney({precision:0, prefix:'$ '});
+    $(".m1").maskMoney({precision:2, allowNegative:true});
+    $(".m2").maskMoney({precision:0, allowNegative:true});
+    $(".m3").maskMoney({precision:2});
+    $(".m4").maskMoney({precision:0});
+    $(".m5").maskMoney({precision:2, suffix:'%'});
+    $(".m6").maskMoney({precision:0, suffix:'%'});
+    $(".m7").maskMoney({precision:2, prefix:'$ '});
+    $(".m8").maskMoney({precision:0, prefix:'$ '});
+
+    $(".botonExcel").click(function(event) {
+        $("#datos_a_enviar").val( $("<div>").append( $("#Exportar_a_Excel").eq(0).clone()).html());
+        $("#FormularioExportacion").submit();
+    });
 });
 
