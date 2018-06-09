@@ -32,16 +32,112 @@ function getBreakevenSelection(inid,endd,country,state,city,showId,venues) {
                                                                         '&city=' + city + 
                                                                         '&showId=' + showId + 
                                                                         '&venues=' + venues;
-    console.log(url);
     var method = "GET";
     var data = {};
+    var tableSet;
+    var tableCont;
+    var tableRoutes;
     call.send(data, url, method, function(data) {
-    	console.log(data);
-        /*if(data.tp == 1){
+        if(data.tp == 1){
+            settlementsSize = data.result['settlements'].length; 
+            contractsSize = data.result['contracts'].length; 
+            routesSize = data.result['routes'].length; 
+            //Settlements
+            if(settlementsSize > 0){
+                for(var x=0; x<settlementsSize; x++){
+
+                    tableSet = tableSet + "<tr>";
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].SHOWNAME  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].OPENINGDATE  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].CLOSINGDATE  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].CITYNAME  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].STATENAME  + '</td>';
+                    tableSet = tableSet + '<td>' + data.result['settlements'][x].VENUENAME  + '</td>';
+                    tableSet = tableSet + '<td><input type="hidden" class="data" id="sett'+x+'"><input type="button" class="button" id="btnSett'+x+'" onclick="setDataSettlementsToBreakeven('+x+')" value="Select"></td>';
+                    tableSet = tableSet + "</tr>";
+
+                    $("#body_settlements").append(tableSet);
+
+                    tableSet = "";
+
+                    document.getElementById("sett"+x).value = JSON.stringify(data.result['settlements'][x]);
+                }
+
+                $("#settements_data").show();
+                $("#settements_nodata").hide();
+
+            }else{
+
+                $("#settements_data").hide();
+                $("#settements_nodata").show();
+            }
+
+            //Contracts
+            if(contractsSize > 0){
+                for(var x=0; x<contractsSize; x++){
+                    tableCont = tableCont + "<tr>";
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].SHOWNAME  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].OPENINGDATE  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].CLOSINGDATE  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].CITYNAME  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].STATENAME  + '</td>';
+                    tableCont = tableCont + '<td>' + data.result['contracts'][x].VENUENAME  + '</td>';
+                    tableCont = tableCont + '<td><input type="hidden" class="data" id="cont'+x+'"><input type="button" class="button" id="btnCont'+x+'" onclick="setDataContractsToBreakeven('+x+')" value="Select"></td>';
+                    tableCont = tableCont + "</tr>";
+
+                    $("#body_contracts").append(tableCont);
+
+                    tableCont = "";
+
+                    document.getElementById("cont"+x).value  = JSON.stringify(data.result['contracts'][x]);
+                }
+
+                $("#contracts_data").show();
+                $("#contracts_nodata").hide();
+                
+            }else{
+
+                $("#contracts_data").hide();
+                $("#contracts_nodata").show();
+            } 
+
+            //Routes
+            if(routesSize > 0){
+                for(var x=0; x<routesSize; x++){
+                    tableRoutes = tableRoutes + "<tr>";
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].SHOWNAME  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].OPENINGDATE  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].CLOSINGDATE  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].CITYNAME  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].STATENAME  + '</td>';
+                    tableRoutes = tableRoutes + '<td>' + data.result['routes'][x].VENUENAME  + '</td>';
+                    tableRoutes = tableRoutes + '<td><input type="hidden" class="data" id="route'+x+'"><input type="button" class="button" id="btnRoute'+x+'" onclick="setDataRoutesToBreakeven('+x+')" value="Select"></td>';
+                    tableRoutes = tableRoutes + "</tr>";
+
+                    $("#body_routes").append(tableRoutes);
+
+                    tableRoutes = "";
+
+                    document.getElementById("route"+x).value  = JSON.stringify(data.result['routes'][x]);
+                }
+
+                $("#routes_data").show();
+                $("#routes_nodata").hide();
+                
+            }else{
+                $("#routes_data").hide();
+                $("#routes_nodata").show();
+            }  
+
+            $("#loader").hide();
+            $("#results").show();
 
         }else{
             alert(data.msg);  
-        }*/
+
+            $("#loader").hide();
+            $("#results").hide();
+        }
     }); 
 }
 
@@ -1653,10 +1749,168 @@ function BCalc() {
     document.getElementById("TSPRTT").value = number_format(NITPTT+WOEXTT+ROMITT+VAROTT);
 
 }
+
+function setDataSettlementsToBreakeven(value){
+
+    var id = "#sett"+value;
+    var data = JSON.parse($(id).val());
+
+    $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
+    $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
+    $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
+    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
+    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
+
+    $("#NSPWII").val(number_format(data.NUMBEROFSHOWSPERWEEKS));
+    $("#NOW1II").val(number_format(data.NUMBEROFWEEKS));
+    $("#WGPOII").val(number_format(data.WEEKLYGROSSPOTENTIAL));
+    $("#NAPTII").val(number_format(data.NETAVERAGEPERTICKET));
+    $("#EXRAII").val(number_format(data.EXCHANGERATE));
+    $("#SPSHII").val(number_format(data.CAPACITY));
+    $("#SLINII").val(number_format(data.SUBLOADIN));
+    $("#ESGRII").val(number_format(data.ESTIMATEDGROUPS));
+    $("#TAX1II").val(number_format(data.SALESTAX1,2)+'%');
+    $("#TAX2II").val(number_format(data.SALESTAX2,2)+'%');
+    $("#FAF1II").val('$ '+number_format(data.FACILITYFEE1,2));
+    $("#SUBCII").val(number_format(data.SUBSCRIPTIONCOMMISION)+'%');
+    $("#GSACII").val(number_format(data.GROUPSALESCOMMISION)+'%');
+    $("#CCOCII").val(number_format(data.CREDITCARDCOMMISION)+'%');
+    $("#GUA1II").val(number_format(data.GUARANTEE,2));
+    $("#VGUAII").val(number_format(data.VARIABLEGUARANTEE,2)+'%');
+    $("#ADVEII").val(number_format(data.ADVERTISING,2));
+    $("#STINII").val(number_format(data.STAGEHANDSLOAINACTUAL,2));
+    $("#STOTII").val(number_format(data.STAGEHANDSLOADOUTACTUAL,2));
+    $("#STRUII").val(number_format(data.STAGEHANDSRUNNINGACTUAL,2));
+    $("#WHINII").val(number_format(data.WARDROBELOADINACTUAL,2));
+    $("#WHOTII").val(number_format(data.WARDROBELOADOUTACTUAL,2));
+    $("#WHRUII").val(number_format(data.WARDROBERUNNINGACTUAL,2));   
+    $("#LACAII").val(number_format(data.LABORCATERING,2));  
+    $("#MUSIII").val(number_format(data.MUSICIANS,2)); 
+    $("#INSUII").val(number_format(data.INSURANCE,2));  
+    $("#TIPRII").val(number_format(data.TICKETPRINTING,2));
+    $("#OTH1II").val(number_format(data.OTHER,2)); 
+    $("#ADEXII").val(number_format(data.ADAEXPENSES,2));
+    $("#BOOFII").val(number_format(data.BOXOFFICE,2));
+    $("#DRICII").val(number_format(data.DRYICE,2));
+    $("#HOWAII").val(number_format(data.HOSPITALITY,2));
+    $("#HOSTII").val(number_format(data.HOUSESTAFF,2)); 
+    $("#LIPEII").val(number_format(data.LICENSES,2));
+    $("#LIAUII").val(number_format(data.LIMOS,2));
+    $("#PITUII").val(number_format(data.PIANO,2));
+    $("#POSEII").val(number_format(data.POLICESECURITY,2));
+    $("#PRPRII").val(number_format(data.PRESENTERPROFIT,2));
+    $("#PRAFII").val(number_format(data.PRESSAGENTFEE,2));
+    $("#PROGII").val(number_format(data.PROGRAMS,2));
+    $("#RENTII").val(number_format(data.RENT,2));
+    $("#SOLIII").val(number_format(data.SOUND,2));
+    $("#TEINII").val(number_format(data.TELEPHONES,2));
+    $("#PAERII").val(number_format(data.EQUIPMENTRENTAL,2));
+    $("#OTH2II").val(number_format(data.OTHERDACTUAL,2)); 
+    $("#OTH3II").val(number_format(data.OTHEREACTUAL,2));
+    $("#OTH4II").val(number_format(data.OTHERFACTUAL,2)); 
+    $("#OTH5II").val(number_format(data.OTHERGACTUAL,2));
+    $("#LOFIII").val(number_format(data.LOCALFIX,2));
+    $("#LIT1II").val(number_format(data.LESSINCOMETAXES1,2)+'%');
+
+    $("#results").hide(); 
+    $("#loader").hide(); 
+    $("#selection_data").hide();
+
+    $("#export").show(); 
+    $("#breakeven_data").show(); 
+    $("#back_to_selection").show();
+
+    BCalc();
+
+}
+
+function setDataContractsToBreakeven(value){
+
+    var id = "#cont"+value;
+    var data = JSON.parse($(id).val());
+
+    $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
+    $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
+    $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
+    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
+    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
+
+    $("#NSPWII").val(number_format(data.NUMBEROFSHOWSPERWEEKS));
+    $("#NOW1II").val(number_format(data.NUMBEROFWEEKS));
+    $("#WGPOII").val(number_format(data.WEEKLYGROSSPOTENTIAL));
+    $("#EXRAII").val(number_format(data.EXCHANGERATE));
+    $("#TAX1II").val(number_format(data.SALESTAX1,2)+'%');
+    $("#TAX2II").val(number_format(data.SALESTAX2,2)+'%');
+    $("#FAF1II").val('$ '+number_format(data.FACILITYFEE1,2));
+    $("#FAF2II").val('$ '+number_format(data.FACILITYFEE2,2));
+    $("#SUBCII").val(number_format(data.SUBSCRIPTIONCOMMISION)+'%');
+    $("#GSACII").val(number_format(data.GROUPSALESCOMMISION)+'%');
+    $("#CCOCII").val(number_format(data.CREDITCARDCOMMISION)+'%');
+    $("#GUA1II").val(number_format(data.GUARANTEE,2));
+    $("#VGUAII").val(number_format(data.VARIABLEGUARANTEE,2)+'%');
+    $("#LIT1II").val(number_format(data.LESSINCOMETAXES1,2)+'%'); 
+
+    $("#results").hide(); 
+    $("#loader").hide(); 
+    $("#selection_data").hide();
+
+    $("#export").show();
+    $("#breakeven_data").show(); 
+    $("#back_to_selection").show();
+
+    BCalc();  
+}
+
+function setDataRoutesToBreakeven(value){
+
+    var id = "#route"+value;
+    var data = JSON.parse($(id).val());
+
+    $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
+    $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
+    $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
+    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
+    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
+
+    $("#NSPWII").val(number_format(data.NUMBEROFSHOWSPERWEEKS));
+    $("#NOW1II").val(number_format(data.NUMBEROFWEEKS));
+    $("#WGPOII").val(number_format(data.WEEKLYGROSSPOTENTIAL));
+    $("#EXRAII").val(number_format(data.EXCHANGERATE));
+    $("#SPSHII").val(number_format(data.CAPACITY));
+    $("#GUA1II").val(number_format(data.FIXED_GNTEE,2));
+    $("#VGUAII").val(number_format(data.ROYALTY,2)+'%');
+
+    $("#results").hide(); 
+    $("#loader").hide(); 
+    $("#selection_data").hide();
+
+    $("#export").show();
+    $("#breakeven_data").show(); 
+    $("#back_to_selection").show();
+
+    BCalc(); 
+}
     
 $(function() {
 
 	$("#btnFindBreakevenSelection").click(function (ev) {
+
+        $("#body_settlements").empty();
+        $("#body_contracts").empty();
+        $("#body_routes").empty();
+
+        $("#routes_data").hide();
+        $("#routes_nodata").hide();
+        $("#settements_data").hide();
+        $("#settements_nodata").hide();
+        $("#contracts_data").hide();
+        $("#contracts_nodata").hide();
+
+        $("#results").hide(); 
+        $("#loader").show();        
 
 		var countryId = $("#countryId").val();
 		var stateId = $("#stateId").val();
@@ -1690,10 +1944,8 @@ $(function() {
             return;
         }
         if((cityId == 0)||(cityId == "")||(cityId == null)){
-            alert("CITY is not selected, Please verify these values.");
-            $("#loader").hide();
-            return;
-        }        
+            cityId = "%"
+        }
         if((showId == 0)||(showId == "")||(showId == null)){
             alert("SHOW is not selected, Please verify these values.");
             $("#loader").hide();
@@ -1710,6 +1962,43 @@ $(function() {
 
         getBreakevenSelection(finicio,ffin,countryId,stateId,cityId,showId,venues);
     });
+
+    $("#btnCleanBreakevenSelection").click(function (ev) {
+
+        getCountries();
+
+        $("#body_settlements").empty();
+        $("#body_contracts").empty();
+        $("#body_routes").empty();
+
+        $("#routes_data").hide();
+        $("#routes_nodata").hide();
+        $("#settements_data").hide();
+        $("#settements_nodata").hide();
+        $("#contracts_data").hide();
+        $("#contracts_nodata").hide();
+
+        $("#results").hide(); 
+        $("#loader").hide();  
+
+        $(".dateini").val("");
+        $(".dateend").val("");
+        $(".shows").val(0);
+        $('#venues').multipleSelect("uncheckAll");
+
+    });
+
+    $("#btnBackSelection").click(function (ev) {
+
+        $("#results").show(); 
+        $("#selection_data").show();
+        $("#loader").hide(); 
+
+        $("#export").hide(); 
+        $("#breakeven_data").hide(); 
+        $("#back_to_selection").hide();
+
+    });    
 
 });
 
