@@ -63,7 +63,8 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
         <div><a href=\"../app/shows/shows_all.php\">SHOWS</a></div>
         <div><a href=\"../app/presenters/presenters_all.php\">PRESENTERS</a></div>
         <div><a href=\"../app/venues/venues_all.php\">VENUES</a></div>
-		<div><a href=\"../app/users/security_management.php\">ADMINISTRATION</a></div>		
+	<div><a href=\"../app/templates/templates_all.php\">CUSTOM REPORTS</a></div>
+	<div><a href=\"../app/users/security_management.php\">ADMINISTRATION</a></div>		
     </div>
 </div>
 </div>
@@ -95,6 +96,7 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
         <div><a href=\"../app/shows/shows_all.php\">SHOWS</a></div>
         <div><a href=\"../app/presenters/presenters_all.php\">PRESENTERS</a></div>
         <div><a href=\"../app/venues/venues_all.php\">VENUES</a></div>
+	<div><a href=\"../app/templates/templates_all.php\">CUSTOM REPORTS</a></div>
     </div>
 </div>
 </div>
