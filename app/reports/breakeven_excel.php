@@ -1,6 +1,6 @@
 <?php
 
-require_once '../libs/PHPExcel.php';       
+require_once '../libs/PHPExcel.php';
         
 $objPHPExcel   = new PHPExcel();
 $objPHPExcel->setActiveSheetIndex(0);
@@ -10,189 +10,299 @@ $style = array('font' => array('name'  => 'Arial','size' => 10));
 
 foreach( range('A','K') as $letra ){ 
 	$objPHPExcel->getActiveSheet()->getStyle($letra)->applyFromArray($style);
+	$objPHPExcel->getActiveSheet()->getStyle($letra)->getNumberFormat()->setFormatCode('#,##0');
 }
 
-$objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth(30);
-$objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('H')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('I')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('J')->setWidth(9);
-$objPHPExcel->getActiveSheet()->getColumnDimension('K')->setWidth(15);
+function Workcell($type,$cell,$value){
+	global $objPHPExcel; 
 
-$objPHPExcel->getActiveSheet()->getStyle('C12:K12')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-$objPHPExcel->getActiveSheet()->getStyle('K7')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-$objPHPExcel->getActiveSheet()->getStyle('K11')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
-
-function cellColor($cells,$color){
-    global $objPHPExcel;
-
-    $objPHPExcel->getActiveSheet()->getStyle($cells)->getFill()->applyFromArray(array('type' => PHPExcel_Style_Fill::FILL_SOLID,'startcolor' => array('rgb' => $color)));
-
-    $objPHPExcel->getActiveSheet()->getStyle($cells)->applyFromArray(array('borders' => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN))));
+	switch ($type) {
+	    case 'Color':
+	        $objPHPExcel->getActiveSheet()->getStyle($cell)->getFill()->applyFromArray(array('type' => PHPExcel_Style_Fill::FILL_SOLID,'startcolor' => array('rgb' => $value)));	    	
+	        break;
+	    case 'Border':
+	    	$objPHPExcel->getActiveSheet()->getStyle($cell)->applyFromArray(array('borders' => array('allborders' => array('style' => PHPExcel_Style_Border::BORDER_THIN))));
+	        break;    
+	    case 'Width':
+	        $objPHPExcel->getActiveSheet()->getColumnDimension($cell)->setWidth($value);
+	        break;
+	    case 'Merge':
+	        $objPHPExcel->setActiveSheetIndex(0)->mergeCells($cell);
+	        break;
+	    case 'Bold':
+	        $objPHPExcel->getActiveSheet()->getStyle($cell)->getFont()->setBold(true);
+	        break;
+	    case 'Value':
+	        $objPHPExcel->getActiveSheet()->setCellValue($cell,$value);
+	        break;
+	    case 'Format':
+	        $objPHPExcel->getActiveSheet()->getStyle($cell)->getNumberFormat()->setFormatCode($value);
+	        break;  
+	    case 'Center':
+	        $objPHPExcel->getActiveSheet()->getStyle($cell)->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	        break; 
+	    case 'Percent':
+	        $objPHPExcel->getActiveSheet()->getStyle($cell)->getNumberFormat()->applyFromArray(array('code' => PHPExcel_Style_NumberFormat::FORMAT_PERCENTAGE_00));
+	        break;  
+	}
 }
 
-cellColor('A1:I1','FFFFFF');
-cellColor('A2:I2','FFFFFF');
-cellColor('B4:B7','008000');
-cellColor('B9','FFFFFF');
-cellColor('B9','008000');
-cellColor('K7:K9','FFFFFF');
-cellColor('K11','FFFFFF');
-cellColor('C12:K12','FFFFFF');
 
-$objPHPExcel->setActiveSheetIndex(0)->mergeCells('B1:C1');
-$objPHPExcel->setActiveSheetIndex(0)->mergeCells('E1:F1');
-$objPHPExcel->setActiveSheetIndex(0)->mergeCells('H1:I1');
-$objPHPExcel->setActiveSheetIndex(0)->mergeCells('B2:C2');
-$objPHPExcel->setActiveSheetIndex(0)->mergeCells('E2:F2');
-$objPHPExcel->setActiveSheetIndex(0)->mergeCells('H2:I2');
-$objPHPExcel->setActiveSheetIndex(0)->mergeCells('K7:K8');
+Workcell('Percent','C14:K14','');
 
-$objPHPExcel->getActiveSheet()->getStyle("A1:A2")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("D1:D2")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("G1:G2")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("K7")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("K11")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("C12:K12")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A33")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A35")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A73")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A75")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A77")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A84")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A91")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A96")->getFont()->setBold(true);
-$objPHPExcel->getActiveSheet()->getStyle("A101")->getFont()->setBold(true);
+Workcell('Center','C12:K12','');
+Workcell('Center','K7','');
+Workcell('Center','K11','');
 
-$objPHPExcel->getActiveSheet()->SetCellValue('A1', 'SHOW NAME:');
-$objPHPExcel->getActiveSheet()->SetCellValue('B1', 'A Chorus Line');
-$objPHPExcel->getActiveSheet()->SetCellValue('D1', 'CITY:');
-$objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Newark');
-$objPHPExcel->getActiveSheet()->SetCellValue('G1', 'STATE:');
-$objPHPExcel->getActiveSheet()->SetCellValue('H1', 'Nottinghamshire');
-$objPHPExcel->getActiveSheet()->SetCellValue('A2', 'INIT DATE:');
-$objPHPExcel->getActiveSheet()->SetCellValue('B2', '04/26/2011');
-$objPHPExcel->getActiveSheet()->SetCellValue('D2', 'END DATE:');
-$objPHPExcel->getActiveSheet()->SetCellValue('E2', '05/01/2011');
-$objPHPExcel->getActiveSheet()->SetCellValue('G2', 'VENUE:');
-$objPHPExcel->getActiveSheet()->SetCellValue('H2', 'New Jersey PAC');
+Workcell('Format','B8','$ #,##0.00');
 
-$objPHPExcel->getActiveSheet()->SetCellValue('A4', 'No. of Shows Per Week');
-$objPHPExcel->getActiveSheet()->SetCellValue('B4', str_replace(",","",$_POST['NSPWII']));
-$objPHPExcel->getActiveSheet()->SetCellValue('A5', '# of Weeks');
-$objPHPExcel->getActiveSheet()->SetCellValue('B5', str_replace(",","",$_POST['NOW1II']));
-$objPHPExcel->getActiveSheet()->SetCellValue('A6', 'Seats Per Show');
-$objPHPExcel->getActiveSheet()->SetCellValue('B6', str_replace(",","",$_POST['SPSHII']));
-$objPHPExcel->getActiveSheet()->SetCellValue('A7', 'Weekly Gross Potential');
-$objPHPExcel->getActiveSheet()->SetCellValue('B7', str_replace(",","",$_POST['WGPOII']));
-$objPHPExcel->getActiveSheet()->SetCellValue('A8', 'Net Avg per Tix');
-$objPHPExcel->getActiveSheet()->setCellValue('B8', '=ROUND((+B7/(B6*B4)),2)');
-$objPHPExcel->getActiveSheet()->SetCellValue('A9', 'Exchange Rate');
-$objPHPExcel->getActiveSheet()->SetCellValue('B9', str_replace(",","",$_POST['EXRAII']));
+Workcell('Color','A1:I1','FFFFFF');
+Workcell('Color','A2:I2','FFFFFF');
+Workcell('Color','B4:B7','008000');
+Workcell('Color','B26:B32','008000');
+Workcell('Color','B36:B72','008000');
+Workcell('Color','B79','008000');
+Workcell('Color','B81','008000');
+Workcell('Color','B94','008000');
+Workcell('Color','B98','008000');
+Workcell('Color','B9','FFFFFF');
+Workcell('Color','B9','008000');
+Workcell('Color','K7:K9','FFFFFF');
+Workcell('Color','K11','FFFFFF');
+Workcell('Color','C12:K12','FFFFFF');
+Workcell('Color','C14:J14','00FFFF');
+Workcell('Color','B18:B19','00FFFF');
+Workcell('Color','B21:B23','00FFFF');
+Workcell('Color','B80','00FFFF');
+Workcell('Color','B82','00FFFF');
+Workcell('Color','B86:B87','00FFFF');
+Workcell('Color','B94:B95','00FFFF');
+Workcell('Color','B99:B100','00FFFF');
+Workcell('Color','K13:K101','7FFFD4');
+Workcell('Color','K14','FFFF00');
+Workcell('Color','K84','FFFF00');
+Workcell('Color','K101','FFFF00');
 
-$objPHPExcel->getActiveSheet()->SetCellValue('K7', 'Cumulative Engagement Break');
-$objPHPExcel->getActiveSheet()->SetCellValue('K9', '=ROUND(+K24*B5,0)');
-$objPHPExcel->getActiveSheet()->SetCellValue('K11', 'Weekly Engagement');
+Workcell('Border','A1:I1','');
+Workcell('Border','A2:I2','');
+Workcell('Border','B4:B7','');
+Workcell('Border','B9','');
+Workcell('Border','B9','');
+Workcell('Border','C14:K14','');
+Workcell('Border','K7:K9','');
+Workcell('Border','K11','');
+Workcell('Border','C12:K12','');
+Workcell('Border','B18:B19','');
+Workcell('Border','B21:B23','');
+Workcell('Border','B80','');
+Workcell('Border','B82','');
+Workcell('Border','B86:B87','');
+Workcell('Border','B94:B95','');
+Workcell('Border','B99:B100','');
+Workcell('Border','B26:B32','');
+Workcell('Border','B36:B72','');
+Workcell('Border','B79','');
+Workcell('Border','B81','');
+Workcell('Border','B94','');
+Workcell('Border','B98','');
 
-$objPHPExcel->getActiveSheet()->SetCellValue('A13', 'House Capacity');
-$objPHPExcel->getActiveSheet()->SetCellValue('A14', 'Performance Capacity'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A15', 'Tickets Sold'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A16', 'No. of Weeks'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A17', 'Box Office Gross'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A18', 'Sub Load - in');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A19', 'Estimated Groups'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A20', 'Estimated Singles'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A21', 'Less Subs Discounts'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A22', 'Less Group Discounts'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A23', 'Less Singles Discounts'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A24', 'Adjusted Gross'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A25', 'Adjusted Gross Potential %'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A26', 'Sales Tax 1'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A27', 'Sales Tax 2'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A28', 'Facility Fee 1'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A29', 'Facility Fee 2'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A30', 'Subscription Commission'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A31', 'Group Sales Commission'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A32', 'Credit Card & Other Commissions'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A33', 'Net Adjusted B. O. Recepts'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A35', 'WEEKLY EXPENSES'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A36', 'Guarantee'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A37', 'Variable Guarantee'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A38', 'ADVERTISING (at gross)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A39', 'STAGEHANDS (Load-in)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A40', 'STAGEHANDS (Load-out)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A41', 'STAGEHANDS (Running)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A42', 'WARDROBE and HAIR (Load-in)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A43', 'WARDROBE and HAIR (Load-out)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A44', 'WARDROBE and HAIR (Running)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A45', 'LABOR CATERING'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A46', 'MUSICIANS'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A47', 'INSURANCE (ON DROP COUNT)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A48', 'TICKET PRINTING'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A49', 'OTHER'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A50', 'ADA EXPENSE'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A51', 'BOX OFFICE'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A52', 'DRY ICE/CO2'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A53', 'FIRE MARSHALL/PYRO'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A54', 'HOSPITALITY/WATER'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A55', 'HOUSE STAFF'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A56', 'LICENSES/PERMITS'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A57', 'LIMOS/AUTO (STARS/PR)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A58', 'PIANO TUNINGS'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A59', 'POLICE/SECURITY'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A60', 'PRESENTER PROFIT'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A61', 'PRESS AGENT FEE'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A62', 'PROGRAMS'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A63', 'RENT'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A64', 'SOUND/LIGHTS'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A65', 'TELEPHONES/INTERNET'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A66', '3RD PARTY EQUIPMENT RENTAL'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A67', 'TRUCK PARKING/WRECKERS'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A68', 'OTHER'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A69', 'OTHER'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A70', 'OTHER'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A71', 'OTHER'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A72', 'LOCAL FIXED'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A73', 'TOTAL LOCAL EXPENSE'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A75', 'FORMULA CHECK');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A77', 'Money Remaining'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A79', 'Next Monies - To Producer (Base)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A80', 'Next Monies - To Producer');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A81', 'Next Monies - To Presenter (Base)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A82', 'Next Monies - To Presenter');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A84', 'Total Engagement Profit');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A86', 'Producer Share of Overages');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A87', 'Presenter Share of Overages');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A88', 'Next Monies');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A89', 'Variable Guarantee');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A90', 'Guarantee');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A91', 'TOTAL TO PRODUCER');  
-$objPHPExcel->getActiveSheet()->SetCellValue('A92', 'U. S. Rate'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A94', 'Less Income Taxes Witheld (1)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A95', 'Less Income Taxes Witheld (2)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A96', 'Net Income to Producer'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A98', 'Weekly Operating Expenses (include Amort)'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A99', 'Royalty Minimum $'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A100', 'Variable Royalty %'); 
-$objPHPExcel->getActiveSheet()->SetCellValue('A101', 'Total Show Profit');
+Workcell('Width','A',30);
+Workcell('Width','B',9);
+Workcell('Width','C',9);
+Workcell('Width','D',9);
+Workcell('Width','E',9);
+Workcell('Width','F',9);
+Workcell('Width','G',9);
+Workcell('Width','H',9);
+Workcell('Width','I',9);
+Workcell('Width','J',9);
+Workcell('Width','K',15);
 
-$objPHPExcel->getActiveSheet()->SetCellValue('C12', 'Weekly');
-$objPHPExcel->getActiveSheet()->SetCellValue('D12', 'Weekly');
-$objPHPExcel->getActiveSheet()->SetCellValue('E12', 'Weekly');
-$objPHPExcel->getActiveSheet()->SetCellValue('F12', 'Weekly');
-$objPHPExcel->getActiveSheet()->SetCellValue('G12', 'RUN');
-$objPHPExcel->getActiveSheet()->SetCellValue('H12', 'RUN');
-$objPHPExcel->getActiveSheet()->SetCellValue('I12', 'RUN');
-$objPHPExcel->getActiveSheet()->SetCellValue('J12', 'RUN');
-$objPHPExcel->getActiveSheet()->SetCellValue('K12', 'BREAKEVEN');
+Workcell('Merge','B1:C1','');
+Workcell('Merge','E1:F1','');
+Workcell('Merge','H1:I1','');
+Workcell('Merge','B2:C2','');
+Workcell('Merge','E2:F2','');
+Workcell('Merge','H2:I2','');
+Workcell('Merge','K7:K8','');
 
+Workcell('Bold','A1:A2','');
+Workcell('Bold','D1:D2','');
+Workcell('Bold','G1:G2','');
+Workcell('Bold','K7','');
+Workcell('Bold','K11','');
+Workcell('Bold','C12:K12','');
+Workcell('Bold','A33','');
+Workcell('Bold','A35','');
+Workcell('Bold','A73','');
+Workcell('Bold','A75','');
+Workcell('Bold','A77','');
+Workcell('Bold','A84','');
+Workcell('Bold','A91','');
+Workcell('Bold','A96','');
+Workcell('Bold','A101','');
 
+Workcell('Value','A1', 'SHOW NAME:');
+Workcell('Value','B1', 'A Chorus Line');
+Workcell('Value','D1', 'CITY:');
+Workcell('Value','E1', 'Newark');
+Workcell('Value','G1', 'STATE:');
+Workcell('Value','H1', 'Nottinghamshire');
+Workcell('Value','A2', 'INIT DATE:');
+Workcell('Value','B2', '04/26/2011');
+Workcell('Value','D2', 'END DATE:');
+Workcell('Value','E2', '05/01/2011');
+Workcell('Value','G2', 'VENUE:');
+Workcell('Value','H2', 'New Jersey PAC');
 
+Workcell('Value','A4', 'No. of Shows Per Week');
+Workcell('Value','B4', str_replace(',','',$_POST['NSPWII']));
+Workcell('Value','A5', '# of Weeks');
+Workcell('Value','B5', str_replace(',','',$_POST['NOW1II']));
+Workcell('Value','A6', 'Seats Per Show');
+Workcell('Value','B6', str_replace(',','',$_POST['SPSHII']));
+Workcell('Value','A7', 'Weekly Gross Potential');
+Workcell('Value','B7', str_replace(',','',$_POST['WGPOII']));
+Workcell('Value','A8', 'Net Avg per Tix');
+Workcell('Value','B8', '=ROUND((+B7/(B6*B4)),2)');
+Workcell('Value','A9', 'Exchange Rate');
+Workcell('Value','B9', str_replace(',','',$_POST['EXRAII']));
+
+Workcell('Value','K7', 'Cumulative Engagement Break');
+Workcell('Value','K9', '=ROUND(+K24*B5,0)');
+Workcell('Value','K11', 'Weekly Engagement');
+
+Workcell('Value','A13', 'House Capacity');
+Workcell('Value','A14', 'Performance Capacity'); 
+Workcell('Value','A15', 'Tickets Sold'); 
+Workcell('Value','A16', 'No. of Weeks'); 
+Workcell('Value','A17', 'Box Office Gross'); 
+Workcell('Value','A18', 'Sub Load - in');  
+Workcell('Value','A19', 'Estimated Groups'); 
+Workcell('Value','A20', 'Estimated Singles'); 
+Workcell('Value','A21', 'Less Subs Discounts'); 
+Workcell('Value','A22', 'Less Group Discounts'); 
+Workcell('Value','A23', 'Less Singles Discounts'); 
+Workcell('Value','A24', 'Adjusted Gross'); 
+Workcell('Value','A25', 'Adjusted Gross Potential %'); 
+Workcell('Value','A26', 'Sales Tax 1'); 
+Workcell('Value','A27', 'Sales Tax 2'); 
+Workcell('Value','A28', 'Facility Fee 1'); 
+Workcell('Value','A29', 'Facility Fee 2'); 
+Workcell('Value','A30', 'Subscription Commission'); 
+Workcell('Value','A31', 'Group Sales Commission'); 
+Workcell('Value','A32', 'Credit Card & Other Commissions'); 
+Workcell('Value','A33', 'Net Adjusted B. O. Recepts'); 
+Workcell('Value','A35', 'WEEKLY EXPENSES'); 
+Workcell('Value','A36', 'Guarantee'); 
+Workcell('Value','A37', 'Variable Guarantee'); 
+Workcell('Value','A38', 'ADVERTISING (at gross)'); 
+Workcell('Value','A39', 'STAGEHANDS (Load-in)'); 
+Workcell('Value','A40', 'STAGEHANDS (Load-out)'); 
+Workcell('Value','A41', 'STAGEHANDS (Running)'); 
+Workcell('Value','A42', 'WARDROBE and HAIR (Load-in)'); 
+Workcell('Value','A43', 'WARDROBE and HAIR (Load-out)'); 
+Workcell('Value','A44', 'WARDROBE and HAIR (Running)'); 
+Workcell('Value','A45', 'LABOR CATERING'); 
+Workcell('Value','A46', 'MUSICIANS'); 
+Workcell('Value','A47', 'INSURANCE (ON DROP COUNT)'); 
+Workcell('Value','A48', 'TICKET PRINTING'); 
+Workcell('Value','A49', 'OTHER'); 
+Workcell('Value','A50', 'ADA EXPENSE'); 
+Workcell('Value','A51', 'BOX OFFICE'); 
+Workcell('Value','A52', 'DRY ICE/CO2'); 
+Workcell('Value','A53', 'FIRE MARSHALL/PYRO'); 
+Workcell('Value','A54', 'HOSPITALITY/WATER'); 
+Workcell('Value','A55', 'HOUSE STAFF'); 
+Workcell('Value','A56', 'LICENSES/PERMITS'); 
+Workcell('Value','A57', 'LIMOS/AUTO (STARS/PR)'); 
+Workcell('Value','A58', 'PIANO TUNINGS'); 
+Workcell('Value','A59', 'POLICE/SECURITY'); 
+Workcell('Value','A60', 'PRESENTER PROFIT'); 
+Workcell('Value','A61', 'PRESS AGENT FEE'); 
+Workcell('Value','A62', 'PROGRAMS'); 
+Workcell('Value','A63', 'RENT'); 
+Workcell('Value','A64', 'SOUND/LIGHTS'); 
+Workcell('Value','A65', 'TELEPHONES/INTERNET'); 
+Workcell('Value','A66', '3RD PARTY EQUIPMENT RENTAL'); 
+Workcell('Value','A67', 'TRUCK PARKING/WRECKERS'); 
+Workcell('Value','A68', 'OTHER'); 
+Workcell('Value','A69', 'OTHER'); 
+Workcell('Value','A70', 'OTHER'); 
+Workcell('Value','A71', 'OTHER'); 
+Workcell('Value','A72', 'LOCAL FIXED'); 
+Workcell('Value','A73', 'TOTAL LOCAL EXPENSE'); 
+Workcell('Value','A75', 'FORMULA CHECK');  
+Workcell('Value','A77', 'Money Remaining'); 
+Workcell('Value','A79', 'Next Monies - To Producer (Base)'); 
+Workcell('Value','A80', 'Next Monies - To Producer');  
+Workcell('Value','A81', 'Next Monies - To Presenter (Base)'); 
+Workcell('Value','A82', 'Next Monies - To Presenter');  
+Workcell('Value','A84', 'Total Engagement Profit');  
+Workcell('Value','A86', 'Producer Share of Overages');  
+Workcell('Value','A87', 'Presenter Share of Overages');  
+Workcell('Value','A88', 'Next Monies');  
+Workcell('Value','A89', 'Variable Guarantee');  
+Workcell('Value','A90', 'Guarantee');  
+Workcell('Value','A91', 'TOTAL TO PRODUCER');  
+Workcell('Value','A92', 'U. S. Rate'); 
+Workcell('Value','A94', 'Less Income Taxes Witheld (1)'); 
+Workcell('Value','A95', 'Less Income Taxes Witheld (2)'); 
+Workcell('Value','A96', 'Net Income to Producer'); 
+Workcell('Value','A98', 'Weekly Operating Expenses (include Amort)'); 
+Workcell('Value','A99', 'Royalty Minimum $'); 
+Workcell('Value','A100', 'Variable Royalty %'); 
+Workcell('Value','A101', 'Total Show Profit');
+
+Workcell('Value','C12', 'Weekly');
+Workcell('Value','D12', 'Weekly');
+Workcell('Value','E12', 'Weekly');
+Workcell('Value','F12', 'Weekly');
+Workcell('Value','G12', 'RUN');
+Workcell('Value','H12', 'RUN');
+Workcell('Value','I12', 'RUN');
+Workcell('Value','J12', 'RUN');
+Workcell('Value','K12', 'BREAKEVEN');
+
+Workcell('Value','C14', str_replace('%','',str_replace(',','',$_POST['PECAW1']))/100);
+Workcell('Value','D14', str_replace('%','',str_replace(',','',$_POST['PECAW2']))/100);
+Workcell('Value','E14', str_replace('%','',str_replace(',','',$_POST['PECAW3']))/100);
+Workcell('Value','F14', str_replace('%','',str_replace(',','',$_POST['PECAW4']))/100);
+Workcell('Value','G14', '=+C14');
+Workcell('Value','H14', '=+D14');
+Workcell('Value','I14', '=+E14');
+Workcell('Value','J14', '=+F14');
+Workcell('Value','K14', str_replace('%','',str_replace(',','',$_POST['PECATT']))/100);
+
+Workcell('Value','C13', '=$B$6*$B$4');
+Workcell('Value','D13', '=$B$6*$B$4');
+Workcell('Value','E13', '=$B$6*$B$4');
+Workcell('Value','F13', '=$B$6*$B$4');
+Workcell('Value','G13', '=$B$6*$B$4*$B$5');
+Workcell('Value','H13', '=$B$6*$B$4*$B$5');
+Workcell('Value','I13', '=$B$6*$B$4*$B$5');
+Workcell('Value','J13', '=$B$6*$B$4*$B$5');
+Workcell('Value','K13', '=$B$6*$B$4');
+
+Workcell('Value','C15', '=+C14*C13');
+Workcell('Value','D15', '=+D14*D13');
+Workcell('Value','E15', '=+E14*E13');
+Workcell('Value','F15', '=+F14*F13');
+Workcell('Value','G15', '=+G14*G13*$B$5');
+Workcell('Value','H15', '=+H14*H13*$B$5');
+Workcell('Value','I15', '=+I14*I13*$B$5');
+Workcell('Value','J15', '=+J14*J13*$B$5');
+Workcell('Value','K15', '=+K14*K13');
+
+Workcell('Value','C16', '1');
+Workcell('Value','D16', '1');
+Workcell('Value','E16', '1');
+Workcell('Value','F16', '1');
+Workcell('Value','G16', '=$B$5');
+Workcell('Value','H16', '=$B$5');
+Workcell('Value','I16', '=$B$5');
+Workcell('Value','J16', '=$B$5');
+Workcell('Value','K16', '1');
 
 $objPHPExcel->getActiveSheet()->setTitle('BOOKING ANALYSIS');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
@@ -205,6 +315,3 @@ header('Content-Disposition: attachment; filename="Breakeven.xlsx"');
 $objWriter->save('php://output');
 
 ?>
-
-
-
