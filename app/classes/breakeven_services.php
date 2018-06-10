@@ -14,7 +14,7 @@ class breakevenServices extends dbconfig {
 
 		$data = array();
 
-		$data["settlements"] = self::getAnalysisBySettlements($country,$state,$city,$show);
+		$data["settlements"] = self::getAnalysisBySettlements($country,$state,$city,$show,$venues);
 		$data["contracts"] = self::getAnalysisByContracts($inid,$endd,$country,$state,$city,$show,$venues);
 		$data["routes"] = self::getAnalysisByRoutes($inid,$endd,$country,$state,$city,$show,$venues);
 
@@ -25,13 +25,15 @@ class breakevenServices extends dbconfig {
 		return $data;
 	}
 
-	public static function getAnalysisBySettlements($country,$state,$city,$show){
+	public static function getAnalysisBySettlements($country,$state,$city,$show,$venues){
 
 		try{
 
-			$query = "SELECT se.ID, se.SHOWID, sw.ShowNAME, se.CITYID, ve.VenueNAME, 
+			$query = "SELECT se.ID, se.SHOWID, sw.ShowNAME, ve.VenueNAME, 
 					DATE_FORMAT(OPENINGDATE, '%m/%d/%Y') as OPENINGDATE, 
 					DATE_FORMAT(CLOSINGDATE, '%m/%d/%Y') as CLOSINGDATE, 
+					OPENINGDATE as OPENINGDATE2, 
+					CLOSINGDATE as CLOSINGDATE2, 
 					ROUND((CLOSINGDATE-OPENINGDATE)/7,2) AS NUMBEROFWEEKS,
 					NUMBEROFPERFORMANCES,CAPACITY,GROSSBOXOFFICEPOTENTIAL,
 					1 AS EXCHANGERATE,GROSSSUBSCRIPTIONSALES AS SUBLOADIN,
@@ -57,7 +59,8 @@ class breakevenServices extends dbconfig {
 					OTHERDACTUAL,OTHEREACTUAL,OTHERFACTUAL,OTHERGACTUAL,
 					LOCALFIXEDACTUAL AS LOCALFIX,
 					TAXWITHHELDATSOURCE AS LESSINCOMETAXES1,
-					ci.`name` as city, st.`name` as state, co.sortname as country
+					ci.`name` as city, st.`name` as state, co.sortname as country, 
+					ci.id as CITYID, st.id as STATEID, co.id as COUNTRYID 
 					FROM settlements se, shows sw, cities ci, states st, countries co, venues ve  
 					WHERE se.SHOWID = sw.ShowID 
 					AND se.VENUEID = ve.VenueID 
@@ -68,12 +71,14 @@ class breakevenServices extends dbconfig {
 			$filter1 = "
 					AND ve.VenueCITYID like ('$city')
 					AND se.SHOWID = $show 
+					AND ve.VENUEID IN ('$venues') 
 					ORDER BY se.OPENINGDATE DESC 
 					LIMIT 4";			
 
 			$filter2 = "
 					AND st.id like ('$state') 
 					AND se.SHOWID = $show 
+					AND ve.VENUEID IN ('$venues') 
 					ORDER BY se.OPENINGDATE DESC 
 					LIMIT 4";
 			$filter3 = "
@@ -126,10 +131,11 @@ class breakevenServices extends dbconfig {
 				$data[$x]["SHOWID"] = $resultSet['SHOWID'];
 				$data[$x]["SHOWNAME"] = $resultSet['ShowNAME'];
 				$data[$x]["VENUENAME"] = $resultSet['VenueNAME'];
-				$data[$x]["CITYID"] = $resultSet['CITYID'];
 				$data[$x]["NUMBEROFWEEKS"] = $resultSet['NUMBEROFWEEKS'];
 				$data[$x]["OPENINGDATE"] = $resultSet['OPENINGDATE'];
 				$data[$x]["CLOSINGDATE"] = $resultSet['CLOSINGDATE'];
+				$data[$x]["OPENINGDATE_SF"] = $resultSet['OPENINGDATE1'];
+				$data[$x]["CLOSINGDATE_SF"] = $resultSet['CLOSINGDATE2'];				
 				$data[$x]["NUMBEROFSHOWSPERWEEKS"] = round($numberofshowsperweek);
 				$data[$x]["CAPACITY"] = $resultSet['CAPACITY'];
 				$data[$x]["WEEKLYGROSSPOTENTIAL"] = round($weeklygross,2);
@@ -182,6 +188,9 @@ class breakevenServices extends dbconfig {
 				$data[$x]["CITYNAME"] = $resultSet['city'];
 				$data[$x]["STATENAME"] = $resultSet['state'];
 				$data[$x]["COUNTRYNAME"] = $resultSet['country'];
+				$data[$x]["CITYID"] = $resultSet['CITYID'];
+				$data[$x]["STATEID"] = $resultSet['STATEID'];
+				$data[$x]["COUNTRYID"] = $resultSet['COUNTRYID'];				
 
 				$x++;			
 			}
@@ -197,10 +206,11 @@ class breakevenServices extends dbconfig {
 
 		try{
 
-			$query = "SELECT co.ContractID AS ID, co.ShowID AS SHOWID, sw.ShowNAME, 
-						co.ContractCITYID AS CITYID, ve.VenueName, 
+			$query = "SELECT co.ContractID AS ID, co.ShowID AS SHOWID, sw.ShowNAME, ve.VenueName, 
 						DATE_FORMAT(co.ContractOPENING_DATE, '%m/%d/%Y') as OPENINGDATE, 
 						DATE_FORMAT(co.ContractCLOSING_DATE, '%m/%d/%Y') as CLOSINGDATE, 
+						co.ContractOPENING_DATE as OPENINGDATE2, 
+						co.ContractCLOSING_DATE as CLOSINGDATE2, 	
 						ROUND((co.ContractCLOSING_DATE-co.ContractOPENING_DATE)/7,2) AS NUMBEROFWEEKS, 
 						co.ContractNUMBER_OF_PERFORMANCES AS NUMBEROFPERFORMANCES, 
 						co.ContractGROSS_POTENTIAL AS GROSSBOXOFFICEPOTENTIAL, 
@@ -215,7 +225,8 @@ class breakevenServices extends dbconfig {
 						co.ContractGUARANTEE AS GUARANTEE, 
 						co.ContractVARIABLE_GUARANTEE AS VARIABLEGUARANTEE, 
 						co.ContractTAX AS LESSINCOMETAXES1, 
-						ci.`name` as city, st.`name` as state, cou.sortname as country
+						ci.`name` as city, st.`name` as state, cou.sortname as country, 
+						ci.id as CITYID, st.id as STATEID, co.id as COUNTRYID 
 						FROM contracts co, shows sw, cities ci, states st, countries cou, venues ve  
 						WHERE co.ShowID = sw.ShowID 
 						AND co.ContractVENUEID = ve.VenueID 
@@ -287,10 +298,11 @@ class breakevenServices extends dbconfig {
 				$data[$x]["SHOWID"] = $resultSet['SHOWID'];
 				$data[$x]["SHOWNAME"] = $resultSet['ShowNAME'];
 				$data[$x]["VENUENAME"] = $resultSet['VenueName'];
-				$data[$x]["CITYID"] = $resultSet['CITYID'];
 				$data[$x]["NUMBEROFWEEKS"] = $resultSet['NUMBEROFWEEKS'];
 				$data[$x]["OPENINGDATE"] = $resultSet['OPENINGDATE'];
-				$data[$x]["CLOSINGDATE"] = $resultSet['CLOSINGDATE'];				
+				$data[$x]["CLOSINGDATE"] = $resultSet['CLOSINGDATE'];		
+				$data[$x]["OPENINGDATE_SF"] = $resultSet['OPENINGDATE1'];
+				$data[$x]["CLOSINGDATE_SF"] = $resultSet['CLOSINGDATE2'];	
 				$data[$x]["NUMBEROFSHOWSPERWEEKS"] = round($numberofshowsperweek);
 				$data[$x]["WEEKLYGROSSPOTENTIAL"] = round($weeklygross,2);
 				$data[$x]["EXCHANGERATE"] = $resultSet['EXCHANGERATE'];
@@ -307,6 +319,9 @@ class breakevenServices extends dbconfig {
 				$data[$x]["CITYNAME"] = $resultSet['city'];
 				$data[$x]["STATENAME"] = $resultSet['state'];
 				$data[$x]["COUNTRYNAME"] = $resultSet['country'];
+				$data[$x]["CITYID"] = $resultSet['CITYID'];
+				$data[$x]["STATEID"] = $resultSet['STATEID'];
+				$data[$x]["COUNTRYID"] = $resultSet['COUNTRYID'];					
 
 				$x++;			
 			}
@@ -323,12 +338,15 @@ class breakevenServices extends dbconfig {
 		try{
 
 			$query = "SELECT ro.ROUTESID AS ID, rd.ROUTES_DETID AS DET_ID, ro.SHOWID AS SHOWID, 
-							sw.ShowNAME, rd.CITYID AS CITYID, ve.VenueNAME, rd.CAPACITY, rd.PERF, 
+							sw.ShowNAME, ve.VenueNAME, rd.CAPACITY, rd.PERF, 
 							DATE_FORMAT(MIN(rd.PRESENTATION_DATE), '%m/%d/%Y') as OPENINGDATE, 
 							DATE_FORMAT(MAX(rd.PRESENTATION_DATE), '%m/%d/%Y') as CLOSINGDATE, 
+							MIN(rd.PRESENTATION_DATE) as OPENINGDATE2, 
+							MAX(rd.PRESENTATION_DATE) as CLOSINGDATE2, 
 							ROUND((MAX(rd.PRESENTATION_DATE) - MIN(rd.PRESENTATION_DATE)) / 7, 2) AS NUMBEROFWEEKS, 
 							rd.FIXED_GNTEE, rd.ROYALTY, 
-							ci.`name` as city, st.`name` as state, cou.sortname as country 
+							ci.`name` as city, st.`name` as state, cou.sortname as country, 
+							ci.id as CITYID, st.id as STATEID, co.id as COUNTRYID 
 						FROM routes ro, routes_det rd, shows sw, cities ci, states st, countries cou, venues ve  
 						WHERE ro.ROUTESID = rd.ROUTESID 
 						AND ro.ShowID = sw.ShowID 
@@ -368,9 +386,10 @@ class breakevenServices extends dbconfig {
 					$data[$x]["NUMBEROFWEEKS"] = $resultSet['NUMBEROFWEEKS'];
 					$data[$x]["OPENINGDATE"] = $resultSet['OPENINGDATE'];
 					$data[$x]["CLOSINGDATE"] = $resultSet['CLOSINGDATE'];
+					$data[$x]["OPENINGDATE_SF"] = $resultSet['OPENINGDATE1'];
+					$data[$x]["CLOSINGDATE_SF"] = $resultSet['CLOSINGDATE2'];
 					$data[$x]["NUMBEROFSHOWSPERWEEKS"] = round($numberofshowsperweek);
 					$data[$x]["EXCHANGERATE"] = 1;
-					$data[$x]["CITYID"] = $resultSet['CITYID'];
 					$data[$x]["CAPACITY"] = $resultSet['CAPACITY'];
 					$data[$x]["PERF"] = $resultSet['PERF'];
 					$data[$x]["FIXED_GNTEE"] = $resultSet['FIXED_GNTEE'];
@@ -378,6 +397,9 @@ class breakevenServices extends dbconfig {
 					$data[$x]["CITYNAME"] = $resultSet['city'];
 					$data[$x]["STATENAME"] = $resultSet['state'];
 					$data[$x]["COUNTRYNAME"] = $resultSet['country'];
+					$data[$x]["CITYID"] = $resultSet['CITYID'];
+					$data[$x]["STATEID"] = $resultSet['STATEID'];
+					$data[$x]["COUNTRYID"] = $resultSet['COUNTRYID'];						
 
 					$x++;			
 				}
