@@ -1813,6 +1813,13 @@ function setDataSettlementsToBreakeven(value){
     $("#LOFIII").val(number_format(data.LOCALFIX,2));
     $("#LIT1II").val(number_format(data.LESSINCOMETAXES1,2)+'%');
 
+    $("#SHNAMEID").val(data.SHOWID);
+    $("#CINAMEID").val(data.CITYID);
+    $("#STNAMEID").val(data.STATEID);
+    $("#IDATEID").val(data.OPENINGDATE2);
+    $("#EDATEID").val(data.CLOSINGDATE2);
+    $("#VENUEID").val(venuesId[0]);       
+
     $("#results").hide(); 
     $("#loader").hide(); 
     $("#selection_data").hide();
@@ -1852,6 +1859,13 @@ function setDataContractsToBreakeven(value){
     $("#VGUAII").val(number_format(data.VARIABLEGUARANTEE,2)+'%');
     $("#LIT1II").val(number_format(data.LESSINCOMETAXES1,2)+'%'); 
 
+    $("#SHNAMEID").val(data.SHOWID);
+    $("#CINAMEID").val(data.CITYID);
+    $("#STNAMEID").val(data.STATEID);
+    $("#IDATEID").val(data.OPENINGDATE2);
+    $("#EDATEID").val(data.CLOSINGDATE2);
+    $("#VENUEID").val(venuesId[0]);       
+
     $("#results").hide(); 
     $("#loader").hide(); 
     $("#selection_data").hide();
@@ -1881,7 +1895,14 @@ function setDataRoutesToBreakeven(value){
     $("#EXRAII").val(number_format(data.EXCHANGERATE));
     $("#SPSHII").val(number_format(data.CAPACITY));
     $("#GUA1II").val(number_format(data.FIXED_GNTEE,2));
-    $("#VGUAII").val(number_format(data.ROYALTY,2)+'%');
+    $("#VGUAII").val(number_format(data.ROYALTY,2)+'%');      
+
+    $("#SHNAMEID").val(data.SHOWID);
+    $("#CINAMEID").val(data.CITYID);
+    $("#STNAMEID").val(data.STATEID);
+    $("#IDATEID").val(data.OPENINGDATE2);
+    $("#EDATEID").val(data.CLOSINGDATE2);
+    $("#VENUEID").val(venuesId[0]);    
 
     $("#results").hide(); 
     $("#loader").hide(); 
@@ -1933,24 +1954,20 @@ $(function() {
 		    }
 		}
 
-        if((countryId == 0)||(countryId == "")||(countryId == null)){
-            alert("COUNTRY is not selected, Please verify these values.");
-            $("#loader").hide();
-            return;
-        }
-        if((stateId == 0)||(stateId == "")||(stateId == null)){
-            alert("STATE is not selected, Please verify these values.");
-            $("#loader").hide();
-            return;
-        }
         if((cityId == 0)||(cityId == "")||(cityId == null)){
             cityId = "%"
         }
+
+        if((stateId == 0)||(stateId == "")||(stateId == null)){
+            stateId = "%"
+        }
+
         if((showId == 0)||(showId == "")||(showId == null)){
             alert("SHOW is not selected, Please verify these values.");
             $("#loader").hide();
             return;
         }
+
         if((venues == 0)||(venues == "")||(venues == null)){
             alert("VENUES is not selected, Please verify these values.");
             $("#loader").hide();
@@ -1961,6 +1978,7 @@ $(function() {
         ffin = $(".dateend").val();
 
         getBreakevenSelection(finicio,ffin,countryId,stateId,cityId,showId,venues);
+
     });
 
     $("#btnCleanBreakevenSelection").click(function (ev) {
@@ -2000,6 +2018,96 @@ $(function() {
 
     });    
 
+    $("#btnBreakevenManual").click(function (ev) {
+
+        var countryText = $("#countryId option:selected").text();
+        var countryId = $("#countryId").val();
+        var stateText = $("#stateId option:selected").text();
+        var stateId = $("#stateId").val();
+        var cityText = $("#cityId option:selected").text();
+        var cityId = $("#cityId").val();
+        var showText = $("#showId option:selected").text();
+        var showId = $("#showId").val();
+
+        var venues = $("#venues").multipleSelect("getSelects");
+        var venuesId = $("#venues").val();
+        var venuesText = $("#venues").multipleSelect("getSelects", "text");
+
+        var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+        var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
+
+        if((countryId == 0)||(countryId == "")||(countryId == null)){
+            alert("COUNTRY is not selected, Please verify these values.");
+            return;
+        }        
+
+        if((cityId == 0)||(cityId == "")||(cityId == null)){
+            alert("CITY is not selected, Please verify these values.");
+            return;
+        }
+
+        if((stateId == 0)||(stateId == "")||(stateId == null)){
+            alert("STATE is not selected, Please verify these values.");
+            return;
+        }
+
+        if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
+            alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
+            $("#loader").hide();
+            return;
+        }else{
+            
+            if(ffin.getTime() < finicio.getTime()){
+                alert("INIT DATE cannot be greater than END DATE, Please verify these values.");
+                $("#loader").hide();
+                return;
+            }
+        }        
+
+        if((showId == 0)||(showId == "")||(showId == null)){
+            alert("SHOW is not selected, Please verify these values.");
+            return;
+        }
+
+        if((venues == 0)||(venues == "")||(venues == null)){
+            alert("VENUES is not selected, Please verify these values.");
+            return;
+        }else{
+            if(venuesId.length > 1){
+                alert("In manual mode only one VENUE is allowed to be selected, Please Verify.");
+                return;
+            }
+        }     
+
+        $("#SHNAME").html("<b>SHOW NAME: </b>"+showText);
+        $("#CINAME").html("<b>CITY: </b>"+cityText);
+        $("#STNAME").html("<b>STATE: </b>"+stateText);
+        $("#IDATE").html("<b>INIT DATE: </b>"+$.dateformat(finicio));
+        $("#EDATE").html("<b>END DATE: </b>"+$.dateformat(ffin));
+        $("#VENUE").html("<b>VENUE: </b>"+venuesText);
+
+        finicio = $(".dateini").val();
+        ffin = $(".dateend").val();           
+
+        $("#SHNAMEID").val(showId);
+        $("#CINAMEID").val(cityId);
+        $("#STNAMEID").val(stateId);
+        $("#IDATEID").val(finicio);
+        $("#EDATEID").val(ffin);
+        $("#VENUEID").val(venuesId[0]);
+
+        $("#results").hide(); 
+        $("#selection_data").hide();
+        $("#loader").hide(); 
+
+        $('#frmbreakeven')[0].reset();
+
+        $("#export").show(); 
+        $("#breakeven_data").show(); 
+        $("#back_to_selection").show();        
+
+    });
+
 });
 
 $(document).ready(function(){  
@@ -2018,3 +2126,21 @@ $(document).ready(function(){
     });
 });
 
+$.dateformat = function(dateObject) {
+
+    var day = dateObject.getDate();
+    var month = dateObject.getMonth() + 1;
+    var year = dateObject.getFullYear();
+
+    if (day < 10) {
+        day = "0" + day;
+    }
+
+    if (month < 10) {
+        month = "0" + month;
+    }
+
+    var date = month + "/" + day + "/" + year;
+
+    return date;
+};

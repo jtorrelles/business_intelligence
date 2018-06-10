@@ -63,7 +63,8 @@ if ($result->num_rows > 0) {
 		<td>". $row["name"]. "</td>
 		<td align=center>". $row["user"]. "</td>
 		<td align=center>
-		<a href=\"javascript:window.open('templates_modify_selected.php?selectedid=".$row['id']."','Modify Selected','width=480,height=650')\"><img src='../images/modify.png' width=20></a>   
+		<a href=\"javascript:window.open('templates_modify_selected.php?selectedid=".$row['id']."','Modify Selected','width=480,height=650')\"><img src='../images/modify.png' width=20></a> 
+		<a href=\"javascript:window.open('templates_share_selected.php?selectedid=".$row['id']."','Share Selected','width=480,height=650')\"><img src='../images/share.png' width=20></a> 
 		<a href=\"javascript:window.open('templates_delete_selected.php?selectedid=".$row['id']."','Delete Selected','width=480,height=650')\"><img src='../images/delete.png' width=20></a></td>
 		</tr>";
     }
