@@ -61,6 +61,14 @@ Workcell('Format','B28:B29','$ #,##0.00');
 Workcell('Format','B30:B32','#,##0%');
 Workcell('Format','B36:B72','#,##0.00');
 Workcell('Format','B37','#,##0.00%');
+Workcell('Format','B79','$ #,##0.00');
+Workcell('Format','B81','$ #,##0.00');
+Workcell('Format','B80','#,##0%');
+Workcell('Format','B82','#,##0%');
+Workcell('Format','B86:B87','#,##0%');
+Workcell('Format','C92:K92','$ #,##0');
+Workcell('Format','B94','#,##0.00%');
+Workcell('Format','B100','#,##0%');
 
 Workcell('Color','A1:I1','FFFFFF');
 Workcell('Color','A2:I2','FFFFFF');
@@ -150,17 +158,17 @@ Workcell('Bold','A96','');
 Workcell('Bold','A101','');
 
 Workcell('Value','A1', 'SHOW NAME:');
-Workcell('Value','B1', 'A Chorus Line');
+Workcell('Value','B1', $_POST['SHNAMEID']);
 Workcell('Value','D1', 'CITY:');
-Workcell('Value','E1', 'Newark');
+Workcell('Value','E1', $_POST['CINAMEID']);
 Workcell('Value','G1', 'STATE:');
-Workcell('Value','H1', 'Nottinghamshire');
+Workcell('Value','H1', $_POST['STNAMEID']);
 Workcell('Value','A2', 'INIT DATE:');
-Workcell('Value','B2', '04/26/2011');
+Workcell('Value','B2', $_POST['IDATE']);
 Workcell('Value','D2', 'END DATE:');
-Workcell('Value','E2', '05/01/2011');
+Workcell('Value','E2', $_POST['EDATE']);
 Workcell('Value','G2', 'VENUE:');
-Workcell('Value','H2', 'New Jersey PAC');
+Workcell('Value','H2', $_POST['VENUEID']);
 
 Workcell('Value','A4', 'No. of Shows Per Week');
 Workcell('Value','B4', str_replace(',','',$_POST['NSPWII']));
@@ -916,6 +924,209 @@ Workcell('Value','H73', '=SUM(H36:H72)');
 Workcell('Value','I73', '=SUM(I36:I72)');
 Workcell('Value','J73', '=SUM(J36:J72)');
 Workcell('Value','K73', '=SUM(K36:K72)');
+
+Workcell('Value','C75', '=C73-(IF(X36=1,C36,0)+(IF(X37=1,C37,0)))');
+Workcell('Value','D75', '=D73-(IF(Y36=1,D36,0)+(IF(Y37=1,D37,0)))');
+Workcell('Value','E75', '=E73-(IF(Z36=1,E36,0)+(IF(Z37=1,E37,0)))');
+Workcell('Value','F75', '=F73-(IF(AA36=1,F36,0)+(IF(AA37=1,F37,0)))');
+Workcell('Value','G75', '=G73-(IF(AB36=1,G36,0)+(IF(AB37=1,G37,0)))');
+Workcell('Value','H75', '=H73-(IF(AC36=1,H36,0)+(IF(AC37=1,H37,0)))');
+Workcell('Value','I75', '=I73-(IF(AD36=1,I36,0)+(IF(AD37=1,I37,0)))');
+Workcell('Value','J75', '=J73-(IF(AE36=1,J36,0)+(IF(AE37=1,J37,0)))');
+Workcell('Value','K75', '=K73-(IF(AF36=1,K36,0)+(IF(AF37=1,K37,0)))');
+
+Workcell('Value','C77', '=+C33-C73');
+Workcell('Value','D77', '=+D33-D73');
+Workcell('Value','E77', '=+E33-E73');
+Workcell('Value','F77', '=+F33-F73');
+Workcell('Value','G77', '=+G33-G73');
+Workcell('Value','H77', '=+H33-H73');
+Workcell('Value','I77', '=+I33-I73');
+Workcell('Value','J77', '=+J33-J73');
+Workcell('Value','K77', '=+K33-K73');
+
+Workcell('Value','B79', str_replace('$ ','',str_replace(',','',$_POST['NPROBB'])));
+
+Workcell('Value','B80', str_replace('%','',str_replace(',','',$_POST['NPROII']))/100);
+Workcell('Value','C80', '=IF(C77>0,IF(C77>$B$79,$B$79*$B$80,C77*$B$80),0)');
+Workcell('Value','D80', '=IF(D77>0,IF(D77>$B$79,$B$79*$B$80,D77*$B$80),0)');
+Workcell('Value','E80', '=IF(E77>0,IF(E77>$B$79,$B$79*$B$80,E77*$B$80),0)');
+Workcell('Value','F80', '=IF(F77>0,IF(F77>$B$79,$B$79*$B$80,F77*$B$80),0)');
+Workcell('Value','G80', '=IF(G77>0,IF(G77>$B$79*$B$5,$B$79*$B$5*$B$80,G77*$B$80),0)');
+Workcell('Value','H80', '=IF(H77>0,IF(H77>$B$79*$B$5,$B$79*$B$5*$B$80,H77*$B$80),0)');
+Workcell('Value','I80', '=IF(I77>0,IF(I77>$B$79*$B$5,$B$79*$B$5*$B$80,I77*$B$80),0)');
+Workcell('Value','J80', '=IF(J77>0,IF(J77>$B$79*$B$5,$B$79*$B$5*$B$80,J77*$B$80),0)');
+Workcell('Value','K80', '=IF(K77>0,IF(K77>$B$79,$B$79*$B$80,K77*$B$80),0)');
+
+Workcell('Value','B81', str_replace('$ ','',str_replace(',','',$_POST['NPREBB'])));
+
+Workcell('Value','B82', str_replace('%','',str_replace(',','',$_POST['NPREII']))/100);
+Workcell('Value','C82', '=IF(C77>0,IF(C77>$B$81,$B$81*$B$82,C77*$B$82),0)');
+Workcell('Value','D82', '=IF(D77>0,IF(D77>$B$81,$B$81*$B$82,D77*$B$82),0)');
+Workcell('Value','E82', '=IF(E77>0,IF(E77>$B$81,$B$81*$B$82,E77*$B$82),0)');
+Workcell('Value','F82', '=IF(F77>0,IF(F77>$B$81,$B$81*$B$82,F77*$B$82),0)');
+Workcell('Value','G82', '=IF(G77>0,IF(G77>$B$81*$B$5,$B$81*$B$5*$B$82,G77*$B$82),0)');
+Workcell('Value','H82', '=IF(H77>0,IF(H77>$B$81*$B$5,$B$81*$B$5*$B$82,H77*$B$82),0)');
+Workcell('Value','I82', '=IF(I77>0,IF(I77>$B$81*$B$5,$B$81*$B$5*$B$82,I77*$B$82),0)');
+Workcell('Value','J82', '=IF(J77>0,IF(J77>$B$81*$B$5,$B$81*$B$5*$B$82,J77*$B$82),0)');
+Workcell('Value','K82', '=IF(K77>0,IF(K77>$B$81,$B$81*$B$82,K77*$B$82),0)');
+
+Workcell('Value','C84', '=SUM(C77-C80-C82)');
+Workcell('Value','D84', '=SUM(D77-D80-D82)');
+Workcell('Value','E84', '=SUM(E77-E80-E82)');
+Workcell('Value','F84', '=SUM(F77-F80-F82)');
+Workcell('Value','G84', '=SUM(G77-G80-G82)');
+Workcell('Value','H84', '=SUM(H77-H80-H82)');
+Workcell('Value','I84', '=SUM(I77-I80-I82)');
+Workcell('Value','J84', '=SUM(J77-J80-J82)');
+Workcell('Value','K84', '=SUM(K77-K80-K82)');
+
+Workcell('Value','B86', str_replace('%','',str_replace(',','',$_POST['PROOII']))/100);
+Workcell('Value','C86', '=SUM(C84-C87)');
+Workcell('Value','D86', '=SUM(D84-D87)');
+Workcell('Value','E86', '=SUM(E84-E87)');
+Workcell('Value','F86', '=SUM(F84-F87)');
+Workcell('Value','G86', '=SUM(G84-G87)');
+Workcell('Value','H86', '=SUM(H84-H87)');
+Workcell('Value','I86', '=SUM(I84-I87)');
+Workcell('Value','J86', '=SUM(J84-J87)');
+Workcell('Value','K86', '=SUM(K84-K87)');
+
+Workcell('Value','B87', str_replace('%','',str_replace(',','',$_POST['PREOII']))/100);
+Workcell('Value','C87', '=IF(C84>0,C84*$B$87,0)');
+Workcell('Value','D87', '=IF(D84>0,D84*$B$87,0)');
+Workcell('Value','E87', '=IF(E84>0,E84*$B$87,0)');
+Workcell('Value','F87', '=IF(F84>0,F84*$B$87,0)');
+Workcell('Value','G87', '=IF(G84>0,G84*$B$87,0)');
+Workcell('Value','H87', '=IF(H84>0,H84*$B$87,0)');
+Workcell('Value','I87', '=IF(I84>0,I84*$B$87,0)');
+Workcell('Value','J87', '=IF(J84>0,J84*$B$87,0)');
+Workcell('Value','K87', '=IF(K84>0,K84*$B$87,0)');
+
+Workcell('Value','C88', '=+C80');
+Workcell('Value','D88', '=+D80');
+Workcell('Value','E88', '=+E80');
+Workcell('Value','F88', '=+F80');
+Workcell('Value','G88', '=+G80');
+Workcell('Value','H88', '=+H80');
+Workcell('Value','I88', '=+I80');
+Workcell('Value','J88', '=+J80');
+Workcell('Value','K88', '=+K80');
+
+Workcell('Value','C89', '=+C37');
+Workcell('Value','D89', '=+D37');
+Workcell('Value','E89', '=+E37');
+Workcell('Value','F89', '=+F37');
+Workcell('Value','G89', '=+G37');
+Workcell('Value','H89', '=+H37');
+Workcell('Value','I89', '=+I37');
+Workcell('Value','J89', '=+J37');
+Workcell('Value','K89', '=+K37');
+
+Workcell('Value','C90', '=+C36');
+Workcell('Value','D90', '=+D36');
+Workcell('Value','E90', '=+E36');
+Workcell('Value','F90', '=+F36');
+Workcell('Value','G90', '=+G36');
+Workcell('Value','H90', '=+H36');
+Workcell('Value','I90', '=+I36');
+Workcell('Value','J90', '=+J36');
+Workcell('Value','K90', '=+K36');
+
+Workcell('Value','C91', '=SUM(C86:C90)');
+Workcell('Value','D91', '=SUM(D86:D90)');
+Workcell('Value','E91', '=SUM(E86:E90)');
+Workcell('Value','F91', '=SUM(F86:F90)');
+Workcell('Value','G91', '=SUM(G86:G90)');
+Workcell('Value','H91', '=SUM(H86:H90)');
+Workcell('Value','I91', '=SUM(I86:I90)');
+Workcell('Value','J91', '=SUM(J86:J90)');
+Workcell('Value','K91', '=SUM(K86:K90)');
+
+Workcell('Value','C92', '=+C91/$B$9');
+Workcell('Value','D92', '=+D91/$B$9');
+Workcell('Value','E92', '=+E91/$B$9');
+Workcell('Value','F92', '=+F91/$B$9');
+Workcell('Value','G92', '=+G91/$B$9');
+Workcell('Value','H92', '=+H91/$B$9');
+Workcell('Value','I92', '=+I91/$B$9');
+Workcell('Value','J92', '=+J91/$B$9');
+Workcell('Value','K92', '=+K91/$B$9');
+
+Workcell('Value','B94', str_replace('%','',str_replace(',','',$_POST['LIT1II']))/100);
+Workcell('Value','C94', '=-C91*$B$94');
+Workcell('Value','D94', '=-D91*$B$94');
+Workcell('Value','E94', '=-E91*$B$94');
+Workcell('Value','F94', '=-F91*$B$94');
+Workcell('Value','G94', '=-G91*$B$94*$B$5');
+Workcell('Value','H94', '=-H91*$B$94*$B$5');
+Workcell('Value','I94', '=-I91*$B$94*$B$5');
+Workcell('Value','J94', '=-J91*$B$94*$B$5');
+Workcell('Value','K94', '=-K91*$B$94');
+
+Workcell('Value','B95', str_replace(',','',$_POST['LIT2II']));
+Workcell('Value','C95', '=-$B$95');
+Workcell('Value','D95', '=-$B$95');
+Workcell('Value','E95', '=-$B$95');
+Workcell('Value','F95', '=-$B$95');
+Workcell('Value','G95', '=-$B$95*$B$5');
+Workcell('Value','H95', '=-$B$95*$B$5');
+Workcell('Value','I95', '=-$B$95*$B$5');
+Workcell('Value','J95', '=-$B$95*$B$5');
+Workcell('Value','K95', '=-$B$95*$B$5');
+
+Workcell('Value','C96', '=SUM(C92:C95)');
+Workcell('Value','D96', '=SUM(D92:D95)');
+Workcell('Value','E96', '=SUM(E92:E95)');
+Workcell('Value','F96', '=SUM(F92:F95)');
+Workcell('Value','G96', '=SUM(G92:G95)');
+Workcell('Value','H96', '=SUM(H92:H95)');
+Workcell('Value','I96', '=SUM(I92:I95)');
+Workcell('Value','J96', '=SUM(J92:J95)');
+Workcell('Value','K96', '=SUM(K92:K95)');
+
+Workcell('Value','B98', str_replace(',','',$_POST['WOEXII']));
+Workcell('Value','C98', '=-$B$98');
+Workcell('Value','D98', '=-$B$98');
+Workcell('Value','E98', '=-$B$98');
+Workcell('Value','F98', '=-$B$98');
+Workcell('Value','G98', '=-B98*$B$5');
+Workcell('Value','H98', '=-B98*$B$5');
+Workcell('Value','I98', '=-B98*$B$5');
+Workcell('Value','J98', '=-B98*$B$5');
+Workcell('Value','K98', '=-$B$98');
+
+Workcell('Value','B99', str_replace(',','',$_POST['ROMIII']));
+Workcell('Value','C99', '=-$B$99');
+Workcell('Value','D99', '=-$B$99');
+Workcell('Value','E99', '=-$B$99');
+Workcell('Value','F99', '=-$B$99');
+Workcell('Value','G99', '=-B99*$B$5');
+Workcell('Value','H99', '=-B99*$B$5');
+Workcell('Value','I99', '=-B99*$B$5');
+Workcell('Value','J99', '=-B99*$B$5');
+Workcell('Value','K99', '=-$B$99');
+
+Workcell('Value','B100', str_replace('%','',str_replace(',','',$_POST['VAROII']))/100);
+Workcell('Value','C100', '=-SUM(C96-C98)*$B$100');
+Workcell('Value','D100', '=-SUM(D96-D98)*$B$100');
+Workcell('Value','E100', '=-SUM(E96-E98)*$B$100');
+Workcell('Value','F100', '=-SUM(F96-F98)*$B$100');
+Workcell('Value','G100', '=-SUM(G96-G98)*$B$100');
+Workcell('Value','H100', '=-SUM(H96-H98)*$B$100');
+Workcell('Value','I100', '=-SUM(I96-I98)*$B$100');
+Workcell('Value','J100', '=-SUM(J96-J98)*$B$100');
+Workcell('Value','K100', '=-SUM(K96-K98)*$B$100');
+
+Workcell('Value','C101', '=SUM(C96:C100)');
+Workcell('Value','D101', '=SUM(D96:D100)');
+Workcell('Value','E101', '=SUM(E96:E100)');
+Workcell('Value','F101', '=SUM(F96:F100)');
+Workcell('Value','G101', '=SUM(G96:G100)');
+Workcell('Value','H101', '=SUM(H96:H100)');
+Workcell('Value','I101', '=SUM(I96:I100)');
+Workcell('Value','J101', '=SUM(J96:J100)');
+Workcell('Value','K101', '=SUM(K96:K100)');
 
 $objPHPExcel->getActiveSheet()->setTitle('BOOKING ANALYSIS');
 $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
