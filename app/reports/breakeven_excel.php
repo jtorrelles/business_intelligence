@@ -1105,7 +1105,7 @@ Workcell('Value','G99', '=-B99*$B$5');
 Workcell('Value','H99', '=-B99*$B$5');
 Workcell('Value','I99', '=-B99*$B$5');
 Workcell('Value','J99', '=-B99*$B$5');
-Workcell('Value','K99', '=-$B$99');
+Workcell('Value','K99', '=-$B$99*$B$5');
 
 Workcell('Value','B100', str_replace('%','',str_replace(',','',$_POST['VAROII']))/100);
 Workcell('Value','C100', '=-SUM(C96-C98)*$B$100');
