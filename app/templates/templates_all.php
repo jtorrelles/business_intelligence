@@ -52,7 +52,7 @@ if ($result->num_rows > 0) {
 	<col width=30%>
 	<col width=10%>
     <tr>
-		<th>REPORT NAME</th>
+		<th>REPORT TEMPLATE NAME</th>
 		<th>ASSIGNED TO</th>
 		<th>OPTIONS</th>
 	</tr>";

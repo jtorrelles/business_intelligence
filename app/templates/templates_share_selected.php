@@ -7,6 +7,44 @@ include '../header.html';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+echo "
+<html>
+<head>
+<style>
+#shows {
+    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
+	font-size: 11px;
+    border-collapse: collapse;
+    width: 100%;
+}
+#shows td {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+#shows tr:nth-child(even){background-color: #f2f2f2;}
+#shows tr:hover {background-color: #ddd;}
+#shows th {
+	border: 1px solid #ddd;
+	padding: 8px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color: #000066;
+    color: white;
+}
+#transparent {
+	width: 99%;
+	border-top: transparent !important;
+	border-bottom: transparent !important;
+	border-left: transparent !important;
+	border-right: transparent !important;
+	background: transparent;
+	font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+</style>
+</head>
+<body>";
 echo "<h1 align=center>SHARE YOUR REPORT TEMPLATE</h1>";
 if(isset($_GET['selectedid'])){
   $selectedid = $_GET['selectedid'];
@@ -14,14 +52,16 @@ if(isset($_GET['selectedid'])){
   $result = $conn->query($sql);
   while ($row = $result->fetch_assoc()) {
 		echo "<form action=\"templates_share_selected_results.php\" method=\"POST\">";
-		echo "<table align=center width=80%>";
-		echo "<tr><td><b>Template ID:</b></td><td><input style=\"width: 100%; background-color: lightgrey;\" readonly type='text' name='id_template' value='".$row['id']."'></td></tr>";	
-		echo "<tr><td><b>Template Name:</b></td><td><input style='width: 100%;' type='text' name='name_template' value='".$row['name']." created by ".$_SESSION['login_user']."'</td></tr>";
+		echo "<table id='shows' align=center width=80%>
+			  <col width=20%>
+			  <col width=80%>";
+		echo "<tr><th>Template ID:</th><td><input hidden readonly type='text' name='id_template' value='".$row['id']."'>".$row['id']."</td></tr>";	
+		echo "<tr><th>Template Name:</th><td><input id='transparent' type='text' name='name_template' value='".$row['name']." created by ".$_SESSION['login_user']."' autofocus></td></tr>";
 		echo "
 		<tr>
-			<td><b>Share with:</b></td>
+			<th>Share with:</th>
 			<td>
-				<select name='user_template' style='width: 100%;'>";
+				<select name='user_template' id='transparent'>";
 					$sql2 = "SELECT username,userfirst_name,userlast_name FROM security WHERE useractive='Y';";
 					$result2 = $conn->query($sql2);
 					while ($row2 = $result2->fetch_assoc()) {

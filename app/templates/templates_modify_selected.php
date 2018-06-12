@@ -30,24 +30,32 @@ echo "
     background-color: #000066;
     color: white;
 }
+#transparent {
+	width: 100%;
+	border-top: transparent !important;
+	border-bottom: transparent !important;
+	border-left: transparent !important;
+	border-right: transparent !important;
+	background: transparent;
+	font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
 </style>
 </head>
 <body>";
-echo "<h1>Modify An Existing Template:</h1>";
+echo "<h1 align=center>MODIFY AN EXISTING TEMPLATE</h1>";
 if(isset($_GET['selectedid'])){
   $selectedid = $_GET['selectedid'];
   $sql = "SELECT id,name FROM templates WHERE id = '$selectedid'";
   $result = $conn->query($sql);
   $row = $result->fetch_assoc();
 		echo "<form action=\"templates_modify_selected_results.php\" method=\"POST\">";
-		echo "<table align=center>";
-		echo "<tr><td><b>Template ID:</b></td><td><input style=\"background-color: lightgrey;\" readonly type='text' name='id_template' value='".$row['id']."'></td></tr>";	
-		echo "<tr><td><b>Template Name:</b></td><td><input type='text' name='name_template' value='".$row['name']."'</td></tr>";
-		echo "</table>";
-		echo "<table id=\"shows\">
+		echo "<table id=\"shows\" align=center width=100%>
 			  <col width=20%>
-			  <col width=80%>
-			  <tr>
+			  <col width=80%>";
+		echo "<tr><th><b>Template ID:</b></th><td><input hidden style=\" width:100%; background-color: lightgrey;\" readonly type='text' name='id_template' value='".$row['id']."'>".$row['id']."</td></tr>";	
+		echo "<tr><th><b>Template Name:</b></th><td><input id='transparent' type='text' name='name_template' value='".$row['name']."' autofocus></td></tr>";
+		echo "<tr>
 			  	<th>SELECT</th>
 			  	<th>FIELD NAME</th>
 			  </tr>";

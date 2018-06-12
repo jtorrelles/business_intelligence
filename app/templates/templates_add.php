@@ -31,6 +31,16 @@ echo "
     background-color: #000066;
     color: white;
 }
+#transparent {
+	width: 99%;
+	border-top: transparent !important;
+	border-bottom: transparent !important;
+	border-left: transparent !important;
+	border-right: transparent !important;
+	background: transparent;
+	font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
 </style>
 </head>
 <body>";
@@ -39,11 +49,12 @@ echo "<p align=center>This template will be available on the Market History Repo
 $sql = "SELECT id, field_name FROM modules_fields";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<form action='templates_add_results.php' method='POST'>";
-	echo "<p align=center><b>Template Name:</b> <input type='text' name='template_name'><br></p>";
 	echo "<table id=\"shows\">
 	<col width=20%>
-	<col width=80%>
+	<col width=80%>";	
+	echo "<form action='templates_add_results.php' method='POST'>";
+	echo "<tr><th>Template Name:</th><td><input id='transparent' type='text' name='template_name' autofocus></td></tr>";
+	echo "
     <tr>
 		<th>SELECT</th>
 		<th>FIELD NAME</th>
