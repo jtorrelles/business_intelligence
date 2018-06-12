@@ -110,10 +110,11 @@ if ($result->num_rows > 0) {
 		<td>".$row["venuenotes"]."</td>
 		<td>".$row["venueactive"]."</td>
 		<td align=center>
-		<a href=\"javascript:window.open('venue_modify_selected.php?selectedid=".$row['venueid']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a>   
-		<a href=\"javascript:window.open('venue_delete_selected.php?selectedid=".$row['venueid']."','Delete Selected','width=480,height=530')\" hidden ><img src='../images/delete.png' width=20></a>
-		</td>
-		</tr>";
+		<a href=\"javascript:window.open('venue_modify_selected.php?selectedid=".$row['venueid']."','Modify Selected','width=480,height=530')\"><img src='../images/modify.png' width=20></a>";
+	    	if ($_SESSION['user_profile'] == 'admin') {
+		echo "<a href=\"javascript:window.open('venue_delete_selected.php?selectedid=".$row['venueid']."','Delete Selected','width=480,height=530')\"><img src='../images/delete.png' width=20></a>";
+		}
+		echo "</td></tr>";
     }
 	echo "</table>";
 }
