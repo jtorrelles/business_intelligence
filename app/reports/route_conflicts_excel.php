@@ -6,6 +6,8 @@ $codHtml = $_POST['htmlexc'];
 $name = $_POST['name'];
 $file = $_POST['name'] . ".xlsx";
 
+libxml_use_internal_errors(true);
+
 function Workcell($type,$cell,$value){
 	global $objPHPExcel; 
 
