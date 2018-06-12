@@ -69,6 +69,7 @@ Workcell('Format','B86:B87','#,##0%');
 Workcell('Format','C92:K92','$ #,##0');
 Workcell('Format','B94','#,##0.00%');
 Workcell('Format','B100','#,##0%');
+Workcell('Format','B2','dd/mm/yyyy');
 
 Workcell('Color','A1:I1','FFFFFF');
 Workcell('Color','A2:I2','FFFFFF');
@@ -98,8 +99,8 @@ Workcell('Color','K84','FFFF00');
 Workcell('Color','K101','FFFF00');
 Workcell('Color','C25:J25','FCE4EC');
 
-Workcell('Border','A1:I1','');
-Workcell('Border','A2:I2','');
+Workcell('Border','A1:J1','');
+Workcell('Border','A2:J2','');
 Workcell('Border','B4:B7','');
 Workcell('Border','B9','');
 Workcell('Border','B9','');
@@ -135,10 +136,10 @@ Workcell('Width','K',15);
 
 Workcell('Merge','B1:C1','');
 Workcell('Merge','E1:F1','');
-Workcell('Merge','H1:I1','');
+Workcell('Merge','H1:J1','');
 Workcell('Merge','B2:C2','');
 Workcell('Merge','E2:F2','');
-Workcell('Merge','H2:I2','');
+Workcell('Merge','H2:J2','');
 Workcell('Merge','K7:K8','');
 
 Workcell('Bold','A1:A2','');
@@ -164,9 +165,9 @@ Workcell('Value','E1', $_POST['CINAMEID']);
 Workcell('Value','G1', 'STATE:');
 Workcell('Value','H1', $_POST['STNAMEID']);
 Workcell('Value','A2', 'INIT DATE:');
-Workcell('Value','B2', $_POST['IDATE']);
+Workcell('Value','B2', $_POST['IDATEID']);
 Workcell('Value','D2', 'END DATE:');
-Workcell('Value','E2', $_POST['EDATE']);
+Workcell('Value','E2', $_POST['EDATEID']);
 Workcell('Value','G2', 'VENUE:');
 Workcell('Value','H2', $_POST['VENUEID']);
 

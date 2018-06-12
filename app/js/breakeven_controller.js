@@ -2101,15 +2101,12 @@ $(function() {
         $("#EDATE").html("<b>END DATE: </b>"+$.dateformat(ffin));
         $("#VENUE").html("<b>VENUE: </b>"+venuesText);
 
-        finicio = $(".dateini").val();
-        ffin = $(".dateend").val();           
-
-        $("#SHNAMEID").val(showId);
-        $("#CINAMEID").val(cityId);
-        $("#STNAMEID").val(stateId);
-        $("#IDATEID").val(finicio);
-        $("#EDATEID").val(ffin);
-        $("#VENUEID").val(venuesId[0]);
+        $("#SHNAMEID").val(showText);
+        $("#CINAMEID").val(cityText);
+        $("#STNAMEID").val(stateText);
+        $("#IDATEID").val($.dateformat(finicio));
+        $("#EDATEID").val($.dateformat(ffin));
+        $("#VENUEID").val(venuesText);
 
         $("#results").hide(); 
         $("#selection_data").hide();
