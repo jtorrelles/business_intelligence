@@ -87,9 +87,9 @@ echo "<h1>Add a New Show:</h1>";
         }
 	echo "</select></td></tr>";
 
-	echo "<tr><td><b>Show Age:</b></td><td><input type='text' name='age_show'></td></tr>";
-	echo "<tr><td><b>Weekly Nut:</b></td><td><input type='text' name='nut_show'></td></tr>";
-	echo "<tr><td><b>Number of Cast:</b></td><td><input type='text' name='cast_show'></td></tr>";
+	echo "<tr><td><b>Show Age:</b></td><td><input type='text' name='age_show' value='ALL AGES'></td></tr>";
+	echo "<tr><td><b>Weekly Nut:</b></td><td><input type='text' name='nut_show' value='0'></td></tr>";
+	echo "<tr><td><b>Number of Cast:</b></td><td><input type='text' name='cast_show' value='0'></td></tr>";
 	echo "<tr><td><b>Number of Musicians:</b></td><td><input type='text' name='musicians_show' value='0'></td></tr>";
 	echo "<tr><td><b>Number of Stagehands:</b></td><td><input type='text' name='stagehands_show' value=0></td></tr>";
 	echo "<tr><td><b>Number of Trucks:</b></td><td><input type='text' name='trucks_show' value=0></td></tr>";
