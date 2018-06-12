@@ -50,7 +50,7 @@ if(isset($_GET['selectedid'])){
 	echo "<form action=\"shows_management_results.php\" method=\"POST\">";
 	echo "<table>";
 	echo "<tr><td><b>Show ID:</b></td><td><input style=\"background-color: lightgrey;\" readonly type='text' name='id_show' value='".$row['showid']."'></td></tr>";	
-    echo "<tr><td><b>Show Name:</b></td><td><input autofocus='autofocus' type='text' name='name_show' value='".$row['showname']."'></td></tr>";
+    echo "<tr><td><b>Show Name:</b></td><td><input autofocus='autofocus' type='text' name='name_show' value=\"".$row['showname']."\"></td></tr>";
 
 	$active = $row['showactive'];
 	if ($active == 'N') {
