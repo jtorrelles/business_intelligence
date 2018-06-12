@@ -744,15 +744,4 @@ $(function() {
         getPlayedMarkets(finicio,ffin,countryId,stateId,cityId,shows);
     });
 
-    $("#btnExcel").click(function(e) {
-        var a = document.createElement('a');
-        var data_type = 'data:application/vnd.ms-excel';
-        var table_div = document.getElementById('export');
-        var table_html = table_div.outerHTML.replace(/ /g, '%20');
-        a.href = data_type + ', ' + table_html;
-        a.download = 'download.xlsx';
-        a.click();
-        e.preventDefault();
-    });
-
 });
