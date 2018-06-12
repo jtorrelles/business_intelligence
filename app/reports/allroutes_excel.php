@@ -70,6 +70,8 @@ for ($row=1;$row< $hrow+1;$row++) {
 	}    
 }
 
+$objPHPExcel->getActiveSheet(0)->freezePaneByColumnAndRow(1,2);
+
 ob_end_clean();
 
 header("Content-type: application/vnd.ms-excel");
