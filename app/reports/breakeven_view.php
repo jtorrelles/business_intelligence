@@ -168,7 +168,7 @@
 		</table>		
 	</div>	
 	<div style="display:none" class="settements_data" id="settements_data">
-		<h3>Settlements:</h3>
+		<h3>Recent Settlements (History Data):</h3>
 		<table style="width:100%" class="tablecss">
 			<tr>
 				<th>Show Name</th>
@@ -190,7 +190,7 @@
 		<h3><font color=red>No Routes / Details Routes Data</font></h3>
 	</div>
 	<div style="display:none" class="settements_nodata" id="settements_nodata">
-		<h3><font color=red>No Settlements Data</font></h3>
+		<h3><font color=red>No Recent Settlements (History Data)</font></h3>
 	</div>
 </div>
 <div style="display:none" id="back_to_selection">

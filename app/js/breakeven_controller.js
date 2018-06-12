@@ -1752,14 +1752,17 @@ function BCalc() {
 
 function setDataSettlementsToBreakeven(value){
 
+    var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+    var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));        
+
     var id = "#sett"+value;
     var data = JSON.parse($(id).val());
 
     $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
     $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
     $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
-    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
-    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#IDATE").html("<b>INIT DATE: </b>"+$.dateformat(finicio));
+    $("#EDATE").html("<b>END DATE: </b>"+$.dateformat(ffin));
     $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
 
     $("#NSPWII").val(number_format(data.NUMBEROFSHOWSPERWEEKS));
@@ -1813,12 +1816,12 @@ function setDataSettlementsToBreakeven(value){
     $("#LOFIII").val(number_format(data.LOCALFIX,2));
     $("#LIT1II").val(number_format(data.LESSINCOMETAXES1,2)+'%');
 
-    $("#SHNAMEID").val(data.SHOWID);
-    $("#CINAMEID").val(data.CITYID);
-    $("#STNAMEID").val(data.STATEID);
-    $("#IDATEID").val(data.OPENINGDATE2);
-    $("#EDATEID").val(data.CLOSINGDATE2);
-    $("#VENUEID").val(venuesId[0]);       
+    $("#SHNAMEID").val(data.SHOWNAME);
+    $("#CINAMEID").val(data.CITYNAME);
+    $("#STNAMEID").val(data.STATENAME);
+    $("#IDATEID").val($.dateformat(finicio));
+    $("#EDATEID").val($.dateformat(ffin));
+    $("#VENUEID").val(data.VENUENAME);       
 
     $("#results").hide(); 
     $("#loader").hide(); 
@@ -1834,14 +1837,17 @@ function setDataSettlementsToBreakeven(value){
 
 function setDataContractsToBreakeven(value){
 
+    var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+    var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));        
+
     var id = "#cont"+value;
     var data = JSON.parse($(id).val());
 
     $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
     $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
     $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
-    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
-    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#IDATE").html("<b>INIT DATE: </b>"+$.dateformat(finicio));
+    $("#EDATE").html("<b>END DATE: </b>"+$.dateformat(ffin));
     $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
 
     $("#NSPWII").val(number_format(data.NUMBEROFSHOWSPERWEEKS));
@@ -1859,12 +1865,12 @@ function setDataContractsToBreakeven(value){
     $("#VGUAII").val(number_format(data.VARIABLEGUARANTEE,2)+'%');
     $("#LIT1II").val(number_format(data.LESSINCOMETAXES1,2)+'%'); 
 
-    $("#SHNAMEID").val(data.SHOWID);
-    $("#CINAMEID").val(data.CITYID);
-    $("#STNAMEID").val(data.STATEID);
-    $("#IDATEID").val(data.OPENINGDATE2);
-    $("#EDATEID").val(data.CLOSINGDATE2);
-    $("#VENUEID").val(venuesId[0]);       
+    $("#SHNAMEID").val(data.SHOWNAME);
+    $("#CINAMEID").val(data.CITYNAME);
+    $("#STNAMEID").val(data.STATENAME);
+    $("#IDATEID").val($.dateformat(finicio));
+    $("#EDATEID").val($.dateformat(ffin));
+    $("#VENUEID").val(data.VENUENAME);       
 
     $("#results").hide(); 
     $("#loader").hide(); 
@@ -1879,14 +1885,17 @@ function setDataContractsToBreakeven(value){
 
 function setDataRoutesToBreakeven(value){
 
+    var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+    var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));    
+
     var id = "#route"+value;
     var data = JSON.parse($(id).val());
 
     $("#SHNAME").html("<b>SHOW NAME: </b>"+data.SHOWNAME);
     $("#CINAME").html("<b>CITY: </b>"+data.CITYNAME);
     $("#STNAME").html("<b>STATE: </b>"+data.STATENAME);
-    $("#IDATE").html("<b>INIT DATE: </b>"+data.OPENINGDATE);
-    $("#EDATE").html("<b>END DATE: </b>"+data.CLOSINGDATE);
+    $("#IDATE").html("<b>INIT DATE: </b>"+$.dateformat(finicio));
+    $("#EDATE").html("<b>END DATE: </b>"+$.dateformat(ffin));
     $("#VENUE").html("<b>VENUE: </b>"+data.VENUENAME);
 
     $("#NSPWII").val(number_format(data.NUMBEROFSHOWSPERWEEKS));
@@ -1897,12 +1906,12 @@ function setDataRoutesToBreakeven(value){
     $("#GUA1II").val(number_format(data.FIXED_GNTEE,2));
     $("#VGUAII").val(number_format(data.ROYALTY,2)+'%');      
 
-    $("#SHNAMEID").val(data.SHOWID);
-    $("#CINAMEID").val(data.CITYID);
-    $("#STNAMEID").val(data.STATEID);
-    $("#IDATEID").val(data.OPENINGDATE2);
-    $("#EDATEID").val(data.CLOSINGDATE2);
-    $("#VENUEID").val(venuesId[0]);    
+    $("#SHNAMEID").val(data.SHOWNAME);
+    $("#CINAMEID").val(data.CITYNAME);
+    $("#STNAMEID").val(data.STATENAME);
+    $("#IDATEID").val($.dateformat(finicio));
+    $("#EDATEID").val($.dateformat(ffin));
+    $("#VENUEID").val(data.VENUENAME);     
 
     $("#results").hide(); 
     $("#loader").hide(); 

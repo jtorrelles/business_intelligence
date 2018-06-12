@@ -226,7 +226,7 @@ class breakevenServices extends dbconfig {
 						co.ContractVARIABLE_GUARANTEE AS VARIABLEGUARANTEE, 
 						co.ContractTAX AS LESSINCOMETAXES1, 
 						ci.`name` as city, st.`name` as state, cou.sortname as country, 
-						ci.id as CITYID, st.id as STATEID, co.id as COUNTRYID 
+						ci.id as CITYID, st.id as STATEID, cou.id as COUNTRYID 
 						FROM contracts co, shows sw, cities ci, states st, countries cou, venues ve  
 						WHERE co.ShowID = sw.ShowID 
 						AND co.ContractVENUEID = ve.VenueID 
@@ -346,7 +346,7 @@ class breakevenServices extends dbconfig {
 							ROUND((MAX(rd.PRESENTATION_DATE) - MIN(rd.PRESENTATION_DATE)) / 7, 2) AS NUMBEROFWEEKS, 
 							rd.FIXED_GNTEE, rd.ROYALTY, 
 							ci.`name` as city, st.`name` as state, cou.sortname as country, 
-							ci.id as CITYID, st.id as STATEID, co.id as COUNTRYID 
+							ci.id as CITYID, st.id as STATEID, cou.id as COUNTRYID 
 						FROM routes ro, routes_det rd, shows sw, cities ci, states st, countries cou, venues ve  
 						WHERE ro.ROUTESID = rd.ROUTESID 
 						AND ro.ShowID = sw.ShowID 
