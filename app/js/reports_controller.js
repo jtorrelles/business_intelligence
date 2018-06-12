@@ -211,7 +211,7 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
                 counter1++;
             }
             htmlpdf = htmlpdf + '</table>';
-            htmlexc = htmlexc + files + '</table>';
+            htmlexc = htmlexc + files2 + '</table>';
             $('.htmlpdf').val(htmlpdf);
             $('.htmlexc').val(htmlexc);
             $("#body").append(files2);

@@ -1508,6 +1508,12 @@ function BCalc() {
         PREOR4 = '0';
     }
 
+    if(TEPRTT>0){
+        PREOTT = TEPRTT*PREOII;        
+    }else{
+        PREOTT = '0';
+    }
+
     document.getElementById("PREOW1").value = number_format(PREOW1);
     document.getElementById("PREOW2").value = number_format(PREOW2);
     document.getElementById("PREOW3").value = number_format(PREOW3);
