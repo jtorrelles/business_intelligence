@@ -200,6 +200,7 @@
 	<div style="display:none" id="export">
 		<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="breakeven_excel.php">
 		<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="breakeven_pdf.php">
+		<input type="image" name="goalseek" src="../images/goalseek.png" width=30 onclick=GoalSeek();>
 	</div>
 	<br>
 	<div style="display:none" class="breakeven_data" id="breakeven_data">
@@ -1458,6 +1459,7 @@
 	</div>
 
 </form>
+<iframe name="pp" style="position:absolute; top:-1500px;"></iframe> 
 
 </body>
 </html>
