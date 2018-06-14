@@ -1773,7 +1773,59 @@ function GoalSeek() {
     TSPRTT_VEC = [];
     PECATT_VEC = [];
 
+    NSPWII = strtonum(document.getElementById("NSPWII").value);
+    NOW1II = strtonum(document.getElementById("NOW1II").value);
+    SPSHII = strtonum(document.getElementById("SPSHII").value);
+    WGPOII = strtonum(document.getElementById("WGPOII").value);
+    EXRAII = strtonum(document.getElementById("EXRAII").value);
+    LSIDII = strtonum(document.getElementById("LSIDII").value)/100;
+    TAX1II = strtonum(document.getElementById("TAX1II").value)/100;
+    TAX2II = strtonum(document.getElementById("TAX2II").value)/100;
+    FAF1II = strtonum(document.getElementById("FAF1II").value.replace("$",""));
+    FAF2II = strtonum(document.getElementById("FAF2II").value.replace("$",""));
+    CCOCII = strtonum(document.getElementById("CCOCII").value)/100;
+    VGUAII = strtonum(document.getElementById("VGUAII").value)/100;
+    ADVEII = strtonum(document.getElementById("ADVEII").value);
+    STINII = strtonum(document.getElementById("STINII").value);
+    STOTII = strtonum(document.getElementById("STOTII").value);
+    STRUII = strtonum(document.getElementById("STRUII").value);
+    WHINII = strtonum(document.getElementById("WHINII").value);
+    WHOTII = strtonum(document.getElementById("WHOTII").value);
+    WHRUII = strtonum(document.getElementById("WHRUII").value);
+    LACAII = strtonum(document.getElementById("LACAII").value);
+    MUSIII = strtonum(document.getElementById("MUSIII").value);
+    INSUII = strtonum(document.getElementById("INSUII").value);
+    TIPRII = strtonum(document.getElementById("TIPRII").value);
+    OTH1II = strtonum(document.getElementById("OTH1II").value);
+    ADEXII = strtonum(document.getElementById("ADEXII").value);
+    BOOFII = strtonum(document.getElementById("BOOFII").value);
+    DRICII = strtonum(document.getElementById("DRICII").value);
+    FIMAII = strtonum(document.getElementById("FIMAII").value);
+    HOWAII = strtonum(document.getElementById("HOWAII").value);
+    HOSTII = strtonum(document.getElementById("HOSTII").value);
+    LIPEII = strtonum(document.getElementById("LIPEII").value);
+    LIAUII = strtonum(document.getElementById("LIAUII").value);
+    PITUII = strtonum(document.getElementById("PITUII").value);
+    POSEII = strtonum(document.getElementById("POSEII").value);
+    PRPRII = strtonum(document.getElementById("PRPRII").value);
+    PRAFII = strtonum(document.getElementById("PRAFII").value);
+    PROGII = strtonum(document.getElementById("PROGII").value);
+    RENTII = strtonum(document.getElementById("RENTII").value);
+    SOLIII = strtonum(document.getElementById("SOLIII").value);
+    TEINII = strtonum(document.getElementById("TEINII").value);
+    PAERII = strtonum(document.getElementById("PAERII").value);
+    TRPAII = strtonum(document.getElementById("TRPAII").value);
+    OTH2II = strtonum(document.getElementById("OTH2II").value);
+    OTH3II = strtonum(document.getElementById("OTH3II").value);
+    OTH4II = strtonum(document.getElementById("OTH4II").value);
+    OTH5II = strtonum(document.getElementById("OTH5II").value);
+    LOFIII = strtonum(document.getElementById("LOFIII").value);
+    LIT1II = strtonum(document.getElementById("LIT1II").value)/100;
+    LIT2II = strtonum(document.getElementById("LIT2II").value);
+
     TSPRTT = strtonum(document.getElementById("TSPRTT").value);
+
+    PECATT_ORIG = strtonum(document.getElementById("PECATT").value)/100;
 
     cont = 0;
     goal = 0; 
@@ -1783,23 +1835,18 @@ function GoalSeek() {
         alert("The field Total Show Profit is 0");
     }   
 
-    while((goal==0)&&(cont<100000)&&(TSPRTT!=0)){ 
+    while((goal==0)&&(cont<1000)&&(TSPRTT!=0)){ 
 
-        TSPRTT_VEC[cont] = Math.abs(TSPRTT);
-
-        NSPWII = strtonum(document.getElementById("NSPWII").value);
-        NOW1II = strtonum(document.getElementById("NOW1II").value);
-        SPSHII = strtonum(document.getElementById("SPSHII").value);
-        WGPOII = strtonum(document.getElementById("WGPOII").value);
-        EXRAII = strtonum(document.getElementById("EXRAII").value);
+        TSPRTT_VEC[cont] = Math.abs(TSPRTT);       
 
         HOCATT = strtonum(document.getElementById("HOCATT").value);
 
         PECATT = strtonum(document.getElementById("PECATT").value)/100;
+
         if(cont == 0){
             PECATT = 0;
         }else{
-            PECATT = PECATT + 0.0001;
+            PECATT = PECATT + 0.01;
             PECATT_VEC[cont] = PECATT;
         }
         document.getElementById("PECATT").value = number_format(PECATT*100,2) + '%';
@@ -1819,11 +1866,10 @@ function GoalSeek() {
             ESSITT = '0';
         }
         document.getElementById("ESSITT").value = number_format(ESSITT);
+        ESSITT = strtonum(document.getElementById("ESSITT").value); 
 
         LSUDTT = strtonum(document.getElementById("LSUDTT").value);    
-        LGRDTT = strtonum(document.getElementById("LGRDTT").value);
-
-        LSIDII = strtonum(document.getElementById("LSIDII").value)/100;
+        LGRDTT = strtonum(document.getElementById("LGRDTT").value);        
 
         document.getElementById("LSIDTT").value = number_format(-ESSITT*LSIDII);
         LSIDTT = strtonum(document.getElementById("LSIDTT").value);
@@ -1836,26 +1882,20 @@ function GoalSeek() {
         document.getElementById("AGPPTT").value = number_format((AGROTT/WGPOII)*100) + '%';
         AGPPTT = strtonum(document.getElementById("AGPPTT").value)/100;
 
-        TAX1II = strtonum(document.getElementById("TAX1II").value)/100;
         document.getElementById("TAX1TT").value = number_format(-AGROTT/(1+TAX1II)*TAX1II);   
         TAX1TT = strtonum(document.getElementById("TAX1TT").value);
 
-        TAX2II = strtonum(document.getElementById("TAX2II").value)/100;
         document.getElementById("TAX2TT").value = number_format(-AGROTT/(1+TAX2II)*TAX2II);
         TAX2TT = strtonum(document.getElementById("TAX2TT").value);
 
-        FAF1II = strtonum(document.getElementById("FAF1II").value.replace("$",""));
         document.getElementById("FAF1TT").value = number_format(-TISOTT*FAF1II);
         FAF1TT = strtonum(document.getElementById("FAF1TT").value);
 
-        FAF2II = strtonum(document.getElementById("FAF2II").value.replace("$",""));
         document.getElementById("FAF2TT").value = number_format(-TISOTT*FAF2II);
         FAF2TT = strtonum(document.getElementById("FAF2TT").value);
 
         SUBCTT = strtonum(document.getElementById("SUBCTT").value);
-        GSACTT = strtonum(document.getElementById("GSACTT").value);
-
-        CCOCII = strtonum(document.getElementById("CCOCII").value)/100;
+        GSACTT = strtonum(document.getElementById("GSACTT").value);        
 
         if((AGROTT-ESGRTT-SLINTT)>0){
             CCOCTT = -(AGROTT-ESGRTT-SLINTT)*CCOCII;
@@ -1870,50 +1910,11 @@ function GoalSeek() {
 
         GUA1TT = strtonum(document.getElementById("GUA1TT").value);
 
-        VGUAII = strtonum(document.getElementById("VGUAII").value)/100;
         document.getElementById("VGUATT").value = number_format(NABRTT*VGUAII);
         VGUATT = strtonum(document.getElementById("VGUATT").value);
 
-        ADVEII = strtonum(document.getElementById("ADVEII").value);
-        STINII = strtonum(document.getElementById("STINII").value);
-        STOTII = strtonum(document.getElementById("STOTII").value);
-        STRUII = strtonum(document.getElementById("STRUII").value);
-        WHINII = strtonum(document.getElementById("WHINII").value);
-        WHOTII = strtonum(document.getElementById("WHOTII").value);
-        WHRUII = strtonum(document.getElementById("WHRUII").value);
-        LACAII = strtonum(document.getElementById("LACAII").value);
-        MUSIII = strtonum(document.getElementById("MUSIII").value);
-
-        INSUII = strtonum(document.getElementById("INSUII").value);
-        document.getElementById("INSUTT").value = number_format(TISOTT*INSUII);
-
-        TIPRII = strtonum(document.getElementById("TIPRII").value);
-        document.getElementById("TIPRTT").value = number_format(TISOTT*TIPRII);
-
-        OTH1II = strtonum(document.getElementById("OTH1II").value);
-        ADEXII = strtonum(document.getElementById("ADEXII").value);
-        BOOFII = strtonum(document.getElementById("BOOFII").value);
-        DRICII = strtonum(document.getElementById("DRICII").value);
-        FIMAII = strtonum(document.getElementById("FIMAII").value);
-        HOWAII = strtonum(document.getElementById("HOWAII").value);
-        HOSTII = strtonum(document.getElementById("HOSTII").value);
-        LIPEII = strtonum(document.getElementById("LIPEII").value);
-        LIAUII = strtonum(document.getElementById("LIAUII").value);
-        PITUII = strtonum(document.getElementById("PITUII").value);
-        POSEII = strtonum(document.getElementById("POSEII").value);
-        PRPRII = strtonum(document.getElementById("PRPRII").value);
-        PRAFII = strtonum(document.getElementById("PRAFII").value);
-        PROGII = strtonum(document.getElementById("PROGII").value);
-        RENTII = strtonum(document.getElementById("RENTII").value);
-        SOLIII = strtonum(document.getElementById("SOLIII").value);
-        TEINII = strtonum(document.getElementById("TEINII").value);
-        PAERII = strtonum(document.getElementById("PAERII").value);
-        TRPAII = strtonum(document.getElementById("TRPAII").value);
-        OTH2II = strtonum(document.getElementById("OTH2II").value);
-        OTH3II = strtonum(document.getElementById("OTH3II").value);
-        OTH4II = strtonum(document.getElementById("OTH4II").value);
-        OTH5II = strtonum(document.getElementById("OTH5II").value);
-        LOFIII = strtonum(document.getElementById("LOFIII").value);
+        document.getElementById("INSUTT").value = number_format(TISOTT*INSUII);        
+        document.getElementById("TIPRTT").value = number_format(TISOTT*TIPRII);        
 
         document.getElementById("TLEXTT").value = number_format((GUA1II*EXRAII)+(NABRTT*VGUAII)+ADVEII+STINII+STOTII+STRUII+WHINII+WHOTII+WHRUII+LACAII+MUSIII+(TISOTT*INSUII)+(TISOTT*TIPRII)+OTH1II+ADEXII+BOOFII+DRICII+FIMAII+HOWAII+HOSTII+LIPEII+LIAUII+PITUII+POSEII+PRPRII+PRAFII+PROGII+RENTII+SOLIII+TEINII+PAERII+TRPAII+OTH2II+OTH3II+OTH4II+OTH5II+LOFIII);
         TLEXTT = strtonum(document.getElementById("TLEXTT").value);
@@ -1946,10 +1947,10 @@ function GoalSeek() {
 
         document.getElementById("USRATT").value = '$ ' + number_format(TTPRTT*EXRAII);
 
-        LIT1II = strtonum(document.getElementById("LIT1II").value)/100;
         document.getElementById("LIT1TT").value = number_format(-TTPRTT*LIT1II);
         LIT1TT = strtonum(document.getElementById("LIT1TT").value);
-
+        
+        document.getElementById("LIT2TT").value = number_format(-LIT2II*NOW1II);
         LIT2TT = strtonum(document.getElementById("LIT2TT").value);
 
         document.getElementById("NITPTT").value = number_format(TTPRTT+LIT1TT+LIT2TT);
@@ -1962,7 +1963,7 @@ function GoalSeek() {
         VAROTT = strtonum(document.getElementById("VAROTT").value);
 
         document.getElementById("TSPRTT").value = number_format(NITPTT+WOEXTT+ROMITT+VAROTT);
-        TSPRTT = strtonum(document.getElementById("TSPRTT").value);
+        TSPRTT = strtonum(document.getElementById("TSPRTT").value);        
 
         cont++;
     }
@@ -1972,16 +1973,16 @@ function GoalSeek() {
     cont = 0;
     while(cont<100000){
         if(TSPRTT_VEC[cont]==min){
-            PECATT = PECATT_VEC[cont];
+            PECATT = PECATT_VEC[cont-1];
         }
         cont++;
     }
 
-    NSPWII = strtonum(document.getElementById("NSPWII").value);
-    NOW1II = strtonum(document.getElementById("NOW1II").value);
-    SPSHII = strtonum(document.getElementById("SPSHII").value);
-    WGPOII = strtonum(document.getElementById("WGPOII").value);
-    EXRAII = strtonum(document.getElementById("EXRAII").value);
+    conf = confirm("Goal Seek Result: " + number_format(PECATT*100,2) + "% - Insert the result into the variable cell?");
+   
+    if (conf != true) {
+        PECATT = PECATT_ORIG;        
+    }
 
     HOCATT = strtonum(document.getElementById("HOCATT").value);
 
@@ -1993,7 +1994,7 @@ function GoalSeek() {
     document.getElementById("BOGRTT").value = number_format(WGPOII*PECATT); 
     BOGRTT = strtonum(document.getElementById("BOGRTT").value);
 
-    SLINTT = strtonum(document.getElementById("SLINTT").value);
+    SLINTT = strtonum(document.getElementById("SLINTT").value);    
     ESGRTT = strtonum(document.getElementById("ESGRTT").value); 
 
     if((BOGRTT-SLINTT-ESGRTT)>0){
@@ -2002,11 +2003,10 @@ function GoalSeek() {
         ESSITT = '0';
     }
     document.getElementById("ESSITT").value = number_format(ESSITT);
+    ESSITT = strtonum(document.getElementById("ESSITT").value); 
 
     LSUDTT = strtonum(document.getElementById("LSUDTT").value);    
     LGRDTT = strtonum(document.getElementById("LGRDTT").value);
-
-    LSIDII = strtonum(document.getElementById("LSIDII").value)/100;
 
     document.getElementById("LSIDTT").value = number_format(-ESSITT*LSIDII);
     LSIDTT = strtonum(document.getElementById("LSIDTT").value);
@@ -2019,26 +2019,20 @@ function GoalSeek() {
     document.getElementById("AGPPTT").value = number_format((AGROTT/WGPOII)*100) + '%';
     AGPPTT = strtonum(document.getElementById("AGPPTT").value)/100;
 
-    TAX1II = strtonum(document.getElementById("TAX1II").value)/100;
     document.getElementById("TAX1TT").value = number_format(-AGROTT/(1+TAX1II)*TAX1II);   
     TAX1TT = strtonum(document.getElementById("TAX1TT").value);
 
-    TAX2II = strtonum(document.getElementById("TAX2II").value)/100;
     document.getElementById("TAX2TT").value = number_format(-AGROTT/(1+TAX2II)*TAX2II);
     TAX2TT = strtonum(document.getElementById("TAX2TT").value);
 
-    FAF1II = strtonum(document.getElementById("FAF1II").value.replace("$",""));
     document.getElementById("FAF1TT").value = number_format(-TISOTT*FAF1II);
     FAF1TT = strtonum(document.getElementById("FAF1TT").value);
 
-    FAF2II = strtonum(document.getElementById("FAF2II").value.replace("$",""));
     document.getElementById("FAF2TT").value = number_format(-TISOTT*FAF2II);
     FAF2TT = strtonum(document.getElementById("FAF2TT").value);
 
     SUBCTT = strtonum(document.getElementById("SUBCTT").value);
     GSACTT = strtonum(document.getElementById("GSACTT").value);
-
-    CCOCII = strtonum(document.getElementById("CCOCII").value)/100;
 
     if((AGROTT-ESGRTT-SLINTT)>0){
         CCOCTT = -(AGROTT-ESGRTT-SLINTT)*CCOCII;
@@ -2053,50 +2047,11 @@ function GoalSeek() {
 
     GUA1TT = strtonum(document.getElementById("GUA1TT").value);
 
-    VGUAII = strtonum(document.getElementById("VGUAII").value)/100;
     document.getElementById("VGUATT").value = number_format(NABRTT*VGUAII);
     VGUATT = strtonum(document.getElementById("VGUATT").value);
 
-    ADVEII = strtonum(document.getElementById("ADVEII").value);
-    STINII = strtonum(document.getElementById("STINII").value);
-    STOTII = strtonum(document.getElementById("STOTII").value);
-    STRUII = strtonum(document.getElementById("STRUII").value);
-    WHINII = strtonum(document.getElementById("WHINII").value);
-    WHOTII = strtonum(document.getElementById("WHOTII").value);
-    WHRUII = strtonum(document.getElementById("WHRUII").value);
-    LACAII = strtonum(document.getElementById("LACAII").value);
-    MUSIII = strtonum(document.getElementById("MUSIII").value);
-
-    INSUII = strtonum(document.getElementById("INSUII").value);
     document.getElementById("INSUTT").value = number_format(TISOTT*INSUII);
-
-    TIPRII = strtonum(document.getElementById("TIPRII").value);
     document.getElementById("TIPRTT").value = number_format(TISOTT*TIPRII);
-
-    OTH1II = strtonum(document.getElementById("OTH1II").value);
-    ADEXII = strtonum(document.getElementById("ADEXII").value);
-    BOOFII = strtonum(document.getElementById("BOOFII").value);
-    DRICII = strtonum(document.getElementById("DRICII").value);
-    FIMAII = strtonum(document.getElementById("FIMAII").value);
-    HOWAII = strtonum(document.getElementById("HOWAII").value);
-    HOSTII = strtonum(document.getElementById("HOSTII").value);
-    LIPEII = strtonum(document.getElementById("LIPEII").value);
-    LIAUII = strtonum(document.getElementById("LIAUII").value);
-    PITUII = strtonum(document.getElementById("PITUII").value);
-    POSEII = strtonum(document.getElementById("POSEII").value);
-    PRPRII = strtonum(document.getElementById("PRPRII").value);
-    PRAFII = strtonum(document.getElementById("PRAFII").value);
-    PROGII = strtonum(document.getElementById("PROGII").value);
-    RENTII = strtonum(document.getElementById("RENTII").value);
-    SOLIII = strtonum(document.getElementById("SOLIII").value);
-    TEINII = strtonum(document.getElementById("TEINII").value);
-    PAERII = strtonum(document.getElementById("PAERII").value);
-    TRPAII = strtonum(document.getElementById("TRPAII").value);
-    OTH2II = strtonum(document.getElementById("OTH2II").value);
-    OTH3II = strtonum(document.getElementById("OTH3II").value);
-    OTH4II = strtonum(document.getElementById("OTH4II").value);
-    OTH5II = strtonum(document.getElementById("OTH5II").value);
-    LOFIII = strtonum(document.getElementById("LOFIII").value);
 
     document.getElementById("TLEXTT").value = number_format((GUA1II*EXRAII)+(NABRTT*VGUAII)+ADVEII+STINII+STOTII+STRUII+WHINII+WHOTII+WHRUII+LACAII+MUSIII+(TISOTT*INSUII)+(TISOTT*TIPRII)+OTH1II+ADEXII+BOOFII+DRICII+FIMAII+HOWAII+HOSTII+LIPEII+LIAUII+PITUII+POSEII+PRPRII+PRAFII+PROGII+RENTII+SOLIII+TEINII+PAERII+TRPAII+OTH2II+OTH3II+OTH4II+OTH5II+LOFIII);
     TLEXTT = strtonum(document.getElementById("TLEXTT").value);
@@ -2112,7 +2067,6 @@ function GoalSeek() {
     document.getElementById("TEPRTT").value = number_format(MORETT-NPROTT-NPRETT);
     TEPRTT = strtonum(document.getElementById("TEPRTT").value);
 
-    PREOII = strtonum(document.getElementById("PREOII").value)/100;
     if(TEPRTT>0){
         PREOTT = TEPRTT*PREOII;        
     }else{
@@ -2129,10 +2083,10 @@ function GoalSeek() {
 
     document.getElementById("USRATT").value = '$ ' + number_format(TTPRTT*EXRAII);
 
-    LIT1II = strtonum(document.getElementById("LIT1II").value)/100;
     document.getElementById("LIT1TT").value = number_format(-TTPRTT*LIT1II);
     LIT1TT = strtonum(document.getElementById("LIT1TT").value);
 
+    document.getElementById("LIT2TT").value = number_format(-LIT2II*NOW1II);
     LIT2TT = strtonum(document.getElementById("LIT2TT").value);
 
     document.getElementById("NITPTT").value = number_format(TTPRTT+LIT1TT+LIT2TT);
