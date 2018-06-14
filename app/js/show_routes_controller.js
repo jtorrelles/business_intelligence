@@ -182,9 +182,22 @@ function getShows() {
     call.send(data, url, method, function(data) {
         $('.shows').find("option:eq(0)").html("Select Show");
         if(data.tp == 1){
-            $.each(data['result'], function(key, val) {
+
+            var temp = [];
+
+            $.each(data['result'], function(key, value) {
+                temp.push({v:value, k: key});
+            });    
+
+            temp.sort(function(a,b){
+               if(a.v > b.v){ return 1}
+                if(a.v < b.v){ return -1}
+                  return 0;
+            });
+
+            $.each(temp, function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.k).text(val.v);
                 $('.shows').append(option);
             });
             $(".shows").prop("disabled",false);
