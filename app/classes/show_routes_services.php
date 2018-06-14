@@ -108,7 +108,7 @@ class showRoutesServices extends dbconfig {
  // Fetch all countries list
    public static function getShows() {
      try {
-       $query = "SELECT showid, showname FROM shows WHERE showactive = 'Y'";
+       $query = "SELECT showid, showNAME as showname FROM shows WHERE showactive = 'Y' ORDER BY showname ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Show not found.");

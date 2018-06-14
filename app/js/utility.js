@@ -99,6 +99,50 @@ function getCities(id) {
     });
 }
 
+function getTemplates(module) {
+    var call = new ajaxCall();
+    $(".cities option:gt(0)").remove();
+    var url = '../routes/templates_route.php?type=getByUser&module='+ module;
+    var method = "GET";
+    var data = {};
+    $('.templates').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.templates').find("option:eq(0)").html("Select Template");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {             
+                var option = $('<option />');
+                option.attr('value', val.id).text(val.name);
+                $('.templates').append(option);
+            });
+            $(".templates").prop("disabled",false);
+        }
+        else{
+             alert(data.msg);
+        }
+    });
+}
+
+function getTemplateFields(templateId) {
+    var call = new ajaxCall();
+    var url = '../routes/templates_route.php?type=getFieldsById&templateId='+ templateId;
+    var method = "GET";
+    var data = {};
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+            var templatesKeys = [];
+            $.each(data['result'], function(key, val) {         
+                templatesKeys.push(val.field_name);
+            });
+            console.log(templatesKeys);
+            $("#fields").multipleSelect('uncheckAll');
+            $("#fields").multipleSelect("setSelects", templatesKeys);
+        }
+        else{
+             alert(data.msg);
+        }
+    });
+}
+
 /*
     % - All shows
     Y - Active Shows
@@ -347,6 +391,16 @@ $(function() {
         }
 
     });  
+
+    $(".templates").on("change", function(ev) {
+        var templateId = $(this).val();
+        if(templateId != ''){
+            getTemplateFields(templateId); 
+        }else{
+            $("#fields").multipleSelect('uncheckAll');
+        }
+
+    });      
 
     $("#btnCleanAllRoutes").click(function (ev) {
         getCountries();
