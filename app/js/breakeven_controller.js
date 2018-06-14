@@ -1827,15 +1827,9 @@ function GoalSeek() {
 
     PECATT_ORIG = strtonum(document.getElementById("PECATT").value)/100;
 
-    cont = 0;
-    goal = 0; 
+    cont = 0;    
 
-    if(TSPRTT==0){
-        goal = 1;
-        alert("The field Total Show Profit is 0");
-    }   
-
-    while((goal==0)&&(cont<1000)&&(TSPRTT!=0)){ 
+    while((cont<1000)&&(TSPRTT!=0)){ 
 
         TSPRTT_VEC[cont] = Math.abs(TSPRTT);       
 
