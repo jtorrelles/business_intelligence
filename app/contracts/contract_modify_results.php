@@ -7,6 +7,7 @@ include '../header_nologout.html';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
 $id = $_POST['id'];
 $opening = $_POST['opening_date'];
 $closing = $_POST['closing_date'];
