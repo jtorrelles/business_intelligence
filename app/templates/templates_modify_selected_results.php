@@ -14,7 +14,7 @@ $template_name = $_POST['name_template'];
 $sql = "UPDATE templates SET
        id = '$currentid',
 	   moduleid = '1',
-	   name = '$template_name',
+	   name = \"$template_name\",
 	   user = '$current_user'
 	   WHERE id = '$currentid';";
 $result = $conn->query($sql);
@@ -22,7 +22,7 @@ $result = $conn->query($sql);
 $sql = "DELETE FROM templates_fields WHERE templateid = '$currentid';";
 $result = $conn->query($sql);
 
-$sql = "SELECT id FROM templates WHERE name = '$template_name';";
+$sql = "SELECT id FROM templates WHERE name = \"$template_name\";";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
