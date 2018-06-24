@@ -54,7 +54,7 @@ if(isset($_GET['selectedid'])){
 			  <col width=20%>
 			  <col width=80%>";
 		echo "<tr><th><b>Template ID:</b></th><td><input hidden style=\" width:100%; background-color: lightgrey;\" readonly type='text' name='id_template' value='".$row['id']."'>".$row['id']."</td></tr>";	
-		echo "<tr><th><b>Template Name:</b></th><td><input id='transparent' type='text' name='name_template' value='".$row['name']."' autofocus></td></tr>";
+		echo "<tr><th><b>Template Name:</b></th><td><input id='transparent' type='text' name='name_template' value=\"".$row['name']."\" autofocus></td></tr>";
 		echo "<tr>
 			  	<th>SELECT</th>
 			  	<th>FIELD NAME</th>
