@@ -11,10 +11,10 @@ $id_template = $_POST['id_template'];
 $name_template = $_POST['name_template'];
 $user_template = $_POST['user_template'];
 
-$sql = "INSERT INTO templates(moduleid,name,user) VALUES('1','$name_template','$user_template')";
+$sql = "INSERT INTO templates(moduleid,name,user) VALUES('1',\"$name_template\",'$user_template')";
 $conn->query($sql);
 
-$sql2 = "SELECT id FROM templates WHERE name = '$name_template' AND user = '$user_template'";
+$sql2 = "SELECT id FROM templates WHERE name = \"$name_template\" AND user = '$user_template'";
 $result2 = $conn->query($sql2);
 $row2 = $result2->fetch_assoc();
 $newid = $row2['id'];
