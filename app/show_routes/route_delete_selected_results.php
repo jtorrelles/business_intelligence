@@ -2,7 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 $description = "Deleted Route for Show: ".$_POST['id'];
 include '../security_log.php';
 
