@@ -2,7 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script>";
 
