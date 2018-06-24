@@ -1,7 +1,7 @@
 <?php 
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
 echo "<script src=\"../js/jquery.min.js\"></script>";
@@ -33,7 +33,7 @@ echo "<form action=\"route_upload_update_results.php?selectedid=".$_GET['selecte
 		</tr>
 			<td><input type='hidden' class=\"date_route\" name='date_route'></td>
 		<tr>
-			<td><b>First Date:</b></td>
+			<td><b>Start of Route:</b></td>
 			<td><input type=\"date\" style=\"background-color: lightgrey;\" readonly class=\"presentation_date0\" name='presentation_date0'></td>
 		</tr>";
 		for($i = 0; $i < 364; $i++){
