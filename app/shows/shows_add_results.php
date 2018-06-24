@@ -2,7 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 $description = "Added Show: ".$_POST['name_show'];
 include '../security_log.php';
 if ($conn->connect_error) {
