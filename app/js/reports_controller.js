@@ -235,8 +235,8 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
     var htmlexc = '<table>'
     var columns = '';
     var hcolumns = '<tr><th>SHOW NAME</th>' +
-                   '<th>OPENED DATE</th>' + 
-                   '<th>CLOSED DATE</th>' +
+                   '<th>OPENING DATE</th>' + 
+                   '<th>CLOSING DATE</th>' +
                    '<th>STATE</th>' +
                    '<th>CITY</th>' +                    
                    '<th>VENUE NAME</th>' +
@@ -321,8 +321,8 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
     var columns = '<tr><th>SHOW NAME</th>' +
-                  '<th>OPENED DATE</th>' + 
-                  '<th>CLOSED DATE</th>' +
+                  '<th>OPENING DATE</th>' + 
+                  '<th>CLOSING DATE</th>' +
                   '<th>STATE</th>' +
                   '<th>CITY</th>' +
                   '<th>NUMBER OF PERFORMANCES</th>' +
@@ -383,49 +383,49 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
 
                 if(fields.indexOf("1")>=0){                    
                     if((ss+gs+st)>0){
-                        files = files + '<td>' + number_format(ss/(ss+gs+st),2) + '%</td>';
+                        files = files + '<td>' + number_format(((ss/(ss+gs+st))*100),2) + '%</td>';
                     }else{
                         files = files + '<td>' + number_format(0,2) + '%</td>';
                     }    
                 }
                 if(fields.indexOf("2")>=0){
                     if(gp>0){
-                        files = files + '<td>' + number_format(ss/gp,2) + '%</td>';
+                        files = files + '<td>' + number_format(((ss/gp)*100),2) + '%</td>';
                     }else{
                         files = files + '<td>' + number_format(0,2) + '%</td>';
                     }    
                 }
                 if(fields.indexOf("3")>=0){
                     if((ss+gs+st)>0){
-                        files = files + '<td>' + number_format(gs/(ss+gs+st),2) + '%</td>';
+                        files = files + '<td>' + number_format(((gs/(ss+gs+st))*100),2) + '%</td>';
                     }else{
                         files = files + '<td>' + number_format(0,2) + '%</td>';
                     }    
                 }
                 if(fields.indexOf("4")>=0){
                     if(gp>0){
-                        files = files + '<td>' + number_format(gs/gp,2) + '%</td>';
+                        files = files + '<td>' + number_format(((gs/gp)*100),2) + '%</td>';
                     }else{
                         files = files + '<td>' + number_format(0,2) + '%</td>';
                     }    
                 }
                 if(fields.indexOf("5")>=0){
                     if((ss+gs+st)>0){
-                        files = files + '<td>' + number_format(st/(ss+gs+st),2) + '%</td>';
+                        files = files + '<td>' + number_format(((st/(ss+gs+st))*100),2) + '%</td>';
                     }else{
                         files = files + '<td>' + number_format(0,2) + '%</td>';
                     }    
                 }
                 if(fields.indexOf("6")>=0){
                     if(gp>0){
-                        files = files + '<td>' + number_format(st/gp,2) + '%</td>';
+                        files = files + '<td>' + number_format(((st/gp)*100),2) + '%</td>';
                     }else{
                         files = files + '<td>' + number_format(0,2) + '%</td>';
                     }    
                 }
                 if(fields.indexOf("7")>=0){
                     if(st>0){
-                        files = files + '<td>' + number_format(ad/st,2) + '%</td>';
+                        files = files + '<td>' + number_format(((ad/st)*100),2) + '%</td>';
                     }else{
                         files = files + '<td>' + number_format(0,2) + '%</td>';
                     }    
