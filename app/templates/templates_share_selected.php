@@ -56,7 +56,7 @@ if(isset($_GET['selectedid'])){
 			  <col width=20%>
 			  <col width=80%>";
 		echo "<tr><th>Template ID:</th><td><input hidden readonly type='text' name='id_template' value='".$row['id']."'>".$row['id']."</td></tr>";	
-		echo "<tr><th>Template Name:</th><td><input id='transparent' type='text' name='name_template' value='".$row['name']." created by ".$_SESSION['login_user']."' autofocus></td></tr>";
+		echo "<tr><th>Template Name:</th><td><input id='transparent' type='text' name='name_template' value=\"".$row['name']." created by ".$_SESSION['login_user']."\" autofocus></td></tr>";
 		echo "
 		<tr>
 			<th>Share with:</th>
