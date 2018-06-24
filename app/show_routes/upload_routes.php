@@ -1,7 +1,7 @@
 <?php 
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
 echo "<script src=\"../js/jquery.min.js\"></script>";
@@ -40,7 +40,7 @@ echo "<form action=\"route_upload_add_results.php\" method=\"POST\">";
 			<td><input type='number' class=\"weeklynut\" value=0.0 name='weeklynut' step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>Date Of Route:</b></td>
+			<td><b>Start Of Route:</b></td>
 			<td><input type=\"date\" class=\"date_route\" name='date_route'></td>
 		</tr>";
 		for($i = 0; $i < 364; $i++){
