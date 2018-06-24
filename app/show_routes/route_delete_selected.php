@@ -2,7 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
 
@@ -28,7 +28,7 @@ if(isset($_GET['selectedid'])){
 			<td><input style=\"background-color: lightgrey;\" readonly type='text' class=\"numberoftruck\" name='numberoftruck'></td>
 		</tr>";	
 	echo "<tr>
-			<td><b>Date of Created Route:</b></td>
+			<td><b>Start of Route:</b></td>
 			<td><input style=\"background-color: lightgrey;\" readonly type='text' class=\"created_date\" name='created_date'></td>
 		</tr>";	
 	echo "<tr>
