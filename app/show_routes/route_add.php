@@ -1,5 +1,5 @@
 <?php
-include '../header.html';
+include '../header_nologout.html';
 include '../session.php';
 include 'access_control.php';
 echo "<script src=\"../js/jquery.min.js\"></script>";
@@ -31,7 +31,7 @@ echo "<table>
 			<td colspan=2><h3>DETAIL ROUTE</h3></td>
 		</tr>
 		<tr>
-			<td><b>Beginning Date:</b></td>
+			<td><b>Start of Route:</b></td>
 			<td><input type=\"date\" class=\"beging_route\" name='beging_route'></td>
 		</tr>
 	</table>";
