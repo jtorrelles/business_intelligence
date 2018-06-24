@@ -2,7 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 $description = "Accessed SHOWS MANAGEMENT Module";
 include '../security_log.php';
 // Check connection
