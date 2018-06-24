@@ -10,10 +10,10 @@ if ($conn->connect_error) {
 }
 $current_user = $_SESSION['login_user'];
 $template_name = $_POST['template_name'];
-$sql = "INSERT INTO templates(moduleid,name,user) VALUES ('1','$template_name','$current_user');";
+$sql = "INSERT INTO templates(moduleid,name,user) VALUES ('1',\"$template_name\",'$current_user');";
 $result = $conn->query($sql);
 
-$sql = "SELECT id FROM templates WHERE name = '$template_name';";
+$sql = "SELECT id FROM templates WHERE name = \"$template_name\";";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 
