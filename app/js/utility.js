@@ -40,8 +40,8 @@ function getCountries() {
             $(".countries").prop("disabled",false);
 
             //Sel United States
-            $(".countries").val("231");
-            getStates(231);
+            //$(".countries").val("231");
+            //getStates(231);
 
             getVenuesFilters($("#countryId").val(),0,0);
         }
