@@ -2,7 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 $description = "Added Venue: ".$_POST['name_venue'];
 include '../security_log.php';
 if ($conn->connect_error) {
