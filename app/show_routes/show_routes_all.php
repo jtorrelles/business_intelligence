@@ -9,6 +9,8 @@ include '../security_log.php';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+header('Cache-Control: no cache');
+session_cache_limiter("private_no_expire");
 echo "
 <html>
 <head>
@@ -63,15 +65,16 @@ echo "<form action=\"show_routes_all.php\" method=\"POST\">";
 echo "</form>";
 
 echo "<br>";
-echo "<p><a href=\"javascript:void(window.open('route_add.php','Add New Rote','width=650,height=450,top=100'))\">Add a New Route</a>
-	-
+echo "<p><a href=\"javascript:void(window.open('route_add.php','Add New Rote','width=650,height=450,top=100'))\" hidden>Add a New Route</a>
 	<a href=\"javascript:void(window.open('upload_routes.php','Upload  Route','width=650,height=450,top=100'))\">Upload a New Route</a></p><br>";
 
 if (isset($_POST['show']))
 {
 	$selectedid = $_POST['show'];
 
-	$sql = "SELECT ro.ROUTESID as idroute, 
+	$sql = "SELECT ro.ROUTESID as idroute,
+				MIN(rod.presentation_date) AS start_date,
+				MAX(rod.presentation_date) AS end_date,
 				sw.ShowNAME as showname, 
 				ro.TRUCKS as numberoftrucks, 
 				DATE_FORMAT(ro.DATE_OF_ROUTE,'%m/%d/%Y') as dateroute, 
@@ -87,19 +90,17 @@ if (isset($_POST['show']))
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
 		echo "<table id=\"routesoffshows\">
-		<col width=14.28%>
-		<col width=14.28%>
-		<col width=14.28%>
-		<col width=14.28%>
-		<col width=14.28%>
-		<col width=14.28%>
+		<col width=20%>
+		<col width=20%>
+		<col width=20%>
+		<col width=20%>
+		<col width=20%>
 	    <tr>
 		<th>Show Name</th>
-		<th>Number Of Trucks</th>
-		<th>Date</th>
-		<th>Weekly NUT</th>
-		<th>Team Drive Estimate</th>
-		<th>Options</th>
+		<th>Start Date</th>
+		<th>End Date</th>
+		<th>File Name of XLSX</th>
+		<th style='text-align:center;'>OPTIONS</th>
 		</tr>";
 	    // output data of each row
 		$total_records = 0;
@@ -111,15 +112,16 @@ if (isset($_POST['show']))
 			echo 
 			"<tr>
 				<td>". $row["showname"]. "</td>
-				<td>". $row["numberoftrucks"]."</td>
-				<td>". $row["dateroute"]. "</td>
-				<td>$ ".number_format($row["routenut"],2)."</td>
-				<td>". $row["team_drive_cost"]."</td>
+				<td>". $row["start_date"]."</td>
+				<td>". $row["end_date"]. "</td>
+				<td></td>
 				<td align=center> 
 				<a href=\"javascript:void(window.open('route_modify_selected.php?selectedid=".$row['idroute']."','Modify Selected','width=480,height=530,top=100'))\"><img src='../images/modify.png' width=20></a> 
-				<a href=\"javascript:void(window.open('route_delete_selected.php?selectedid=".$row['idroute']."','Delete Selected','width=480,height=530,top=100'))\" hidden ><img src='../images/delete.png' width=20></a> 
-				<a href=routes_details_all.php?selectedid=$id><img src='../images/route_details.png' width=20></a></td>
-			</tr>";
+				<a href=routes_details_all.php?selectedid=$id><img src='../images/route_details.png' width=20></a>";
+				if ($_SESSION['user_profile'] == 'admin') {
+					echo "   <a href=\"javascript:void(window.open('route_delete_selected.php?selectedid=".$row['idroute']."','Delete Selected','width=480,height=530,top=100'))\"><img src='../images/delete.png' width=20></a>";
+				}
+			echo "</td></tr>";
 	    }
 		echo "</table>";
 		echo "<br>";
