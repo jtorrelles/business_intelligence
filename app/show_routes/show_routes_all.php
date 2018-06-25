@@ -79,6 +79,7 @@ if (isset($_POST['show']))
 				ro.TRUCKS as numberoftrucks, 
 				DATE_FORMAT(ro.DATE_OF_ROUTE,'%m/%d/%Y') as dateroute, 
 				ro.WEEKLY_NUT as routenut, 
+				ro.XLSX_FILENAME as filename,
 				SUM(ro.TRUCKS * rod.MILEAGE) as team_drive_cost 
 		FROM routes ro, shows sw, routes_det rod 
 		WHERE ro.SHOWID = $selectedid 
@@ -114,7 +115,7 @@ if (isset($_POST['show']))
 				<td>". $row["showname"]. "</td>
 				<td>". $row["start_date"]."</td>
 				<td>". $row["end_date"]. "</td>
-				<td></td>
+				<td>". $row["filename"]. "</td>
 				<td align=center> 
 				<a href=\"javascript:void(window.open('route_modify_selected.php?selectedid=".$row['idroute']."','Modify Selected','width=480,height=530,top=100'))\"><img src='../images/modify.png' width=20></a> 
 				<a href=routes_details_all.php?selectedid=$id><img src='../images/route_details.png' width=20></a>";

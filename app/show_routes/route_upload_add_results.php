@@ -11,6 +11,7 @@ if ($conn->connect_error) {
 	$weeklynut = $_POST['weeklynut'];;
 	$date_route = $_POST['date_route'];
     $fday = $_POST['presentation_date0'];
+	$xlsx_filename = $_POST['file_name'];
 
 $sql1 = "SELECT ro.ROUTESID as ROUTESID
          FROM routes ro, routes_det det 
@@ -59,8 +60,8 @@ if(isset($id)){
     } 
 }      
 
-$sql3 = "INSERT INTO routes (SHOWID,TRUCKS,DATE_OF_ROUTE,WEEKLY_NUT)
-				VALUES ($showid, $numberoftrucks, '$date_route', $weeklynut)";
+$sql3 = "INSERT INTO routes (SHOWID,TRUCKS,DATE_OF_ROUTE,WEEKLY_NUT,XLSX_FILENAME)
+				VALUES ($showid, $numberoftrucks, '$date_route', $weeklynut, \"$xlsx_filename\")";
 
 if($conn->query($sql3) === TRUE) {
 
