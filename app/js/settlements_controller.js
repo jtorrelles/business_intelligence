@@ -275,6 +275,8 @@ function findData(id){
             $('.comps').val(data['result'].se_10);
             $(".total_attendance").val(data['result'].se_11);
             $('.capacity').val(data['result'].se_12);
+            $('.subs_sales').val(data['result'].se_12_1);
+            $('.phone_sales').val(data['result'].se_12_2);
             $('.internet_sales').val(data['result'].se_13);
             $('.credit_card_sales').val(data['result'].se_14);
             $('.remote_outlet_sales').val(data['result'].se_15);
@@ -482,6 +484,8 @@ function getUploadFile(){
             $('.comps').val(Math.round(data_response['result'].se_10 * 100) / 100);
             $(".total_attendance").val(Math.round(data_response['result'].se_11 * 100) / 100);
             $('.capacity').val(Math.round(data_response['result'].se_12 * 100) / 100);
+            $('.subs_sales').val(Math.round(data_response['result'].se_12_1 * 100) / 100);
+            $('.phone_sales').val(Math.round(data_response['result'].se_12_2 * 100) / 100);
             $('.internet_sales').val(Math.round(data_response['result'].se_13 * 100) / 100);
             $('.credit_card_sales').val(Math.round(data_response['result'].se_14 * 100) / 100);
             $('.remote_outlet_sales').val(Math.round(data_response['result'].se_15 * 100) / 100);
