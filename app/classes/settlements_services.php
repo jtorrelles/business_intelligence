@@ -34,6 +34,26 @@ class settlementsServices extends dbconfig {
         return $data;
      }
    }
+   
+ // Fetch all Presenters list
+   public static function getPresenters() {
+     try {
+       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y' ORDER BY presentername ASC";
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("Presenter not found.");
+       }
+       $res = array();
+       while($resultSet = mysqli_fetch_assoc($result)) {
+        $res[$resultSet['presenterid']] = $resultSet['presentername'];
+       }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Presenters fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }   
 
  // Fetch all countries list
    public static function getVenues() {
@@ -179,7 +199,7 @@ class settlementsServices extends dbconfig {
    // Fetch all countries list
    public static function getDataOfSettlements($settlementID) {
      try {
-       $query = "SELECT se.ID, se.SHOWID, sw.ShowNAME, se.CITYID, se.VENUEID, ve.VenueNAME, 
+       $query = "SELECT se.ID, se.SHOWID, sw.ShowNAME, se.CITYID, se.VENUEID, se.PresenterID, pr.PresenterNAME, ve.VenueNAME, 
                         OPENINGDATE,CLOSINGDATE,DROPCOUNT,PAIDATTENDANCE,COMPS,TOTALATTENDANCE, 
                         CAPACITY,GROSSSUBSCRIPTIONSALES,GROSSPHONESALES,GROSSINTERNETSALES,
                         GROSSCREDITCARDSALES,GROSSREMOTEOUTLETSALES,GROSSSINGLETIX, 
@@ -222,10 +242,11 @@ class settlementsServices extends dbconfig {
                         PRESENTEROVERAGETOPRESENTER,TOTALCOMPANYSHARE,LESSDIRECTCOMPANYCHARGES,ADJUSTEDCOMPANYSHARE,
                         TOTALPRESENTERSHARE, PRESENTERFACILITYFEE, ADJUSTEDPRESENTERSHARE,NOTES, 
                         ci.`name` as city, st.`name` as state, co.sortname as country
-                FROM settlements se, shows sw, venues ve, cities ci, states st, countries co 
+                FROM settlements se, shows sw, presenters pr, venues ve, cities ci, states st, countries co 
                 WHERE se.ID = $settlementID  
                 AND se.SHOWID = sw.ShowID 
-                AND se.VENUEID = ve.VenueID 
+                AND se.VENUEID = ve.VenueID
+				AND se.PresenterID = pr.PresenterID
                 AND se.CITYID = ci.id 
                 AND ci.state_id = st.id 
                 AND st.country_id = co.id";
@@ -417,6 +438,8 @@ class settlementsServices extends dbconfig {
        $res["se_176"] = $resultSet['city'];
        $res["se_177"] = $resultSet['state'];
        $res["se_178"] = $resultSet['country'];
+	   $res["se_179"] = $resultSet['PresenterNAME'];
+	   $res["se_180"] = $resultSet['PresenterID'];
 
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Settlement fetched successfully.", 'result'=>$res);
        
