@@ -472,7 +472,7 @@ countryNAME: ".$res["country_name"];
                     $Presentation_date = $objPHPExcel->getSheet(1)->getCell("D".$id)->getValue();
                     $PD[$i] = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Presentation_date));  
                     $Holiday[$i] = $objPHPExcel->getSheet(1)->getCell("E".$id)->getValue();
-                    $City[$i] = $objPHPExcel->getSheet(1)->getCell("G".$id)->getValue();
+                    $City[$i] = $objPHPExcel->getSheet(1)->getCell("G".$id)->getCalculatedValue();
                     $Repeat[$i] = $objPHPExcel->getSheet(1)->getCell("H".$id)->getValue();
                     $Mileage[$i] = $objPHPExcel->getSheet(1)->getCell("I".$id)->getValue();
                     $Book_notes[$i] = $objPHPExcel->getSheet(1)->getCell("K".$id)->getValue();
