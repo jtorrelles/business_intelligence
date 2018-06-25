@@ -63,7 +63,7 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
         <div><a href=\"../app/shows/shows_all.php\">SHOWS</a></div>
         <div><a href=\"../app/presenters/presenters_all.php\">PRESENTERS</a></div>
         <div><a href=\"../app/venues/venues_all.php\">VENUES</a></div>
-	<div><a href=\"../app/templates/templates_all.php\">CUSTOM REPORTS</a></div>
+	<div><a href=\"../app/templates/templates_all.php\">REPORT TEMPLATES</a></div>
 	<div><a href=\"../app/users/security_management.php\">ADMINISTRATION</a></div>		
     </div>
 </div>
@@ -96,7 +96,7 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
         <div><a href=\"../app/shows/shows_all.php\">SHOWS</a></div>
         <div><a href=\"../app/presenters/presenters_all.php\">PRESENTERS</a></div>
         <div><a href=\"../app/venues/venues_all.php\">VENUES</a></div>
-	<div><a href=\"../app/templates/templates_all.php\">CUSTOM REPORTS</a></div>
+	<div><a href=\"../app/templates/templates_all.php\">REPORT TEMPLATES</a></div>
     </div>
 </div>
 </div>
@@ -104,11 +104,12 @@ echo "<style type='text/css' media='all'>@import 'css/style.css';</style>
 <div id='report'>
 <div id=\"plans\" class=\"clearfix\">
     <div class=\"plan\" id=\"border-left\">
-        <div class=\"name\">BUSINESS<BR>INTELLIGENCE</div>
+        <div class=\"name\">REPORTS</div>
 		<div><hr></div>
         <div><a href=\"../app/reports/all_routes_view.php\">ROUTING SIDE BY SIDE</a></div>
         <div><a href=\"../app/reports/route_conflicts_view.php\">ROUTE CONFLICTS</a></div>
         <div><a href=\"../app/reports/market_history_view.php\">MARKET HISTORY</a></div>
+	<div><a href=\"../app/templates/templates_all.php\">REPORT TEMPLATES</a></div>
         <div><a href=\"../app/reports/sales_sumary_view.php\">SALES SUMMARY</a></div>
 	<div><a href=\"../app/reports/breakeven_view.php\">BREAKEVEN ANALYSIS</a></div>
 	<div><a href=\"../app/reports/played_markets_view.php\">PLAYED MARKETS</a></div>
