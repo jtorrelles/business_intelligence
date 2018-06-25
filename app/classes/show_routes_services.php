@@ -427,6 +427,7 @@ countryNAME: ".$res["country_name"];
         $target_dir = "../uploads/";
         $imageFileType = strtolower(pathinfo($dataFileName['name'],PATHINFO_EXTENSION));
         $target_file = $target_dir . basename($dataFileName['name']);
+		$file_name = basename($dataFileName['name']);
 
         //Verify extension File
         if($imageFileType != "xlsx") {
@@ -519,6 +520,7 @@ countryNAME: ".$res["country_name"];
                   $res["numberoftrucks"] = $resultSet['ShowNUMBER_OF_TRUCKS'];
                   $res["weeklynut"] = $resultSet['ShowWEEKLY_NUT'];
                   $res["date_route"] = $DR;
+				  $res["file_name"] = $file_name;
 
                   for($i = 0; $i < 364; $i++){
                     $res["presentation_date" . $i] = $PD[$i];
