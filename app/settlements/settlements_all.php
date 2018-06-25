@@ -33,7 +33,7 @@ echo "
 	padding: 8px;
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #000066;
     color: white;
 }
@@ -104,14 +104,20 @@ $sql = "SELECT 	se.ID,
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<table id=\"settlements\">
-	<col width=14.28%>
-    <col width=14.28%>
-	<col width=14.28%>
-	<col width=14.28%>
-	<col width=14.28%>
-	<col width=14.28%>
-	<col width=14.28%>
+	echo "<table id=\"settlements\" class=\"sortable\">
+	<col width=10%>
+	<col width=13%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
+	<col width=7%>
     <tr>
 	<th>Show Name</th>
 	<th>Venue</th>
