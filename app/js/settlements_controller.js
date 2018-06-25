@@ -232,6 +232,34 @@ function getVenues() {
     }); 
 }
 
+function getPresenters() {
+    var call = new ajaxCall();
+    var url = '../routes/settlements_route.php?type=getPresenters';
+    var method = "GET";
+    var data = {};
+    $('.presenters').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.presenters').find("option:eq(0)").html("Select Presenters");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.presenters').append(option);
+            });
+            $(".presenters").prop("disabled",false);
+
+            //set venue value
+            if(setPresenterID != 0){ 
+                $(".presenters").val(setPresenterID);
+            }
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+}
+
+
 function getCityOfVenues(venueId) {
     var call = new ajaxCall();
     var url = '../routes/settlements_route.php?type=getCityOfVenues&venueId=' + venueId;
@@ -267,7 +295,7 @@ function findData(id){
             $('.id').val(data['result'].se_1);
             $('.show_name').val(data['result'].se_3);
             $('.venue_name').val(data['result'].se_5);
-
+            
             $('.opening_date').val(data['result'].se_6);
             $('.closing_date').val(data['result'].se_7);
             $('.drop_count').val(data['result'].se_8);
@@ -443,16 +471,19 @@ function findData(id){
             $(".cityname").prop("value",data['result'].se_176);
             $(".statename").prop("value",data['result'].se_177);
             $(".cityid").prop("value",data['result'].se_175);
-            
+			$('.presentername').val(data['result'].se_179);
+			            
             $(".cityname").prop("disabled",true);
             $(".statename").prop("disabled",true);            
 
             setShowID = data['result'].se_2;
             setVenueID = data['result'].se_4;
+		    setPresenterID = data['result'].se_180;
 
             //getGlobalLocation(data['result'].se_175);
             getVenues(); 
             getShows();
+			getPresenters();
 
             $("#datasettlements").show();
         }
@@ -667,6 +698,7 @@ function getUploadFile(){
 function onloadManagement(){
     getShows();
     getVenues();
+	getPresenters();
 }
 
 $(function() {
