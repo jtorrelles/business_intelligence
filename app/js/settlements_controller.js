@@ -4,6 +4,7 @@ var setStateId = 0;
 var setCountryId = 0;
 var setShowID = 0;
 var setVenueID = 0;
+var setPresenterID = 0;
 
 function ajaxCall() {
     this.send = function(data, url, method, success, type) {
