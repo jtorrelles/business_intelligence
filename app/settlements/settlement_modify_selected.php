@@ -2,7 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/settlements_controller.js\"></script>";
 
@@ -88,6 +88,14 @@ if(isset($_GET['selectedid'])){
 			<td><b>Capacity:</b></td>
 			<td><input type='number' class=\"capacity\" value=0.0 step=0.01 name='capacity'></td>
 		</tr>
+		<tr>
+			<td><b>Gross Subscription Sales:</b></td>
+			<td><input type='number' class=\"subs_sales\" value=0.0 step=0.01 name='subs_sales'></td>
+		</tr>
+		<tr>
+			<td><b>Gross Phone Sales:</b></td>
+			<td><input type='number' class=\"phone_sales\" value=0.0 step=0.01 name='phone_sales'></td>
+		</tr>		
 		<tr>
 			<td><b>Gross Internet Sales:</b></td>
 			<td><input type='number' class=\"internet_sales\" value=0.0 step=0.01 name='internet_sales'></td>

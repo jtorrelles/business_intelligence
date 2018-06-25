@@ -2,7 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
+include '../header_nologout.html';
 
 	if ($conn->connect_error) {
 	    die("Connection failed: " . $conn->connect_error);
@@ -19,6 +19,8 @@ include '../header.html';
 	$comps = $_POST['comps'];
 	$total_attendance = $_POST['total_attendance'];
 	$capacity = $_POST['capacity'];
+	$subs_sales = $_POST['subs_sales'];
+	$phone_sales = $_POST['phone_sales'];
 	$internet_sales = $_POST['internet_sales'];
 	$credit_card_sales = $_POST['credit_card_sales'];	
 	$remote_outlet_sales = $_POST['remote_outlet_sales'];
@@ -186,6 +188,7 @@ $sql = "UPDATE settlements
 			SET  SHOWID = $showid, CITYID = $cityid, VENUEID = $venueid, OPENINGDATE = '$openingdate', 
 				CLOSINGDATE = '$closingdate', DROPCOUNT = $drop_count, PAIDATTENDANCE = $paid_attendance, 
 				COMPS = $comps, TOTALATTENDANCE = $total_attendance, CAPACITY = $capacity, 
+				GROSSSUBSCRIPTIONSALES = $subs_sales, GROSSPHONESALES = $phone_sales, 
 				GROSSINTERNETSALES = $internet_sales, GROSSCREDITCARDSALES = $credit_card_sales, 
 				GROSSREMOTEOUTLETSALES = $remote_outlet_sales, GROSSSINGLETIX = $single_tix, 
 				GROSSGROUPSALES1 = $group_sales_1, GROSSGROUPSALES2 = $group_sales_2, 
@@ -266,8 +269,6 @@ $sql = "UPDATE settlements
 
 	if ($conn->query($sql) === TRUE) {
 		echo "<p>Settlement Modified Successfully!</p>";
-		$description = "Modified Settlement for Show: ".$_POST['show_name']." on Opening Date: ".$_POST['opening_date']." and Closing Date: ".$_POST['closing_date']." using query: ".str_replace("'"," ",$sql);
-		include '../security_log.php';
 	} else {
 	    echo "Error modifying record: " . $conn->error;
 	}

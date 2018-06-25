@@ -45,7 +45,7 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/settlements_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
-echo "<h1>SETTLEMENTS MANAGEMENT:</h1>";
+echo "<h1>Settlements Administration:</h1>";
 $selectedid = '0';
 $selectedstate = '0';
 

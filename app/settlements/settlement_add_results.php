@@ -2,9 +2,7 @@
 require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
-include '../header.html';
-$description = "Added a Settlement for: ".$_POST['show_name']." on date: ".$_POST['opening_date'];
-include '../security_log.php';
+include '../header_nologout.html';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
@@ -19,6 +17,8 @@ if ($conn->connect_error) {
 	$comps = $_POST['comps'];
 	$total_attendance = $_POST['total_attendance'];
 	$capacity = $_POST['capacity'];
+	$subs_sales = $_POST['subs_sales'];
+	$phone_sales = $_POST['phone_sales'];
 	$internet_sales = $_POST['internet_sales'];
 	$credit_card_sales = $_POST['credit_card_sales'];	
 	$remote_outlet_sales = $_POST['remote_outlet_sales'];
@@ -184,7 +184,8 @@ if ($conn->connect_error) {
 	$notes = $_POST['notes'];
 
 $sql = "INSERT INTO settlements (SHOWID,CITYID,VENUEID,OPENINGDATE,CLOSINGDATE,DROPCOUNT,PAIDATTENDANCE,
-							COMPS,TOTALATTENDANCE,CAPACITY,GROSSINTERNETSALES,GROSSCREDITCARDSALES,
+							COMPS,TOTALATTENDANCE,CAPACITY,GROSSSUBSCRIPTIONSALES, 
+							GROSSPHONESALES,GROSSINTERNETSALES,GROSSCREDITCARDSALES,
 							GROSSREMOTEOUTLETSALES,GROSSSINGLETIX,GROSSGROUPSALES1,GROSSGROUPSALES2,
 							GROSSGOLDSTARPERCENTAGE,GROSSGROUPONPERCENTAGE,GROSSTRAVELOOPERCENTAGE,
 							GROSSLIVINGSOCIALPERCENTAGE,GROSSOTHERPERCENTAGE,GROSSOTHERAMOUNT,
@@ -232,7 +233,8 @@ $sql = "INSERT INTO settlements (SHOWID,CITYID,VENUEID,OPENINGDATE,CLOSINGDATE,D
 							ADJUSTEDPRESENTERSHARE,NOTES) 
 					VALUES ($showid,$cityid,$venueid,'$openingdate','$closingdate',$drop_count,$paid_attendance,
 							$comps,
-							$total_attendance,$capacity,$internet_sales,$credit_card_sales,$remote_outlet_sales,
+							$total_attendance,$capacity,$subs_sales,$phone_sales,$internet_sales,$credit_card_sales,
+							$remote_outlet_sales,
 							$single_tix,$group_sales_1,$group_sales_2,$goldstar,$groupon,$traveloo,$living_social,
 							$other_percentage,$other_amount,$sub_discount,$group1_discount,$group2_discount,
 							$total_discount,$comp_ticket_cost,$demand_pricing,$number_performances,$top_ticket_price,
