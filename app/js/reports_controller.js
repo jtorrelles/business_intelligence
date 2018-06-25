@@ -224,9 +224,9 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     }); 
 }
 
-function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {    
+function getMarketHistory(inid,endd,presenters,country,state,city,fields,shows,venues) {    
     var call = new ajaxCall();
-    var url = '../routes/reports_route.php?type=getMarketHistory&inid=' + inid + '&endd=' + endd + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&shows=' + shows + '&venues=' + venues;
+    var url = '../routes/reports_route.php?type=getMarketHistory&inid=' + inid + '&endd=' + endd + '&presenters=' + presenters + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&shows=' + shows + '&venues=' + venues;
     var method = "GET";
     var data = {};
     var counter1 = 0;
@@ -237,6 +237,7 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
     var hcolumns = '<tr><th>SHOW NAME</th>' +
                    '<th>OPENING DATE</th>' + 
                    '<th>CLOSING DATE</th>' +
+				   '<th>PRESENTER</th>' +
                    '<th>STATE</th>' +
                    '<th>CITY</th>' +                    
                    '<th>VENUE NAME</th>' +
@@ -270,6 +271,7 @@ function getMarketHistory(inid,endd,country,state,city,fields,shows,venues) {
                 hfiles = hfiles + '<td>' + data.result['body'][counter1].showname + '</td>' + 
                                   '<td>' + data.result['body'][counter1].openingdate + '</td>' + 
                                   '<td>' + data.result['body'][counter1].closingdate + '</td>' + 
+								  '<td>' + data.result['body'][counter1].presentername + '</td>' + 
                                   '<td>' + data.result['body'][counter1].state + '</td>' + 
                                   '<td>' + data.result['body'][counter1].city + '</td>' + 
                                   '<td>' + data.result['body'][counter1].venuename + '</td>' +
@@ -620,12 +622,13 @@ $(function() {
         var countryId = $("#countryId").val();
         var stateId = $("#stateId").val();
         var cityId = $("#cityId").val();
-        var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
+		var finicio = new Date($(".dateini").val().replace(/-/, '/').replace(/-/, '/'));
         var ffin = new Date($(".dateend").val().replace(/-/, '/').replace(/-/, '/'));
         var ftoday = new Date(globalDate);
         var shows = $("#shows").multipleSelect("getSelects");
         var fields = $("#fields").multipleSelect("getSelects");
         var venues = $("#venues").multipleSelect("getSelects");
+		var presenters = $("#presenters").multipleSelect("getSelects");
 
         if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
             alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
@@ -653,7 +656,7 @@ $(function() {
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
 
-        getMarketHistory(finicio,ffin,countryId,stateId,cityId,fields,shows,venues)
+        getMarketHistory(finicio,ffin,presenters,countryId,stateId,cityId,fields,shows,venues)
     });
 
     $("#btnFindSalesSumary").click(function (ev) {

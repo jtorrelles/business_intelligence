@@ -218,6 +218,32 @@ function getVenues() {
     }); 
 };
 
+function getPresenters() {
+    var call = new ajaxCall();
+    var url = '../routes/settlements_route.php?type=getPresenters';
+    var method = "GET";
+    var data = {};
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+            $('#presenters').find("option:eq(0)").remove();
+            $.each(data['result'], function(key, val) {
+                $opt = $("<option />", {
+                    value: key,
+                    text: val
+                });
+                $('#presenters').append($opt);
+            });
+            $('#presenters').multipleSelect("refresh");
+            $("#presenters").remove("option[value='0']");
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
+
+
+
 function getCategories() {
     var call = new ajaxCall();
     var url = '../routes/categories_route.php?type=getCategories';
@@ -333,6 +359,13 @@ $(function() {
         checkAll:false,
         width: '100%'
     }); 
+	
+    $('#presenters').multipleSelect({
+        placeholder: "Select Presenters",
+        filter:true,
+        checkAll:false,
+        width: '100%'
+    }); 	
 
     $('#categories').multipleSelect({
         placeholder: "Select Categories",
@@ -444,6 +477,7 @@ $(function() {
         $('#categories').multipleSelect("uncheckAll");
         $('#shows').multipleSelect("uncheckAll");
         $('#fields').multipleSelect("uncheckAll");
+		$('#presenters').multipleSelect("uncheckAll");
 
     });
 
