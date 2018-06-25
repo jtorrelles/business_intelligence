@@ -116,8 +116,12 @@ if ($conn->connect_error) {
 				</select>
 			</td>
 			<td>
+				<b>Template:</b>
 			</td>
 			<td>
+				<select name="template" class="templates" id="templateId">
+					<option value="">Select Template</option>
+				</select>
 			</td>
 			<td>
 			</td>
@@ -302,12 +306,8 @@ if ($conn->connect_error) {
 				</select>
 			</td>
 			<td>
-				<b>Template:</b>
 			</td>
 			<td>
-				<select name="template" class="templates" id="templateId">
-					<option value="">Select Template</option>
-				</select>
 			</td>
 			<td>
 			</td>
