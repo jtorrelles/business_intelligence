@@ -282,7 +282,7 @@ class reportsServices extends dbconfig {
     }
   }
 
-  public static function getMarketHistory($inid,$endd,$country,$state,$city,$fields,$shows,$venues){
+  public static function getMarketHistory($inid,$endd,$presenters,$country,$state,$city,$fields,$shows,$venues){
     try {
 
       $UTC = new DateTimeZone("UTC"); 
@@ -314,6 +314,12 @@ class reportsServices extends dbconfig {
       }else{
         $venues = "AND se.venueid in ($venues) ";
       }
+	  
+      if($presenters==""){
+        $presenters = "";
+      }else{
+        $presenters = "AND se.presenterid in ($presenters) ";
+      }	  
 
       $query = "SELECT column_name
                 FROM information_schema.COLUMNS
@@ -336,6 +342,7 @@ class reportsServices extends dbconfig {
                         ci.name as city,  
                         openingdate,
                         closingdate,
+						pr.presentername,
                         IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as fopeningdate,
                         IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as fclosingdate,
                         venuename,
@@ -352,11 +359,13 @@ class reportsServices extends dbconfig {
                         $fields 
                    FROM settlements se, 
                         shows sh,
+						presenters pr,
                         cities ci,
                         states sta,
                         countries co,
                         venues ve
                   WHERE se.showid = sh.showid
+				    AND se.PresenterID = pr.PresenterID
                     AND se.cityid = ci.id
                     AND ci.state_id = sta.id
                     AND sta.country_id = co.id
@@ -366,7 +375,7 @@ class reportsServices extends dbconfig {
                     AND ci.id like ('$city')
                     AND openingdate >= $inid
                     AND openingdate <= $endd
-                    $shows $venues
+                    $shows $venues $presenters
                   ORDER BY openingdate DESC";
 
       $result2 = dbconfig::run($query2);
@@ -380,6 +389,7 @@ class reportsServices extends dbconfig {
         $data2[$y]['showname'] = $resultSet2['showname'];
         $data2[$y]['openingdate'] = $resultSet2['fopeningdate'];
         $data2[$y]['closingdate'] = $resultSet2['fclosingdate'];
+		$data2[$y]['presentername'] = $resultSet2['presentername'];
         $data2[$y]['state'] = $resultSet2['state'];
         $data2[$y]['city'] = $resultSet2['city'];        
         $data2[$y]['venuename'] = $resultSet2['venuename'];

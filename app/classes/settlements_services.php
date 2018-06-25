@@ -38,7 +38,7 @@ class settlementsServices extends dbconfig {
  // Fetch all Presenters list
    public static function getPresenters() {
      try {
-       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y' ORDER BY presentername ASC";
+       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y'";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Presenter not found.");
