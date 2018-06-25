@@ -118,7 +118,7 @@ class settlementsServices extends dbconfig {
     // Fetch all cities list by state id
   public static function getCities($stateId) {
      try {
-       $query = "SELECT id, name FROM cities WHERE state_id=".$stateId;
+       $query = "SELECT id, name FROM cities WHERE id IN (select settlements.CITYID from settlements GROUP BY settlements.CITYID) AND state_id=".$stateId;
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("City not found.");
