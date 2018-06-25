@@ -138,6 +138,13 @@
 	<div style="display:none" class="contracts_data" id="contracts_data">
 		<h3>Approved Deals & Terms (Contracts):</h3>
 		<table style="width:100%" class="tablecss">
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
 			<tr>
 				<th>Show Name</th>
 				<th>Opening Date</th>
@@ -154,6 +161,13 @@
 	<div style="display:none" class="routes_data" id="routes_data">
 		<h3>Routes:</h3>
 		<table style="width:100%" class="tablecss">
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>			
 			<tr>
 				<th>Show Name</th>
 				<th>Opening Date</th>
@@ -170,6 +184,13 @@
 	<div style="display:none" class="settements_data" id="settements_data">
 		<h3>Recent Settlements (History Data):</h3>
 		<table style="width:100%" class="tablecss">
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>
+		<col width=14.28%>			
 			<tr>
 				<th>Show Name</th>
 				<th>Opening Date</th>
