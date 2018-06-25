@@ -355,30 +355,20 @@ class reportsServices extends dbconfig {
                         ci.name as city,  
                         openingdate,
                         closingdate,
-            pr.presentername,
+                        pr.presentername,
                         IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as fopeningdate,
                         IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as fclosingdate,
-                        venuename,
-                        numberofperformances as perf,
-                        grossboxofficepotential as gross,
-                        grossboxofficereceipts as agross,
-                        nagbor as nagbor,
-                        grosssubscriptionsales as subs,
-                        totalcompanyguarantee as guarantee,
-                        totalcompanyroyalty as royalty,
-                        totalcompanyoverageamount as overage,
-                        advertisingactual as advertising,
-                        localfixedactual as lfe
+                        venuename
                         $fields 
                    FROM settlements se, 
                         shows sh,
-            presenters pr,
+                        presenters pr,
                         cities ci,
                         states sta,
                         countries co,
                         venues ve
                   WHERE se.showid = sh.showid
-            AND se.PresenterID = pr.PresenterID
+                    AND se.PresenterID = pr.PresenterID
                     AND se.cityid = ci.id
                     AND ci.state_id = sta.id
                     AND sta.country_id = co.id
@@ -406,16 +396,6 @@ class reportsServices extends dbconfig {
         $data2[$y]['state'] = $resultSet2['state'];
         $data2[$y]['city'] = $resultSet2['city'];        
         $data2[$y]['venuename'] = $resultSet2['venuename'];
-        $data2[$y]['perf'] = $resultSet2['perf'];
-        $data2[$y]['gross'] = $resultSet2['gross'];
-        $data2[$y]['agross'] = $resultSet2['agross'];
-        $data2[$y]['nagbor'] = $resultSet2['nagbor'];
-        $data2[$y]['subs'] = $resultSet2['subs'];
-        $data2[$y]['guarantee'] = $resultSet2['guarantee'];
-        $data2[$y]['royalty'] = $resultSet2['royalty'];
-        $data2[$y]['overage'] = $resultSet2['overage'];
-        $data2[$y]['advertising'] = $resultSet2['advertising'];
-        $data2[$y]['lfe'] = $resultSet2['lfe'];
         $z = 0;
         while($z < $x) {
           $col = $data[$z]["column"];

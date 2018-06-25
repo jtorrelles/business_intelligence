@@ -153,6 +153,7 @@ if ($conn->connect_error) {
 					<option value="'COMPS'"> COMPS </option>
 					<option value="'TOTALATTENDANCE'"> TOTAL ATTENDANCE </option>
 					<option value="'CAPACITY'"> CAPACITY </option>
+					<option value="'GROSSSUBSCRIPTIONSALES'"> GROSS SUBSCRIPTION SALES </option>
 					<option value="'GROSSPHONESALES'"> GROSS PHONE SALES </option>
 					<option value="'GROSSINTERNETSALES'"> GROSS INTERNET SALES </option>
 					<option value="'GROSSCREDITCARDSALES'"> GROSS CREDIT CARD SALES </option>
@@ -172,8 +173,11 @@ if ($conn->connect_error) {
 					<option value="'TOTALDISCOUNTS'"> TOTAL DISCOUNTS </option>
 					<option value="'TTLCOMPTICKETCOST'"> TOTAL COMP TICKET COST </option>
 					<option value="'DEMANDPRICING'"> DEMAND PRICING AMOUNT </option>
+					<option value="'NUMBEROFPERFORMANCES'"> NUMBER OF PERFORMANCES </option>
 					<option value="'TOPTICKETPRICE'"> TOP TICKET PRICE </option>
 					<option value="'USCANADIANEXCHANGERATE'"> US/CANADIAN EXCHANGE RATE </option>
+					<option value="'GROSSBOXOFFICEPOTENTIAL'"> GROSS BOX OFFICE POTENTIAL </option>
+					<option value="'GROSSBOXOFFICERECEIPTS'"> GROSS BOX OFFICE RECEIPTS </option>
 					<option value="'GROSSBOXOFFICEPERCENTAGEOFPOTENTIAL'"> GROSS BOX OFFICE PERCENTAGE OF POTENTIAL </option>
 					<option value="'TAX1PERCENTAGE'"> TAX 1 PERCENTAGE </option>
 					<option value="'TAX1AMOUNT'"> TAX 1 AMOUNT </option>
@@ -192,7 +196,7 @@ if ($conn->connect_error) {
 					<option value="'REMOTESALESCOMMPERCENTAGE'"> REMOTE SALES COMMISSION PERCENTAGE </option>
 					<option value="'REMOTESALESCOMMAMOUNT'"> REMOTE SALES COMMISSION AMOUNT </option>
 					<option value="'SINGLETIXPERCENTAGE'"> SINGLE TIX PERCENTAGE </option>
-					<option value="'SINGLETIXAMOUNT'"> SINGLE TIX AMOUNT</option>
+					<option value="'SINGLETIXAMOUNT'"> SINGLE TIX AMOUNT </option>
 					<option value="'GROUPSALESCOMM1PERCENTAGE'"> GROUP SALES COMMISSION 1 PERCENTAGE </option>
 					<option value="'GROUPSALESCOMM1AMOUNT'"> GROUP SALES COMMISSION 1 AMOUNT </option>
 					<option value="'GROUPSALESCOMM2PERCENTAGE'"> GROUP SALES COMMISSION 2 PERCENTAGE </option>
@@ -211,12 +215,16 @@ if ($conn->connect_error) {
 					<option value="'OTHERBAMOUNT'"> OTHER B AMOUNT </option>
 					<option value="'TOTALALLOWABLEBOEXPENSES'"> TOTAL ALLOWABLE B.O EXPENSES </option>
 					<option value="'DEDUCTIONSOFGBOR'"> DEDUCTIONS PERCENTAGE OF GBOR </option>
+					<option value="'NAGBOR'"> NAGBOR </option>
 					<option value="'NETCOMPANYROYALTY'"> NET COMPANY ROYALTY </option>
 					<option value="'TAXWITHHELDATSOURCE'"> TAX WITHHELD AT SOURCE </option>
+					<option value="'TOTALCOMPANYROYALTY'"> TOTAL COMPANY ROYALTY </option>
+					<option value="'TOTALCOMPANYGUARANTEE'"> TOTAL COMPANY GUARANTEE </option>
 					<option value="'LESSOTHERDEDUCTION'"> LESS OTHER DEDUCTION TO CO </option>
 					<option value="'INSURANCEPERTICKET'"> INSURANCE (ON DROP COUNT) </option>
 					<option value="'TICKETPRINTING1PERTICKET'"> TICKET PRINTING </option>
 					<option value="'ADVERTISINGBUDGETED'"> ADVERTISING (AT GROSS) </option>
+					<option value="'ADVERTISINGACTUAL'"> ADVERTISING ACTUAL </option>
 					<option value="'STAGEHANDSLOAINBUDGETED'"> STAGEHANDS (LOAD-IN) BUDGETED </option>
 					<option value="'STAGEHANDSLOAINACTUAL'"> STAGEHANDS (LOAD-IN) ACTUAL </option>
 					<option value="'STAGEHANDSLOADOUTBUDGETED'"> STAGEHANDS (LOAD-OUT) BUDGETED </option>
@@ -286,6 +294,7 @@ if ($conn->connect_error) {
 					<option value="'PIANOBUDGETED'"> PIANO TUNINGS </option>
 					<option value="'PIANOACTUAL'"> PIANO TUNINGS ACTUAL </option>
 					<option value="'LOCALFIXEDBUDGETED'"> LOCAL FIXED BUDGETED </option>
+					<option value="'LOCALFIXEDACTUAL'"> LOCAL FIXED ACTUAL </option>
 					<option value="'SUBTOTALLOCALEXPENSESBUDGETED'"> SUB-TOTAL OF LOCAL EXPENSES BUDGETED </option>
 					<option value="'SUBTOTALLOCALEXPENSESACTUAL'"> SUB-TOTAL OF LOCAL EXPENSES ACTUAL </option>
 					<option value="'TOTALLOCALEXPENSEBUDGETED'"> TOTAL LOCAL EXPENSE BUDGETED </option>
@@ -295,6 +304,7 @@ if ($conn->connect_error) {
 					<option value="'MIDDLEMONIESTOPRESENTER'"> MIDDLE MONIES TO PRESENTER </option>
 					<option value="'MONEYREMAINING'"> MONEY REMAINING </option>
 					<option value="'COMPANYOVERAGEPERCENTAGE'"> COMPANY OVERAGE PERCENTAGE </option>
+					<option value="'TOTALCOMPANYOVERAGEAMOUNT'"> TOTAL COMPANY OVERAGE AMOUNT </option>
 					<option value="'NETSTARPERFORMEROVERAGEPERCENTAGE'"> NET STAR PERFORMER OVERAGE PERCENTAGE </option>
 					<option value="'TOTALSTARPERFORMEROVERAGEAMOUNT'"> TOTAL STAR PERFORMER OVERAGE AMOUNT </option>
 					<option value="'PRESENTEROVERAGETOCOMPANY'"> PRESENTER OVERAGE PERCENTAGE TO COMPANY </option>
@@ -304,7 +314,7 @@ if ($conn->connect_error) {
 					<option value="'LESSDIRECTCOMPANYCHARGES'"> LESS DIRECT COMPANY CHARGES </option>
 					<option value="'ADJUSTEDCOMPANYSHARE'"> ADJUSTED COMPANY SHARE </option>
 					<option value="'TOTALPRESENTERSHARE'"> TOTAL PRESENTER SHARE </option>
-					<option value="'PRESENTERFACILITYFEE'"> PRESENTER'S FACILITY FEE </option>
+					<option value="'PRESENTERFACILITYFEE'"> PRESENTERS FACILITY FEE </option>
 					<option value="'ADJUSTEDPRESENTERSHARE'"> ADJUESTED PRESENTER SHARE </option>
 					<option value="'NOTES'"> NOTES </option>
 				</select>

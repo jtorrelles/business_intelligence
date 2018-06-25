@@ -240,17 +240,7 @@ function getMarketHistory(inid,endd,presenters,country,state,city,fields,shows,v
 				   '<th>PRESENTER</th>' +
                    '<th>STATE</th>' +
                    '<th>CITY</th>' +                    
-                   '<th>VENUE NAME</th>' +
-                   '<th>PERFORMANCES</th>' +
-                   '<th>GROSS POTENTIAL</th>' +
-                   '<th>ACTUAL GROSS</th>' +
-                   '<th>NAGBOR</th>' +
-                   '<th>SUBSCRIPTIONS</th>' +
-                   '<th>GUARANTEE</th>' +
-                   '<th>ROYALTY</th>' + 
-                   '<th>OVERAGE</th>' +
-                   '<th>ADVERTISING</th>' +
-                   '<th>LOCAL FIXED EXPENSES</th>'; 
+                   '<th>VENUE NAME</th>'; 
     var files = '';
     var hfiles = '<tr>';
     call.send(data, url, method, function(data) {
@@ -274,17 +264,7 @@ function getMarketHistory(inid,endd,presenters,country,state,city,fields,shows,v
 								  '<td>' + data.result['body'][counter1].presentername + '</td>' + 
                                   '<td>' + data.result['body'][counter1].state + '</td>' + 
                                   '<td>' + data.result['body'][counter1].city + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].venuename + '</td>' +
-                                  '<td>' + number_format(data.result['body'][counter1].perf,0) + '</td>' +
-                                  '<td>' + number_format(data.result['body'][counter1].gross,2) + '</td>' + 
-                                  '<td>' + number_format(data.result['body'][counter1].agross,2) + '</td>' + 
-                                  '<td>' + number_format(data.result['body'][counter1].nagbor,2) + '</td>' + 
-                                  '<td>' + number_format(data.result['body'][counter1].subs,2) + '</td>' + 
-                                  '<td>' + number_format(data.result['body'][counter1].guarantee,2) + '</td>' + 
-                                  '<td>' + number_format(data.result['body'][counter1].royalty,2) + '</td>' + 
-                                  '<td>' + number_format(data.result['body'][counter1].overage,2) + '</td>' + 
-                                  '<td>' + number_format(data.result['body'][counter1].advertising,2) + '</td>' + 
-                                  '<td>' + number_format(data.result['body'][counter1].lfe,2) + '</td>';
+                                  '<td>' + data.result['body'][counter1].venuename + '</td>';
                 while(counter2 < size){ 
                     col = data.result['head'][counter2].column;
                     if(col=='NOTES'){
