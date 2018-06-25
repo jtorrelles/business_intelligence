@@ -48,13 +48,14 @@ try {
   if($type=='getMarketHistory') {
     $inid = $_GET['inid'];
     $endd = $_GET['endd'];
+    $presenters = $_GET['presenters'];
     $country = $_GET['country'];
     $state = $_GET['state'];
     $city = $_GET['city'];
     $fields = $_GET['fields'];
     $shows = $_GET['shows'];
     $venues = $_GET['venues'];
-    $data = $loc->getMarketHistory($inid,$endd,$country,$state,$city,$fields,$shows,$venues);
+    $data = $loc->getMarketHistory($inid,$endd,$presenters,$country,$state,$city,$fields,$shows,$venues);
   } 
 
   if($type=='getSalesSummary') {
