@@ -447,6 +447,7 @@ function getUploadFile(){
             $('.numberoftrucks').val(data_response['result'].numberoftrucks); 
             $('.weeklynut').val(data_response['result'].weeklynut);
             $('.date_route').val(data_response['result'].date_route);
+			$('.file_name').val(data_response['result'].file_name);
             for(i = 0; i < 364; i++){
               $('.presentation_date' + i).val(eval("data_response['result'].presentation_date" + i));
               $('.holiday' + i).val(eval("data_response['result'].holiday" + i));
