@@ -36,55 +36,68 @@ class reportsServices extends dbconfig {
 
       $data = array();
       $data2 = array();
-      $x = 0;
+      $UTC = new DateTimeZone("UTC"); 
+      $ini = new DateTime($inid, $UTC); 
+      $end = new DateTime($endd, $UTC);
+      $inid = $ini->format('Ymd');
+      $endd = $end->format('Ymd');
+      $x = 0;          
 
-      while($resultSet = mysqli_fetch_assoc($result)) {
+      while($resultSet = mysqli_fetch_assoc($result)){
         $showid = $resultSet['showid'];
         $data[$x]["id"] = $resultSet['showid'];
-        $data[$x]["name"] = $resultSet['showname']; 
+        $data[$x]["name"] = $resultSet['showname'];
 
-        $UTC = new DateTimeZone("UTC"); 
         $ini = new DateTime($inid, $UTC); 
-        $end = new DateTime($endd, $UTC);
         $y = 0;
-
         while($end >= $ini) { 
-          $showid = $resultSet['showid'];
-          $date = $ini->format('Ymd');
-
-          $query2 = "SELECT (SELECT CONCAT(ci.name,', ',sta.shortname)
-                               FROM cities ci, 
-                                    states sta
-                               WHERE ci.id = det.cityid
-                                 AND ci.state_id = sta.id
-                                 AND sta.country_id like ('$country')
-                                 AND sta.id like ('$state')
-                                 AND ci.id like ('$city')) as citystate 
-                       FROM shows sh, routes ro, routes_det det 
-                      WHERE sh.showid = ro.showid 
-                        AND ro.routesid = det.routesid 
-                        AND sh.showid = $showid 
-                        AND det.presentation_date = '$date' 
-                        $sunday"; 
-
-          $result2 = dbconfig::run($query2);
-
-          if(!$result2) {
-            throw new exception("City/State not found.");
-          }
-
-          $resultSet2 = mysqli_fetch_assoc($result2);
-          if(empty($resultSet2['citystate'])){
-            $data2[$x][$y]["citystate"] = '';
-          }else{
-            $data2[$x][$y]["citystate"] = $resultSet2['citystate'];
-          } 
-
+          $data2[$x][$y]["citystate"] = '';
           $ini->add(new DateInterval('P1D'));          
           $y++;
         } 
+
+        $query2 = "SELECT (SELECT IFNULL(CONCAT(ci.name,', ',sta.shortname), '') 
+                             FROM cities ci, 
+                                states sta
+                            WHERE ci.id = det.cityid
+                              AND ci.state_id = sta.id
+                              AND sta.country_id like ('$country')
+                              AND sta.id like ('$state')
+                              AND ci.id like ('$city')) as citystate,
+                              det.presentation_date as presentation_date,
+                              IFNULL(DATE_FORMAT(det.presentation_date, '%Y%m%d'), '') as fpresentation_date
+                     FROM shows sh, routes ro, routes_det det 
+                    WHERE sh.showid = ro.showid 
+                      AND ro.routesid = det.routesid 
+                      AND sh.showid = $showid 
+                      AND det.presentation_date >= $inid
+                      AND det.presentation_date <= $endd
+                      AND det.cityid IS NOT NULL
+                      $sunday
+                      ORDER BY det.presentation_date";
+
+        $result2 = dbconfig::run($query2);
+
+        if(!$result2) {
+          throw new exception("City/State not found.");
+        }
+
+        while($resultSet2 = mysqli_fetch_assoc($result2)){ 
+          $ini = new DateTime($inid, $UTC); 
+          $y = 0;
+          while($end >= $ini) {
+            $date = $ini->format('Ymd'); 
+            if($date==$resultSet2['fpresentation_date']){
+              if($resultSet2['citystate']!=null){
+                $data2[$x][$y]["citystate"] = $resultSet2['citystate'];
+              }  
+            }
+            $ini->add(new DateInterval('P1D'));          
+            $y++;
+          } 
+        }   
         $x++;       
-      }
+      }   
 
       dbconfig::close();
       
@@ -314,12 +327,12 @@ class reportsServices extends dbconfig {
       }else{
         $venues = "AND se.venueid in ($venues) ";
       }
-	  
+    
       if($presenters==""){
         $presenters = "";
       }else{
         $presenters = "AND se.presenterid in ($presenters) ";
-      }	  
+      }   
 
       $query = "SELECT column_name
                 FROM information_schema.COLUMNS
@@ -342,7 +355,7 @@ class reportsServices extends dbconfig {
                         ci.name as city,  
                         openingdate,
                         closingdate,
-						pr.presentername,
+            pr.presentername,
                         IFNULL(DATE_FORMAT(openingdate, '%m/%d/%Y'), '') as fopeningdate,
                         IFNULL(DATE_FORMAT(closingdate, '%m/%d/%Y'), '') as fclosingdate,
                         venuename,
@@ -359,13 +372,13 @@ class reportsServices extends dbconfig {
                         $fields 
                    FROM settlements se, 
                         shows sh,
-						presenters pr,
+            presenters pr,
                         cities ci,
                         states sta,
                         countries co,
                         venues ve
                   WHERE se.showid = sh.showid
-				    AND se.PresenterID = pr.PresenterID
+            AND se.PresenterID = pr.PresenterID
                     AND se.cityid = ci.id
                     AND ci.state_id = sta.id
                     AND sta.country_id = co.id
@@ -389,7 +402,7 @@ class reportsServices extends dbconfig {
         $data2[$y]['showname'] = $resultSet2['showname'];
         $data2[$y]['openingdate'] = $resultSet2['fopeningdate'];
         $data2[$y]['closingdate'] = $resultSet2['fclosingdate'];
-		$data2[$y]['presentername'] = $resultSet2['presentername'];
+        $data2[$y]['presentername'] = $resultSet2['presentername'];
         $data2[$y]['state'] = $resultSet2['state'];
         $data2[$y]['city'] = $resultSet2['city'];        
         $data2[$y]['venuename'] = $resultSet2['venuename'];
