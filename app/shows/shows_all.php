@@ -67,7 +67,7 @@ $sql = "SELECT
 		FROM shows ORDER BY showname ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<table id=\"shows\">
+	echo "<table id=\"shows\" class=\"sortable\">
 	<col width=10%>
 	<col width=5%>
 	<col width=5%>
