@@ -21,18 +21,26 @@ if(isset($_GET['selectedid'])){
 				<td><input style=\"background-color: lightgrey;\" readonly type='text' name='id' class=\"id\">This field cannot be modified</td>
 			</tr>
 		    <tr>
-		        <td><b>Venue:</b></td>
-		        <td>
-		        	<select name=\"venue_name\" class=\"venues\" id=\"venueId\" required>
-		            	<option value=\"\">Select Venue</option>
-		          	</select>
-		    	</td>
-		    </tr>
-		    <tr>
 		        <td><b>Show:</b></td>
 		        <td>
 		        	<select name=\"show_name\" class=\"shows\" id=\"showId\" required>
 		            	<option value=\"\">Select Show</option>
+		          	</select>
+		    	</td>
+		    </tr>
+		    <tr>
+		        <td><b>Presenter:</b></td>
+		        <td>
+		        	<select name=\"presenter_name\" class=\"presenters\" id=\"presenterId\" required>
+		            	<option value=\"\">Select Presenter</option>
+		          	</select>
+		    	</td>
+		    </tr>			
+		    <tr>
+		        <td><b>Venue:</b></td>
+		        <td>
+		        	<select name=\"venue_name\" class=\"venues\" id=\"venueId\" required>
+		            	<option value=\"\">Select Venue</option>
 		          	</select>
 		    	</td>
 		    </tr>

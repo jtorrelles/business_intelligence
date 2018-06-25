@@ -32,6 +32,14 @@ echo "<table>
 				</select>
 			</td>
 		</tr>
+	    <tr>
+	        <td><b>Presenter:</b></td>
+	        <td>
+	        	<select name=\"presenter_name\" class=\"presenters\" id=\"presenterId\" required>
+	            	<option value=\"\">Select Presenter</option>
+	          	</select>
+	    	</td>
+	    </tr>		
 		<tr>
 			<td><b>Venue:</b></td>
 			<td>

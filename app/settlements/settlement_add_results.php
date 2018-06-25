@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 	$showid = $_POST['show_name'];
 	$venueid = $_POST['venue_name'];
 	$cityid = $_POST['cityid'];
-
+	$presenterid = $_POST['presenter_name'];
 	$openingdate = $_POST['opening_date'];
 	$closingdate = $_POST['closing_date'];
 	$drop_count = $_POST['drop_count'];
@@ -183,7 +183,7 @@ if ($conn->connect_error) {
 	$adj_pre_share = $_POST['adj_pre_share'];
 	$notes = $_POST['notes'];
 
-$sql = "INSERT INTO settlements (SHOWID,CITYID,VENUEID,OPENINGDATE,CLOSINGDATE,DROPCOUNT,PAIDATTENDANCE,
+$sql = "INSERT INTO settlements (SHOWID,CITYID,VENUEID,PRESENTERID,OPENINGDATE,CLOSINGDATE,DROPCOUNT,PAIDATTENDANCE,
 							COMPS,TOTALATTENDANCE,CAPACITY,GROSSSUBSCRIPTIONSALES, 
 							GROSSPHONESALES,GROSSINTERNETSALES,GROSSCREDITCARDSALES,
 							GROSSREMOTEOUTLETSALES,GROSSSINGLETIX,GROSSGROUPSALES1,GROSSGROUPSALES2,
@@ -231,7 +231,7 @@ $sql = "INSERT INTO settlements (SHOWID,CITYID,VENUEID,OPENINGDATE,CLOSINGDATE,D
 							PRESENTEROVERAGEADJUSTED,PRESENTEROVERAGETOPRESENTER,TOTALCOMPANYSHARE,
 							LESSDIRECTCOMPANYCHARGES,ADJUSTEDCOMPANYSHARE,TOTALPRESENTERSHARE,PRESENTERFACILITYFEE,
 							ADJUSTEDPRESENTERSHARE,NOTES) 
-					VALUES ($showid,$cityid,$venueid,'$openingdate','$closingdate',$drop_count,$paid_attendance,
+					VALUES ($showid,$cityid,$venueid,$presenterid,'$openingdate','$closingdate',$drop_count,$paid_attendance,
 							$comps,
 							$total_attendance,$capacity,$subs_sales,$phone_sales,$internet_sales,$credit_card_sales,
 							$remote_outlet_sales,

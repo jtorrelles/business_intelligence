@@ -84,6 +84,7 @@ $sql = "SELECT 	se.ID,
 				ve.VenueNAME as venue_name, 
 				ci.`name` as city, 
 				st.`name` as state,
+				pr.presentername,
 				DATE_FORMAT(OPENINGDATE,'%m/%d/%Y') as OPENINGDATE,
 				DATE_FORMAT(CLOSINGDATE,'%m/%d/%Y') as CLOSINGDATE, 
 				GROSSBOXOFFICEPOTENTIAL as GROSS_POTENTIAL,
@@ -93,11 +94,12 @@ $sql = "SELECT 	se.ID,
 				TOTALCOMPANYROYALTY as TOTAL_COMPANY_ROYALTY,
 				TOTALCOMPANYGUARANTEE as TOTAL_COMPANY_GUARANTEE, 
 				MONEYREMAINING as MONEY_REMAINING
-		FROM settlements se, shows sw, venues ve, cities ci, states st, countries co 
+		FROM settlements se, shows sw, venues ve, presenters pr, cities ci, states st, countries co 
 		WHERE sw.ShowID = $selectedid 
 		AND sw.ShowID = se.SHOWID 
 		AND se.VENUEID = ve.VenueID 
 		AND se.CITYID = ci.id 
+		AND pr.presenterid = se.presenterid
 		AND ci.state_id = st.id 
 		AND st.country_id = co.id 
 		ORDER BY OPENINGDATE DESC";
@@ -105,8 +107,8 @@ $sql = "SELECT 	se.ID,
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	echo "<table id=\"settlements\" class=\"sortable\">
-	<col width=10%>
-	<col width=13%>
+	<col width=9%>
+	<col width=9%>
 	<col width=7%>
 	<col width=7%>
 	<col width=7%>
@@ -118,10 +120,12 @@ if ($result->num_rows > 0) {
 	<col width=7%>
 	<col width=7%>
 	<col width=7%>
+	<col width=5%>
     <tr>
 	<th>Show Name</th>
 	<th>Venue</th>
 	<th>City</th>
+	<th>Presenter</th>
 	<th>Opening Date</th>
 	<th>Closing Date</th>
 	<th>Gross Potential</th>
@@ -143,6 +147,7 @@ if ($result->num_rows > 0) {
 			<td>". $row["show_name"]. "</td>
 			<td>". $row["venue_name"]. "</td>
 			<td>". $row["city"]. "</td>
+			<td>". $row["presentername"]. "</td>
 			<td>". $row["OPENINGDATE"]."</td>
 			<td>". $row["CLOSINGDATE"]."</td>
 			<td>". number_format($row["GROSS_POTENTIAL"],2) ."</td>
@@ -155,7 +160,7 @@ if ($result->num_rows > 0) {
 			<td align=center>
 			<a href=\"javascript:void(window.open('settlement_preview_selected.php?selectedid=".$row['ID']."','Preview Selected','width=650,height=530,top=100'))\"><img src='../images/view.png' width=20></a>   
 			<a href=\"javascript:void(window.open('settlement_modify_selected.php?selectedid=".$row['ID']."','Modify Selected','width=700,height=580,top=100'))\"><img src='../images/modify.png' width=20></a> 
-			<a href=\"javascript:void(window.open('settlement_delete_selected.php?selectedid=".$row['ID']."','Delete Selected','width=700,height=530,top=100'))\" hidden ><img src='../images/delete.png' width=20></a> 
+			<a href=\"javascript:void(window.open('settlement_delete_selected.php?selectedid=".$row['ID']."','Delete Selected','width=700,height=530,top=100'))\"><img src='../images/delete.png' width=20></a> 
 		</td>
 		</tr>";
     }

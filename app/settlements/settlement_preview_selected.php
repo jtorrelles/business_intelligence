@@ -11,7 +11,7 @@ if(isset($_GET['selectedid'])){
 
 	$selectedid = $_GET['selectedid'];
 
-	$sql = "SELECT 	se.ID, se.SHOWID, sw.ShowNAME, se.CITYID, se.VENUEID, ve.VenueNAME, 
+	$sql = "SELECT 	se.ID, se.SHOWID, sw.ShowNAME, se.PresenterID, pr.PresenterNAME, se.CITYID, se.VENUEID, ve.VenueNAME, 
 					DATE_FORMAT(OPENINGDATE,'%m/%d/%Y') AS OPENINGDATE, 
 					DATE_FORMAT(CLOSINGDATE,'%m/%d/%Y') AS CLOSINGDATE, 
 					DROPCOUNT, PAIDATTENDANCE, COMPS, TOTALATTENDANCE, 
@@ -86,10 +86,11 @@ if(isset($_GET['selectedid'])){
 					TOTALCOMPANYSHARE, LESSDIRECTCOMPANYCHARGES, ADJUSTEDCOMPANYSHARE,
 					TOTALPRESENTERSHARE, PRESENTERFACILITYFEE, ADJUSTEDPRESENTERSHARE,
 					NOTES, ci.`name` as city, st.`name` as state, co.sortname as country
-			FROM settlements se, shows sw, venues ve, cities ci, states st, countries co 
+			FROM settlements se, shows sw, venues ve, presenters pr, cities ci, states st, countries co 
 			WHERE se.ID = $selectedid  
 			AND se.SHOWID = sw.ShowID 
-			AND se.VENUEID = ve.VenueID 
+			AND se.VENUEID = ve.VenueID
+			AND se.PresenterID = pr.PresenterID
 			AND se.CITYID = ci.id 
 			AND ci.state_id = st.id 
 			AND st.country_id = co.id";
@@ -102,6 +103,7 @@ if(isset($_GET['selectedid'])){
     }else{
 		echo "<h1 align=center>SETTLEMENT DETAILS</h1>";
 		echo "<h2 align=center>".$row['ShowNAME']."<br>".$row['VenueNAME']."<br>".$row['city'].", ".$row['state'].", ".$row['country']."</h2>";
+		echo "<h2 align=center>Presented by: ".$row['PresenterNAME']."</h2>";
 		echo "<table>
 				<tr>
 					<td colspan=3><h3>GENERAL DATA</h3></td>

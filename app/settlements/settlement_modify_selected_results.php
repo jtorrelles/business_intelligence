@@ -12,6 +12,7 @@ include '../header_nologout.html';
 	$showid = $_POST['show_name'];
 	$venueid = $_POST['venue_name'];
 	$cityid = $_POST['cityid'];
+	$presenterid = $_POST['presenter_name'];
 	$openingdate = $_POST['opening_date'];
 	$closingdate = $_POST['closing_date'];
 	$drop_count = $_POST['drop_count'];
@@ -185,7 +186,7 @@ include '../header_nologout.html';
 	$notes = $_POST['notes'];
 
 $sql = "UPDATE settlements 
-			SET  SHOWID = $showid, CITYID = $cityid, VENUEID = $venueid, OPENINGDATE = '$openingdate', 
+			SET  SHOWID = $showid, CITYID = $cityid, VENUEID = $venueid, PresenterID = $presenterid, OPENINGDATE = '$openingdate', 
 				CLOSINGDATE = '$closingdate', DROPCOUNT = $drop_count, PAIDATTENDANCE = $paid_attendance, 
 				COMPS = $comps, TOTALATTENDANCE = $total_attendance, CAPACITY = $capacity, 
 				GROSSSUBSCRIPTIONSALES = $subs_sales, GROSSPHONESALES = $phone_sales, 
