@@ -5,8 +5,29 @@ include 'access_control.php';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script></td>";
 echo "<script> onloadManagement(); </script>";
+echo "
+<script>
+function validateForm() {
+    var x1 = document.forms[\"NewContract\"][\"opening_date\"].value;
+	var x2 = document.forms[\"NewContract\"][\"closing_date\"].value;
+	var x3 = document.forms[\"NewContract\"][\"number_of_performances\"].value;
+    if (x1 == \"\") {
+        alert(\"Opening Date is not set. Please Check.\");
+        return false;
+    }
+    if (x2 == \"\") {
+        alert(\"Closing Date is not set. Please Check.\");
+        return false;
+    }
+    if (x3 == \"\") {
+        alert(\"Number of Performances is not set. Please Check.\");
+        return false;
+    }	
+}
+</script>
+";
 echo "<h1>Add a New Deal:</h1>";
-echo "<form action=\"contract_add_results.php\" method=\"POST\">";
+echo "<form name=\"NewContract\" action=\"contract_add_results.php\" onsubmit=\"return validateForm()\" method=\"POST\">";
 echo "<table>
 		<tr>
 			<td colspan=2><h3>GENERAL DATA</h3></td>
