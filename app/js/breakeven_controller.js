@@ -1829,9 +1829,13 @@ function GoalSeek() {
 
     cont = 0;    
 
-    while((cont<1000)&&(TSPRTT!=0)){ 
+    while((cont<=100)&&(TSPRTT!=0)){ 
 
-        TSPRTT_VEC[cont] = Math.abs(TSPRTT);       
+        if(TSPRTT>=0){
+            TSPRTT_VEC[cont] = TSPRTT;  
+        }else{
+            TSPRTT_VEC[cont] = Infinity;
+        }
 
         HOCATT = strtonum(document.getElementById("HOCATT").value);
 
@@ -1962,21 +1966,26 @@ function GoalSeek() {
         cont++;
     }
  
-    min=Math.min.apply(null,TSPRTT_VEC);
+    min=Math.min.apply(Math,TSPRTT_VEC);
 
-    cont = 0;
-    while(cont<100000){
-        if(TSPRTT_VEC[cont]==min){
-            PECATT = PECATT_VEC[cont-1];
+    if(min==Infinity){
+        alert("Goal Seek failed");
+        PECATT = PECATT_ORIG;
+    }else{
+        cont = 0;
+        while(cont<=100){
+            if(TSPRTT_VEC[cont]==min){  
+                PECATT = PECATT_VEC[cont-1];
+            }
+            cont++;
         }
-        cont++;
-    }
-
-    conf = confirm("Goal Seek Result: " + number_format(PECATT*100,2) + "% - Insert the result into the variable cell?");
+        conf = confirm("Goal Seek Result: " + number_format(PECATT*100,2) + "% - Insert the result into the variable cell?");
    
-    if (conf != true) {
-        PECATT = PECATT_ORIG;        
-    }
+        if (conf != true) {
+            PECATT = PECATT_ORIG;        
+        }
+
+    } 
 
     HOCATT = strtonum(document.getElementById("HOCATT").value);
 
