@@ -23,7 +23,7 @@ function ajaxCall() {
     }
 };
 
-function getCountries() {
+function getAllCountries() {
     var call = new ajaxCall();
     var url = '../routes/settlements_route.php?type=getCountries';
     var method = "GET";
@@ -42,6 +42,34 @@ function getCountries() {
             //Sel United States
             //$(".countries").val("231");
             //getStates(231);
+
+            getVenuesFilters($("#countryId").val(),0,0);
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+}
+
+function getCountries() {
+    var call = new ajaxCall();
+    var url = '../routes/settlements_route.php?type=getCountries';
+    var method = "GET";
+    var data = {};
+    $('.countries').find("option:eq(0)").html("Please wait..");
+    call.send(data, url, method, function(data) {
+        $('.countries').find("option:eq(0)").html("Select Country");
+        if(data.tp == 1){
+            $.each(data['result'], function(key, val) {
+                var option = $('<option />');
+                option.attr('value', key).text(val);
+                $('.countries').append(option);
+            });
+            $(".countries").prop("disabled",false);
+
+            //Sel United States
+            $(".countries").val("231");
+            getStates(231);
 
             getVenuesFilters($("#countryId").val(),0,0);
         }
