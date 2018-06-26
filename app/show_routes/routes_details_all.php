@@ -47,8 +47,8 @@ echo "<script> getShows(); </script>";
 
 echo "<h1>ROUTE DETAIL MANAGEMENT:</h1>";
 
-echo "<p><a href=show_routes_all.php> Back to Routes Administration</a> - 
-	<a href=\"javascript:void(window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=500,top=100'))\">Upload Route With Spreadsheet</a></p><br>";
+echo "<p><a href=show_routes_all.php>Back to Route Management</a> - 
+	<a href=\"javascript:void(window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=500,top=100'))\">Update Route With Spreadsheet</a></p><br>";
 
 if (isset($_GET['selectedid']))
 {

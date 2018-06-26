@@ -30,7 +30,11 @@ echo "<form action=\"route_upload_add_results.php\" method=\"POST\">";
 		<td><input type='hidden' class=\"showtorouteid\" name='showtorouteid'>";		
 		echo "<input type='text' style=\"background-color: lightgrey;\" readonly  size='50' class=\"showtoroute\" name='showtoroute'>
 			</td>
-		</tr>	
+		</tr>
+		<tr>
+			<td><b>File Name:</b></td>
+			<td><input type='text' class=\"file_name\" name='file_name'></td>
+		</tr>		
 		<tr>
 			<td><b>Number of Trucks:</b></td>
 			<td><input type='number' class=\"numberoftrucks\" value=0 name='numberoftrucks'></td>
