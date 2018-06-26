@@ -71,8 +71,8 @@ echo "<p><a href=\"javascript:void(window.open('route_add.php','Add New Rote','w
 if (isset($_POST['show'])){$selectedid = $_POST['show'];}
 
 	$sql = "SELECT ro.ROUTESID as idroute,
-				MIN(rod.presentation_date) AS start_date,
-				MAX(rod.presentation_date) AS end_date,
+				DATE_FORMAT(MIN(rod.presentation_date),'%m/%d/%Y') AS start_date,
+				DATE_FORMAT(MAX(rod.presentation_date),'%m/%d/%Y') AS end_date,
 				sw.ShowNAME as showname, 
 				ro.TRUCKS as numberoftrucks, 
 				DATE_FORMAT(ro.DATE_OF_ROUTE,'%m/%d/%Y') as dateroute, 
@@ -88,7 +88,7 @@ if (isset($_POST['show'])){$selectedid = $_POST['show'];}
 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
-		echo "<table id=\"routesoffshows\">
+		echo "<table id=\"routesoffshows\" class=\"sortable\">
 		<col width=20%>
 		<col width=20%>
 		<col width=20%>
