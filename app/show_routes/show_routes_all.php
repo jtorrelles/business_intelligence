@@ -48,7 +48,7 @@ echo "<script src=\"../js/show_routes_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
 echo "<h1>ROUTES MANAGEMENT:</h1>";
-$selectedid = '0';
+$selectedid = '%';
 $selectedstate = '0';
 
 echo "<form action=\"show_routes_all.php\" method=\"POST\">";
@@ -56,7 +56,7 @@ echo "<form action=\"show_routes_all.php\" method=\"POST\">";
 	echo "<table>";
 	echo "<tr><td>Shows:</td>";
 	echo "<td><select name=\"show\" class=\"shows\" id=\"showId\">";
-	echo "<option value=\"\">Select Show</option>
+	echo "<option value=\"%\">Select Show</option>
 		  </select>";
 	echo "<input type=\"submit\" name=\"search\" value=\"Find\">";
 	echo "</tr>";
@@ -68,9 +68,7 @@ echo "<br>";
 echo "<p><a href=\"javascript:void(window.open('route_add.php','Add New Rote','width=650,height=450,top=100'))\" hidden>Add a New Route</a>
 	<a href=\"javascript:void(window.open('upload_routes.php','Upload  Route','width=650,height=450,top=100'))\">Upload a New Route</a></p><br>";
 
-if (isset($_POST['show']))
-{
-	$selectedid = $_POST['show'];
+if (isset($_POST['show'])){$selectedid = $_POST['show'];}
 
 	$sql = "SELECT ro.ROUTESID as idroute,
 				MIN(rod.presentation_date) AS start_date,
@@ -82,7 +80,7 @@ if (isset($_POST['show']))
 				ro.XLSX_FILENAME as filename,
 				SUM(ro.TRUCKS * rod.MILEAGE) as team_drive_cost 
 		FROM routes ro, shows sw, routes_det rod 
-		WHERE ro.SHOWID = $selectedid 
+		WHERE ro.SHOWID LIKE '$selectedid'
 		AND ro.SHOWID = sw.ShowID 
 		AND ro.ROUTESID = rod.ROUTESID 
 		GROUP BY ro.ROUTESID 
@@ -130,12 +128,11 @@ if (isset($_POST['show']))
 	} else {
 	    echo "0 results. Please select another route.";
 	}
-}
-else
-{
-	echo "No show selected<br>";
-	echo "0 results. Please select another route.";
-}
+//else
+//{
+//	echo "No show selected<br>";
+//	echo "0 results. Please select another route.";
+//}
 
 echo "</body></html>";
 $conn->close();
