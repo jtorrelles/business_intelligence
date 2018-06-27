@@ -55,7 +55,8 @@ try {
     $fields = $_GET['fields'];
     $shows = $_GET['shows'];
     $venues = $_GET['venues'];
-    $data = $loc->getMarketHistory($inid,$endd,$presenters,$country,$state,$city,$fields,$shows,$venues);
+	$parentpresenters = $_GET['parentpresenters'];
+    $data = $loc->getMarketHistory($inid,$endd,$presenters,$parentpresenters,$country,$state,$city,$fields,$shows,$venues);
   } 
 
   if($type=='getSalesSummary') {

@@ -37,6 +37,10 @@ try {
   
   if($type=='getPresenters') {
   	$data = $loc->getPresenters();
+  }
+
+  if($type=='getParentPresenters') {
+  	$data = $loc->getParentPresenters();
   }   
 
   if($type=='getVenues') {
