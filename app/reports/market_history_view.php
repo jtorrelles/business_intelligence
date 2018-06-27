@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 <script src="../js/reports_controller.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
-<script> getCountries(); getShows("%"); getVenues(); getPresenters(); getCategories(); getTemplates("settlements");</script>
+<script> getCountries(); getShows("%"); getVenues(); getPresenters(); getParentPresenters(); getCategories(); getTemplates("settlements");</script>
 
 <h1>Market History Report:</h1>
 
@@ -104,8 +104,12 @@ if ($conn->connect_error) {
 				</select>			
 			</td>
 			<td>
+				<b>Parent Company:</b>
 			</td>
 			<td>
+				<select name="parentpresenters" class="parentpresenters" id="parentpresenters">
+					<option value="">Select Parent Company</option>
+				</select>			
 			</td>
 			<td>
 			</td>
