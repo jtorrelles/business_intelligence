@@ -143,6 +143,7 @@ function getTemplates(module) {
                 $('.templates').append(option);
             });
             $(".templates").prop("disabled",false);
+			getTemplateFields(22);
         }
         else{
              alert(data.msg);
@@ -270,7 +271,29 @@ function getPresenters() {
     }); 
 };
 
-
+function getParentPresenters() {
+    var call = new ajaxCall();
+    var url = '../routes/settlements_route.php?type=getParentPresenters';
+    var method = "GET";
+    var data = {};
+    call.send(data, url, method, function(data) {
+        if(data.tp == 1){
+			$('.parentpresenters').find("option:eq(0)").html("Select Parent Company");
+            //$('#parentpresenters').find("option:eq(0)").remove();
+            $.each(data['result'], function(key, val) {
+                $opt = $("<option />", {
+                    value: key,
+                    text: val
+                });
+                $('#parentpresenters').append($opt);
+            });
+            $(".parentpresenters").prop("disabled",false);
+        }
+        else{
+            alert(data.msg);
+        }
+    }); 
+};
 
 function getCategories() {
     var call = new ajaxCall();
@@ -393,7 +416,7 @@ $(function() {
         filter:true,
         checkAll:false,
         width: '100%'
-    }); 	
+    });
 
     $('#categories').multipleSelect({
         placeholder: "Select Categories",
@@ -493,12 +516,10 @@ $(function() {
 
     $("#btnCleanMarketHistory").click(function (ev) {
         getCountries();
-
         $(".dateini").val("");
         $(".dateend").val("");
         $("#header").empty();
         $("#body").empty();
-
         $("#loader").hide();
         $("#export").hide();
         $('#venues').multipleSelect("uncheckAll");
@@ -506,7 +527,8 @@ $(function() {
         $('#shows').multipleSelect("uncheckAll");
         $('#fields').multipleSelect("uncheckAll");
 		$('#presenters').multipleSelect("uncheckAll");
-
+		$(".parentpresenters").val("");
+		getTemplateFields(22);
     });
 
     $("#btnCleanSalesSumary").click(function (ev) {

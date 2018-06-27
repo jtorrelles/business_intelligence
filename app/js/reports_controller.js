@@ -224,9 +224,9 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     }); 
 }
 
-function getMarketHistory(inid,endd,presenters,country,state,city,fields,shows,venues) {    
+function getMarketHistory(inid,endd,presenters,parentpresenters,country,state,city,fields,shows,venues) {    
     var call = new ajaxCall();
-    var url = '../routes/reports_route.php?type=getMarketHistory&inid=' + inid + '&endd=' + endd + '&presenters=' + presenters + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&shows=' + shows + '&venues=' + venues;
+    var url = '../routes/reports_route.php?type=getMarketHistory&inid=' + inid + '&endd=' + endd + '&presenters=' + presenters + '&parentpresenters=' + parentpresenters + '&country=' + country + '&state=' + state + '&city=' + city + '&fields=' + fields + '&shows=' + shows + '&venues=' + venues;
     var method = "GET";
     var data = {};
     var counter1 = 0;
@@ -609,6 +609,7 @@ $(function() {
         var fields = $("#fields").multipleSelect("getSelects");
         var venues = $("#venues").multipleSelect("getSelects");
 		var presenters = $("#presenters").multipleSelect("getSelects");
+		var parentpresenters = $("#parentpresenters").val();
 
         if (isNaN(finicio.getTime()) || isNaN(ffin.getTime())) {
             alert("INIT DATE and/or END DATE have invalid data, Please verify these values.");
@@ -632,11 +633,13 @@ $(function() {
         if((cityId == 0)||(cityId == "")||(cityId == null)){
             cityId = "%"
         }
-
+        if((parentpresenters == 0)||(parentpresenters == "")||(parentpresenters == null)){
+            parentpresenters = "%"
+        }		
         finicio = $(".dateini").val();
         ffin = $(".dateend").val();
 
-        getMarketHistory(finicio,ffin,presenters,countryId,stateId,cityId,fields,shows,venues)
+        getMarketHistory(finicio,ffin,presenters,parentpresenters,countryId,stateId,cityId,fields,shows,venues)
     });
 
     $("#btnFindSalesSumary").click(function (ev) {
