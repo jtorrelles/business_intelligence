@@ -53,6 +53,26 @@ class settlementsServices extends dbconfig {
      } finally {
         return $data;
      }
+   }
+
+ // Fetch all Parent Presenters list
+   public static function getParentPresenters() {
+     try {
+       $query = "SELECT presenterparent_company FROM presenters WHERE presenterparent_company <> '' GROUP BY presenterparent_company";
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("Presenter Parent Company not found.");
+       }
+       $res = array();
+       while($resultSet = mysqli_fetch_assoc($result)) {
+        $res[$resultSet['presenterparent_company']] = $resultSet['presenterparent_company'];
+       }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Presenter Parent Companies fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
    }   
 
  // Fetch all countries list

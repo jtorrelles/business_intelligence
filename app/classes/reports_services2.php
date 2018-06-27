@@ -295,7 +295,7 @@ class reportsServices extends dbconfig {
     }
   }
 
-  public static function getMarketHistory($inid,$endd,$presenters,$country,$state,$city,$fields,$shows,$venues){
+  public static function getMarketHistory($inid,$endd,$presenters,$parentpresenters,$country,$state,$city,$fields,$shows,$venues){
     try {
 
       $UTC = new DateTimeZone("UTC"); 
@@ -332,7 +332,13 @@ class reportsServices extends dbconfig {
         $presenters = "";
       }else{
         $presenters = "AND se.presenterid in ($presenters) ";
-      }   
+      }
+
+      if($parentpresenters==""){
+        $parentpresenters = "";
+      }else{
+        $parentpresenters = "AND pr.presenterparent_company like '$parentpresenters' ";
+      }	  
 
       $query = "SELECT column_name
                 FROM information_schema.COLUMNS
@@ -378,7 +384,7 @@ class reportsServices extends dbconfig {
                     AND ci.id like ('$city')
                     AND openingdate >= $inid
                     AND openingdate <= $endd
-                    $shows $venues $presenters
+                    $shows $venues $presenters $parentpresenters
                   ORDER BY openingdate DESC";
 
       $result2 = dbconfig::run($query2);
