@@ -13,51 +13,32 @@ if ($conn->connect_error) {
     $fday = $_POST['presentation_date0'];
 	$xlsx_filename = $_POST['file_name'];
 
-$sql1 = "SELECT ro.ROUTESID as ROUTESID
+$sql1 = "SELECT max(det.PRESENTATION_DATE) as MAXDATE
          FROM routes ro, routes_det det 
          WHERE ro.ROUTESID = det.ROUTESID
-         AND ro.SHOWID = $showid
-         AND det.PRESENTATION_DATE = '$fday'";
+         AND ro.SHOWID = $showid";
 
 $result = $conn->query($sql1);
 while ($row = $result->fetch_assoc()){
-    $id = $row['ROUTESID'];
+    $maxdate = $row['MAXDATE'];
 }          
 
-if(isset($id)){
+if($fday<=$maxdate){
+    echo "The route you are trying to upload conflicts with another one already loaded. Please check the dates and try again.";
 
-    $sql2 = "SELECT det.PRESENTATION_DATE as FIRST_DATE
-             FROM routes ro, routes_det det 
-             WHERE ro.ROUTESID = det.ROUTESID
-             AND ro.ROUTESID = $id
-             ORDER BY det.PRESENTATION_DATE
-             LIMIT 1";  
-
-    $result = $conn->query($sql2);
-    while ($row = $result->fetch_assoc()){
-        $fday_orig = $row['FIRST_DATE'];
-    }   
-
-    if(isset($fday_orig)){
-        if($fday==$fday_orig){
-            echo "The route is already loaded for this show on this date";
-
-            echo "
-            <script language=\"javascript\"
-                type=\"text/javascript\">
-                function windowClose() {
+    echo "<script language=\"javascript\"
+           type=\"text/javascript\">
+           function windowClose() {
                     window.open('','_parent','');
                     window.opener.location.reload();
                     window.close();
-                }
-            </script>
-            <p align=center>
-            <input type=\"button\" value=\"CLOSE THIS WINDOW\" onclick=\"windowClose();\"></p>";
-            $conn->close();
-            include '../footer.html';
-            exit();
-        }
-    } 
+           }
+          </script>
+          <p align=center>
+          <input type=\"button\" value=\"CLOSE THIS WINDOW\" onclick=\"windowClose();\"></p>";
+    $conn->close();
+    include '../footer.html';
+    exit();
 }      
 
 $sql3 = "INSERT INTO routes (SHOWID,TRUCKS,DATE_OF_ROUTE,WEEKLY_NUT,XLSX_FILENAME)
