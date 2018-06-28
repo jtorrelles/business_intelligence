@@ -122,7 +122,7 @@ class breakevenServices extends dbconfig {
 			while($resultSet = mysqli_fetch_assoc(self::$result)) {
 
 				$capacity = $resultSet["CAPACITY"];
-				$numberofweeks =  $resultSet['NUMBEROFWEEKS'];
+				$numberofweeks = ceil($resultSet['NUMBEROFWEEKS']);
 				$numberofshowsperweek = $resultSet['NUMBEROFPERFORMANCES'] / $numberofweeks;
 				$weeklygross = $resultSet['GROSSBOXOFFICEPOTENTIAL'] / $numberofweeks;
 				$netaverage = $resultSet['GROSSBOXOFFICEPOTENTIAL'] / ($numberofshowsperweek * $capacity);
@@ -131,7 +131,7 @@ class breakevenServices extends dbconfig {
 				$data[$x]["SHOWID"] = $resultSet['SHOWID'];
 				$data[$x]["SHOWNAME"] = $resultSet['ShowNAME'];
 				$data[$x]["VENUENAME"] = $resultSet['VenueNAME'];
-				$data[$x]["NUMBEROFWEEKS"] = $resultSet['NUMBEROFWEEKS'];
+				$data[$x]["NUMBEROFWEEKS"] = ceil($resultSet['NUMBEROFWEEKS']);
 				$data[$x]["OPENINGDATE"] = $resultSet['OPENINGDATE'];
 				$data[$x]["CLOSINGDATE"] = $resultSet['CLOSINGDATE'];
 				$data[$x]["OPENINGDATE_SF"] = $resultSet['OPENINGDATE1'];
@@ -290,7 +290,7 @@ class breakevenServices extends dbconfig {
 
 			while($resultSet = mysqli_fetch_assoc(self::$result)) {
 
-				$numberofweeks =  $resultSet['NUMBEROFWEEKS'];
+				$numberofweeks = ceil($resultSet['NUMBEROFWEEKS']);
 				$numberofshowsperweek = $resultSet['NUMBEROFPERFORMANCES'] / $numberofweeks;
 				$weeklygross = $resultSet['GROSSBOXOFFICEPOTENTIAL'] / $numberofweeks;
 
@@ -298,7 +298,7 @@ class breakevenServices extends dbconfig {
 				$data[$x]["SHOWID"] = $resultSet['SHOWID'];
 				$data[$x]["SHOWNAME"] = $resultSet['ShowNAME'];
 				$data[$x]["VENUENAME"] = $resultSet['VenueName'];
-				$data[$x]["NUMBEROFWEEKS"] = $resultSet['NUMBEROFWEEKS'];
+				$data[$x]["NUMBEROFWEEKS"] = ceil($resultSet['NUMBEROFWEEKS']);
 				$data[$x]["OPENINGDATE"] = $resultSet['OPENINGDATE'];
 				$data[$x]["CLOSINGDATE"] = $resultSet['CLOSINGDATE'];		
 				$data[$x]["OPENINGDATE_SF"] = $resultSet['OPENINGDATE1'];
@@ -375,7 +375,7 @@ class breakevenServices extends dbconfig {
 
 				while($resultSet = mysqli_fetch_assoc(self::$result)) {
 
-					$numberofweeks =  $resultSet['NUMBEROFWEEKS'];
+					$numberofweeks = ceil($resultSet['NUMBEROFWEEKS']);
 					$numberofshowsperweek = $resultSet['PERF'] / $numberofweeks;
 
 					$data[$x]["ID"] = $resultSet['ID'];
@@ -383,7 +383,7 @@ class breakevenServices extends dbconfig {
 					$data[$x]["SHOWID"] = $resultSet['SHOWID'];
 					$data[$x]["SHOWNAME"] = $resultSet['ShowNAME'];
 					$data[$x]["VENUENAME"] = $resultSet['VenueNAME'];
-					$data[$x]["NUMBEROFWEEKS"] = $resultSet['NUMBEROFWEEKS'];
+					$data[$x]["NUMBEROFWEEKS"] = ceil($resultSet['NUMBEROFWEEKS']);
 					$data[$x]["OPENINGDATE"] = $resultSet['OPENINGDATE'];
 					$data[$x]["CLOSINGDATE"] = $resultSet['CLOSINGDATE'];
 					$data[$x]["OPENINGDATE_SF"] = $resultSet['OPENINGDATE1'];
