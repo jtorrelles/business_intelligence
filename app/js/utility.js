@@ -415,7 +415,10 @@ $(function() {
         placeholder: "Select Presenters",
         filter:true,
         checkAll:false,
-        width: '100%'
+        width: '100%',
+		onClick: function(view) {
+			$(".parentpresenters").val("");
+		}
     });
 
     $('#categories').multipleSelect({
@@ -481,10 +484,18 @@ $(function() {
         if(templateId != ''){
             getTemplateFields(templateId); 
         }else{
-            $("#fields").multipleSelect('uncheckAll');
+            getTemplateFields(22);
         }
 
-    });      
+    });
+
+    $(".parentpresenters").on("change", function(ev) {
+        var parentpresenters = $(this).val();
+        if(parentpresenters = '0'){
+            $("#presenters").multipleSelect('uncheckAll'); 
+        }
+
+    });	
 
     $("#btnCleanAllRoutes").click(function (ev) {
         getCountries();
