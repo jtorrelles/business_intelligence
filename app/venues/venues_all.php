@@ -61,7 +61,7 @@ $sql = "SELECT venueid,
 	WHERE ve.VenueCITYID = ci.id 
 	AND ci.state_id = st.id 
 	AND st.country_id = ct.id 
-	ORDER BY venueid ASC";
+	ORDER BY venueactive DESC, venuestate ASC, venuecity ASC, venuename ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	echo "<table id=\"shows\" class='sortable'>
