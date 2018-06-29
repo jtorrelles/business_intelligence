@@ -84,7 +84,6 @@ $sql = "SELECT 	se.ID,
 				ve.VenueNAME as venue_name, 
 				ci.`name` as city, 
 				st.`name` as state,
-				pr.presentername,
 				DATE_FORMAT(OPENINGDATE,'%m/%d/%Y') as OPENINGDATE,
 				DATE_FORMAT(CLOSINGDATE,'%m/%d/%Y') as CLOSINGDATE, 
 				GROSSBOXOFFICEPOTENTIAL as GROSS_POTENTIAL,
@@ -94,12 +93,11 @@ $sql = "SELECT 	se.ID,
 				TOTALCOMPANYROYALTY as TOTAL_COMPANY_ROYALTY,
 				TOTALCOMPANYGUARANTEE as TOTAL_COMPANY_GUARANTEE, 
 				MONEYREMAINING as MONEY_REMAINING
-		FROM settlements se, shows sw, venues ve, presenters pr, cities ci, states st, countries co 
+		FROM settlements se, shows sw, venues ve, cities ci, states st, countries co 
 		WHERE sw.ShowID = $selectedid 
 		AND sw.ShowID = se.SHOWID 
 		AND se.VENUEID = ve.VenueID 
 		AND se.CITYID = ci.id 
-		AND pr.presenterid = se.presenterid
 		AND ci.state_id = st.id 
 		AND st.country_id = co.id 
 		ORDER BY OPENINGDATE DESC";
@@ -125,7 +123,6 @@ if ($result->num_rows > 0) {
 	<th>Show Name</th>
 	<th>Venue</th>
 	<th>City</th>
-	<th>Presenter</th>
 	<th>Opening Date</th>
 	<th>Closing Date</th>
 	<th>Gross Potential</th>
@@ -147,7 +144,6 @@ if ($result->num_rows > 0) {
 			<td>". $row["show_name"]. "</td>
 			<td>". $row["venue_name"]. "</td>
 			<td>". $row["city"]. "</td>
-			<td>". $row["presentername"]. "</td>
 			<td>". $row["OPENINGDATE"]."</td>
 			<td>". $row["CLOSINGDATE"]."</td>
 			<td>". number_format($row["GROSS_POTENTIAL"],2) ."</td>

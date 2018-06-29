@@ -32,9 +32,9 @@ function getAllCountries() {
     call.send(data, url, method, function(data) {
         $('.countries').find("option:eq(0)").html("Select Country");
         if(data.tp == 1){
-            $.each(data['result'], function(key, val) {
+            $.each(data['result'], function(key, val) {             
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.countries').append(option);
             });
             $(".countries").prop("disabled",false);
@@ -60,9 +60,9 @@ function getCountries() {
     call.send(data, url, method, function(data) {
         $('.countries').find("option:eq(0)").html("Select Country");
         if(data.tp == 1){
-            $.each(data['result'], function(key, val) {
+            $.each(data['result'], function(key, val) {             
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.countries').append(option);
             });
             $(".countries").prop("disabled",false);
@@ -90,11 +90,11 @@ function getStates(id) {
     call.send(data, url, method, function(data) {
         $('.states').find("option:eq(0)").html("Select State");
         if(data.tp == 1){
-            $.each(data['result'], function(key, val) {
+            $.each(data['result'], function(key, val) {             
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.states').append(option);
-            });
+            });            
             $(".states").prop("disabled",false);
             
         }
@@ -114,11 +114,11 @@ function getCities(id) {
     call.send(data, url, method, function(data) {
         $('.cities').find("option:eq(0)").html("Select City");
         if(data.tp == 1){
-            $.each(data['result'], function(key, val) {
+            $.each(data['result'], function(key, val) {             
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.cities').append(option);
-            });
+            });    
             $(".cities").prop("disabled",false);
         }
         else{
@@ -162,7 +162,6 @@ function getTemplateFields(templateId) {
             $.each(data['result'], function(key, val) {         
                 templatesKeys.push(val.field_name);
             });
-            console.log(templatesKeys);
             $("#fields").multipleSelect('uncheckAll');
             $("#fields").multipleSelect("setSelects", templatesKeys);
         }
@@ -186,11 +185,11 @@ function getBasicShowsByStatus(status) {
     call.send(data, url, method, function(data) {
         $('.shows').find("option:eq(0)").html("Select Show");
         if(data.tp == 1){
-            $.each(data['result'], function(key, val) {
+            $.each(data['result'], function(key, val) {             
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.showid).text(val.showname);
                 $('.shows').append(option);
-            });
+            }); 
             $(".shows").prop("disabled",false);
         }
         else{
@@ -209,8 +208,8 @@ function getShows(status) {
             $('#shows').find("option:eq(0)").remove();
             $.each(data['result'], function(key, val) {
                 $opt = $("<option />", {
-                    value: key,
-                    text: val
+                    value: val.showid,
+                    text: val.showname
                 });
                 $('#shows').append($opt);
             });
@@ -233,8 +232,8 @@ function getVenues() {
             $('#venues').find("option:eq(0)").remove();
             $.each(data['result'], function(key, val) {
                 $opt = $("<option />", {
-                    value: key,
-                    text: val
+                    value: val.venueid,
+                    text: val.venuename
                 });
                 $('#venues').append($opt);
             });
@@ -257,8 +256,8 @@ function getPresenters() {
             $('#presenters').find("option:eq(0)").remove();
             $.each(data['result'], function(key, val) {
                 $opt = $("<option />", {
-                    value: key,
-                    text: val
+                    value: val.presenterid,
+                    text: val.presentername
                 });
                 $('#presenters').append($opt);
             });
@@ -498,7 +497,7 @@ $(function() {
     });	
 
     $("#btnCleanAllRoutes").click(function (ev) {
-        getCountries();
+        getAllCountries();
 
         $(".dateini").val("");
         $(".dateend").val("");
@@ -512,7 +511,7 @@ $(function() {
     });
 
     $("#btnCleanConflictsRoutes").click(function (ev) {
-        getCountries();
+        getAllCountries();
 
         $(".dateini").val("");
         $(".dateend").val("");
@@ -526,7 +525,7 @@ $(function() {
     });
 
     $("#btnCleanMarketHistory").click(function (ev) {
-        getCountries();
+        getAllCountries();
         $(".dateini").val("");
         $(".dateend").val("");
         $("#header").empty();
@@ -543,7 +542,7 @@ $(function() {
     });
 
     $("#btnCleanSalesSumary").click(function (ev) {
-        getCountries();
+        getAllCountries();
 
         $(".dateini").val("");
         $(".dateend").val("");
@@ -558,7 +557,7 @@ $(function() {
     }); 
 
     $("#btnCleanPlayedMarket").click(function (ev) {
-        getCountries();
+        getAllCountries();
 
         $(".dateini").val("");
         $(".dateend").val("");

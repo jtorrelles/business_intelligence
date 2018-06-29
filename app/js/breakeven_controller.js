@@ -2377,6 +2377,22 @@ $(function() {
         $("#selection_data").show();
         $("#loader").hide(); 
 
+        $("#SHNAME").html("<b>SHOW NAME: </b>");
+        $("#CINAME").html("<b>CITY: </b>");
+        $("#STNAME").html("<b>STATE: </b>");
+        $("#IDATE").html("<b>INIT DATE: </b>");
+        $("#EDATE").html("<b>END DATE: </b>");
+        $("#VENUE").html("<b>VENUE: </b>");
+
+        $("#SHNAMEID").val(0);
+        $("#CINAMEID").val(0);
+        $("#STNAMEID").val(0);
+        $("#IDATEID").val(0);
+        $("#EDATEID").val(0);
+        $("#VENUEID").val(0);
+
+        $('#frmbreakeven')[0].reset();        
+
         $("#export").hide(); 
         $("#breakeven_data").hide(); 
         $("#back_to_selection").hide();

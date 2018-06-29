@@ -9,7 +9,7 @@ if ($conn->connect_error) {
 echo "<h1>Modify An Existing Show:</h1>";
 
 echo "<form action=\"shows_management.php\" method=\"POST\">";
-$sql = "SELECT showid, showname FROM shows";
+$sql = "SELECT showid, showname FROM shows ORDER BY showname ASC";
 $result = $conn->query($sql);
 echo "<select name='SHOWN'>";
 echo "<option value='9999' selected disabled hidden>Please Select a Show</option>";

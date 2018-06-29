@@ -95,7 +95,7 @@
 			</td>
 			<td>
 				<select name="show" class="shows" id="showId">
-					<option value="">Select Show</option>
+					<option value="0">Select Show</option>
 				</select>
 			</td>
 			<td>
