@@ -40,7 +40,7 @@ function getCountries() {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.countries').append(option);
             });
             $(".countries").prop("disabled",false);
@@ -67,7 +67,7 @@ function getCountriesDet() {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.countries_det').append(option);
             });
             $(".countries_det").prop("disabled",false);
@@ -101,7 +101,7 @@ function getStates(id) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.states').append(option);
             });
             $(".states").prop("disabled",false);
@@ -126,7 +126,7 @@ function getStatesDet(id) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.states_det').append(option);
             });
             $(".states_det").prop("disabled",false);
@@ -153,7 +153,7 @@ function getCities(id) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.cities').append(option);
             });
             $(".cities").prop("disabled",false);
@@ -177,7 +177,7 @@ function getCitiesDet(id) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.cities_det').append(option);
             });
             $(".cities_det").prop("disabled",false);
@@ -204,7 +204,7 @@ function getVenues(id) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.venueid).text(val.venuename);
                 $('.venues').append(option);
             });
             $(".venues").prop("disabled",false);

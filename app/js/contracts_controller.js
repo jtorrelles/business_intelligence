@@ -39,7 +39,7 @@ function getShows() {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.showid).text(val.showname);
                 $('.shows').append(option);
             });
             $(".shows").prop("disabled",false);
@@ -66,7 +66,7 @@ function getPresenters() {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.presenterid).text(val.presentername);
                 $('.presenters').append(option);
             });
             $(".presenters").prop("disabled",false);
@@ -93,7 +93,7 @@ function getVenues() {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.venueid).text(val.venuename);
                 $('.venues').append(option);
             });
             $(".venues").prop("disabled",false);

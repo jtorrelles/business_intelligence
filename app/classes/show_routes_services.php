@@ -18,15 +18,19 @@ class showRoutesServices extends dbconfig {
     // Fetch all countries list
    public static function getCountries() {
      try {
-       $query = "SELECT id, name FROM countries";
+       $query = "SELECT id, name FROM countries ORDER BY name ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Country not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['id']] = $resultSet['name'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["id"] = $resultSet['id'];
+          $res[$x]["name"] = $resultSet['name'];
+          $x++;       
+        }
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Countries fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -38,15 +42,19 @@ class showRoutesServices extends dbconfig {
    // Fetch all states list by country id
   public static function getStates($countryId) {
      try {
-       $query = "SELECT id, name FROM states WHERE country_id=".$countryId;
+       $query = "SELECT id, name FROM states WHERE country_id= $countryId ORDER BY name ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("State not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['id']] = $resultSet['name'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["id"] = $resultSet['id'];
+          $res[$x]["name"] = $resultSet['name'];
+          $x++;       
+        }
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"States fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -58,15 +66,19 @@ class showRoutesServices extends dbconfig {
     // Fetch all cities list by state id
   public static function getCities($stateId) {
      try {
-       $query = "SELECT id, name FROM cities WHERE state_id=".$stateId;
+       $query = "SELECT id, name FROM cities WHERE state_id= $stateId ORDER BY name ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("City not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['id']] = $resultSet['name'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["id"] = $resultSet['id'];
+          $res[$x]["name"] = $resultSet['name'];
+          $x++;       
+        }
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Cities fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -113,10 +125,14 @@ class showRoutesServices extends dbconfig {
        if(!$result) {
          throw new exception("Show not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['showid']] = $resultSet['showname'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["showid"] = $resultSet['showid'];
+          $res[$x]["showname"] = $resultSet['showname'];
+          $x++;       
+        }   
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -128,15 +144,19 @@ class showRoutesServices extends dbconfig {
  // Fetch all countries list
    public static function getVenues() {
      try {
-       $query = "SELECT venueid, venuename FROM venues WHERE venueactive = 'Y'";
+       $query = "SELECT venueid, venuename FROM venues WHERE venueactive = 'Y' ORDER BY venuename ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Venue not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['venueid']] = $resultSet['venuename'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["venueid"] = $resultSet['venueid'];
+          $res[$x]["venuename"] = $resultSet['venuename'];
+          $x++;       
+        }  
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Venues fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -148,15 +168,19 @@ class showRoutesServices extends dbconfig {
     // Fetch all countries list
    public static function getPresenters() {
      try {
-       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y'";
+       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y' ORDER BY presentername ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Presenter not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['presenterid']] = $resultSet['presentername'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["presenterid"] = $resultSet['presenterid'];
+          $res[$x]["presentername"] = $resultSet['presentername'];
+          $x++;       
+        }    
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Presenters fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -248,12 +272,16 @@ class showRoutesServices extends dbconfig {
        if(!$result) {
          throw new exception("RouteDetail not found.");
        }
+       
+        $res = array();
+        $x=0;
 
-       $res = array();
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["ROUTES_DETID"] = $resultSet['ROUTES_DETID'];
+          $res[$x]["PRESENTATION_DATE"] = $resultSet['PRESENTATION_DATE'];
+          $x++;       
+        }   
 
-       while($resultSet = mysqli_fetch_assoc($result)) {
-          $res[$resultSet['ROUTES_DETID']] = $resultSet['PRESENTATION_DATE'];
-       }
 	   include '../session.php';
 	   $description = "Modified / changed the date of a Route detail";
 	   include '../security_log.php';

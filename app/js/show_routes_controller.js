@@ -68,7 +68,7 @@ function getCountries() {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.countries').append(option);
             });
             $(".countries").prop("disabled",false);
@@ -102,7 +102,7 @@ function getStates(id) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.states').append(option);
             });
             $(".states").prop("disabled",false);
@@ -131,7 +131,7 @@ function getCities(id) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.id).text(val.name);
                 $('.cities').append(option);
             });
             $(".cities").prop("disabled",false);
@@ -182,22 +182,9 @@ function getShows() {
     call.send(data, url, method, function(data) {
         $('.shows').find("option:eq(0)").html("Select Show");
         if(data.tp == 1){
-
-            var temp = [];
-
-            $.each(data['result'], function(key, value) {
-                temp.push({v:value, k: key});
-            });    
-
-            temp.sort(function(a,b){
-               if(a.v > b.v){ return 1}
-                if(a.v < b.v){ return -1}
-                  return 0;
-            });
-
-            $.each(temp, function(key, val) {
+            $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', val.k).text(val.v);
+                option.attr('value', val.showid).text(val.showname);
                 $('.shows').append(option);
             });
             $(".shows").prop("disabled",false);
@@ -219,7 +206,7 @@ function getPresenters(presenterID) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.presenterid).text(val.presentername);
                 $('.presenters').append(option);
             });
             $(".presenters").prop("disabled",false);
@@ -244,7 +231,7 @@ function getVenues(venuesID) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.venueid).text(val.venuename);
                 $('.venues').append(option);
             });
             $(".venues").prop("disabled",false);
@@ -290,7 +277,7 @@ function getRouteDataChange(routedetid, routeid) {
         if(data.tp == 1){
             $.each(data['result'], function(key, val) {
                 var option = $('<option />');
-                option.attr('value', key).text(val);
+                option.attr('value', val.ROUTES_DETID).text(val.PRESENTATION_DATE);
                 $('.date_change').append(option);
             });
             $(".date_change").prop("disabled",false);

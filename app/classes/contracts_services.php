@@ -18,15 +18,20 @@ class contractsServices extends dbconfig {
  // Fetch all countries list
    public static function getShows() {
      try {
-       $query = "SELECT showid, showname FROM shows WHERE showactive = 'Y'";
+       $query = "SELECT showid, showname FROM shows WHERE showactive = 'Y' ORDER BY showname ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Show not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['showid']] = $resultSet['showname'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["showid"] = $resultSet['showid'];
+          $res[$x]["showname"] = $resultSet['showname'];
+          $x++;       
+        }         
+
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Shows fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -38,15 +43,20 @@ class contractsServices extends dbconfig {
  // Fetch all countries list
    public static function getVenues() {
      try {
-       $query = "SELECT venueid, venuename FROM venues WHERE venueactive = 'Y'";
+       $query = "SELECT venueid, venuename FROM venues WHERE venueactive = 'Y' ORDER BY venuename ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Venue not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['venueid']] = $resultSet['venuename'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["venueid"] = $resultSet['venueid'];
+          $res[$x]["venuename"] = $resultSet['venuename'];
+          $x++;       
+        }           
+
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Venues fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
@@ -58,15 +68,20 @@ class contractsServices extends dbconfig {
        // Fetch all countries list
    public static function getPresenters() {
      try {
-       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y'";
+       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y' ORDER BY presentername ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Presenter not found.");
        }
-       $res = array();
-       while($resultSet = mysqli_fetch_assoc($result)) {
-        $res[$resultSet['presenterid']] = $resultSet['presentername'];
-       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["presenterid"] = $resultSet['presenterid'];
+          $res[$x]["presentername"] = $resultSet['presentername'];
+          $x++;       
+        }         
+
        $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Presenters fetched successfully.", 'result'=>$res);
      } catch (Exception $e) {
        $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
