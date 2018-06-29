@@ -1,12 +1,4 @@
 <?php
-/*
-* Author: JTorrelles
-* Website: ConnectIT
-* Version: 0.1
-* Date: 30-04-2018
-* App Name: Business Intelligence
-* Description: Clase de metodos basicos para modulo de reportes, esta a su vez hereda la clase de conexión
-*/
 require_once('../db/dbconfig.php');
 class reports_basics extends dbconfig {
    
