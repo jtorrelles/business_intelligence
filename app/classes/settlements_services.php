@@ -1,12 +1,4 @@
 <?php
-/*
-* Author: Rohit Kumar
-* Website: iamrohit.in
-* Version: 0.0.1
-* Date: 25-04-2015
-* App Name: Php+ajax country state city dropdown
-* Description: A simple oops based php and ajax country state city dropdown list
-*/
 require_once('../db/dbconfig.php');
 class settlementsServices extends dbconfig {
    
@@ -955,3 +947,4 @@ class settlementsServices extends dbconfig {
       return $res_name;
    }
 }
+?>

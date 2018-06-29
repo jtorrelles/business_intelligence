@@ -1,14 +1,4 @@
 <?php
-/*
-* Author: JTorrelles
-* Project: BI
-* Version: 0.1
-* Date: 30-04-2018
-* App Name: Business Intelligence
-* Description: Clase que funciona Provee de Información las peticiones del route, 
-                hereda de la clase de metodos basicos para modulo de reportes, que 
-                a su vez hereda la conexion a la BD.
-*/
 require_once('reports_basics.php');
 class reportsServices extends reports_basics {
    
