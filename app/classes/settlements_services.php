@@ -551,9 +551,9 @@ class settlementsServices extends dbconfig {
                   $CityState = $objPHPExcel->getSheet(20)->getCell('A2')->getValue();
                   $Venue = $objPHPExcel->getSheet(20)->getCell('A3')->getValue();
                   $OpeningDate = $objPHPExcel->getSheet(20)->getCell('A4')->getValue();
-                  $OD = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($OpeningDate));
+                  $OD = gmdate($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($OpeningDate));
                   $ClosingDate = $objPHPExcel->getSheet(20)->getCell('A5')->getValue();
-                  $CD = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($ClosingDate));
+                  $CD = gmdate($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($ClosingDate));
 
                   $tax_1_perc = $objPHPExcel->getSheet(20)->getCell('B13')->getCalculatedValue();
                   $tax_2_perc = $objPHPExcel->getSheet(20)->getCell('B14')->getCalculatedValue();
