@@ -487,7 +487,7 @@ countryNAME: ".$res["country_name"];
                   $Showtoroute = $objPHPExcel->getSheet(1)->getCell('E1')->getValue();
                   $Showtorouteid = substr($Showtoroute,strpos($Showtoroute,"//")+2);
                   $Date_route = $objPHPExcel->getSheet(1)->getCell('D8')->getValue();
-                  $DR = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Date_route));  
+                  $DR = gmdate($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Date_route));  
                   for($i = 0; $i < 364; $i++){
                     $id = 8 + $i;
                     $Presentation_date = $objPHPExcel->getSheet(1)->getCell("D".$id)->getValue();
