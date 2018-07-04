@@ -46,7 +46,7 @@ echo "
 <body>";
 echo "<h1 align=center>ADD A NEW TEMPLATE</h1>";
 echo "<p align=center>This template will be available on the Market History Report View after you save it. Scroll all the way down to save.</p>";
-$sql = "SELECT id, field_name FROM modules_fields";
+$sql = "SELECT id, field_name, field_description FROM modules_fields";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
 	echo "<table id=\"shows\">
@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
 		<input name='".$row["field_name"]."' value='0' type='hidden'>
 		<input type='checkbox' value='".$row["id"]."' name='".$row["field_name"]."'>
 		</td>
-		<td align=center>".$row["field_name"]."</td>
+		<td align=center>".$row["field_description"]."</td>
 		</tr>";
     }
 	echo "</table>";

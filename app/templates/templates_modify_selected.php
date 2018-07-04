@@ -59,7 +59,7 @@ if(isset($_GET['selectedid'])){
 			  	<th>SELECT</th>
 			  	<th>FIELD NAME</th>
 			  </tr>";
-		$sql2 = "SELECT id, field_name FROM modules_fields";
+		$sql2 = "SELECT id, field_name, field_description FROM modules_fields";
 		$result2 = $conn->query($sql2);
 		while($row2 = $result2->fetch_assoc()) {
 		$selectedmodulefieldid = $row2['id'];
@@ -73,7 +73,7 @@ if(isset($_GET['selectedid'])){
 			<input name='".$row2["field_name"]."' value='0' type='hidden'>
 			<input type='checkbox' value='".$row2["id"]."' name='".$row2["field_name"]."' checked>
 			</td>
-			<td align=center>".$row2["field_name"]."</td>
+			<td align=center>".$row2["field_description"]."</td>
 			</tr>";
 		} else {		
         echo 
@@ -82,7 +82,7 @@ if(isset($_GET['selectedid'])){
 			<input name='".$row2["field_name"]."' value='0' type='hidden'>
 			<input type='checkbox' value='".$row2["id"]."' name='".$row2["field_name"]."'>
 			</td>
-			<td align=center>".$row2["field_name"]."</td>
+			<td align=center>".$row2["field_description"]."</td>
 			</tr>";
 		}
 		}
