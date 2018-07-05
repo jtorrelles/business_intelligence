@@ -340,7 +340,8 @@ class reportsServices extends dbconfig {
         $parentpresenters = "AND pr.presenterparent_company like '$parentpresenters' ";
       }	  
 
-      $query = "SELECT field_description 
+      $query = "SELECT field_name,
+                       field_description
                 FROM modules_fields fi,
                      modules mo
                 WHERE fi.moduleid = mo.id
@@ -353,7 +354,8 @@ class reportsServices extends dbconfig {
       }
 
       while($resultSet = mysqli_fetch_assoc($result)) {
-        $data[$x]["column"] = $resultSet['field_description'];
+        $data[$x]["column"] = $resultSet['field_name'];
+        $data[$x]["description"] = $resultSet['field_description'];
         $x++;       
       }
 

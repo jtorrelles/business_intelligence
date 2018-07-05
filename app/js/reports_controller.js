@@ -247,7 +247,7 @@ function getMarketHistory(inid,endd,presenters,parentpresenters,country,state,ci
         if(data.tp == 1){
             size = data.result['head'].length; 
             while(counter1 < size){
-                columns = '<th>' + data.result['head'][counter1].column + '</th>';
+                columns = '<th>' + data.result['head'][counter1].description + '</th>';
                 hcolumns = hcolumns + columns;
                 counter1++;
             }
