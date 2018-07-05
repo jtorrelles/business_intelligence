@@ -340,11 +340,12 @@ class reportsServices extends dbconfig {
         $parentpresenters = "AND pr.presenterparent_company like '$parentpresenters' ";
       }	  
 
-      $query = "SELECT column_name
-                FROM information_schema.COLUMNS
-                WHERE TABLE_SCHEMA  LIKE 'networksbi'
-                    AND TABLE_NAME = 'settlements' 
-                    AND COLUMN_NAME in ($columns)";
+      $query = "SELECT field_description 
+                FROM modules_fields fi,
+                     modules mo
+                WHERE fi.moduleid = mo.id
+                AND mo.name = 'settlements' 
+                AND field_name in ($columns)";
 
       $result = dbconfig::run($query);
       if(!$result) {
@@ -352,7 +353,7 @@ class reportsServices extends dbconfig {
       }
 
       while($resultSet = mysqli_fetch_assoc($result)) {
-        $data[$x]["column"] = $resultSet['column_name'];
+        $data[$x]["column"] = $resultSet['field_description'];
         $x++;       
       }
 
