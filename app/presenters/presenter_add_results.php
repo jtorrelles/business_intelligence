@@ -26,7 +26,7 @@ $notes = $_POST['notes_presenter'];
 
 $sql = "INSERT INTO presenters (presentername,presenterparent_company,presenteraddress_1,presenteraddress_2,presentercityid,presenterzip,presenterphone,presenterphone_ext, presenterfax,presenteremail,presenternotes,presenteractive, presentercontact_name)
 VALUES
-('$name','$parentcompany','$address1','$address2','$city','$zip','$phone','$extphone','$fax','$email','$notes','$active','$pace','$contact')";
+('$name','$parentcompany','$address1','$address2','$city','$zip','$phone','$extphone','$fax','$email','$notes','$active','$contact')";
 
 if ($conn->query($sql) === TRUE) {
     echo "Record Created successfully";
