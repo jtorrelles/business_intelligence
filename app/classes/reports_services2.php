@@ -457,7 +457,7 @@ class reportsServices extends dbconfig {
                        grossboxofficepotential as gp,
                        grosssubscriptionsales as ss,
                        grossgroupsales1 as gs,
-                       singletixamount as st,
+                       grosssingletix as st,
                        advertisingactual as ad
                   FROM settlements se, 
                         shows sh,
