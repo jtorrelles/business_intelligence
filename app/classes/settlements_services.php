@@ -82,7 +82,7 @@ class settlementsServices extends dbconfig {
  // Fetch all countries list
    public static function getVenues() {
      try {
-       $query = "SELECT venueid, venuename FROM venues ORDER BY venuename ASC";
+       $query = "SELECT venueid, venuename FROM venues WHERE venueactive = 'Y' ORDER BY venuename ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Venue not found.");
