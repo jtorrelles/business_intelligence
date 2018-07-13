@@ -40,6 +40,14 @@ try {
   	 $data = $loc->getVenues($stateId);
   }
 
+  if($type=='getVenuesByStatus') {
+     if(!isset($_GET['status']) || empty($_GET['status'])) {
+      throw new exception("Status is not set.");
+     }
+     $status = $_GET['status'];
+     $data = $loc->getVenuesByStatus($status);
+  }    
+
   if($type=='getVenuesFilter') {
 
     $countryId = $_GET['countryId'];

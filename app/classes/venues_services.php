@@ -109,6 +109,39 @@ class venuesServices extends dbconfig {
      }
    }
 
+  public static function getVenuesByStatus($status) {
+     try {
+       $query = "SELECT venueid, venuename 
+                 FROM venues 
+                 WHERE venueactive LIKE ('$status') 
+                 ORDER BY venuename ASC";
+       /*$query = "SELECT venueid, venuename 
+                 FROM venues ve, cities ci, states st 
+                 WHERE st.id = ci.state_id 
+                 AND ci.id = ve.venuecityid
+                 AND st.id = $stateId 
+                 ORDER BY venuename ASC";*/
+
+       $result = dbconfig::run($query);
+       if(!$result) {
+         throw new exception("Venues not found.");
+       }
+        $res = array();
+        $x=0;
+
+        while($resultSet = mysqli_fetch_assoc($result)) {
+          $res[$x]["venueid"] = $resultSet['venueid'];
+          $res[$x]["venuename"] = $resultSet['venuename'];
+          $x++;       
+        }
+       $data = array('status'=>'success', 'tp'=>1, 'msg'=>"Venues fetched successfully.", 'result'=>$res);
+     } catch (Exception $e) {
+       $data = array('status'=>'error', 'tp'=>0, 'msg'=>$e->getMessage());
+     } finally {
+        return $data;
+     }
+   }      
+
       // Fetch all states list by country id
   public static function getVenuesFilter($countryId, $stateId, $cityId) {
 

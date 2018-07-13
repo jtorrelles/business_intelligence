@@ -206,11 +206,12 @@ function getShows() {
     }); 
 }
 
-function getVenues() {
+function getVenues(status) {
     var call = new ajaxCall();
-    var url = '../routes/settlements_route.php?type=getVenues';
+    var url = '../routes/venues_route.php?type=getVenuesByStatus&status='+status;
     var method = "GET";
     var data = {};
+    console.log(url);
     $('.venues').find("option:eq(0)").html("Please wait..");
     call.send(data, url, method, function(data) {
         $('.venues').find("option:eq(0)").html("Select Venues");
@@ -482,7 +483,7 @@ function findData(id){
 		    setPresenterID = data['result'].se_180;
 
             //getGlobalLocation(data['result'].se_175);
-            getVenues(); 
+            getVenues('%'); 
             getShows();
 			getPresenters();
 
@@ -698,7 +699,7 @@ function getUploadFile(){
 
 function onloadManagement(){
     getShows();
-    getVenues();
+    getVenues('Y');
 	getPresenters();
 }
 
