@@ -19,8 +19,10 @@ if ($conn->connect_error) {
 <script src="../js/multiple/multiple-select.js"></script>
 <script src="../js/utility.js"></script>
 <script src="../js/reports_controller.js"></script>
+<script src="../js/jquery.stickytable.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../css/style.css">
 <link rel="stylesheet" type="text/css" media="screen" href="../js/multiple/multiple-select.css">
+<link rel="stylesheet" href="../css/jquery.stickytable.min.css">
 <script> getCountries(); getShows('%'); getCategories();</script>
 
 <h1>Played Markets Report:</h1>
@@ -137,12 +139,14 @@ if ($conn->connect_error) {
 			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
 			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
 			</p>
+			<div class="sticky-table sticky-ltr-cells">
 			<table id="allroutestable">
 				<thead id="header">
 				</thead>
 				<tbody id="body">
 				</tbody>
 			</table>
+			</div>
 			<input type='hidden' class="htmlpdf" name=htmlpdf>
 			<input type='hidden' class="htmlexc" name=htmlexc>
 			<input type='hidden' class="name" name=name value="Played_market">
