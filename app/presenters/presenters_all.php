@@ -12,6 +12,7 @@ if ($conn->connect_error) {
 echo "
 <html>
 <head>
+<link rel=\"stylesheet\" href=\"../css/jquery.stickytable.min.css\">
 <style>
 #shows {
     font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
@@ -40,6 +41,8 @@ echo "
 </style>
 </head>
 <body>";
+echo "<script src=\"../js/jquery.min.js\"></script>";
+echo "<script src=\"../js/jquery.stickytable.min.js\"></script>";
 echo "<h1>PRESENTERS MANAGEMENT:</h1>";
 echo "<p><a href=\"javascript:window.open('presenter_add.php','Add New User','width=480,height=530')\">Add New Presenter</a> - 
 	  <a href=\"javascript:window.open('presenters_management.php','Modify Any Venue','width=480,height=650')\">Modify Presenter</a>
@@ -69,6 +72,7 @@ $sql = "SELECT presenterid,
 	
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
+	echo "<div class=\"sticky-table\">";
 	echo "<table id=\"shows\" class='sortable'>
 	<col width=6.25%>
 	<col width=6.25%>
@@ -86,7 +90,8 @@ if ($result->num_rows > 0) {
 	<col width=6.25%>
 	<col width=6.25%>
 	<col width=6.25%>
-    <tr>
+	<thead>
+    <tr class=\"sticky-header\">
 	<th>Presenter Name</th>
 	<th>Parent Company</th>
 	<th>Address</th>
@@ -103,7 +108,9 @@ if ($result->num_rows > 0) {
 	<th>Notes</th>
 	<th>Active?</th>
 	<th>Options</th>
-</tr>";
+	</tr>
+	</thead>
+	<tbody>";
     while($row = $result->fetch_assoc()) {
 
         echo 
@@ -130,7 +137,7 @@ if ($result->num_rows > 0) {
 		}	
 		echo "</td></tr>";
     }
-	echo "</table>";
+	echo "</tbody></table></div>";
 }
 else {
 echo "No Presenters - Please check your database connection.";
