@@ -12,17 +12,18 @@ if ($conn->connect_error) {
 echo "
 <html>
 <head>
+<link rel=\"stylesheet\" href=\"../css/jquery.stickytable.min.css\">
 <style>
 #routesoffshows {
     font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
 	font-size: 11px;
     border-collapse: collapse;
-    width: 217%;
 }
 
-#routesoffshows td, #customers th {
+#routesoffshows td {
     border: 1px solid #ddd;
     padding: 8px;
+	white-space: nowrap;
 }
 
 #routesoffshows tr:nth-child(even){background-color: #f2f2f2;}
@@ -33,9 +34,10 @@ echo "
 	padding: 8px;
     padding-top: 12px;
     padding-bottom: 12px;
-    text-align: left;
+    text-align: center;
     background-color: #000066;
     color: white;
+	white-space: nowrap;
 }
 </style>
 </head>
@@ -43,6 +45,7 @@ echo "
 
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
+echo "<script src=\"../js/jquery.stickytable.min.js\"></script>";
 echo "<script> getShows(); </script>";
 
 echo "<h1>ROUTE DETAIL MANAGEMENT:</h1>";
@@ -108,8 +111,10 @@ if (isset($_GET['selectedid']))
 			$showname = $row["SHOWNAME"];
 		}	
 		echo "<h1>Show Title: ".$showname."</h1>";
+		echo "<div class=\"sticky-table sticky-ltr-cells\">";
 		echo "<table id=\"routesoffshows\">
-	    <tr>
+		<thead>
+	    <tr class=\"sticky-header\">
 		<th>Presentation Date</th>
 		<th>Holiday</th>
 		<th>City</th>
@@ -139,7 +144,9 @@ if (isset($_GET['selectedid']))
 		<th>Deal Memo</th>
 		<th>Contract</th>
 		<th>Options</th>
-		</tr>";
+		</tr>
+		</thead>
+		<tbody>";
 		$total_records = 0;
 	    while($row = $result->fetch_assoc()) {
 			$total_records = $total_records + 1;
@@ -241,7 +248,7 @@ if (isset($_GET['selectedid']))
 			echo
 				"<a href=\"javascript:void(window.open('route_detail_change_data.php?routedetid=".$row['ROUTES_DETID']."&routeid=".$row['ROUTESID']."','Change Data','width=480,height=530,top=100'))\"><img src='../images/change_data.png' width=20></a></td></tr>";			
 	    }
-		echo "</table>";
+		echo "</tbody></table></div>";
 		echo "<br>";
 		echo "Total Records: ".$total_records."<br>";
 	} else {

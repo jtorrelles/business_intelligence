@@ -14,6 +14,7 @@ session_cache_limiter("private_no_expire");
 echo "
 <html>
 <head>
+<link rel=\"stylesheet\" href=\"../css/jquery.stickytable.min.css\">
 <style>
 #routesoffshows {
     font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
@@ -44,6 +45,7 @@ echo "
 <body>";
 
 echo "<script src=\"../js/jquery.min.js\"></script>";
+echo "<script src=\"../js/jquery.stickytable.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
@@ -88,19 +90,23 @@ if (isset($_POST['show'])){$selectedid = $_POST['show'];}
 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
+		echo "<div class=\"sticky-table\">";
 		echo "<table id=\"routesoffshows\" class=\"sortable\">
 		<col width=20%>
 		<col width=20%>
 		<col width=20%>
 		<col width=20%>
 		<col width=20%>
-	    <tr>
+		<thead>
+	    <tr class=\"sticky-header\">
 		<th>Show Name</th>
 		<th>Start Date</th>
 		<th>End Date</th>
 		<th>File Name of XLSX</th>
 		<th style='text-align:center;'>OPTIONS</th>
-		</tr>";
+		</tr>
+		</thead>
+		<tbody>";
 	    // output data of each row
 		$total_records = 0;
 	    while($row = $result->fetch_assoc()) {
@@ -122,7 +128,7 @@ if (isset($_POST['show'])){$selectedid = $_POST['show'];}
 				}
 			echo "</td></tr>";
 	    }
-		echo "</table>";
+		echo "</tbody></table></div>";
 		echo "<br>";
 		echo "Total Records: ".$total_records."<br>";
 	} else {
