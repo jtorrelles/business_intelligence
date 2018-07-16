@@ -12,6 +12,7 @@ if ($conn->connect_error) {
 echo "
 <html>
 <head>
+<link rel=\"stylesheet\" href=\"../css/jquery.stickytable.min.css\">
 <style>
 #shows {
     font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
@@ -40,6 +41,8 @@ echo "
 </style>
 </head>
 <body>";
+echo "<script src=\"../js/jquery.min.js\"></script>";
+echo "<script src=\"../js/jquery.stickytable.min.js\"></script>";
 echo "<h1>SHOWS MANAGEMENT:</h1>";
 echo "<p>
 	  <a href=\"javascript:window.open('shows_add.php','Add Show','width=480,height=650')\">Add New Show</a>
@@ -67,6 +70,7 @@ $sql = "SELECT
 		FROM shows ORDER BY showname ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
+	echo "<div class=\"sticky-table\">";
 	echo "<table id=\"shows\" class=\"sortable\">
 	<col width=10%>
 	<col width=5%>
@@ -85,7 +89,8 @@ if ($result->num_rows > 0) {
 	<col width=5%>
 	<col width=5%>
 	<col width=5%>
-    <tr>
+	<thead>
+    <tr class=\"sticky-header\">
 	<th>Show Name</th>
 	<th>Active?</th>
 	<th>Category 1</th>
@@ -103,7 +108,9 @@ if ($result->num_rows > 0) {
 	<th># of Trucks</th>
 	<th>Notes</th>
 	<th>Options</th>
-</tr>";
+	</tr>
+	</thead>
+	<tbody>";
     while($row = $result->fetch_assoc()) {
 
     	$cat1 = $row['categoryid_1'];
@@ -166,7 +173,7 @@ if ($result->num_rows > 0) {
 		}
 		echo "</td></tr>";
     }
-	echo "</table>";
+	echo "</tbody></table></div>";
 }
 else {
 echo "No shows";
