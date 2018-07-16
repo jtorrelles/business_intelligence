@@ -12,6 +12,7 @@ if ($conn->connect_error) {
 echo "
 <html>
 <head>
+<link rel=\"stylesheet\" href=\"../css/jquery.stickytable.min.css\">
 <style>
 #settlements {
     font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
@@ -42,6 +43,7 @@ echo "
 <body>";
 
 echo "<script src=\"../js/jquery.min.js\"></script>";
+echo "<script src=\"../js/jquery.stickytable.min.js\"></script>";
 echo "<script src=\"../js/settlements_controller.js\"></script>";
 echo "<script> getShows(); </script>";
 
@@ -106,6 +108,7 @@ $sql = "SELECT 	se.ID,
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
+	echo "<div class=\"sticky-table\">";
 	echo "<table id=\"settlements\" class=\"sortable\">
 	<col width=9%>
 	<col width=9%>
@@ -121,7 +124,8 @@ if ($result->num_rows > 0) {
 	<col width=7%>
 	<col width=7%>
 	<col width=5%>
-    <tr>
+	<thead>
+    <tr class=\"sticky-header\">
 	<th>Show Name</th>
 	<th>Venue</th>
 	<th>City</th>
@@ -136,7 +140,9 @@ if ($result->num_rows > 0) {
 	<th>Total Company Guarantee</th>
 	<th>Money Remaining</th>
 	<th>Options</th>
-	</tr>";
+	</tr>
+	</thead>
+	<tbody>";
     // output data of each row
 	$total_records = 0;
 	$total_amount = 0;
@@ -164,7 +170,7 @@ if ($result->num_rows > 0) {
 		</td>
 		</tr>";
     }
-	echo "</table>";
+	echo "</tbody></table></div>";
 	echo "<br>";
 	echo "Total Records: ".$total_records."<br>";
 } else {
