@@ -36,7 +36,7 @@ function getAllRoutes(inid,endd,country,state,city,fields,weekending) {
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
     var columns = '';
-    var hcolumns = '<tr><th>DATE</th>'; 
+    var hcolumns = '<tr class=\"sticky-header\"><th class=\"sticky-cell\">DATE</th>'; 
     var files = '';
     var hfiles = '<tr>';
     var showid = '';
@@ -61,7 +61,7 @@ function getAllRoutes(inid,endd,country,state,city,fields,weekending) {
                 sunday = new Date(ini).getUTCDay();
                 if(weekending == 0 || sunday == 0){
                     dt = ("0" + (new Date(ini).getMonth() + 1)).slice(-2) + '/' + ("0" + new Date(ini).getDate()).slice(-2) + '/' + new Date(ini).getFullYear();
-                    hfiles = hfiles + '<td>' + dt + '</td>';
+                    hfiles = hfiles + '<td class=\"sticky-cell\">' + dt + '</td>';
                     while(counter2 < size){
                         files = '<td>' + data.result['body'][counter2][counter1].citystate + '</td>';
                         hfiles = hfiles + files;                                         
@@ -102,7 +102,7 @@ function getRoutesConf(inid,endd,country,state,city,reason) {
     var counter2 = 0;
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css">'
     var htmlexc = '<table>'
-    var columns = '<tr><th>CITY / STATE</th>' + 
+    var columns = '<tr class=\"sticky-header\"><th>CITY / STATE</th>' + 
                   '<th>SHOW</th>' +
                   '<th>SHOW</th>' + 
                   '<th>SHOW</th>' + 
@@ -234,7 +234,7 @@ function getMarketHistory(inid,endd,presenters,parentpresenters,country,state,ci
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
     var columns = '';
-    var hcolumns = '<tr><th>SHOW NAME</th>' +
+    var hcolumns = '<tr class=\"sticky-header\"><th>SHOW NAME</th>' +
                    '<th>OPENING DATE</th>' + 
                    '<th>CLOSING DATE</th>' +
 				   '<th>PRESENTER</th>' +
@@ -302,7 +302,7 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     var counter = 0;
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
-    var columns = '<tr><th>SHOW NAME</th>' +
+    var columns = '<tr class=\"sticky-header\"><th>SHOW NAME</th>' +
                   '<th>OPENING DATE</th>' + 
                   '<th>CLOSING DATE</th>' +
                   '<th>STATE</th>' +
@@ -442,7 +442,7 @@ function getPlayedMarkets(inid,endd,country,state,city,shows) {
     var counter2 = 0;  
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
-    var columns = '<tr><th>CITY</th><th>STATE</th>'; 
+    var columns = '<tr class=\"sticky-header\"><th class=\"sticky-cell\">CITY</th class=\"sticky-cell\"><th class=\"sticky-cell\">STATE</th>'; 
     var files = '<tr>';
     call.send(data, url, method, function(data) {
         if(data.tp == 1){
@@ -457,8 +457,8 @@ function getPlayedMarkets(inid,endd,country,state,city,shows) {
             $("#header").append(columns);
             size2 = data.result['cbody'].length;
             while(counter2 < size2){                
-               files = files + '<td>' + data.result['cbody'][counter2].city + '</td>' 
-                             + '<td>' + data.result['cbody'][counter2].state + '</td>';
+               files = files + '<td  class=\"sticky-cell\">' + data.result['cbody'][counter2].city + '</td>' 
+                             + '<td  class=\"sticky-cell\">' + data.result['cbody'][counter2].state + '</td>';
                 counter3 = 0;
                 while(counter3 < size){
                     files = files + '<td>' + data.result['ebody'][counter2][counter3].daterange  + '</td>';
