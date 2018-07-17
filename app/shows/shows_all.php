@@ -38,6 +38,9 @@ echo "
     background-color: #000066;
     color: white;
 }
+#sticky {
+	overflow-x: hidden;
+}
 </style>
 </head>
 <body>";
@@ -70,7 +73,7 @@ $sql = "SELECT
 		FROM shows ORDER BY showname ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<div class=\"sticky-table\">";
+	echo "<div id=\"sticky\" class=\"sticky-table\">";
 	echo "<table id=\"shows\" class=\"sortable\">
 	<col width=10%>
 	<col width=5%>
@@ -82,13 +85,13 @@ if ($result->num_rows > 0) {
 	<col width=5%>
 	<col width=5%>
 	<col width=5%>
+	<col width=10%>
+	<col width=4%>
+	<col width=4%>
+	<col width=4%>
+	<col width=4%>
 	<col width=5%>
-	<col width=5%>
-	<col width=5%>
-	<col width=5%>
-	<col width=5%>
-	<col width=5%>
-	<col width=5%>
+	<col width=4%>
 	<thead>
     <tr class=\"sticky-header\">
 	<th>Show Name</th>
