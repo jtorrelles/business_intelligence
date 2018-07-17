@@ -321,7 +321,7 @@ if ($conn->connect_error) {
 					<option value="'ADJUSTEDCOMPANYSHARE'"> ADJUSTED COMPANY SHARE </option>
 					<option value="'TOTALPRESENTERSHARE'"> TOTAL PRESENTER SHARE </option>
 					<option value="'PRESENTERFACILITYFEE'"> PRESENTERS FACILITY FEE </option>
-					<option value="'ADJUSTEDPRESENTERSHARE'"> ADJUESTED PRESENTER SHARE </option>
+					<option value="'ADJUSTEDPRESENTERSHARE'"> ADJUSTED PRESENTER SHARE </option>
 					<option value="'NOTES'"> NOTES </option>
 				</select>
 			</td>
@@ -341,7 +341,7 @@ if ($conn->connect_error) {
 			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
 			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
 			</p>
-			<div class="sticky-table">
+			<div class="sticky-table sticky-ltr-cells">
 			<table id="allroutestable">
 				<thead id="header">
 				</thead>
