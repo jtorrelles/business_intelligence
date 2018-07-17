@@ -22,7 +22,7 @@ echo "
 
 #routesoffshows td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 6px;
 	white-space: nowrap;
 }
 
@@ -32,8 +32,8 @@ echo "
 
 #routesoffshows th {
 	padding: 8px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     text-align: center;
     background-color: #000066;
     color: white;
@@ -51,7 +51,7 @@ echo "<script> getShows(); </script>";
 echo "<h1>ROUTE DETAIL MANAGEMENT:</h1>";
 
 echo "<p><a href=show_routes_all.php>Back to Route Management</a> - 
-	<a href=\"javascript:void(window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=500,top=100'))\">Update Route With Spreadsheet</a></p><br>";
+	<a href=\"javascript:void(window.open('upload_routes_update.php?selectedid=".$_GET['selectedid']."','Upload  Route','width=650,height=500,top=100'))\">Update Route With Spreadsheet</a></p>";
 
 if (isset($_GET['selectedid']))
 {
@@ -115,10 +115,10 @@ if (isset($_GET['selectedid']))
 		echo "<table id=\"routesoffshows\">
 		<thead>
 	    <tr class=\"sticky-header\">
-		<th>Presentation Date</th>
-		<th>Holiday</th>
-		<th>City</th>
-		<th>State</th>		
+		<th class=\"sticky-cell\">Presentation Date</th>
+		<th class=\"sticky-cell\">Holiday</th>
+		<th class=\"sticky-cell\">City</th>
+		<th class=\"sticky-cell\">State</th>		
 		<th>Repeat</th>
 		<th>Mileage</th>
 		<th>Booking Notes</th>
@@ -152,17 +152,17 @@ if (isset($_GET['selectedid']))
 			$total_records = $total_records + 1;
 			echo 
 			"<tr>
-				<td>". $row["PRESENTATION_DATE"]. "</td>";
+				<td class=\"sticky-cell\">". $row["PRESENTATION_DATE"]. "</td>";
 			if($row["HOLIDAY"] == 1){
 				echo 
-				"<td><input type='checkbox' class=\"pres_date\" name='pres_date' checked disabled></td>";
+				"<td class=\"sticky-cell\"><input type='checkbox' class=\"pres_date\" name='pres_date' checked disabled></td>";
 			}else{
 				echo 
-				"<td><input type='checkbox' class=\"pres_date\" name='pres_date' disabled></td>";
+				"<td class=\"sticky-cell\"><input type='checkbox' class=\"pres_date\" name='pres_date' disabled></td>";
 			}
 			echo
-				"<td>". $row["CITY"]. "</td>
-				<td>". $row["STATE"]. "</td>";
+				"<td class=\"sticky-cell\">". $row["CITY"]. "</td>
+				<td class=\"sticky-cell\">". $row["STATE"]. "</td>";
 			if($row["REPEAT1"] == 1){
 				echo 
 				"<td><input type='checkbox' class=\"repeat\" name='repeat' checked disabled></td>";
@@ -249,10 +249,10 @@ if (isset($_GET['selectedid']))
 				"<a href=\"javascript:void(window.open('route_detail_change_data.php?routedetid=".$row['ROUTES_DETID']."&routeid=".$row['ROUTESID']."','Change Data','width=480,height=530,top=100'))\"><img src='../images/change_data.png' width=20></a></td></tr>";			
 	    }
 		echo "</tbody></table></div>";
-		echo "<br>";
-		echo "Total Records: ".$total_records."<br>";
+		//echo "<br>";
+		//echo "Total Records: ".$total_records."<br>";
 	} else {
-		echo "No details find<br>";
+		echo "No details found<br>";
 		echo "0 results. Please select another route.";
 	}
 }
