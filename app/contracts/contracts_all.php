@@ -28,11 +28,14 @@ echo "
 #contracts tr:hover {background-color: #ddd;}
 #contracts th {
 	padding: 8px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     text-align: center;
     background-color: #000066;
     color: white;
+}
+#sticky {
+	overflow-x: hidden;
 }
 </style>
 </head>
@@ -57,18 +60,17 @@ echo "</tr>";
 echo "</table>";
 
 echo "</form>";
-echo "<br>";
 
 if (isset($_POST['show']))
 {
 	$selectedid = $_POST['show'];
-	echo "<p><a href=\"javascript:window.open('contract_add.php','Add New Deal Terms','width=650,height=450')\">Add New Deal Terms</a></p><br>";
+	echo "<p><a href=\"javascript:window.open('contract_add.php','Add New Deal Terms','width=650,height=450')\">Add New Deal Terms</a></p>";
 }
 else
 {
 	$selectedid = '9999';
-	echo "<p><a href=\"javascript:window.open('contract_add.php','Add New Deal Terms','width=650,height=450')\">Add New Deal Terms</a></p><br>";
-	echo "No show selected<br>";
+	echo "<p><a href=\"javascript:window.open('contract_add.php','Add New Deal Terms','width=650,height=450')\">Add New Deal Terms</a></p>";
+	//echo "No show selected.";
 }
 
 $sql = "SELECT 	co.ContractID as contractID, 
@@ -93,7 +95,7 @@ $sql = "SELECT 	co.ContractID as contractID,
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<div class=\"sticky-table\">";
+	echo "<div id=\"sticky\" class=\"sticky-table\">";
 	echo "<table id=\"contracts\" class=\"sortable\">
 	<col width=9%>
 	<col width=9%>
