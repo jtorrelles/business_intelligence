@@ -5,6 +5,7 @@ include 'access_control.php';
 include '../header_nologout.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/show_routes_controller.js\"></script>";
+echo "<script src=\"../js/jquery.are-you-sure.js\"></script>";
 
 if(isset($_GET['selectedid'])){
 
@@ -12,12 +13,12 @@ if(isset($_GET['selectedid'])){
     echo "<div style=\"display:none\" id=\"datadetailroute\">";
     echo "<form action=\"market_analysis_modify_selected_results.php\" method=\"POST\">";
     echo "<table>";
-    echo "<tr><td><h2>ENGAGEMENT SNAPSHOT</h2></td></tr>";
-    echo "<tr><td><h3>PROFORMA: VENUE TAB</h3></td></tr>";
-    echo "<tr><td><p>A Market Analysis Has Already Been Done</p></td></tr>";
+    echo "<tr><td colspan=2><h2>ENGAGEMENT SNAPSHOT</h2><h3>PROFORMA: VENUE TAB</h3></td></tr>";
+    //echo "<tr><td colspan=2><h3>PROFORMA: VENUE TAB</h3></td></tr>";
+    echo "<tr><td colspan=2><p>A Market Analysis Has Already Been Done</p></td></tr>";
     echo "<tr>
         <td><b>Route Detail ID:</b></td>
-        <td><input style=\"background-color: lightgrey;\" readonly type='text' name='detid' class=\"detid\">This field cannot be modified</td>
+        <td><input style=\"background-color: lightgrey;\" readonly type='text' name='detid' class=\"detid\"></td>
       </tr>"; 
     echo "<tr>
         <td><b>Gross Potential:</b></td>
@@ -92,7 +93,13 @@ if(isset($_GET['selectedid'])){
 }else {
   echo "failed";
 }
-
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
 $conn->close();
 include '../footer.html';
 ?>
