@@ -175,7 +175,7 @@ include '../header_nologout.html';
 	$total_comp_overage = $_POST['total_comp_overage'];
 	$total_star_overage = $_POST['total_star_overage'];
 	$pre_overage_pre = $_POST['pre_overage_pre'];
-	$overage_share = $_POST['overage_share'];
+	//$overage_share = $_POST['overage_share'];
 	$money_rem_total = $_POST['money_rem_total'];
 	$total_comp_share = $_POST['total_comp_share'];
 	$less_direct_comp = $_POST['less_direct_comp'];
@@ -262,7 +262,7 @@ $sql = "UPDATE settlements
 				TOTALCOMPANYOVERAGEAMOUNT = $total_comp_overage, 
 				NETSTARPERFORMEROVERAGEPERCENTAGE = $net_star_overage, 
 				TOTALSTARPERFORMEROVERAGEAMOUNT = $total_star_overage, PRESENTEROVERAGETOCOMPANY = $overage_pre, 
-				PRESENTEROVERAGEADJUSTED = $overage_share, PRESENTEROVERAGETOPRESENTER = $pre_overage_pre, 
+				PRESENTEROVERAGETOPRESENTER = $pre_overage_pre, 
 				TOTALCOMPANYSHARE = $total_comp_share, LESSDIRECTCOMPANYCHARGES = $less_direct_comp, 
 				ADJUSTEDCOMPANYSHARE = $adj_comp_share, TOTALPRESENTERSHARE = $total_pre_share, 
 				PRESENTERFACILITYFEE = $pre_facility_fee, ADJUSTEDPRESENTERSHARE = $adj_pre_share, NOTES = '$notes' 

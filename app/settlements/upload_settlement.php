@@ -5,6 +5,7 @@ include 'access_control.php';
 echo "<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/style.css\">";
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/settlements_controller.js\"></script>";
+
 echo "<h1>Upload Settlement</h1>";
 echo "<div id=\"settlement_uploadfile\">";
 echo "<form id=\"fileUploadForm\" method=\"POST\" enctype=\"multipart/form-data\">";
@@ -310,7 +311,7 @@ echo "<table>
 		</tr>
 		<tr>
 			<td><b>Deductions % of GBOR:</b></td>
-			<td><input type='number' name='deductions_gbor' class=\"deductions_gbor\" value=0.0 step=0.01></td>
+			<td><input type='number' name='deductions_gbor' class=\"deductions_gbor\" value=0.000000000 step=0.000000001></td>
 		</tr>
 		<tr>
 			<td><b>NAGBOR:</b></td>
@@ -344,7 +345,7 @@ echo "<table>
 			<td></td>
 			<td><b>Budgeted</b></td>
 			<td><b>Actual</b></td>
-			<td><b>Percentage</b></td>
+			<td><b>Per Ticket</b></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -588,12 +589,12 @@ echo "<table>
 			<td></td>
 		</tr>		
 		<tr>
-			<td><b>Presenter Overage % to Company:</b></td>
+			<td><b>Presenter Overage %:</b></td>
 			<td><input type='number' name='overage_pre' class=\"overage_pre\" value=0.0 step=0.01></td>
 			<td></td>
 		</tr>		
 		<tr>
-			<td><b>Middel Monies To:</b></td>
+			<td><b>Middle Monies To:</b></td>
 			<td><input type='number' name='monies_comp' class=\"monies_comp\" value=0.0 step=0.01></td>
 			<td><input type='number' name='monies_pre' class=\"monies_pre\" value=0.0 step=0.01></td>
 		</tr>	
@@ -608,7 +609,7 @@ echo "<table>
 			<td><input type='number' name='total_star_overage' class=\"total_star_overage\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>Presenter Overage % to Presenter:</b></td>
+			<td><b>Presenter Overage $:</b></td>
 			<td></td>
 			<td><input type='number' name='pre_overage_pre' class=\"pre_overage_pre\" value=0.0 step=0.01></td>
 		</tr>
@@ -619,15 +620,7 @@ echo "<table>
 		</tr>
 		<tr>
 			<td></td>
-			<td><b>To Share</></td>
-		</tr>	
-		<tr>
 			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><b>Presenter Overage % Adjusted Company Share:</b></td>
-			<td><input type='number' name='overage_share' class=\"overage_share\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -677,5 +670,6 @@ echo "<table>
 echo "<p align=center><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 echo "</form>";
 echo "</div>";
+
 include '../footer.html'; 
 ?>

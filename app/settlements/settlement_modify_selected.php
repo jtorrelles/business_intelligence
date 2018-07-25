@@ -5,6 +5,7 @@ include 'access_control.php';
 include '../header_nologout.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/settlements_controller.js\"></script>";
+echo "<script src=\"../js/jquery.are-you-sure.js\"></script>";
 
 if(isset($_GET['selectedid'])){
 
@@ -352,7 +353,7 @@ if(isset($_GET['selectedid'])){
 			<td></td>
 			<td><b>Budgeted</b></td>
 			<td><b>Actual</b></td>
-			<td><b>Percentage</b></td>
+			<td><b>Per Ticket</b></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -596,12 +597,12 @@ if(isset($_GET['selectedid'])){
 			<td></td>
 		</tr>		
 		<tr>
-			<td><b>Presenter Overage % to Company:</b></td>
+			<td><b>Presenter Overage %:</b></td>
 			<td><input type='number' name='overage_pre' class=\"overage_pre\" value=0.0 step=0.01></td>
 			<td></td>
 		</tr>		
 		<tr>
-			<td><b>Middel Monies To:</b></td>
+			<td><b>Middle Monies To:</b></td>
 			<td><input type='number' name='monies_comp' class=\"monies_comp\" value=0.0 step=0.01></td>
 			<td><input type='number' name='monies_pre' class=\"monies_pre\" value=0.0 step=0.01></td>
 		</tr>	
@@ -616,7 +617,7 @@ if(isset($_GET['selectedid'])){
 			<td><input type='number' name='total_star_overage' class=\"total_star_overage\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>Presenter Overage % to Presenter:</b></td>
+			<td><b>Presenter Overage $:</b></td>
 			<td></td>
 			<td><input type='number' name='pre_overage_pre' class=\"pre_overage_pre\" value=0.0 step=0.01></td>
 		</tr>
@@ -627,15 +628,7 @@ if(isset($_GET['selectedid'])){
 		</tr>
 		<tr>
 			<td></td>
-			<td><b>To Share</></td>
-		</tr>	
-		<tr>
 			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><b>Presenter Overage % Adjusted Company Share:</b></td>
-			<td><input type='number' name='overage_share' class=\"overage_share\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
 			<td></td>
@@ -689,7 +682,13 @@ if(isset($_GET['selectedid'])){
 else {
   echo "failed";
 }
-
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
 $conn->close();
 include '../footer.html';
 ?>
