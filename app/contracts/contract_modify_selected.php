@@ -57,23 +57,23 @@ if(isset($_GET['selectedid'])){
 				<td><input type=\"date\" name='closing_date' class='closing_date'></td></tr>
 				<td>Number of Performances:</td>
 				<td><input type=\"number\" name='number_of_performances' class='number_of_performances' max=99 min=1 step=1></td></tr>
-				<td>Gross Potential:</td>
+				<td>Gross Potential $:</td>
 				<td><input type=\"number\" name='gross_potential' class='gross_potential' step=0.01></td></tr>
-				<td>Tax:</td>
+				<td>Withholding Tax $:</td>
 				<td><input type=\"number\" name='tax' class='tax' step=0.01></td></tr>
-				<td>Guarantee:</td>
+				<td>Guarantee $:</td>
 				<td><input type=\"number\" name='guarantee' class='guarantee' step=0.01></td></tr>
-				<td>Variable Guarantee:</td>
+				<td>Variable Guarantee %:</td>
 				<td><input type=\"number\" name='variable_guarantee' class='variable_guarantee' max=99 min=1 step=1></td></tr>
-				<td>Producer Overages:</td>
+				<td>Producer Overages %:</td>
 				<td><input type=\"number\" name=\"producer_overages\" class='producer_overages' max=99 min=1 step=1></td></tr>
-				<td>Sales Tax 1:</td>
+				<td>Sales Tax 1 $:</td>
 				<td><input type=\"number\" name=\"sales_tax_1\" class='sales_tax_1' step=0.01></td></tr>
-				<td>Sales Tax 2:</td>
+				<td>Sales Tax 2 $:</td>
 				<td><input type=\"number\" name=\"sales_tax_2\" class='sales_tax_2' step=0.01></td></tr>
-				<td>Facility Fee 1:</td>
+				<td>Facility Fee 1 $:</td>
 				<td><input type=\"number\" name=\"facility_fees_1\" class='facility_fees_1' step=0.01></td></tr>
-				<td>Facility Fee 2:</td>
+				<td>Facility Fee 2 $:</td>
 				<td><input type=\"number\" name=\"facility_fees_2\" class='facility_fees_2' step=0.01></td></tr>	
 			</tr>
 			<tr>
@@ -81,17 +81,17 @@ if(isset($_GET['selectedid'])){
 				<td></td>
 			</tr>
 			<tr>
-				<td>Subscription:</td>
+				<td>Subscription %:</td>
 				<td><input type=\"number\" name='subscription_commission' class='subscription_commission' max=99 min=1></td></tr>
-				<td>Group:</td>
+				<td>Group %:</td>
 				<td><input type=\"number\" name='group_commission' class='group_commission' max=99 min=1 step=1></td></tr>
-				<td>Phone:</td>
+				<td>Phone %:</td>
 				<td><input type=\"number\" name='phone_commission' class='phone_commission' max=99 min=1 step=1></td></tr>
-				<td>Internet:</td>
+				<td>Internet %:</td>
 				<td><input type=\"number\" name='internet_commission' class='internet_commission' max=99 min=1 step=1></td></tr>
-				<td>Credit Card:</td>
+				<td>Credit Card %:</td>
 				<td><input type=\"number\" name='credit_card_commission' class='credit_card_commission' max=99 min=1 step=1></td></tr>
-				<td>Remotes:</td>
+				<td>Remotes %:</td>
 				<td><input type=\"number\" name='remotes_commission' class='remotes_commission' max=99 min=1 step=1></td></tr>
 			</tr>
 			<tr>
@@ -99,11 +99,11 @@ if(isset($_GET['selectedid'])){
 				<td></td>
 			</tr>
 			<tr>
-				<td>Total Fixed Expense:</td>
+				<td>Total Fixed Expense $:</td>
 				<td><input type=\"number\" name='fixed_expense' class='fixed_expense' step=0.01></td></tr>
-				<td>Total Documented Expense:</td>
+				<td>Total Documented Expense $:</td>
 				<td><input type=\"number\" name='documented_expense' class='documented_expense' step=0.01></td></tr>
-				<td>Total Presenter Expenses:</td>
+				<td>Total Presenter Expenses $:</td>
 				<td><input type=\"number\" name='total_presenter_expense' class='total_presenter_expense' step=0.01></td></tr>
 			</tr>
 			<tr>
