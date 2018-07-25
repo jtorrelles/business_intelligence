@@ -173,7 +173,7 @@ if ($conn->connect_error) {
 	$total_comp_overage = $_POST['total_comp_overage'];
 	$total_star_overage = $_POST['total_star_overage'];
 	$pre_overage_pre = $_POST['pre_overage_pre'];
-	$overage_share = $_POST['overage_share'];
+	//$overage_share = $_POST['overage_share'];
 	$money_rem_total = $_POST['money_rem_total'];
 	$total_comp_share = $_POST['total_comp_share'];
 	$less_direct_comp = $_POST['less_direct_comp'];
@@ -181,7 +181,7 @@ if ($conn->connect_error) {
 	$total_pre_share = $_POST['total_pre_share'];
 	$pre_facility_fee = $_POST['pre_facility_fee'];
 	$adj_pre_share = $_POST['adj_pre_share'];
-	$notes = $_POST['notes'];
+	$notes = str_replace("\"","''",$_POST['notes']);
 
 $sql = "INSERT INTO settlements (SHOWID,CITYID,VENUEID,PRESENTERID,OPENINGDATE,CLOSINGDATE,DROPCOUNT,PAIDATTENDANCE,
 							COMPS,TOTALATTENDANCE,CAPACITY,GROSSSUBSCRIPTIONSALES, 
@@ -228,7 +228,7 @@ $sql = "INSERT INTO settlements (SHOWID,CITYID,VENUEID,PRESENTERID,OPENINGDATE,C
 							TOTALLOCALEXPENSEACTUAL,TOTALENGAGEMENTEXPENSES,MIDDLEMONIESTOCOMPANY,
 							MIDDLEMONIESTOPRESENTER,MONEYREMAINING,COMPANYOVERAGEPERCENTAGE,TOTALCOMPANYOVERAGEAMOUNT,
 							NETSTARPERFORMEROVERAGEPERCENTAGE,TOTALSTARPERFORMEROVERAGEAMOUNT,PRESENTEROVERAGETOCOMPANY,
-							PRESENTEROVERAGEADJUSTED,PRESENTEROVERAGETOPRESENTER,TOTALCOMPANYSHARE,
+							PRESENTEROVERAGETOPRESENTER,TOTALCOMPANYSHARE,
 							LESSDIRECTCOMPANYCHARGES,ADJUSTEDCOMPANYSHARE,TOTALPRESENTERSHARE,PRESENTERFACILITYFEE,
 							ADJUSTEDPRESENTERSHARE,NOTES) 
 					VALUES ($showid,$cityid,$venueid,$presenterid,'$openingdate','$closingdate',$drop_count,$paid_attendance,
@@ -261,9 +261,9 @@ $sql = "INSERT INTO settlements (SHOWID,CITYID,VENUEID,PRESENTERID,OPENINGDATE,C
 							$otherg_bug,$otherg_act,$piano_bug,$piano_act,$local_fixed_bug,$local_fixed_act,
 							$st_expenses_bug,$st_expenses_act,$total_expenses_bug,$total_expenses_act,
 							$t_engagement_act,$monies_comp,$monies_pre,$money_rem_total,$overage_comp,
-							$total_comp_overage,$net_star_overage,$total_star_overage,$overage_pre,$overage_share,
+							$total_comp_overage,$net_star_overage,$total_star_overage,$overage_pre,
 							$pre_overage_pre,$total_comp_share,$less_direct_comp,$adj_comp_share,$total_pre_share,
-							$pre_facility_fee,$adj_pre_share,'$notes')";
+							$pre_facility_fee,$adj_pre_share,\"$notes\")";
 
 	if ($conn->query($sql) === TRUE) {
 		echo "Record Created successfully";

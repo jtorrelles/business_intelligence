@@ -6,6 +6,9 @@ include '../header_nologout.html';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+echo "<script src=\"../js/jquery.min.js\"></script>";
+echo "<script src=\"../js/jquery.are-you-sure.js\"></script>";
+
 echo "<h1>Modify An Existing Show:</h1>";
 
 echo "<form action=\"shows_management.php\" method=\"POST\">";
@@ -186,6 +189,14 @@ else
 	$selectedid = '9999';
 	echo "No show selected<br>";
 }
+
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
 
 $conn->close();
 include '../footer.html';

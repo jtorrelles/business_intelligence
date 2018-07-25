@@ -555,22 +555,22 @@ class settlementsServices extends dbconfig {
                   $ClosingDate = $objPHPExcel->getSheet(20)->getCell('A5')->getValue();
                   $CD = gmdate($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($ClosingDate));
 
-                  $tax_1_perc = $objPHPExcel->getSheet(20)->getCell('B13')->getCalculatedValue();
-                  $tax_2_perc = $objPHPExcel->getSheet(20)->getCell('B14')->getCalculatedValue();
-                  $facility_perc = $objPHPExcel->getSheet(20)->getCell('B15')->getCalculatedValue();
-                  $subs_perc = $objPHPExcel->getSheet(20)->getCell('B16')->getCalculatedValue();
-                  $phone_perc = $objPHPExcel->getSheet(20)->getCell('B17')->getCalculatedValue();
-                  $internet_perc = $objPHPExcel->getSheet(20)->getCell('B18')->getCalculatedValue();
-                  $cc_perc = $objPHPExcel->getSheet(20)->getCell('B19')->getCalculatedValue();
-                  $remote_perc = $objPHPExcel->getSheet(20)->getCell('B20')->getCalculatedValue();
-                  $single_tix_perc = $objPHPExcel->getSheet(20)->getCell('B21')->getCalculatedValue();
-                  $group_1_perc = $objPHPExcel->getSheet(20)->getCell('B22')->getCalculatedValue();
-                  $group_2_perc = $objPHPExcel->getSheet(20)->getCell('B23')->getCalculatedValue();
-                  $goldstar_perc = $objPHPExcel->getSheet(20)->getCell('B24')->getCalculatedValue();
-                  $groupon_perc = $objPHPExcel->getSheet(20)->getCell('B25')->getCalculatedValue();
-                  $travelzoo_perc = $objPHPExcel->getSheet(20)->getCell('B26')->getCalculatedValue();
-                  $living_perc = $objPHPExcel->getSheet(20)->getCell('B27')->getCalculatedValue();
-                  $othera_perc = $objPHPExcel->getSheet(20)->getCell('B28')->getCalculatedValue();
+                  $tax_1_perc = ($objPHPExcel->getSheet(20)->getCell('B13')->getCalculatedValue())*100;
+                  $tax_2_perc = ($objPHPExcel->getSheet(20)->getCell('B14')->getCalculatedValue())*100;
+                  $facility_perc = ($objPHPExcel->getSheet(20)->getCell('B15')->getCalculatedValue())*100;
+                  $subs_perc = ($objPHPExcel->getSheet(20)->getCell('B16')->getCalculatedValue())*100;
+                  $phone_perc = ($objPHPExcel->getSheet(20)->getCell('B17')->getCalculatedValue())*100;
+                  $internet_perc = ($objPHPExcel->getSheet(20)->getCell('B18')->getCalculatedValue())*100;
+                  $cc_perc = ($objPHPExcel->getSheet(20)->getCell('B19')->getCalculatedValue())*100;
+                  $remote_perc = ($objPHPExcel->getSheet(20)->getCell('B20')->getCalculatedValue())*100;
+                  $single_tix_perc = ($objPHPExcel->getSheet(20)->getCell('B21')->getCalculatedValue())*100;
+                  $group_1_perc = ($objPHPExcel->getSheet(20)->getCell('B22')->getCalculatedValue())*100;
+                  $group_2_perc = ($objPHPExcel->getSheet(20)->getCell('B23')->getCalculatedValue())*100;
+                  $goldstar_perc = ($objPHPExcel->getSheet(20)->getCell('B24')->getCalculatedValue())*100;
+                  $groupon_perc = ($objPHPExcel->getSheet(20)->getCell('B25')->getCalculatedValue())*100;
+                  $travelzoo_perc = ($objPHPExcel->getSheet(20)->getCell('B26')->getCalculatedValue())*100;
+                  $living_perc = ($objPHPExcel->getSheet(20)->getCell('B27')->getCalculatedValue())*100;
+                  $othera_perc = ($objPHPExcel->getSheet(20)->getCell('B28')->getCalculatedValue())*100;
                   $otherb_perc = $objPHPExcel->getSheet(20)->getCell('B29')->getCalculatedValue();
                   $tax_1_amou = $objPHPExcel->getSheet(20)->getCell('C13')->getCalculatedValue();
                   $tax_2_amou = $objPHPExcel->getSheet(20)->getCell('C14')->getCalculatedValue();
@@ -621,13 +621,13 @@ class settlementsServices extends dbconfig {
                   $exchange_rate = $objPHPExcel->getSheet(20)->getCell('G3')->getValue();
                   $box_office_pot = $objPHPExcel->getSheet(20)->getCell('E8')->getCalculatedValue();
                   $box_office_receipts = $objPHPExcel->getSheet(20)->getCell('E10')->getValue();
-                  $box_office_perc_pot = $objPHPExcel->getSheet(20)->getCell('D11')->getCalculatedValue();
+                  $box_office_perc_pot = ($objPHPExcel->getSheet(20)->getCell('D11')->getCalculatedValue())*100;
 
                   $total_abo_expenses = $objPHPExcel->getSheet(20)->getCell('D31')->getCalculatedValue();
-                  $deductions_gbor = $objPHPExcel->getSheet(20)->getCell('E31')->getCalculatedValue();
+                  $deductions_gbor = number_format($objPHPExcel->getSheet(20)->getCell('E31')->getCalculatedValue(),9);
                   $nagbor = $objPHPExcel->getSheet(20)->getCell('E33')->getCalculatedValue();
-                  $net_com_royalty = $objPHPExcel->getSheet(20)->getCell('B36')->getCalculatedValue();
-                  $tax_withheld = $objPHPExcel->getSheet(20)->getCell('B37')->getCalculatedValue();
+                  $net_com_royalty = ($objPHPExcel->getSheet(20)->getCell('B36')->getCalculatedValue())*100;
+                  $tax_withheld = ($objPHPExcel->getSheet(20)->getCell('B37')->getCalculatedValue())*100;
                   $total_com_royalty = $objPHPExcel->getSheet(20)->getCell('D38')->getCalculatedValue();
                   $total_com_guarantee = $objPHPExcel->getSheet(20)->getCell('D41')->getCalculatedValue();
                   $other_deduction = $objPHPExcel->getSheet(20)->getCell('D42')->getCalculatedValue();
@@ -659,6 +659,7 @@ class settlementsServices extends dbconfig {
                   $otherc_act = $objPHPExcel->getSheet(20)->getCell('D58')->getCalculatedValue();
                   $st_variable_bug = $objPHPExcel->getSheet(20)->getCell('C59')->getCalculatedValue();
                   $st_variable_act = $objPHPExcel->getSheet(20)->getCell('D59')->getCalculatedValue();
+				  
                   $ada_bug = $objPHPExcel->getSheet(20)->getCell('C61')->getCalculatedValue();
                   $ada_act = $objPHPExcel->getSheet(20)->getCell('D61')->getCalculatedValue();
                   $boxoffice_bug = $objPHPExcel->getSheet(20)->getCell('C62')->getCalculatedValue();
@@ -705,21 +706,26 @@ class settlementsServices extends dbconfig {
                   $piano_act = $objPHPExcel->getSheet(20)->getCell('D82')->getCalculatedValue();
                   $local_fixed_bug = $objPHPExcel->getSheet(20)->getCell('C83')->getCalculatedValue();
                   $local_fixed_act = $objPHPExcel->getSheet(20)->getCell('D83')->getCalculatedValue();
+				  
                   $st_expenses_bug = $objPHPExcel->getSheet(20)->getCell('C84')->getCalculatedValue();
                   $st_expenses_act = $objPHPExcel->getSheet(20)->getCell('D84')->getCalculatedValue();
                   $total_expenses_bug = $objPHPExcel->getSheet(20)->getCell('C85')->getCalculatedValue();
                   $total_expenses_act = $objPHPExcel->getSheet(20)->getCell('D85')->getCalculatedValue();
                   $t_engagement_act = $objPHPExcel->getSheet(20)->getCell('E86')->getCalculatedValue();
-                  $overage_comp = $objPHPExcel->getSheet(20)->getCell('B90')->getCalculatedValue();
-                  $net_star_overage = $objPHPExcel->getSheet(20)->getCell('D90')->getCalculatedValue();
-                  $overage_pre = $objPHPExcel->getSheet(20)->getCell('E94')->getCalculatedValue();
-                  $monies_comp = $objPHPExcel->getSheet(20)->getCell('B97')->getCalculatedValue();
-                  $monies_pre = $objPHPExcel->getSheet(20)->getCell('D99')->getCalculatedValue();
-                  $total_comp_overage = $objPHPExcel->getSheet(20)->getCell('B100')->getCalculatedValue();
-                  $total_star_overage = $objPHPExcel->getSheet(20)->getCell('D102')->getCalculatedValue();
-                  $pre_overage_pre = $objPHPExcel->getSheet(20)->getCell('B103')->getCalculatedValue();
+
+                  $monies_comp = $objPHPExcel->getSheet(20)->getCell('B90')->getCalculatedValue();
+                  $monies_pre = $objPHPExcel->getSheet(20)->getCell('D90')->getCalculatedValue();
+                  $money_rem_total = $objPHPExcel->getSheet(20)->getCell('E94')->getCalculatedValue();				  
+				  
+                  $overage_comp = ($objPHPExcel->getSheet(20)->getCell('B97')->getCalculatedValue())*100;
+                  $total_comp_overage = $objPHPExcel->getSheet(20)->getCell('D99')->getCalculatedValue();				  
+                  $net_star_overage = ($objPHPExcel->getSheet(20)->getCell('B100')->getCalculatedValue())*100;
+				  $total_star_overage = $objPHPExcel->getSheet(20)->getCell('D102')->getCalculatedValue();
+				  
+                  $overage_pre = ($objPHPExcel->getSheet(20)->getCell('B103')->getCalculatedValue())*100;
+                  $pre_overage_pre = $objPHPExcel->getSheet(20)->getCell('D103')->getCalculatedValue();
                   $overage_share = $objPHPExcel->getSheet(20)->getCell('C103')->getCalculatedValue();
-                  $money_rem_total = $objPHPExcel->getSheet(20)->getCell('D103')->getCalculatedValue();
+
                   $total_comp_share = $objPHPExcel->getSheet(20)->getCell('E105')->getCalculatedValue();
                   $less_direct_comp = $objPHPExcel->getSheet(20)->getCell('E106')->getCalculatedValue();
                   $adj_comp_share = $objPHPExcel->getSheet(20)->getCell('E107')->getCalculatedValue();

@@ -38,6 +38,9 @@ echo "
     background-color: #000066;
     color: white;
 }
+#sticky {
+	overflow-x: hidden;
+}
 </style>
 </head>
 <body>";
@@ -67,7 +70,7 @@ $sql = "SELECT venueid,
 	ORDER BY venueactive DESC, venuestate ASC, venuecity ASC, venuename ASC";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<div class=\"sticky-table\">";
+	echo "<div id=\"sticky\" class=\"sticky-table\">";
 	echo "<table id=\"shows\" class='sortable'>
 	<col width=15%>
 	<col width=10%>

@@ -10,6 +10,7 @@ if ($conn->connect_error) {
 
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/venues_controller.js\"></script>";
+echo "<script src=\"../js/jquery.are-you-sure.js\"></script>";
 
 echo "<h1>Modify An Existing Venue:</h1>";
 
@@ -103,7 +104,13 @@ echo "</table>";
 echo "<p align=center><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 echo "</form>";
 echo "</div>";
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
 $conn->close();
 include '../footer.html';
-
 ?> 

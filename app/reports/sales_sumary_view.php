@@ -127,7 +127,7 @@ if ($conn->connect_error) {
 			<input type="image" name="excel" src="../images/excel.png" width=30 onclick=this.form.action="export_excel.php">
 			<input type="image" name="pdf" src="../images/pdf.png" width=30 onclick=this.form.action="export_pdf.php">
 			</p>
-			<div class="sticky-table">
+			<div class="sticky-table sticky-ltr-cells">
 			<table id="allroutestable">
 				<thead id="header">
 				</thead>

@@ -35,7 +35,7 @@ class contractsServices extends dbconfig {
  // Fetch all countries list
    public static function getVenues() {
      try {
-       $query = "SELECT venueid, venuename FROM venues WHERE venueactive = 'Y' ORDER BY venuename ASC";
+       $query = "SELECT venueid, venuename FROM venues ORDER BY venuename ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Venue not found.");
@@ -60,7 +60,7 @@ class contractsServices extends dbconfig {
        // Fetch all countries list
    public static function getPresenters() {
      try {
-       $query = "SELECT presenterid, presentername FROM presenters WHERE presenteractive = 'Y' ORDER BY presentername ASC";
+       $query = "SELECT presenterid, presentername FROM presenters ORDER BY presentername ASC";
        $result = dbconfig::run($query);
        if(!$result) {
          throw new exception("Presenter not found.");

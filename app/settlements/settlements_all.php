@@ -38,6 +38,9 @@ echo "
     background-color: #000066;
     color: white;
 }
+#sticky {
+	overflow-x: hidden;
+}
 </style>
 </head>
 <body>";
@@ -52,23 +55,19 @@ $selectedid = '0';
 $selectedstate = '0';
 
 echo "<form action=\"settlements_all.php\" method=\"POST\">";
-
 	echo "<table>";
 	echo "<tr><td>Shows:</td>";
 	echo "<td><select name=\"show\" class=\"shows\" id=\"showId\">";
-	echo "<option value=\"\">Select Show</option>
+	echo "<option value=\"9999\">Select Show</option>
 		  </select>";
 	echo "<input type=\"submit\" name=\"search\" value=\"Find\">";
 	echo "</tr>";
 	echo "</table>";
-
 echo "</form>";
 
-echo "<br>";
 echo "<p><a href=\"javascript:void(window.open('settlement_add.php','Add New Settlement','width=700,height=450,top=100'))\">Add a New Settlement</a>";
 echo " - "; 
 echo "<a href=\"javascript:void(window.open('upload_settlement.php','Upload  Settlement','width=650,height=450,top=100'))\">Upload a New Settlement</a></p>";
-echo "<br>";
 
 if (isset($_POST['show']))
 {
@@ -77,7 +76,6 @@ if (isset($_POST['show']))
 else
 {
 	$selectedid = '9999';
-	echo "No show selected<br>";
 }
 
 $sql = "SELECT 	se.ID,
@@ -108,22 +106,22 @@ $sql = "SELECT 	se.ID,
 
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<div class=\"sticky-table\">";
+	echo "<div id=\"sticky\" class=\"sticky-table\">";
 	echo "<table id=\"settlements\" class=\"sortable\">
-	<col width=9%>
-	<col width=9%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=7%>
-	<col width=5%>
+	<col width=10%>
+	<col width=10%>
+	<col width=6%>
+	<col width=10%>
+	<col width=6%>
+	<col width=6%>
+	<col width=6%>
+	<col width=6%>
+	<col width=6%>
+	<col width=6%>
+	<col width=6%>
+	<col width=6%>
+	<col width=6%>
+	<col width=10%>
 	<thead>
     <tr class=\"sticky-header\">
 	<th>Show Name</th>
@@ -156,13 +154,13 @@ if ($result->num_rows > 0) {
 			<td>". $row["presentername"]. "</td>
 			<td>". $row["OPENINGDATE"]."</td>
 			<td>". $row["CLOSINGDATE"]."</td>
-			<td>". number_format($row["GROSS_POTENTIAL"],2) ."</td>
-			<td>". number_format($row["GROSS_RECEIPTS"],2) ."</td>
-			<td>". number_format($row["NAGBOR"],2) ."</td>
-			<td>". number_format($row["TOTAL_ENGAGEMENT_EXPENSES"],2) ."</td>
-			<td>". number_format($row["TOTAL_COMPANY_ROYALTY"],2) ."</td>
-			<td>". number_format($row["TOTAL_COMPANY_GUARANTEE"],2) ."</td>
-			<td>". number_format($row["MONEY_REMAINING"],2) ."</td>
+			<td align=right>". number_format($row["GROSS_POTENTIAL"],2) ."</td>
+			<td align=right>". number_format($row["GROSS_RECEIPTS"],2) ."</td>
+			<td align=right>". number_format($row["NAGBOR"],2) ."</td>
+			<td align=right>". number_format($row["TOTAL_ENGAGEMENT_EXPENSES"],2) ."</td>
+			<td align=right>". number_format($row["TOTAL_COMPANY_ROYALTY"],2) ."</td>
+			<td align=right>". number_format($row["TOTAL_COMPANY_GUARANTEE"],2) ."</td>
+			<td align=right>". number_format($row["MONEY_REMAINING"],2) ."</td>
 			<td align=center>
 			<a href=\"javascript:void(window.open('settlement_preview_selected.php?selectedid=".$row['ID']."','Preview Selected','width=650,height=530,top=100'))\"><img src='../images/view.png' width=20></a>   
 			<a href=\"javascript:void(window.open('settlement_modify_selected.php?selectedid=".$row['ID']."','Modify Selected','width=700,height=580,top=100'))\"><img src='../images/modify.png' width=20></a> 
@@ -171,8 +169,6 @@ if ($result->num_rows > 0) {
 		</tr>";
     }
 	echo "</tbody></table></div>";
-	echo "<br>";
-	echo "Total Records: ".$total_records."<br>";
 } else {
     echo "0 results. Please select another show.";
 }

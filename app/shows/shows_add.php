@@ -3,9 +3,12 @@ require '../db/database_conn.php';
 include '../session.php';
 include 'access_control.php';
 include '../header_nologout.html';
+
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+echo "<script src=\"../js/jquery.min.js\"></script>";
+echo "<script src=\"../js/jquery.are-you-sure.js\"></script>";
 
 echo "<h1>Add a New Show:</h1>";
 	echo "<form action=\"shows_add_results.php\" method=\"POST\">";
@@ -97,6 +100,14 @@ echo "<h1>Add a New Show:</h1>";
 	echo "</table>";
 	echo "<p align=center><input type=\"submit\" name=\"modify\" value=\"Create / Save\"></p>";
 	echo "</form>";
+	
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
 
 $conn->close();
 include '../footer.html';

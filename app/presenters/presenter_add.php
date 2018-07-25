@@ -6,6 +6,7 @@ include '../header_nologout.html';
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
 	echo "<h1>Add a New Presenter:</h1>";
 		echo "<form action=\"presenter_add_results.php\" method=\"POST\">";
 		echo "<table>";
@@ -28,7 +29,8 @@ if ($conn->connect_error) {
 		echo "<option value=\"\">Select City</option>
 			  </select>
 			  <script src=\"../js/jquery.min.js\"></script>
-			  <script src=\"../js/presenters_controller.js\"></script></td>";
+			  <script src=\"../js/presenters_controller.js\"></script>
+			  <script src=\"../js/jquery.are-you-sure.js\"></script></td>";
 		echo "</tr>";
 		echo "<tr><td>ZIP Code:</td><td><input type=text name='zip_presenter'></td></tr>";
 		echo "<tr><td>Phone:</td><td><input type=text name='phone_presenter'></td></tr>";
@@ -46,5 +48,15 @@ if ($conn->connect_error) {
 		echo "</table>";
 		echo "<p><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 		echo "</form>";
+		
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
+
+$conn->close();		
 include '../footer.html';
 ?> 

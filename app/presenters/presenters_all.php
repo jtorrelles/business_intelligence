@@ -38,6 +38,9 @@ echo "
     background-color: #000066;
     color: white;
 }
+#sticky {
+	overflow-x: hidden;
+}
 </style>
 </head>
 <body>";
@@ -72,7 +75,7 @@ $sql = "SELECT presenterid,
 	
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
-	echo "<div class=\"sticky-table\">";
+	echo "<div id=\"sticky\" class=\"sticky-table\">";
 	echo "<table id=\"shows\" class='sortable'>
 	<col width=6.25%>
 	<col width=6.25%>

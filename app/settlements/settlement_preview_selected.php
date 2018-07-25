@@ -122,123 +122,123 @@ if(isset($_GET['selectedid'])){
 				</tr>
 				<tr>
 					<td>Paid Attendance</td>
-					<td align='right'>".$row['PAIDATTENDANCE']."</td>
+					<td align='right'>".number_format($row['PAIDATTENDANCE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Comps</td>
-					<td align='right'>".$row['COMPS']."</td>
+					<td align='right'>".number_format($row['COMPS'],2)."</td>
 				</tr>
 				<tr>
 					<td>Total Attendance</td>
-					<td align='right'>".$row['TOTALATTENDANCE']."</td>
+					<td align='right'>".number_format($row['TOTALATTENDANCE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Capacity</td>
-					<td align='right'>".$row['CAPACITY']."</td>
+					<td align='right'>".number_format($row['CAPACITY'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Subscription Sales</td>
-					<td align='right'>".$row['GROSSSUBSCRIPTIONSALES']."</td>
+					<td align='right'>".number_format($row['GROSSSUBSCRIPTIONSALES'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Phone Sales</td>
-					<td align='right'>".$row['GROSSPHONESALES']."</td>
+					<td align='right'>".number_format($row['GROSSPHONESALES'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Internet Sales</td>
-					<td align='right'>".$row['GROSSINTERNETSALES']."</td>
+					<td align='right'>".number_format($row['GROSSINTERNETSALES'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Cedit Card Sales</td>
-					<td align='right'>".$row['GROSSCREDITCARDSALES']."</td>
+					<td align='right'>".number_format($row['GROSSCREDITCARDSALES'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Remote Outlet Sales</td>
-					<td align='right'>".$row['GROSSREMOTEOUTLETSALES']."</td>
+					<td align='right'>".number_format($row['GROSSREMOTEOUTLETSALES'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Single Tix</td>
-					<td align='right'>".$row['GROSSSINGLETIX']."</td>
+					<td align='right'>".number_format($row['GROSSSINGLETIX'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Group Sales 1</td>
-					<td align='right'>".$row['GROSSGROUPSALES1']."</td>
+					<td align='right'>".number_format($row['GROSSGROUPSALES1'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Group Sales 2</td>
-					<td align='right'>".$row['GROSSGROUPSALES2']."</td>
+					<td align='right'>".number_format($row['GROSSGROUPSALES2'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Goldstar %</td>
-					<td align='right'>".$row['GROSSGOLDSTARPERCENTAGE']."</td>
+					<td align='right'>".number_format($row['GROSSGOLDSTARPERCENTAGE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Groupon %</td>
-					<td align='right'>".$row['GROSSGROUPONPERCENTAGE']."</td>
+					<td align='right'>".number_format($row['GROSSGROUPONPERCENTAGE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Traveloo %</td>
-					<td align='right'>".$row['GROSSTRAVELOOPERCENTAGE']."</td>
+					<td align='right'>".number_format($row['GROSSTRAVELOOPERCENTAGE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Living Social %</td>
-					<td align='right'>".$row['GROSSLIVINGSOCIALPERCENTAGE']."</td>
+					<td align='right'>".number_format($row['GROSSLIVINGSOCIALPERCENTAGE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Other %</td>
-					<td align='right'>".$row['GROSSOTHERPERCENTAGE']."</td>
+					<td align='right'>".number_format($row['GROSSOTHERPERCENTAGE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Other $</td>
-					<td align='right'>".$row['GROSSOTHERAMOUNT']."</td>
+					<td align='right'>".number_format($row['GROSSOTHERAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>TTL Sub Discount</td>
-					<td align='right'>".$row['TTLSUBDISCOUNT']."</td>
+					<td align='right'>".number_format($row['TTLSUBDISCOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>TTL Group 1 Discount</td>
-					<td align='right'>".$row['TTLGROUPDISCOUNT1']."</td>
+					<td align='right'>".number_format($row['TTLGROUPDISCOUNT1'],2)."</td>
 				</tr>
 				<tr>
 					<td>TTL Group 2 Discount</td>
-					<td align='right'>".$row['TTLGROUPDISCOUNT2']."</td>
+					<td align='right'>".number_format($row['TTLGROUPDISCOUNT2'],2)."</td>
 				</tr>
 				<tr>
 					<td>Total Discounts</td>
-					<td align='right'>".$row['TOTALDISCOUNTS']."</td>
+					<td align='right'>".number_format($row['TOTALDISCOUNTS'],2)."</td>
 				</tr>
 				<tr>
 					<td>TTL Comp Ticket Cost</td>
-					<td align='right'>".$row['TTLCOMPTICKETCOST']."</td>
+					<td align='right'>".number_format($row['TTLCOMPTICKETCOST'],2)."</td>
 				</tr>
 				<tr>
 					<td>Demand Pricing $</td>
-					<td align='right'>".$row['DEMANDPRICING']."</td>
+					<td align='right'>".number_format($row['DEMANDPRICING'],2)."</td>
 				</tr>
 				<tr>
 					<td>Number Of Performance</td>
-					<td align='right'>".$row['NUMBEROFPERFORMANCES']."</td>
+					<td align='right'>".number_format($row['NUMBEROFPERFORMANCES'],2)."</td>
 				</tr>
 				<tr>
 					<td>Top Ticket Price</td>
-					<td align='right'>".$row['TOPTICKETPRICE']."</td>
+					<td align='right'>".number_format($row['TOPTICKETPRICE'],2)."</td>
 				</tr>
 				<tr>
 					<td>US/Canadian Exchange Rate</td>
-					<td align='right'>".$row['USCANADIANEXCHANGERATE']."</td>
+					<td align='right'>".number_format($row['USCANADIANEXCHANGERATE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Box Office Potential</td>
-					<td align='right'>".$row['GROSSBOXOFFICEPOTENTIAL']."</td>
+					<td align='right'>".number_format($row['GROSSBOXOFFICEPOTENTIAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Box Office Receipts</td>
-					<td align='right'>".$row['GROSSBOXOFFICERECEIPTS']."</td>
+					<td align='right'>".number_format($row['GROSSBOXOFFICERECEIPTS'],2)."</td>
 				</tr>
 				<tr>
 					<td>Gross Box Office % of Potential</td>
-					<td align='right'>".$row['GROSSBOXOFFICEPERCENTAGEOFPOTENTIAL']."</td>
+					<td align='right'>".number_format($row['GROSSBOXOFFICEPERCENTAGEOFPOTENTIAL'],2)."</td>
 				</tr>
 				<tr>
 					<td></td>
@@ -260,134 +260,134 @@ if(isset($_GET['selectedid'])){
 				</tr>			
 				<tr>
 					<td>Tax 1 %</td>
-					<td align='right'>".$row['TAX1PERCENTAGE']."</td>
-					<td align='right'>".$row['TAX1AMOUNT']."</td>
+					<td align='right'>".number_format($row['TAX1PERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['TAX1AMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Tax 2 and/or Percent deduction</td>
-					<td align='right'>".$row['TAX2PERCENTAGE']."</td>
-					<td align='right'>".$row['TAX2AMOUNT']."</td>
+					<td align='right'>".number_format($row['TAX2PERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['TAX2AMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Facility/Restoration Fee </td>
-					<td align='right'>".$row['FACILITYPERCENTAGE']."</td>
-					<td align='right'>".$row['FACILITYAMOUNT']."</td>
+					<td align='right'>".number_format($row['FACILITYPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['FACILITYAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Subscription Sales Comm</td>
-					<td align='right'>".$row['SUBSCRIPTIONSALESCOMMPERCENTAGE']."</td>
-					<td align='right'>".$row['SUBSCRIPTIONSALESCOMMAMOUNT']."</td>
+					<td align='right'>".number_format($row['SUBSCRIPTIONSALESCOMMPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['SUBSCRIPTIONSALESCOMMAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Phone Sales Commission</td>
-					<td align='right'>".$row['PHONESALESCOMMPERCENTAGE']."</td>
-					<td align='right'>".$row['PHONESALESCOMMAMOUNT']."</td>
+					<td align='right'>".number_format($row['PHONESALESCOMMPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['PHONESALESCOMMAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Internet Sales Commisssion</td>
-					<td align='right'>".$row['INTERNETSALESCOMMPERCENTAGE']."</td>
-					<td align='right'>".$row['INTERNETSALESCOMMAMOUNT']."</td>
+					<td align='right'>".number_format($row['INTERNETSALESCOMMPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['INTERNETSALESCOMMAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Credit Card Sales Comm</td>
-					<td align='right'>".$row['CREDITCARDSALESCOMMPERCENTAGE']."</td>
-					<td align='right'>".$row['CREDITCARDSALESCOMMAMOUNT']."</td>
+					<td align='right'>".number_format($row['CREDITCARDSALESCOMMPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['CREDITCARDSALESCOMMAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Remote Sales Commission</td>
-					<td align='right'>".$row['REMOTESALESCOMMPERCENTAGE']."</td>
-					<td align='right'>".$row['REMOTESALESCOMMAMOUNT']."</td>
+					<td align='right'>".number_format($row['REMOTESALESCOMMPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['REMOTESALESCOMMAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Single Tix (if applicable)</td>
-					<td align='right'>".$row['SINGLETIXPERCENTAGE']."</td>
-					<td align='right'>".$row['SINGLETIXAMOUNT']."</td>
+					<td align='right'>".number_format($row['SINGLETIXPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['SINGLETIXAMOUNT'],2)."</td>
 				</tr>	
 				<tr>
 					<td>Group Sales Commission 1</td>
-					<td align='right'>".$row['GROUPSALESCOMM1PERCENTAGE']."</td>
-					<td align='right'>".$row['GROUPSALESCOMM1AMOUNT']."</td>
+					<td align='right'>".number_format($row['GROUPSALESCOMM1PERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['GROUPSALESCOMM1AMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Group Sales Commission 2</td>
-					<td align='right'>".$row['GROUPSALESCOMM2PERCENTAGE']."</td>
-					<td align='right'>".$row['GROUPSALESCOMM2AMOUNT']."</td>
+					<td align='right'>".number_format($row['GROUPSALESCOMM2PERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['GROUPSALESCOMM2AMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Goldstar</td>
-					<td align='right'>".$row['GOLDSTARPERCENTAGE']."</td>
-					<td align='right'>".$row['GOLDSTARAMOUNT']."</td>
+					<td align='right'>".number_format($row['GOLDSTARPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['GOLDSTARAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Groupon</td>
-					<td align='right'>".$row['GROUPONPERCENTAGE']."</td>
-					<td align='right'>".$row['GROUPONAMOUNT']."</td>
+					<td align='right'>".number_format($row['GROUPONPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['GROUPONAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Travelzoo</td>
-					<td align='right'>".$row['TRAVELZOOPERCENTAGE']."</td>
-					<td align='right'>".$row['TRAVELZOOAMOUNT']."</td>
+					<td align='right'>".number_format($row['TRAVELZOOPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['TRAVELZOOAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Living Social</td>
-					<td align='right'>".$row['LIVINGSOCIALPERCENTAGE']."</td>
-					<td align='right'>".$row['LIVINGSOCIALAMOUNT']."</td>
+					<td align='right'>".number_format($row['LIVINGSOCIALPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['LIVINGSOCIALAMOUNT'],2)."</td>
 				</tr>	
 				<tr>
 					<td>Other %</td>
-					<td align='right'>".$row['OTHERAPERCENTAGE']."</td>
-					<td align='right'>".$row['OTHERAAMOUNT']."</td>
+					<td align='right'>".number_format($row['OTHERAPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['OTHERAAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Other $</td>
-					<td align='right'>".$row['OTHERBPERCENTAGE']."</td>
-					<td align='right'>".$row['OTHERBAMOUNT']."</td>
+					<td align='right'>".number_format($row['OTHERBPERCENTAGE'],2)."</td>
+					<td align='right'>".number_format($row['OTHERBAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>Total Allowable B.O. Expenses</td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['TOTALALLOWABLEBOEXPENSES']."</td>
+					<td align='right'>".number_format($row['TOTALALLOWABLEBOEXPENSES'],2)."</td>
 				</tr>
 				<tr>
 					<td>Deductions % of GBOR</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['DEDUCTIONSOFGBOR']."</td>
+					<td align='right'>".number_format($row['DEDUCTIONSOFGBOR'],2)."</td>
 				</tr>
 				<tr>
 					<td>NAGBOR</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['NAGBOR']."</td>
+					<td align='right'>".number_format($row['NAGBOR'],2)."</td>
 				</tr>
 				<tr>
 					<td>Net Company Royalty</td>
-					<td align='right'>".$row['NETCOMPANYROYALTY']."</td>
+					<td align='right'>".number_format($row['NETCOMPANYROYALTY'],2)."</td>
 				</tr>
 				<tr>
 					<td>Tax Withheld at Source</td>
-					<td align='right'>".$row['TAXWITHHELDATSOURCE']."</td>
+					<td align='right'>".number_format($row['TAXWITHHELDATSOURCE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Total Company Royalty</td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['TOTALCOMPANYROYALTY']."</td>
+					<td align='right'>".number_format($row['TOTALCOMPANYROYALTY'],2)."</td>
 				</tr>
 				<tr>
 					<td>Total Company Guarantee</td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['TOTALCOMPANYGUARANTEE']."</td>
+					<td align='right'>".number_format($row['TOTALCOMPANYGUARANTEE'],2)."</td>
 				</tr>
 				<tr>
 					<td>Less Other Deduction To CO.</td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['LESSOTHERDEDUCTION']."</td>
+					<td align='right'>".number_format($row['LESSOTHERDEDUCTION'],2)."</td>
 				</tr>
 				<tr>
 					<td></td>
@@ -397,7 +397,7 @@ if(isset($_GET['selectedid'])){
 				</tr>
 				<tr>
 					<td></td>
-					<td align='right'><b>Percentage</b></td>
+					<td align='right'><b>Per Ticket</b></td>
 					<td align='right'><b>Budgeted</b></td>
 					<td align='right'><b>Actual</b></td>
 					<td align='right'><b>Total</b></td>
@@ -411,238 +411,238 @@ if(isset($_GET['selectedid'])){
 				</tr>		
 				<tr>
 					<td>INSURANCE (ON DROP COUNT)</td>
-					<td align='right'>".$row['INSURANCEPERTICKET']."</td>
-					<td align='right'>".$row['INSURANCEBUDGETED']."</td>
-					<td align='right'>".$row['INSURANCEACTUAL']."</td>
+					<td align='right'>".number_format($row['INSURANCEPERTICKET'],2)."</td>
+					<td align='right'>".number_format($row['INSURANCEBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['INSURANCEACTUAL'],2)."</td>
 				</tr>	
 				<tr>
 					<td>Ticket Printing</td>
-					<td align='right'>".$row['TICKETPRINTING1PERTICKET']."</td>
-					<td align='right'>".$row['TICKETPRINTING1BUDGETED']."</td>
-					<td align='right'>".$row['TICKETPRINTING1ACTUAL']."</td>
+					<td align='right'>".number_format($row['TICKETPRINTING1PERTICKET'],2)."</td>
+					<td align='right'>".number_format($row['TICKETPRINTING1BUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['TICKETPRINTING1ACTUAL'],2)."</td>
 				</tr>	
 				<tr>
 					<td>ADVERTISING (at gross)</td>
 					<td></td>
-					<td align='right'>".$row['ADVERTISINGBUDGETED']."</td>
-					<td align='right'>".$row['ADVERTISINGACTUAL']."</td>
+					<td align='right'>".number_format($row['ADVERTISINGBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['ADVERTISINGACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>STAGEHANDS (Load-in)</td>
 					<td></td>
-					<td align='right'>".$row['STAGEHANDSLOAINBUDGETED']."</td>
-					<td align='right'>".$row['STAGEHANDSLOAINACTUAL']."</td>
+					<td align='right'>".number_format($row['STAGEHANDSLOAINBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['STAGEHANDSLOAINACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>STAGEHANDS (Load-out)</td>
 					<td></td>
-					<td align='right'>".$row['STAGEHANDSLOADOUTBUDGETED']."</td>
-					<td align='right'>".$row['STAGEHANDSLOADOUTACTUAL']."</td>
+					<td align='right'>".number_format($row['STAGEHANDSLOADOUTBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['STAGEHANDSLOADOUTACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>STAGEHANDS (Running)</td>
 					<td></td>
-					<td align='right'>".$row['STAGEHANDSRUNNINGBUDGETED']."</td>
-					<td align='right'>".$row['STAGEHANDSRUNNINGACTUAL']."</td>
+					<td align='right'>".number_format($row['STAGEHANDSRUNNINGBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['STAGEHANDSRUNNINGACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>WARDROBE and HAIR (Load-in)</td>
 					<td></td>
-					<td align='right'>".$row['WARDROBELOADINBUDGETED']."</td>
-					<td align='right'>".$row['WARDROBELOADINACTUAL']."</td>
+					<td align='right'>".number_format($row['WARDROBELOADINBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['WARDROBELOADINACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>WARDROBE and HAIR (Load-out)</td>
 					<td></td>
-					<td align='right'>".$row['WARDROBELOADOUTBUDGETED']."</td>
-					<td align='right'>".$row['WARDROBELOADOUTACTUAL']."</td>
+					<td align='right'>".number_format($row['WARDROBELOADOUTBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['WARDROBELOADOUTACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>WARDROBE and HAIR (Running)</td>
 					<td></td>
-					<td align='right'>".$row['WARDROBERUNNINGBUDGETED']."</td>
-					<td align='right'>".$row['WARDROBERUNNINGACTUAL']."</td>
+					<td align='right'>".number_format($row['WARDROBERUNNINGBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['WARDROBERUNNINGACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>LABOR CATERING</td>
 					<td></td>
-					<td align='right'>".$row['LABORCATERINGBUDGETED']."</td>
-					<td align='right'>".$row['LABORCATERINGACTUAL']."</td>
+					<td align='right'>".number_format($row['LABORCATERINGBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['LABORCATERINGACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>MUSICIANS</td>
 					<td></td>
-					<td align='right'>".$row['MUSICIANSBUDGETED']."</td>
-					<td align='right'>".$row['MUSICIANSACTUAL']."</td>
+					<td align='right'>".number_format($row['MUSICIANSBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['MUSICIANSACTUAL'],2)."</td>
 				</tr>	
 				<tr>
 					<td>Other</td>
 					<td></td>
-					<td align='right'>".$row['OTHERCBUDGETED']."</td>
-					<td align='right'>".$row['OTHERCACTUAL']."</td>
+					<td align='right'>".number_format($row['OTHERCBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['OTHERCACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>SUBTOTAL of VARIABLE EXPENSE</td>
 					<td></td>
-					<td align='right'>".$row['SUBTOTALVARIABLEEXPENSEBUDGETED']."</td>
-					<td align='right'>".$row['SUBTOTALVARIABLEEXPENSEACTUAL']."</td>
+					<td align='right'>".number_format($row['SUBTOTALVARIABLEEXPENSEBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['SUBTOTALVARIABLEEXPENSEACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>ADA EXPENSE</td>
 					<td></td>
-					<td align='right'>".$row['ADAEXPENSEBUDGETED']."</td>
-					<td align='right'>".$row['ADAEXPENSEACTUAL']."</td>
+					<td align='right'>".number_format($row['ADAEXPENSEBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['ADAEXPENSEACTUAL'],2)."</td>
 				</tr>	
 				<tr>
 					<td>BOX OFFICE</td>
 					<td></td>
-					<td align='right'>".$row['BOXOFFICEBUDGETED']."</td>
-					<td align='right'>".$row['BOXOFFICEACTUAL']."</td>
+					<td align='right'>".number_format($row['BOXOFFICEBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['BOXOFFICEACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>HOSPITALITY (WATER)</td>
 					<td></td>
-					<td align='right'>".$row['HOSPITALITYBUDGETED']."</td>
-					<td align='right'>".$row['HOSPITALITYACTUAL']."</td>
+					<td align='right'>".number_format($row['HOSPITALITYBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['HOSPITALITYACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>3RD PARTY EQUIPMENT RENTAL</td>
 					<td></td>
-					<td align='right'>".$row['THIRDPARTYBUDGETED']."</td>
-					<td align='right'>".$row['THIRDPARTYACTUAL']."</td>
+					<td align='right'>".number_format($row['THIRDPARTYBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['THIRDPARTYACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>HOUSE STAFF</td>
 					<td></td>
-					<td align='right'>".$row['HOUSESTAFFBUDGETED']."</td>
-					<td align='right'>".$row['HOUSESTAFFACTUAL']."</td>
+					<td align='right'>".number_format($row['HOUSESTAFFBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['HOUSESTAFFACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>LICENSES/PERMITS</td>
 					<td></td>
-					<td align='right'>".$row['LICENSESBUDGETED']."</td>
-					<td align='right'>".$row['LICENSESACTUAL']."</td>
+					<td align='right'>".number_format($row['LICENSESBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['LICENSESACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>LIMOS/AUTO</td>
 					<td></td>
-					<td align='right'>".$row['LIMOSAUTOBUDGETED']."</td>
-					<td align='right'>".$row['LIMOSAUTOACTUAL']."</td>
+					<td align='right'>".number_format($row['LIMOSAUTOBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['LIMOSAUTOACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>ORCHESTRA SHELL REMOVAL</td>
 					<td></td>
-					<td align='right'>".$row['ORCHESTRABUDGETED']."</td>
-					<td align='right'>".$row['ORCHESTRAACTUAL']."</td>
+					<td align='right'>".number_format($row['ORCHESTRABUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['ORCHESTRAACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>PRESENTER PROFIT</td>
 					<td></td>
-					<td align='right'>".$row['PRESENTERPROFITBUDGETED']."</td>
-					<td align='right'>".$row['PRESENTERPROFITACTUAL']."</td>
+					<td align='right'>".number_format($row['PRESENTERPROFITBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['PRESENTERPROFITACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>POLICE/SECURITY/FIRE MARSHALL</td>
 					<td></td>
-					<td align='right'>".$row['SECURITYBUDGETED']."</td>
-					<td align='right'>".$row['SECURITYACTUAL']."</td>
+					<td align='right'>".number_format($row['SECURITYBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['SECURITYACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>PROGRAM</td>
 					<td></td>
-					<td align='right'>".$row['PROGRAMBUDGETED']."</td>
-					<td align='right'>".$row['PROGRAMACTUAL']."</td>
+					<td align='right'>".number_format($row['PROGRAMBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['PROGRAMACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>RENT</td>
 					<td></td>
-					<td align='right'>".$row['RENTBUDGETED']."</td>
-					<td align='right'>".$row['RENTACTUAL']."</td>
+					<td align='right'>".number_format($row['RENTBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['RENTACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>SOUND/LIGHTS</td>
 					<td></td>
-					<td align='right'>".$row['SOUNDBUDGETED']."</td>
-					<td align='right'>".$row['SOUNDACTUAL']."</td>
+					<td align='right'>".number_format($row['SOUNDBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['SOUNDACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>TICKET PRINTING</td>
 					<td></td>
-					<td align='right'>".$row['TICKETPRINTING2BUDGETED']."</td>
-					<td align='right'>".$row['TICKETPRINTING2ACTUAL']."</td>
+					<td align='right'>".number_format($row['TICKETPRINTING2BUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['TICKETPRINTING2ACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>TELEPHONES/INTERNET</td>
 					<td></td>
-					<td align='right'>".$row['TELEPHONESBUDGETED']."</td>
-					<td align='right'>".$row['TELEPHONESACTUAL']."</td>
+					<td align='right'>".number_format($row['TELEPHONESBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['TELEPHONESACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>DRY ICE/CO2</td>
 					<td></td>
-					<td align='right'>".$row['DRYICEBUDGETED']."</td>
-					<td align='right'>".$row['DRYICEACTUAL']."</td>
+					<td align='right'>".number_format($row['DRYICEBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['DRYICEACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>PRESS AGENT FEE</td>
 					<td></td>
-					<td align='right'>".$row['PRESSAGENTFEEBUDGETED']."</td>
-					<td align='right'>".$row['PRESSAGENTFEEACTUAL']."</td>
+					<td align='right'>".number_format($row['PRESSAGENTFEEBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['PRESSAGENTFEEACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>OTHER</td>
 					<td></td>
-					<td align='right'>".$row['OTHERDBUDGETED']."</td>
-					<td align='right'>".$row['OTHERDACTUAL']."</td>
+					<td align='right'>".number_format($row['OTHERDBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['OTHERDACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>OTHER</td>
 					<td></td>
-					<td align='right'>".$row['OTHEREBUDGETED']."</td>
-					<td align='right'>".$row['OTHEREACTUAL']."</td>
+					<td align='right'>".number_format($row['OTHEREBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['OTHEREACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>OTHER</td>
 					<td></td>
-					<td align='right'>".$row['OTHERFBUDGETED']."</td>
-					<td align='right'>".$row['OTHERFACTUAL']."</td>
+					<td align='right'>".number_format($row['OTHERFBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['OTHERFACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>OTHER</td>
 					<td></td>
-					<td align='right'>".$row['OTHERGBUDGETED']."</td>
-					<td align='right'>".$row['OTHERGACTUAL']."</td>
+					<td align='right'>".number_format($row['OTHERGBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['OTHERGACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>PIANO TUNINGS</td>
 					<td></td>
-					<td align='right'>".$row['PIANOBUDGETED']."</td>
-					<td align='right'>".$row['PIANOACTUAL']."</td>
+					<td align='right'>".number_format($row['PIANOBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['PIANOACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>LOCAL FIXED</td>
 					<td></td>
-					<td align='right'>".$row['LOCALFIXEDBUDGETED']."</td>
-					<td align='right'>".$row['LOCALFIXEDACTUAL']."</td>
+					<td align='right'>".number_format($row['LOCALFIXEDBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['LOCALFIXEDACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>SUB-TOTAL of LOCAL EXPENSES</td>
 					<td></td>
-					<td align='right'>".$row['SUBTOTALLOCALEXPENSESBUDGETED']."</td>
-					<td align='right'>".$row['SUBTOTALLOCALEXPENSESACTUAL']."</td>
+					<td align='right'>".number_format($row['SUBTOTALLOCALEXPENSESBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['SUBTOTALLOCALEXPENSESACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>TOTAL LOCAL EXPENSE</td>
 					<td></td>
-					<td align='right'>".$row['TOTALLOCALEXPENSEBUDGETED']."</td>
-					<td align='right'>".$row['TOTALLOCALEXPENSEACTUAL']."</td>
+					<td align='right'>".number_format($row['TOTALLOCALEXPENSEBUDGETED'],2)."</td>
+					<td align='right'>".number_format($row['TOTALLOCALEXPENSEACTUAL'],2)."</td>
 				</tr>
 				<tr>
 					<td>TOTAL ENGAGEMENT EXPENSES</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['TOTALENGAGEMENTEXPENSES']."</td>
+					<td align='right'>".number_format($row['TOTALENGAGEMENTEXPENSES'],2)."</td>
 				</tr>	
 				<tr>
 					<td></td>
@@ -654,7 +654,7 @@ if(isset($_GET['selectedid'])){
 				<tr>
 					<td align='right'></td>
 					<td align='right'><b>To Company</b></td>
-					<td align='right'><b>To Share</b></td>
+					<td align='right'></td>
 					<td align='right'><b>To Presenter</></td>
 					<td align='right'><b>Total</></td>
 				</tr>	
@@ -666,21 +666,21 @@ if(isset($_GET['selectedid'])){
 					<td></td>
 				</tr>
 				<tr>
-					<td>Middel Monies To</td>
-					<td align='right'>".$row['MIDDLEMONIESTOCOMPANY']."</td>
+					<td>Middle Monies To</td>
+					<td align='right'>".number_format($row['MIDDLEMONIESTOCOMPANY'],2)."</td>
 					<td></td>
-					<td align='right'>".$row['MIDDLEMONIESTOPRESENTER']."</td>
+					<td align='right'>".number_format($row['MIDDLEMONIESTOPRESENTER'],2)."</td>
 				</tr>	
 				<tr>
 					<td>Money Remaining</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['MONEYREMAINING']."</td>
+					<td align='right'>".number_format($row['MONEYREMAINING'],2)."</td>
 				</tr>
 				<tr>
 					<td>Company Overage %</td>
-					<td align='right'>".$row['COMPANYOVERAGEPERCENTAGE']."</td>
+					<td align='right'>".number_format($row['COMPANYOVERAGEPERCENTAGE'],2)."</td>
 					<td></td>
 					<td></td>
 				</tr>
@@ -688,77 +688,71 @@ if(isset($_GET['selectedid'])){
 					<td>Total Company Overage $</td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['TOTALCOMPANYOVERAGEAMOUNT']."</td>
+					<td align='right'>".number_format($row['TOTALCOMPANYOVERAGEAMOUNT'],2)."</td>
 				</tr>
 				<tr>
 					<td>NET STAR PERFORMER OVERAGE %</td>
-					<td align='right'>".$row['NETSTARPERFORMEROVERAGEPERCENTAGE']."</td>
+					<td align='right'>".number_format($row['NETSTARPERFORMEROVERAGEPERCENTAGE'],2)."</td>
 				</tr>		
 				<tr>
 					<td>TOTAL STAR PERFORMER OVERAGE $</td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['TOTALSTARPERFORMEROVERAGEAMOUNT']."</td>
+					<td align='right'>".number_format($row['TOTALSTARPERFORMEROVERAGEAMOUNT'],2)."</td>
 				</tr>	
 				<tr>
-					<td>Presenter Overage % to Company</td>
-					<td align='right'>".$row['PRESENTEROVERAGETOCOMPANY']."</td>
+					<td>Presenter Overage %</td>
+					<td align='right'>".number_format($row['PRESENTEROVERAGETOCOMPANY'],2)."</td>
 					<td></td>
 					<td></td>
 				</tr>	
 				<tr>
-					<td>Presenter Overage % Adjusted Company Share</td>
-					<td></td>
-					<td align='right'>".$row['PRESENTEROVERAGEADJUSTED']."</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Presenter Overage % to Presenter</td>
+					<td>Presenter Overage $</td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['PRESENTEROVERAGETOPRESENTER']."</td>
+					<td align='right'>".number_format($row['PRESENTEROVERAGETOPRESENTER'],2)."</td>
 				</tr>
 				<tr>
 					<td>TOTAL COMPANY SHARE</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['TOTALCOMPANYSHARE']."</td>
+					<td align='right'>".number_format($row['TOTALCOMPANYSHARE'],2)."</td>
 				</tr>
 				<tr>
 					<td>LESS DIRECT COMPANY CHARGES</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['LESSDIRECTCOMPANYCHARGES']."</td>
+					<td align='right'>".number_format($row['LESSDIRECTCOMPANYCHARGES'],2)."</td>
 				</tr>
 				<tr>
 					<td>ADJUSTED COMPANY SHARE</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['ADJUSTEDCOMPANYSHARE']."</td>
+					<td align='right'>".number_format($row['ADJUSTEDCOMPANYSHARE'],2)."</td>
 				</tr>	
 				<tr>
 					<td>TOTAL PRESENTER SHARE</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['TOTALPRESENTERSHARE']."</td>
+					<td align='right'>".number_format($row['TOTALPRESENTERSHARE'],2)."</td>
 				</tr>
 				<tr>
 					<td>PRESENTER'S FACILITY FEE</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['PRESENTERFACILITYFEE']."</td>
+					<td align='right'>".number_format($row['PRESENTERFACILITYFEE'],2)."</td>
 				</tr>
 				<tr>
 					<td>ADJUSTED PRESENTER SHARE</td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align='right'>".$row['ADJUSTEDPRESENTERSHARE']."</td>
+					<td align='right'>".number_format($row['ADJUSTEDPRESENTERSHARE'],2)."</td>
 				</tr>
 				<tr>
 					<td>NOTES</td>

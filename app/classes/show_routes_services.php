@@ -491,7 +491,7 @@ countryNAME: ".$res["country_name"];
                   for($i = 0; $i < 364; $i++){
                     $id = 8 + $i;
                     $Presentation_date = $objPHPExcel->getSheet(1)->getCell("D".$id)->getValue();
-                    $PD[$i] = date($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Presentation_date));  
+                    $PD[$i] = gmdate($format = "Y-m-d", PHPExcel_Shared_Date::ExceltoPHP($Presentation_date));  
                     $Holiday[$i] = $objPHPExcel->getSheet(1)->getCell("E".$id)->getValue();
                     $City[$i] = $objPHPExcel->getSheet(1)->getCell("G".$id)->getCalculatedValue();
                     $Repeat[$i] = $objPHPExcel->getSheet(1)->getCell("H".$id)->getValue();

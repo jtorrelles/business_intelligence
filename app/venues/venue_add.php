@@ -27,7 +27,8 @@ if ($conn->connect_error) {
 		echo "<option value=\"\">Select City</option>
 			  </select>
 			  <script src=\"../js/jquery.min.js\"></script>
-			  <script src=\"../js/venues_controller.js\"></script></td>";
+			  <script src=\"../js/venues_controller.js\"></script>
+			  <script src=\"../js/jquery.are-you-sure.js\"></script></td>";
 		echo "</tr>";
 		echo "<tr><td>ZIP Code:</td><td><input type=text name='zip_venue'></td></tr>";
 		echo "<tr><td>Phone:</td><td><input type=text name='phone_venue'></td></tr>";
@@ -43,5 +44,13 @@ if ($conn->connect_error) {
 		echo "</table>";
 		echo "<p><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 		echo "</form>";
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
+$conn->close();		
 include '../footer.html';
 ?> 

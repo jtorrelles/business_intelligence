@@ -25,7 +25,7 @@ echo "
 
 #routesoffshows td, #customers th {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 4px;
 }
 
 #routesoffshows tr:nth-child(even){background-color: #f2f2f2;}
@@ -34,11 +34,14 @@ echo "
 
 #routesoffshows th {
 	padding: 8px;
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     text-align: left;
     background-color: #000066;
     color: white;
+}
+#sticky {
+	overflow-x: hidden;
 }
 </style>
 </head>
@@ -66,9 +69,8 @@ echo "<form action=\"show_routes_all.php\" method=\"POST\">";
 
 echo "</form>";
 
-echo "<br>";
 echo "<p><a href=\"javascript:void(window.open('route_add.php','Add New Rote','width=650,height=450,top=100'))\" hidden>Add a New Route</a>
-	<a href=\"javascript:void(window.open('upload_routes.php','Upload  Route','width=650,height=450,top=100'))\">Upload a New Route</a></p><br>";
+	<a href=\"javascript:void(window.open('upload_routes.php','Upload  Route','width=650,height=450,top=100'))\">Upload a New Route</a></p>";
 
 if (isset($_POST['show'])){$selectedid = $_POST['show'];}
 
@@ -90,7 +92,7 @@ if (isset($_POST['show'])){$selectedid = $_POST['show'];}
 
 	$result = $conn->query($sql);
 	if ($result->num_rows > 0) {
-		echo "<div class=\"sticky-table\">";
+		echo "<div id=\"sticky\" class=\"sticky-table\">";
 		echo "<table id=\"routesoffshows\" class=\"sortable\">
 		<col width=20%>
 		<col width=20%>
@@ -129,8 +131,8 @@ if (isset($_POST['show'])){$selectedid = $_POST['show'];}
 			echo "</td></tr>";
 	    }
 		echo "</tbody></table></div>";
-		echo "<br>";
-		echo "Total Records: ".$total_records."<br>";
+		//echo "<br>";
+		//echo "Total Records: ".$total_records."<br>";
 	} else {
 	    echo "0 results. Please select another route.";
 	}

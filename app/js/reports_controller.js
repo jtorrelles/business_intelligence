@@ -234,9 +234,9 @@ function getMarketHistory(inid,endd,presenters,parentpresenters,country,state,ci
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
     var columns = '';
-    var hcolumns = '<tr class=\"sticky-header\"><th>SHOW NAME</th>' +
-                   '<th>OPENING DATE</th>' + 
-                   '<th>CLOSING DATE</th>' +
+    var hcolumns = '<tr class=\"sticky-header\"><th class=\"sticky-cell\">SHOW NAME</th>' +
+                   '<th class=\"sticky-cell\">OPENING DATE</th>' + 
+                   '<th class=\"sticky-cell\">CLOSING DATE</th>' +
 				   '<th>PRESENTER</th>' +
                    '<th>STATE</th>' +
                    '<th>CITY</th>' +                    
@@ -258,9 +258,9 @@ function getMarketHistory(inid,endd,presenters,parentpresenters,country,state,ci
             size2 = data.result['body'].length; 
             counter1 = 0;
             while(counter1 < size2){  
-                hfiles = hfiles + '<td>' + data.result['body'][counter1].showname + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].openingdate + '</td>' + 
-                                  '<td>' + data.result['body'][counter1].closingdate + '</td>' + 
+                hfiles = hfiles + '<td class=\"sticky-cell\">' + data.result['body'][counter1].showname + '</td>' + 
+                                  '<td class=\"sticky-cell\">' + data.result['body'][counter1].openingdate + '</td>' + 
+                                  '<td class=\"sticky-cell\">' + data.result['body'][counter1].closingdate + '</td>' + 
 								  '<td>' + data.result['body'][counter1].presentername + '</td>' + 
                                   '<td>' + data.result['body'][counter1].state + '</td>' + 
                                   '<td>' + data.result['body'][counter1].city + '</td>' + 
@@ -302,9 +302,9 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
     var counter = 0;
     var htmlpdf = '<link rel="stylesheet" type="text/css" href="../css/style.css"><table id="allroutestable">'
     var htmlexc = '<table>'
-    var columns = '<tr class=\"sticky-header\"><th>SHOW NAME</th>' +
-                  '<th>OPENING DATE</th>' + 
-                  '<th>CLOSING DATE</th>' +
+    var columns = '<tr class=\"sticky-header\"><th class=\"sticky-cell\">SHOW NAME</th>' +
+                  '<th class=\"sticky-cell\">OPENING DATE</th>' + 
+                  '<th class=\"sticky-cell\">CLOSING DATE</th>' +
                   '<th>STATE</th>' +
                   '<th>CITY</th>' +
                   '<th>NUMBER OF PERFORMANCES</th>' +
@@ -351,9 +351,9 @@ function getSalesSummary(inid,endd,country,state,city,fields,shows) {
                 st = data.result['body'][counter].st;
                 ad = data.result['body'][counter].ad;
 
-                files = files + '<td>' + data.result['body'][counter].showname + '</td>' + 
-                                '<td>' + data.result['body'][counter].openingdate + '</td>' + 
-                                '<td>' + data.result['body'][counter].closingdate + '</td>' + 
+                files = files + '<td class=\"sticky-cell\">' + data.result['body'][counter].showname + '</td>' + 
+                                '<td class=\"sticky-cell\">' + data.result['body'][counter].openingdate + '</td>' + 
+                                '<td class=\"sticky-cell\">' + data.result['body'][counter].closingdate + '</td>' + 
                                 '<td>' + data.result['body'][counter].state + '</td>' + 
                                 '<td>' + data.result['body'][counter].city + '</td>' + 
                                 '<td>' + data.result['body'][counter].perf + '</td>' + 

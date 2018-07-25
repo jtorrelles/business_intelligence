@@ -5,6 +5,7 @@ include 'access_control.php';
 include '../header_nologout.html';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script>";
+echo "<script src=\"../js/jquery.are-you-sure.js\"></script>";
 
 echo "<h1>Modify An Existing Deal:</h1>";
 if(isset($_GET['selectedid'])){
@@ -122,6 +123,13 @@ if(isset($_GET['selectedid'])){
 else {
   echo "failed";
 }
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
 $conn->close();
 include '../footer.html';
 ?>
