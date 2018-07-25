@@ -229,6 +229,7 @@ function findData(presenterID){
         if(data.tp == 1){
             $('.id').val(data['result'].id);
             $('.name').val(data['result'].name);
+            $('.parentcompany').val(data['result'].parentcompany);
             $('.address1').val(data['result'].address_1);
             $('.address2').val(data['result'].address_2);
             $('.zip').val(data['result'].zip);
