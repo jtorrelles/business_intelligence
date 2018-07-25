@@ -4,6 +4,7 @@ include '../session.php';
 include 'access_control.php';
 echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/contracts_controller.js\"></script></td>";
+echo "<script src=\"../js/jquery.are-you-sure.js\"></script>";
 echo "<script> onloadManagement(); </script>";
 echo "
 <script>
@@ -127,7 +128,13 @@ echo "<table>
 	</table>";
 echo "<p><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
 echo "</form>";
-echo "<br>";
-echo "<br>";
+echo "
+<script>
+  $(function() {
+	  $('form').areYouSure( {message:\"Data will be lost if you close this window!\"} );
+  });
+</script>
+";
+$conn->close();
 include '../footer.html';
 ?>
