@@ -6,9 +6,13 @@ echo "<script src=\"../js/jquery.min.js\"></script>";
 echo "<script src=\"../js/settlements_controller.js\"></script></td>";
 echo "<script src=\"../js/jquery.are-you-sure.js\"></script>";
 echo "<script> onloadManagement(); </script>";
+echo "<link rel=\"stylesheet\" href=\"../css/style.css\">";
 echo "<h1>Add a New Settlement:</h1>";
 echo "<form action=\"settlement_add_results.php\" method=\"POST\">";
-echo "<table>
+echo "<table id=\"settlements_table\">
+			<tr>
+				<th colspan=2>MAIN DATA</th>
+			</tr>
 		<tr>
 			<td><b>Show:</b></td>
 			<td>
@@ -38,12 +42,12 @@ echo "<table>
 			<td><input type=\"text\" class=\"cityname\" name=\"city\"></td></tr>
 			<tr><td><b>State:</b></td>
 			<td><input type=\"text\" class=\"statename\" name=\"state\"></td>
-			<td><input type=\"hidden\" class=\"cityid\" name=\"cityid\"></td></tr>
+			<td hidden><input type=\"hidden\" class=\"cityid\" name=\"cityid\"></td></tr>
 		</tr>
-	</table>
-	<table>
+	</table><br>
+	<table id=\"settlements_table\">
 		<tr>
-			<td colspan=2><h3>GENERAL DATA</h3></td>
+			<th colspan=2>GENERAL DATA</th>
 		</tr>
 		<tr>
 			<td><b>Opening Date:</b></td>
@@ -177,19 +181,15 @@ echo "<table>
 			<td><b>Gross Box Office % of Potential:</b></td>
 			<td><input type='number' name='box_office_perc_pot' class=\"box_office_perc_pot\" value=0.0 step=0.01></td>
 		</tr>
+		</table><br>
+		<table id=\"settlements_table\">
+		<tr>
+			<th colspan=3>ALLOWABLE BOX OFFICE DEDUCTIONS</th>
+		</tr>		
 		<tr>
 			<td></td>
-			<td></td>
-		</tr>	
-		<tr>
-			<td></td>
-			<td><b>Percentage</b></td>
-			<td><b>Amount</b></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
+			<th>Percentage</th>
+			<th>Amount</th>
 		</tr>
 		<tr>
 			<td><b>Tax 1 %:</b></td>
@@ -276,19 +276,12 @@ echo "<table>
 			<td><input type='number' name='otherb_perc' class=\"otherb_perc\" value=0.0 step=0.01></td>
 			<td><input type='number' name='otherb_amou' class=\"otherb_amou\" value=0.0 step=0.01></td>
 		</tr>
+		</table><br>
+		<table id=\"settlements_table\">
 		<tr>
 			<td></td>
-			<td></td>
-			<td></td>
-		</tr>	
-		<tr>
-			<td></td>
-			<td><b>Total</b></td>
+			<th>Total</th>
 		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>		
 		<tr>
 			<td><b>Total Allowable B.O. Expenses:</b></td>
 			<td><input type='number' name='total_abo_expenses' class=\"total_abo_expenses\" value=0.0 step=0.01></td>
@@ -321,87 +314,94 @@ echo "<table>
 			<td><b>Less Other Deduction To CO.</b></td>
 			<td><input type='number' name='other_deduction' class=\"other_deduction\" value=0.0 step=0.01></td>
 		</tr>
+		</table><br>
+		<table id=\"settlements_table\">
 		<tr>
-			<td></td>
-			<td></td>
+			<th colspan=4>VARIABLE EXPENSES</th>
 		</tr>
 		<tr>
 			<td></td>
-			<td><b>Budgeted</b></td>
-			<td><b>Actual</b></td>
-			<td><b>Percentage</b></td>
+			<th>Per Ticket</th>			
+			<th>Budgeted</th>
+			<th>Actual</th>
 		</tr>
+		
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>	
-		<tr>
-			<td><b>INSURANCE (ON DROP COUNT):</b></td>
-			<td><input type='number' name='insurance_bug' class=\"insurance_bug\" value=0.0 step=0.01></td>
-			<td><input type='number' name='insurance_act' class=\"insurance_act\" value=0.0 step=0.01></td>
-			<td><input type='number' name='insurance_per' class=\"insurance_per\" value=0.0 step=0.01></td>
-		</tr>
-		<tr>
-			<td><b>Ticket Printing:</b></td>
-			<td><input type='number' name='ticketprinting_bug' class=\"ticketprinting_bug\" value=0.0 step=0.01></td>
-			<td><input type='number' name='ticketprinting_act' class=\"ticketprinting_act\" value=0.0 step=0.01></td>
-			<td><input type='number' name='ticketprinting_per' class=\"ticketprinting_per\" value=0.0 step=0.01></td>
-		</tr>		
-		<tr>
-			<td><b>ADVERTISING (at gross):</b></td>
+			<td><b>ADVERTISING (at gross):</b></td><td></td>
 			<td><input type='number' name='advertising_bug' class=\"advertising_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='advertising_act' class=\"advertising_act\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>STAGEHANDS (Load-in):</b></td>
+			<td><b>STAGEHANDS (Load-in):</b></td><td></td>
 			<td><input type='number' name='sh_loadin_bug' class=\"sh_loadin_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='sh_loadin_act' class=\"sh_loadin_act\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>STAGEHANDS (Load-out):</b></td>
+			<td><b>STAGEHANDS (Load-out):</b></td><td></td>
 			<td><input type='number' name='sh_loadout_bug' class=\"sh_loadout_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='sh_loadout_act' class=\"sh_loadout_act\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>STAGEHANDS (Running):</b></td>
+			<td><b>STAGEHANDS (Running):</b></td><td></td>
 			<td><input type='number' name='sh_running_bug' class=\"sh_running_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='sh_running_act' class=\"sh_running_act\" value=0.0 step=0.01></td>
 		</tr>	
 		<tr>
-			<td><b>WARDROBE and HAIR (Load-in):</b></td>
+			<td><b>WARDROBE and HAIR (Load-in):</b></td><td></td>
 			<td><input type='number' name='wh_loadin_bug' class=\"wh_loadin_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='wh_loadin_act' class=\"wh_loadin_act\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>WARDROBE and HAIR (Load-out):</b></td>
+			<td><b>WARDROBE and HAIR (Load-out):</b></td><td></td>
 			<td><input type='number' name='wh_loadout_bug' class=\"wh_loadout_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='wh_loadout_act' class=\"wh_loadout_act\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>WARDROBE and HAIR (Running):</b></td>
+			<td><b>WARDROBE and HAIR (Running):</b></td><td></td>
 			<td><input type='number' name='wh_running_bug' class=\"wh_running_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='wh_running_act' class=\"wh_running_act\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>LABOR CATERING:</b></td>
+			<td><b>LABOR CATERING:</b></td><td></td>
 			<td><input type='number' name='labor_catering_bug' class=\"labor_catering_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='labor_catering_act' class=\"labor_catering_act\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>MUSICIANS:</b></td>
+			<td><b>MUSICIANS:</b></td><td></td>
 			<td><input type='number' name='musicians_bug' class=\"musicians_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='musicians_act' class=\"musicians_act\" value=0.0 step=0.01></td>
 		</tr>
 		<tr>
-			<td><b>Other:</b></td>
+			<td><b>Other:</b></td><td></td>
 			<td><input type='number' name='otherc_bug' class=\"otherc_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='otherc_act' class=\"otherc_act\" value=0.0 step=0.01></td>
 		</tr>	
 		<tr>
-			<td><b>SUBTOTAL of VARIABLE EXPENSE:</b></td>
+			<td><b>INSURANCE (ON DROP COUNT):</b></td>
+			<td><input type='number' name='insurance_per' class=\"insurance_per\" value=0.0 step=0.01></td>			
+			<td><input type='number' name='insurance_bug' class=\"insurance_bug\" value=0.0 step=0.01></td>
+			<td><input type='number' name='insurance_act' class=\"insurance_act\" value=0.0 step=0.01></td>
+		</tr>
+		<tr>
+			<td><b>Ticket Printing:</b></td>
+			<td><input type='number' name='ticketprinting_per' class=\"ticketprinting_per\" value=0.0 step=0.01></td>			
+			<td><input type='number' name='ticketprinting_bug' class=\"ticketprinting_bug\" value=0.0 step=0.01></td>
+			<td><input type='number' name='ticketprinting_act' class=\"ticketprinting_act\" value=0.0 step=0.01></td>
+		</tr>
+		<tr>
+			<td><b>SUBTOTAL of VARIABLE EXPENSE:</b></td><td></td>
 			<td><input type='number' name='st_variable_bug' class=\"st_variable_bug\" value=0.0 step=0.01></td>
 			<td><input type='number' name='st_variable_act' class=\"st_variable_act\" value=0.0 step=0.01></td>
+		</tr>		
+		</table><br>
+		<table id=\"settlements_table\">
+		<tr>
+			<th colspan=3>LOCAL EXPENSES</th>
+		</tr>
+		<tr>
+			<td></td>
+			<th>Budgeted</th>
+			<th>Actual</th>
 		</tr>
 		<tr>
 			<td><b>ADA EXPENSE:</b></td>
@@ -530,105 +530,53 @@ echo "<table>
 		</tr>
 		<tr>
 			<td></td>
-			<td></td>
-			<td></td>
+			<th>Total</th>
 		</tr>
-		<tr>
-			<td></td>
-			<td><b>Total</b></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>		
 		<tr>
 			<td><b>TOTAL ENGAGEMENT EXPENSES:</b></td>
 			<td><input type='number' name='t_engagement_act' class=\"t_engagement_act\" value=0.0 step=0.01></td>
 		</tr>
+		</table><br>
+		<table id=\"settlements_table\">		
 		<tr>
 			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
+			<th>To Company</th>
+			<th>To Presenter</th>
+		</tr>			
 		<tr>
-			<td></td>
-			<td><b>To Company</b></td>
-			<td><b>To Presenter</></td>
-		</tr>	
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><b>Company Overage %:</b></td>
-			<td><input type='number' name='overage_comp' class=\"overage_comp\" value=0.0 step=0.01></td>
-			<td></td>
-		</tr>		
-		<tr>
-			<td><b>NET STAR PERFORMER OVERAGE %:</b></td>
-			<td><input type='number' name='net_star_overage' class=\"net_star_overage\" value=0.0 step=0.01></td>
-			<td></td>
-		</tr>		
-		<tr>
-			<td><b>Presenter Overage % to Company:</b></td>
-			<td><input type='number' name='overage_pre' class=\"overage_pre\" value=0.0 step=0.01></td>
-			<td></td>
-		</tr>		
-		<tr>
-			<td><b>Middel Monies To:</b></td>
+			<td><b>Middle Monies To:</b></td>
 			<td><input type='number' name='monies_comp' class=\"monies_comp\" value=0.0 step=0.01></td>
 			<td><input type='number' name='monies_pre' class=\"monies_pre\" value=0.0 step=0.01></td>
-		</tr>	
-		<tr>
-			<td><b>Total Company Overage $:</b></td>
-			<td></td>
-			<td><input type='number' name='total_comp_overage' class=\"total_comp_overage\" value=0.0 step=0.01></td>
 		</tr>
-		<tr>
-			<td><b>TOTAL STAR PERFORMER OVERAGE $:</b></td>
-			<td></td>
-			<td><input type='number' name='total_star_overage' class=\"total_star_overage\" value=0.0 step=0.01></td>
-		</tr>
-		<tr>
-			<td><b>Presenter Overage % to Presenter:</b></td>
-			<td></td>
-			<td><input type='number' name='pre_overage_pre' class=\"pre_overage_pre\" value=0.0 step=0.01></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><b>To Share</></td>
-		</tr>	
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><b>Presenter Overage % Adjusted Company Share:</b></td>
-			<td><input type='number' name='overage_share' class=\"overage_share\" value=0.0 step=0.01></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td></td>
-			<td><b>Total</></td>
-		</tr>	
-		<tr>
-			<td></td>
-			<td></td>
-		</tr>	
 		<tr>
 			<td><b>Money Remaining:</b></td>
 			<td><input type='number' name='money_rem_total' class=\"money_rem_total\" value=0.0 step=0.01></td>
+		</tr>		
+		<tr>
+			<td></td>
+			<th>Percent</th>
+			<th>Gross Amount</th>
+		</tr>	
+		<tr>
+			<td><b>Company Overage:</b></td>
+			<td><input type='number' name='overage_comp' class=\"overage_comp\" value=0.0 step=0.01></td>
+			<td><input type='number' name='total_comp_overage' class=\"total_comp_overage\" value=0.0 step=0.01></td>
+		</tr>		
+		<tr>
+			<td><b>NET STAR PERFORMER Overage:</b></td>
+			<td><input type='number' name='net_star_overage' class=\"net_star_overage\" value=0.0 step=0.01></td>
+			<td><input type='number' name='total_star_overage' class=\"total_star_overage\" value=0.0 step=0.01></td>
+		</tr>		
+		<tr>
+			<td><b>Presenter Overage:</b></td>
+			<td><input type='number' name='overage_pre' class=\"overage_pre\" value=0.0 step=0.01></td>
+			<td><input type='number' name='pre_overage_pre' class=\"pre_overage_pre\" value=0.0 step=0.01></td>
+		</tr>
+		</table><br>
+		<table id=\"settlements_table\">
+		<tr>
+			<td></td>
+			<th>TOTAL</th>
 		</tr>
 		<tr>
 			<td><b>TOTAL COMPANY SHARE:</b></td>
@@ -656,10 +604,10 @@ echo "<table>
 		</tr>
 		<tr>
 			<td><b>NOTES:</b></td>
-			<th colspan=2><textarea rows=4 cols=50 name='notes' class=\"notes\"></textarea></th>
+			<td><textarea rows=4 cols=50 name='notes' class=\"notes\"></textarea></td>
 		</tr>
 	</table>";
-echo "<p align=center><input type=\"submit\" name=\"modify\" value=\"Modify / Save\"></p>";
+echo "<p align=center><input type=\"submit\" name=\"modify\" value=\"Create / Save\"></p>";
 echo "</form>";
 echo "
 <script>
