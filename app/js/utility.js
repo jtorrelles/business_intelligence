@@ -323,11 +323,11 @@ function getShowsByCategory(categories){
     var url = '../routes/shows_route.php?type=getShowsByCategory&categoryId='+categories;
     var method = "GET";
     var data = {};
+    var showsKeys = [];
     call.send(data, url, method, function(data) {
         if(data.tp == 1){
-            var showsKeys = [];
             $.each(data['result'], function(key, val) {
-                showsKeys.push(key); 
+                showsKeys.push(val.showid); 
             });
             $("#shows").multipleSelect('uncheckAll');
             $("#shows").multipleSelect("setSelects", showsKeys);
