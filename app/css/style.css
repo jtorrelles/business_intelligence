@@ -172,7 +172,7 @@
 
 .tablecss {
     font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
-  font-size: 11px;
+    font-size: 11px;
     border-collapse: collapse;
     width: 100%;
 }
@@ -324,9 +324,25 @@ td.a7 {
   padding-top: 6px;
   padding-bottom: 6px; 
 }
+#settlements_table {
+    font-family: \"Trebuchet MS\", Arial, Helvetica, sans-serif;
+	font-size: 11px;
+    border-collapse: collapse;
+}
 
-  
+#settlements_table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
 
+#settlements_table tr:nth-child(even){background-color: #f2f2f2;}
 
-
-  
+#settlements_table th {
+    border: 1px solid #ddd;	
+	padding: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    background-color: #000066;
+    color: white;
+}
