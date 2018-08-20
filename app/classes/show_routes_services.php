@@ -499,7 +499,7 @@ countryNAME: ".$res["country_name"];
                     $Book_notes[$i] = $objPHPExcel->getSheet(1)->getCell("K".$id)->getValue();
                     $Prod_notes[$i] = $objPHPExcel->getSheet(1)->getCell("L".$id)->getValue();
                     $Time_zone[$i] = $objPHPExcel->getSheet(1)->getCell("N".$id)->getValue();
-                    $Show_times[$i] = $objPHPExcel->getSheet(1)->getCell("O".$id)->getValue();
+                    $Show_times[$i] = $objPHPExcel->getSheet(1)->getCell("O".$id)->getFormattedValue();
                     $Perf[$i] = $objPHPExcel->getSheet(1)->getCell("P".$id)->getValue();
                     $Venue[$i] = $objPHPExcel->getSheet(1)->getCell("Q".$id)->getValue();
                     $Presenter[$i] = $objPHPExcel->getSheet(1)->getCell("R".$id)->getValue();
